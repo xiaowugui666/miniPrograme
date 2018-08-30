@@ -1,0 +1,30 @@
+<wxs module="filters" src="../../utils/method.wxs"></wxs>
+<view class='container'>
+    <view class='top'>
+        <view class='title'>退货进度</view>
+        <view class='desc'>{{data.description}}</view>
+        <view class='time'>{{data.created_at}}</view>
+    </view>
+     <!-- <view class='top'>
+        <view class='title'>退货地址</view>
+        <view class='desc'>江苏省昆山市淀山湖双马路1号普洛斯物流园A1库商家物流
+中心</view>
+        <view class='time'>商家电话 132 5232 4242</view>
+    </view> -->
+    <view class='orderID'>订单编号:{{data.no}}</view>
+     <view  class='menus' wx:for="{{data.items}}" wx:key='{{index}}'>
+        <image src='{{image}}{{item.order_items.cover_url}}?imageslim'></image>
+        <view class='desc'>
+            <label>{{item.name}}</label>
+            <label>{{item.order_items.sku_description}}</label>
+            <view>
+                <label>￥{{filters.toFix(item.amount/100)}}</label>
+                <label>x{{item.count}}</label>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='refundMoney'>退款金额 ¥{{filters.toFix(data.refund_amount/100)}}</view>
+<view class='bottom' wx:if="{{data.status==1}}" >
+    <view class='cancel' data-id='1' bindtap='cancel'>取消申请</view>
+</view>

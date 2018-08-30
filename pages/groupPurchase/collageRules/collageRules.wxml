@@ -1,0 +1,71 @@
+<view class="rule_content">
+	<view class="QA_list">
+		<view class="question">01<text class="spot"></text>什么是多人拼团？</view>
+		<view class="answer">多人拼团是指由多人一起拼单购买的团购活动，通过拼团卖家可以享受比一般网购更低的折扣。</view>
+	</view>
+	<view class="QA_list">
+		<view class="question">02<text class="spot"></text>怎样算拼团成功？</view>
+		<view class="answer">在拼团有效期内找到满足人数的好友 参加拼团，即可算拼团成功。</view>
+	</view>
+	<view class="QA_list">
+		<view class="question">03<text class="spot"></text>拼团失败，怎样退款？</view>
+		<view class="answer">若拼团有效期内没有凑齐人数，即算作拼团失败，系统会自动将所支付的货款原路退回。
+</view>
+	</view>
+	<view class="QA_list">
+		<view class="question collage_process">04<text class="spot"></text>拼团流程</view>
+		<view class="answer collage_process">
+			<view class="column left">
+				<image src="{{image}}collage-steps1.png"></image>
+				<view>
+					<view class="middle">
+						<view>选择商品规格</view>
+						<view>后按【确认】</view>
+					</view>
+				</view>
+				<image src="{{image}}collage-steps3.png"></image>
+				<view>
+					<view class="middle">
+						<view>返回拼单详情</view>
+						<view>邀请好友拼单</view>
+					</view>
+				</view>
+				<image src="{{image}}collage-steps5.png"></image>
+			</view>
+			<view class="pro_detail">
+				<view class='circle'><view class='circle_inner'></view></view>
+				<view class='line'></view>
+				<view class='circle'><view class='circle_inner'></view></view>
+				<view class='line'></view>
+				<view class='circle'><view class='circle_inner'></view></view>
+				<view class='line'></view>
+				<view class='circle'><view class='circle_inner'></view></view>
+				<view class='line'></view>
+				<view class='circle'><view class='circle_inner'></view></view>
+			</view>
+			<view class="column right">
+				<view>
+					<view class="middle">
+						<view>选择商品</view>
+						<view>点击【一键开团】</view>
+					</view>
+				</view>
+				<image src="{{image}}collage-steps2.png"></image>
+				<view>
+					<view class="middle">
+						<view>选择支付方式</view>
+						<view>完成拼团</view>
+					</view>
+				</view>
+				<image src="{{image}}collage-steps4.png"></image>
+				<view>
+					<view class="middle">
+						<view>有效期内达到人数</view>
+						<view>团购成功</view>
+						<view>等待商家发货</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

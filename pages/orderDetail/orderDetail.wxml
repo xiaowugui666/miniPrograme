@@ -1,0 +1,96 @@
+<wxs module="filters" src="../../utils/method.wxs"></wxs>
+
+<view class='state' wx:if="{{info.status==200}}">
+    <image src='{{image}}time.png'></image>
+    <view  class='name'>
+      状态：待付款
+      </view>
+    <view class='addr'>
+       请在 <text>{{expire_at}}</text> 内完成支付，超时自动关闭交易
+    </view>
+</view>
+<view class='address'>
+    <image src='{{image}}position.png'></image>
+    <view  class='name clearfix'>
+      <label>收货人：{{info.consignee}}</label>
+      <label>{{info.mobile}}</label>
+    </view>
+    <view class='addr'>
+        收货地址：{{info.province}}{{info.city}}{{info.county}}{{info.address_detail}}
+    </view>
+</view>
+<view class='detail'>
+    <view  class='menus' wx:for='{{info.items}}' bindtap='goDetail' data-goods_id="{{items.goods_id}}" wx:for-item='items' wx:key='index'>
+        <image src='{{image}}{{items.cover_url}}?imageView2/1/w/200/h/200'></image>
+        <view class='desc'>
+            <label>{{items.name}}</label>
+            <label>{{items.sku_description}}</label>
+            <label>x{{items.count}}</label>
+            <label>￥{{filters.toFix(items.price/100)}}</label>
+        </view>
+    </view>
+    <view class='info'>
+      <view>
+        <label>商品总价</label> 
+        <label>￥{{filters.toFix(info.goods_amount/100)}}</label>
+      </view>
+      <view>
+        <label>运费（快递）</label> 
+        <label>￥{{filters.toFix(info.express_amount/100)}}</label>
+      </view>
+      <!-- <view>
+        <label>拼团价</label> 
+        <label>￥{{filters.toFix(info.goods_amount/100)}}</label>
+      </view> -->
+    </view>
+    <view class='info'>
+      <view>
+        <label>订单编号</label> 
+        <label>{{info.no}}</label>
+      </view>
+      <view>
+        <label>创建时间</label> 
+        <label>{{info.created_at}}</label>
+      </view>
+        <view>
+          <label>状态</label> 
+          <label wx:if='{{info.status==200}}'>待付款</label>
+          <label wx:elif='{{info.status==205}}'>待发货</label>
+          <label wx:elif='{{info.status==255}}'>待成团</label>          
+          <label wx:elif='{{info.status==305}}'>已发货</label>
+          <label wx:elif='{{info.status==400}}'>待收货</label>
+          <label wx:elif='{{info.status==500}}'>退货中</label>
+          <label wx:elif='{{info.status==405}}'>已收货</label>
+        </view>   
+    </view>
+    <view class='orderMoney'>
+       订单总价：￥{{filters.toFix(info.amount/100)}}
+    </view>
+</view>
+<view class='btnBottom'>
+    <view  wx:if='{{info.status==405&&info.after_sale_status==1}}' bindtap='cancelOrder' class='cancel'>申请售后</view>
+    <view  wx:if='{{info.status==400 || info.status==305}}' bindtap='confirm'  data-sure='405' class='cancel'>确认收货</view>
+    <view wx:if='{{info.status == 255}}' class='cancel' bindtap='groupDetail'>拼单详情</view>    
+    <view class='{{info.status!=205 && info.status != 255 ? "cancel" : "cancel right"}}' bindtap='contacts' >联系商家</view>
+    <view  wx:if='{{info.status==405 || info.status==400 || info.status==305}}'  class='pay' bindtap='checkLogistics'>查看物流</view>
+    <view  wx:if='{{info.status==200}}'  data-orderid='{{info.id}}'  bindtap='cancel'   class='cancel'>取消订单</view>
+    <view  wx:if='{{info.status==200}}' bindtap='payMoney' data-orderid='{{info.id}}' class='pay'>立即支付</view>
+</view>
+
+<view class='shade' hidden='{{show}}' catchtouchmove='preventTouchMove'>
+     <view class='contact'>
+        <view class='title'>
+          <view>联系商家</view>
+          <view class='clear' bindtap='close'></view>          
+        </view>
+        <button open-type='contact' session-from="weapp">
+              <image src='{{image}}wechat@2x.png'></image>
+              <label>微信联系</label>
+        </button>
+        <view class='iphone' bindtap='callPhone'>
+            <image src='{{image}}phone@2x.png'></image>
+            <label>电话联系</label>
+        </view> 
+    </view>
+</view>
+

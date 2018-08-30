@@ -1,0 +1,97 @@
+
+<wxs module="filters" src="../../utils/method.wxs"></wxs>
+<view class='content'>
+  <view class='item_box'>
+
+    <view class='box_header'>
+      <image src='{{image + logo_url}}'></image>
+      <view class='user_info'>
+        <text>{{name}}</text>
+        <text>{{timestamp}}</text>
+      </view>
+    </view>
+
+    <view class='box_content' wx:if="{{trendsData.type==1}}">
+      <view class='content_text'>{{trendsData.content}}</view>
+      <view class='images'>
+        <block wx:if='{{trendsData.images.length == 1}}'>
+          <image wx:for='{{trendsData.images}}' class='one' wx:for-item='ite' wx:for-index='ind' src='{{image + ite.img_url}}?imageMogr2/thumbnail/!50p/imageslim' wx:key='{{ind}}' mode='widthFix'  data-ind='{{ind}}' catchtap='viewImages'></image>
+        </block>
+        <block wx:elif='{{trendsData.images.length == 2}}'>
+          <image wx:for='{{trendsData.images}}' class='two' wx:for-item='ite' wx:for-index='ind' src='{{image + ite.img_url}}?imageMogr2/thumbnail/!50p/gravity/Center/crop/200x200/imageslim' wx:key='{{ind}}' mode='aspectFill'  data-ind='{{ind}}' catchtap='viewImages'></image>
+        </block>
+        <block wx:else>
+          <image wx:for='{{trendsData.images}}' class='more' wx:for-item='ite' wx:for-index='ind' src='{{image + ite.img_url}}?imageMogr2/thumbnail/!50p/gravity/Center/crop/200x200/imageslim' wx:key='{{ind}}' mode='aspectFill'  data-ind='{{ind}}' catchtap='viewImages'></image>
+        </block>
+        </view>
+      <view class='stati_data'>
+        <view class='stati_left'>
+          <view><image src='../../imgs/dynamic_icon_browse@2x.png' mode='widthFix'></image><text>{{trendsData.pv_browse}}</text></view>
+          <view><image src='../../imgs/dynamic_icon_comment@2x.png' mode='widthFix'></image><text>{{trendsData.comment_success_count}}</text></view>
+        </view>
+        <!-- <view  wx:if='{{voted}}' bindtap='cancledVote'><image class='voted_img' src='../../imgs/dynamic_icon_thumbs_s@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></view> 
+        <view bindtap='vote' wx:else><image src='../../imgs/dynamic_icon_thumbs@2x@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></view> -->
+        <view catchtap='catchPreventDefault'>
+          <button wx:if='{{!hasUserInfo && trendsData.vote}}' open-type='getUserInfo' catchgetuserinfo='getUserInfo'><image class='voted_img' src='../../imgs/dynamic_icon_thumbs_s@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:elif='{{!hasUserInfo && !trendsData.vote}}' open-type='getUserInfo' catchgetuserinfo='getUserInfo'><image class='voted_img' src='../../imgs/dynamic_icon_thumbs@2x@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:elif='{{!userId && trendsData.vote}}' open-type='getPhoneNumber' catchgetuserinfo='getPhoneNumber'><image class='voted_img' src='../../imgs/dynamic_icon_thumbs_s@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:elif='{{!userId && !trendsData.vote}}' open-type='getPhoneNumber' catchgetuserinfo='getPhoneNumber'><image class='voted_img' src='../../imgs/dynamic_icon_thumbs@2x@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:elif='{{!voted}}' catchtap='vote' data-id='{{trendsData.id}}' data-index="{{index}}"><image src='../../imgs/dynamic_icon_thumbs@2x@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:else catchtap='cancledVote' data-id='{{trendsData.id}}' data-index="{{index}}"><image class='voted_img' src='../../imgs/dynamic_icon_thumbs_s@2x.png' data-id='ssssss' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+        </view>
+      </view>
+      </view>
+    </view>
+    <view class='box_content' wx:if="{{trendsData.type==2}}">
+        <view  class='title'>{{trendsData.title}}</view>
+        <rich-text  nodes="{{content}}"></rich-text>
+        <view class='stati_data'>
+        <view class='stati_left'>
+          <view><image src='../../imgs/dynamic_icon_browse@2x.png' mode='widthFix'></image><text>{{trendsData.pv_browse}}</text></view>
+          <view data-id='{{trendsData.id}}'><image src='../../imgs/dynamic_icon_comment@2x.png' mode='widthFix'></image><text>{{trendsData.comment_success_count}}</text></view>
+        </view>
+        <view catchtap='catchPreventDefault'>
+          <button wx:if='{{!hasUserInfo && trendsData.vote}}' open-type='getUserInfo' catchgetuserinfo='getUserInfo'><image class='voted_img' src='../../imgs/dynamic_icon_thumbs_s@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:elif='{{!hasUserInfo && !trendsData.vote}}' open-type='getUserInfo' catchgetuserinfo='getUserInfo'><image class='voted_img' src='../../imgs/dynamic_icon_thumbs@2x@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:elif='{{!userId && trendsData.vote}}' open-type='getPhoneNumber' catchgetuserinfo='getPhoneNumber'><image class='voted_img' src='../../imgs/dynamic_icon_thumbs_s@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:elif='{{!userId && !trendsData.vote}}' open-type='getPhoneNumber' catchgetuserinfo='getPhoneNumber'><image class='voted_img' src='../../imgs/dynamic_icon_thumbs@2x@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:elif='{{!voted}}' catchtap='vote' data-id='{{trendsData.id}}' data-index="{{index}}"><image src='../../imgs/dynamic_icon_thumbs@2x@2x.png' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+          <button wx:else catchtap='cancledVote' data-id='{{trendsData.id}}' data-index="{{index}}"><image class='voted_img' src='../../imgs/dynamic_icon_thumbs_s@2x.png' data-id='ssssss' mode='widthFix'></image><text>{{trendsData.pv_vote}}</text></button>
+        </view>
+      </view>
+    </view>
+    <view wx:if='{{comments.length>0}}' class='comments'>
+        <view wx:for='{{comments}}' wx:for-item='ite' wx:for-index='ind' wx:key='{{ind}}'>
+          <view wx:if='{{ite.type == 1}}' class='comment'>
+              <view style='width:75%'>
+                  <text class='user'>{{ite.nick_name}} : </text>{{ite.content}}
+              </view>
+              <view style='text-align:right'>{{ite.time}}</view>
+          </view>
+          <view wx:else class='comment'>
+            <view style='width:75%'><text class='user'>{{name}} </text><text> 回复 </text><text class='store'> {{ite.nick_name}} :</text>{{ite.content}}</view>
+            <view style='text-align:right'>{{ite.time}}</view>
+          </view>          
+        </view>
+       <view class='top'></view>  
+  </view>
+  
+  <!-- <view class='bottom'>到底啦，去别处逛逛吧</view> -->
+</view>
+ <view class='input_outer' wx:if='{{inputVisi}}'>
+      <input bindinput='userInput' placeholder='评论{{name}}' maxlength='100' value='{{value}}' auto-focus='{{autoFocus}}' bindconfirm='comment' adjust-position='false'></input>
+      <button class='{{value ? "active" : ""}}' wx:if='{{!hasUserInfo}}'  open-type='getUserInfo' catchtap='getUserInfo'>发送</button>
+      <button class='{{value ? "active" : ""}}' wx:elif='{{!userId}}'  open-type='getPhoneNumber' catchtap='getPhoneNumber'>发送</button>     
+      <button class='{{value ? "active" : ""}}' wx:else bindtap='comment'>发送</button>
+</view>
+
+<!-- 获取用户信息/手机号模态弹框  -->
+<view class='modal_mask' wx:if='{{modalVisi}}'  catchtouchmove='preventTouchMove'>
+  <view class='modal_box' wx:if='{{modalVisi}}'>
+    <view class='modal_copyright'>绑定的手机号授权</view>
+    <image src='{{userInfo.avatarUrl}}'></image>
+    <!-- <text>{{userInfo.nick_name}}</text> -->
+    <text>{{userInfo.nickName}}</text>
+    <button open-type='getPhoneNumber' catchgetphonenumber='getPhoneNumber'>获取手机号</button>  
+  </view>
+</view>

@@ -1,0 +1,122 @@
+/* pages/groupList/goupList.wxss */
+/* family  */
+page {
+  background: #F6F7F7;
+}
+.search_family {
+	height: 84rpx;
+	width: 750rpx;
+	margin: 0 auto;
+	font-size: 32rpx;
+  background: white;
+	color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 2rpx 14rpx #D0D0D0;
+}
+.selected {
+	color: #EA2534;
+  border-bottom: 4rpx solid #F02417;
+}
+.search_family view {
+  width: 120rpx;
+  text-align: center;
+  height: 84rpx;
+  line-height: 84rpx;
+  box-sizing: border-box;
+}
+
+.item_boxs {
+  margin-top: 20rpx;
+  padding: 24rpx 18rpx 24rpx 20rpx;
+  background: white;
+}
+.item_boxs .box .prompt {
+  font-size: 24rpx;
+  color: #333333;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #E3E3E3;
+}
+.item_boxs .box .prompt.endding {
+  color: #EA2534;
+}
+.item_boxs .box .item_info {
+  padding: 20rpx 2rpx 20rpx 0;
+  overflow: hidden;
+}
+.item_boxs .box .item_info .image_box {
+  width: 162rpx;
+  height: 160rpx;
+  float: left;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.item_boxs .box .item_info image {
+  width: 162rpx;
+  height: 160rpx;
+}
+
+.item_boxs .box .item_info .item_content {
+  color: #333333;
+  font-size: 26rpx;
+  float: left;
+  margin-left: 20rpx;
+  width: 526rpx;
+}
+.item_boxs .box .item_info .item_content .content_spec {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  height: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #999999;
+}
+.item_content .content_title {
+  height: 70rpx;
+  overflow: hidden;
+  -webkit-line-clamp: 2;  
+  text-overflow: ellipsis;
+}
+.item_content .content_spec text:not-child(:first-child) {
+  margin-left: 10rpx;
+}
+.item_boxs .box .item_info .item_content .content_price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22rpx;
+  margin-top: 8rpx;
+}
+.item_boxs .box .item_info view .red {
+  color: #EA2534;
+}
+.item_boxs .box .item_info view .price {
+  font-size: 32rpx;
+}
+.item_boxs .box .item_info view .decora {
+  margin-left: 17rpx;
+  color: #999999;
+  text-decoration: line-through;
+}
+.item_content .content_price .button_order {
+  width: 120rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  box-sizing: border-box;
+  color: #EA2534;
+  font-size: 22rpx;
+  border: 1px solid #EA2534;
+  border-radius: 6rpx;
+}
+.item_content .content_price .botton_buy {
+  width: 140rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  color: white;
+  font-size: 24rpx;
+  background-image: linear-gradient(-90deg, #FE9474 0%, #E83E3F 100%);
+  border-radius: 36rpx;
+}

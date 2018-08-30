@@ -1,0 +1,108 @@
+/* pages/recommend/recommend.wxss */
+/* recommend products  */
+page{
+	background: #F6F7F7;
+	padding-top: 20rpx;
+	padding-bottom: 20rpx;
+}
+
+image {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.group_num {
+	color: #EA2534;
+}
+
+.group_list_box {
+	padding: 0 20rpx;
+	background: #fff;
+}
+
+.group_li {
+	background: #fff;
+	border-top: 1px solid #E3E3E3;
+	font-size: 0;
+	padding: 20rpx 0;
+	position: relative;
+}
+.group_li:first-child {
+	border-top: none;
+}
+
+.group_li .group_li_img {
+	width: 120rpx;
+	height: 120rpx;
+	margin-right: 20rpx;
+	border-radius: 50%;
+}
+
+.group_li .group_li_info {
+	display: inline-block;
+	vertical-align: middle;
+	width: 570rpx;
+}
+
+.group_li .group_li_info >view::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.group_li .group_li_info .user_name_num {
+	margin-bottom: 20rpx;
+	line-height: 1;
+}
+
+.group_li .group_li_info .user_name {
+	font-size: 28rpx;
+	color: #333333;
+	display: inline-block;
+	width: 360rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.group_li .group_li_info .short {
+	float: right;
+	font-size: 26rpx;
+	color: #999;
+	margin-top: 2rpx;
+}
+
+.group_li .group_li_info .remaining_time {
+	font-size: 26rpx;
+	color: #999;
+	float: left;
+	margin-top: 18rpx;
+}
+
+.group_li .group_li_info .go_group {
+	background: #EA2534;
+	border-radius: 24rpx;
+	width: 140rpx;
+	height: 50rpx;
+	line-height: 50rpx;
+	font-size: 22rpx;
+	color: #fff;
+	text-align: center;
+	float: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

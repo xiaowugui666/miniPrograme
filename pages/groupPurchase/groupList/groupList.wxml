@@ -1,0 +1,41 @@
+<!--pages/groupList/goupList.wxml-->
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+<view class='group_list'>
+
+  <!--family  -->
+  <view class='search_family'>
+		<view class='pending {{rank == 2 ? "selected" : "normal"}}' data-id='2' bindtap='bindRank'>进行中</view>
+		<view class='success {{rank == 3 ? "selected" : "normal"}}' data-id='3' bindtap='bindRank'>已成功</view>
+		<view class='fail {{rank == 4 ? "selected" : "normal"}}' data-id='4' bindtap='bindRank'>已失败</view>
+	</view>
+
+  <!-- box item  -->
+  <view class='item_boxs' wx:if='{{data.length}}' wx:for='{{data}}' wx:key='index'>
+    <view class='box'>
+      <view class='{{rank == 2 ? "endding prompt" : "prompt"}}'>{{rank == 2 ? item.groupon.expire_at + '结束' :(rank == 3 ? item.created_at + '购买' : '拼团超时')}}</view>
+      <view class='item_info'>
+        <view class='image_box'>
+          <image src='{{image + item.goods.cover_url}}'></image>      
+        </view>
+        <view class='item_content'>
+          <view class='content_title'>{{item.goods.name}}</view>
+          <view class='content_spec'>
+            <text>{{item.sku_description}}</text>
+            <!-- <text wx:if='{{item.goods.spec_b}}'>{{item.goods_sku.spec_b}}</text>
+            <text wx:if='{{item.goods.spec_c}}'>{{item.goods_sku.spec_c}}</text> -->
+          </view>
+          <view class='content_price'>
+            <view>
+              <text class='red'>拼团价</text>
+              <text class='red price'>￥{{filters.toFix(item.price / 100)}}</text>
+              <text class='decora'>原价￥{{filters.toFix(item.origin_price / 100)}}</text>
+            </view>
+            <navigator wx:if='{{rank == 2}}' class='button_order' url='/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid={{item.groupon_id}}&goodsid={{item.goods_id}}'>查看拼团</navigator>
+            <view class='button_order' wx:elif='{{rank == 3}}' data-id='{{item.order.id}}' catchtap='toOrderDetail'>查看订单</view>
+            <view class='botton_buy' wx:else='{{rank == 4}}' data-id='{{item.goods.id}}' catchtap='toDetail'>立即购买</view>            
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

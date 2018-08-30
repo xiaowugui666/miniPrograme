@@ -1,0 +1,44 @@
+<wxs module="filters" src="../../utils/method.wxs"></wxs>
+<view class='container_search'>
+		<navigator class='container_search_navi' url="/pages/search/search">{{keyword}}
+			<icon type='search' size='12' color='#999999'></icon>
+		</navigator>
+	</view>
+	<!-- category search   -->
+
+	 <view class='clearfix' style="height:{{2*winHeight}}rpx"> 
+    <view class='left'>
+        <scroll-view class='tab'  style="height:{{2*winHeight -86 }}rpx"   scroll-y="{{true}}">
+               <view wx:for="{{leftTapArray}}" wx:key="{{index}}" data-idx='{{index}}' data-id='{{item.id}}' bindtap='leftCellTap' class="left_cell {{ index == select ? 'selected' : ''}}">{{item.name}}</view>      
+      </scroll-view>
+
+    </view>
+    <view class='right'>
+        <scroll-view class='tab' scroll-y="{{true}}"  style="height:{{2*winHeight -120 }}rpx"  >
+        <view>
+        <block wx:if="{{second==1}}">
+          <view class='right_flex'>
+            <view wx:for="{{category}}" wx:key="{{index}}" data-idx='{{index}}' data-id='{{item.id}}' data-name='{{item.name}}' class='right_cell' bindtap='goList'>
+              <image src='{{image}}{{item.icon_url}}?imageView2/1/w/104/h/114/imageslim'></image>
+              <text>{{item.name}}</text>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class='goods'>
+            <view wx:for="{{goods}}" data-id='{{item.id}}' wx:key="{{index}}" class='goods_item' bindtap='goDetail'>
+              <image src='{{image}}{{item.cover_url}}?imageslim'></image>
+              <view class='descriptions'>
+                <text>{{item.name}}</text>
+                <text>销量{{item.sales_count}}件</text>
+                <text>￥{{filters.toFix(item.price/100)}}</text>
+                <text  wx:if="{{item.display_price!=0 && item.display_price}}">￥{{filters.toFix(item.display_price/100)}}</text>
+              </view>
+            </view>					
+          </view>
+        </block>
+        </view>
+      </scroll-view>
+    </view> 
+    
+ </view> 

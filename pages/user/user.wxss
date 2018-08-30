@@ -1,0 +1,197 @@
+/**index.wxss**/
+page{
+  height:100%;
+ background: #F9F9F9;
+}
+.container {
+  width:750rpx;
+  height: 312rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(0deg,#FF7D7D  4%, #FF6286 96%);
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button{
+    background: transparent;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    padding:0;
+}
+button::after{  
+  border:none; 
+  border-radius: none;
+}  
+button image{
+  width: 156rpx;
+  height: 156rpx;
+  border-radius: 50%;
+  display: block;
+}
+button label{
+  font-family: PingFangSC-Semibold;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  margin-top: 26rpx;
+}
+.userinfo-avatar {
+  width: 156rpx;
+  height: 156rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  font-family: PingFangSC-Semibold;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  margin-top: 26rpx;
+  color: #FFFFFF;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+.bind_mobile {
+  display: flex;
+  height: 100rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #999999;
+  align-items: center;
+  justify-content: space-between;
+}
+.bind_mobile view {
+  display: flex;
+  font-size: 24rpx;
+  color: #999999;
+  align-items: center;
+}
+.bind_mobile button {
+  width: 124rpx;
+  height: 50rpx;
+  color: #EA2534;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #EA2534;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 22rpx;
+}
+.bind_mobile image {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 10rpx;
+}
+.orderinfo {
+  width: 750rpx;
+  overflow: hidden;
+  
+}
+.myorder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:0 20rpx;
+  border-bottom:1px solid #EBEBEB;
+  line-height: 82rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+.myorder view{
+font-family: PingFangSC-Regular;
+font-size: 32rpx;
+color: #333333;
+display: flex;
+align-items: center;
+}
+.icon{
+  width: 12rpx;
+  height: 20rpx;
+}
+.myorder label{
+  margin-right: 10rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999999;
+}
+.orderList{
+  width: 750rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 156rpx;
+  border-bottom:20rpx solid #f7f7f7;
+  background:#fff;
+
+}
+.orderList view{
+  position: relative;
+}
+.orderList image{
+  width: 46rpx;
+  height: 46rpx;
+  display: block;
+  margin:0 auto;
+
+}
+.orderList label{
+  display: block;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  margin-top:14rpx;
+  color: #666666;
+}
+.orderList text{
+  position: absolute;
+  height: 32rpx;
+  min-width: 32rpx;
+  border-radius: 50%;
+  top:-14rpx;
+  right:-2rpx;
+  background: #EA2534;
+  line-height: 32rpx;
+  text-align: center;
+  font-family: PingFangSC-Medium;
+  font-size: 20rpx;
+  color: #FFFFFF;
+}
+.otherInfo{
+  padding-left:20rpx;
+  box-sizing: border-box;
+  width: 750rpx;
+  background: #fff;
+}
+.otherInfo .nav{
+  box-sizing: border-box;
+  padding-right:20rpx;
+  height: 82rpx;
+  width:100%;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  border-bottom: 1rpx solid  #EBEBEB; 
+}
+.otherInfo .nav:last-child{
+  border-bottom:0;
+}
+.otherInfo .nav text{
+  position: absolute;
+  right: 40rpx;
+  font-size: 24rpx;
+}
+.otherInfo view{
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #333333;
+  display: flex;
+  align-items: center;
+}

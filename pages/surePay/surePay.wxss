@@ -1,0 +1,250 @@
+.address{
+  border-top:20rpx solid  #F6F7F7;
+  border-bottom:20rpx solid  #F6F7F7;
+  /* height: 132rpx; */
+  position: relative;
+  padding-left:60rpx;
+
+}
+page{
+  width: 100%;
+  height: 100%;
+}
+.address image{
+  width: 24rpx;
+  height: 30rpx;
+  position: absolute;
+  top:20rpx;
+  left:20rpx;
+}
+.clearfix{  
+        zoom:1;  
+    }  
+.clearfix:after{  
+        content: "";  
+        display: block;  
+        clear: both;  
+    } 
+ .name{
+   margin-top:14rpx; 
+ }
+.name label:nth-child(1){
+  font-family: PingFangSC-Medium;
+  font-size: 24rpx;
+  color: #333333;
+  font-weight: bold;
+  line-height: 36rpx;
+  float: left;
+}
+.name label:nth-child(2){
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  line-height: 36rpx;  
+  color: #333333;
+  margin-left:40rpx;
+   float: left;
+}
+.chooseAddress{
+  height: 132rpx;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20rpx;
+  border-top:20rpx solid  #F6F7F7;
+  border-bottom:20rpx solid  #F6F7F7;
+}
+.chooseAddress view:nth-child(1){
+  width: 52rpx;
+  height: 52rpx;
+  background: #EA2534;
+  margin-right:20rpx; 
+  border-radius: 6rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:relative;
+}
+.chooseAddress view:nth-child(1)::before{
+    content: '';
+    display: block;
+    height: 22rpx;
+    position: absolute;
+    width: 2rpx;
+    background: #fff;
+}
+.chooseAddress view:nth-child(1)::after{
+    content: '';
+    display: block;
+    height: 2rpx;
+    position: absolute;
+    width: 22rpx;
+    background: #fff;
+}
+.chooseAddress view:nth-child(2){
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #EA2534;
+}
+.addr{
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx; 
+  color: #333333;
+  margin-top:10rpx;
+  padding-right:20rpx;
+  line-height:36rpx;
+  margin-bottom:14rpx;
+}
+.detail{
+  width: 100%;
+  padding:0 20rpx;
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+}
+.menus{
+  display: flex;
+  border-bottom:1rpx solid #E3E3E3;
+  /* height: 236rpx; */
+  padding:20rpx 0;
+  align-items: center;
+
+}
+.menus image{
+  height: 160rpx;
+  width:160rpx; 
+  margin-right: 20rpx;
+}
+.desc {
+  width: 74%;
+}
+.desc>label:nth-child(1){
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #333333;
+  height: 72rpx;
+  line-height: 36rpx;
+  width: 530rpx;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.desc>label:nth-child(2){
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #999999;
+  width: 100%;
+  height: 30rpx;
+  margin-top:8rpx;
+  display: block;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+.desc>view{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+}
+.desc>view label{
+    font-family: PingFangSC-Regular;
+    font-size: 26rpx;
+    color: #151515;
+}
+.count_control {
+  display: flex;
+  align-items: center;
+	width: 150rpx;
+	height: 44rpx;
+  font-size: 26rpx;
+  color: #151515;
+	line-height: 44rpx;
+	border: 1rpx solid #d9d9d9;
+}
+.count_control text {
+  display: inline-block;
+  width: 49rpx;
+  height: 44rpx;
+  text-align: center;
+}
+.count_control text.disabled {
+  color: #d9d9d9;
+}
+.count_control text:not(:last-child) {
+  border-right: 1px solid #d9d9d9;
+}
+
+.info{
+  border-bottom:1rpx solid #E3E3E3;
+}
+.detail .info:last-child{
+    border-bottom:none;
+}
+.info view{
+  display: flex;
+  justify-content: space-between
+}
+.info label{
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 36rpx;
+  margin-top:18rpx;
+}
+.info view label:last-child{
+  color: #000;
+}
+
+.info view:last-child{
+  margin-bottom: 18rpx;
+}
+.confirmPay{
+  background: #fff;
+  height: 100rpx;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.confirmPay view:first-child{
+   width: 60%;
+   height: 100rpx;
+   line-height: 100rpx;
+   box-sizing: border-box;
+   padding-left: 20rpx;
+   border-top: 1rpx solid  #E3E3E3;
+   font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #333333;
+}
+.confirmPay view:first-child label{
+  font-family: PingFangSC-Regular;
+    font-size: 32rpx;
+    color: #EA2534;
+}
+.confirmPay button{
+    width: 40%;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    background: #EA2534;
+    color:#fff;
+    font-family: PingFangSC-Regular;
+    font-size: 32rpx;
+    border-radius: 0;
+}
+.confirmPay button:after{
+  border-radius: 0;
+}
+
+button[disabled]:not([type]) {
+    color:#fff;
+    background-color: #EA2534;
+}
+
+button[disabled] {
+    color: #EA2534;
+}

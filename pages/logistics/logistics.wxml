@@ -1,0 +1,19 @@
+
+<view class='container' wx:if="{{list.State}}">
+    <view class='head'>
+        <label>物流信息：<em wx:if='{{list.State==3}}'>已签收</em><em wx:elif='{{list.State==2}}'>运输中</em><em wx:elif='{{list.State==1}}'>问题件</em>
+        </label>
+        <label>承运快递：{{list.ShipperName}}</label>
+        <label>运单编号：{{list.LogisticCode}}</label>
+    </view>
+    <view class='content'>
+      <view class='step' wx:for='{{list.Traces}}' wx:for-index='index' wx:key="idnex">
+          <view class='round'> 
+          </view>
+          <view class='info'>
+              <label>{{item.AcceptStation}}</label>
+              <label>{{item.AcceptTime}}</label>
+          </view>
+      </view>
+    </view>
+</view>

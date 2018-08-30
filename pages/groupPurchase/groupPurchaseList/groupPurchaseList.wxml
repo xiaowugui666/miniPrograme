@@ -1,0 +1,27 @@
+<!--pages/recommend/recommend.wxml-->
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+<view class='group_list_box'>
+	<view class='group_li' wx:for="{{groupGoods}}" wx:key='{{index}}' data-id='{{item.goods_id}}' bindtap='goDetail'>
+		<image class='group_li_img' src='{{image+item.goods.cover_url}}?imageslim'></image>
+		<view class='group_li_info'>
+			<view class='group_li_title'>{{item.goods.name}}</view>
+			<view class="group_user" wx:if="{{item.members.length>0}}">
+				<image wx:for="{{item.members}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2" src="{{item2.avatar_url}}"></image>
+				<view class="group_user_num"><text class='nick_name'>{{item.members[0].nick_name}}等</text><text class="group_num">{{item.groupon_user_count}}</text>人正在拼团</view>
+			</view>
+			<view class="regiment">已团<text class="group_num">{{item.sales_count}}</text>件</view>
+			<view class="price_box">
+				<text class="group_purchase_price"><text>￥</text>{{filters.ptf(item.price_low)}}</text>
+				<text class="original_price">￥{{filters.ptf(item.origin_price_low)}}</text>
+			</view>
+			<view class="go_group">立即拼团</view>
+		</view>
+	</view>
+		
+	<!-- <view class='bottom_text'>到底啦，去别处逛逛吧</view> -->
+
+	<!--up button  -->
+	<!--<view class='recommend_up'  catchtap='goTop'>
+		<image src='{{image}}Stick@2x.png'></image>
+	</view>-->
+</view>

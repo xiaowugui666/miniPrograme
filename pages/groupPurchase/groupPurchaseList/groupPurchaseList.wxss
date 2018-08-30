@@ -1,0 +1,155 @@
+/* pages/recommend/recommend.wxss */
+/* recommend products  */
+page{
+	background: #F6F7F7;
+	padding-top: 20rpx;
+	padding-bottom: 20rpx;
+}
+
+image {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.group_num {
+	color: #EA2534;
+}
+
+.group_list_box {
+	padding: 0 20rpx;
+	background: #fff;
+}
+
+.group_li {
+	background: #fff;
+	border-top: 1px solid #E3E3E3;
+	font-size: 0;
+	padding: 20rpx 0;
+	position: relative;
+}
+.group_li:first-child {
+	border-top: none;
+}
+
+.group_li .group_li_img {
+	width: 200rpx;
+	height: 200rpx;
+	margin-right: 26rpx;
+}
+
+.group_li .group_li_info {
+	display: inline-block;
+	vertical-align: top;
+	width: 484rpx;
+}
+
+.group_li .group_li_title {
+	font-size: 28rpx;
+	color: #333333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-bottom: 20rpx;
+}
+
+.group_li .group_li_title.no_group {
+	display:-webkit-box; 
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	white-space: normal;
+}
+
+.group_li .group_user {
+	margin-bottom: 20rpx;
+}
+
+.group_li .group_user image {
+		width: 40rpx;
+		height: 40rpx;
+		border: 4rpx solid #fff;
+		border-radius: 50%;
+		vertical-align: middle;
+}
+
+.group_li .group_user image+image {
+	margin-left: -22rpx;
+}
+
+.group_li .group_user .group_user_num {
+	font-size: 24rpx;
+	color: #999;
+  display: inline-block;
+  max-width: 80%;
+	margin-left: 10rpx;
+	vertical-align: middle;
+	width: 360rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.group_li .group_user .group_user_num .nick_name {
+  display: inline-block;
+  vertical-align:text-bottom;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.group_li .regiment {
+	font-size: 22rpx;
+	color: #999;
+}
+
+.group_li .price_box {
+	position: absolute;
+	left: 230rpx;
+	bottom: 20rpx;
+}
+
+.group_li .group_purchase_price {
+	font-size: 32rpx;
+	color: #ea2534;
+	margin-right: 12rpx;
+	font-weight: 600;
+}
+
+.group_li .group_purchase_price text {
+	font-size: 18rpx;
+	vertical-align: middle;
+}
+
+.group_li .original_price {
+	font-size: 22rpx;
+	color: #999;
+	text-decoration:line-through;
+}
+
+.group_li .go_group {
+	position: absolute;
+	right: 0;
+	bottom: 20rpx;
+	background: #ea2534;
+	color: #fff;
+	font-size: 22rpx;
+	width: 140rpx;
+	height: 50rpx;
+	line-height: 50rpx;
+	text-align: center;
+	border-radius: 24rpx;
+}
+
+/*回到顶部按钮样式*/
+.recommend_up{
+	width: 60rpx;
+	height: 60rpx;
+	position: fixed;
+	right: 20rpx;
+	bottom: 78rpx;
+  z-index: 100;
+}
+.recommend_up image{
+	width: 60rpx;
+	height: 60rpx;
+	display: block;
+}

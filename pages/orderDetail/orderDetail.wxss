@@ -1,0 +1,313 @@
+.state,.address{
+  border-top:20rpx solid  #F6F7F7;
+  border-bottom:20rpx solid  #F6F7F7;
+  /* height: 122rpx; */
+  position: relative;
+  padding: 20rpx 0 20rpx 60rpx;
+}
+.state{
+  border-bottom: 0;
+}
+page{
+  width: 100%;
+  min-height:100%;
+  position: relative;
+}
+.clearfix{  
+        zoom:1;  
+    }  
+.clearfix:after{  
+        content: "";  
+        display: block;  
+        clear: both;  
+    } 
+ /* .name{
+   margin-top:10rpx; 
+ } */
+.address image{
+  width: 24rpx;
+  height: 30rpx;
+  position: absolute;
+  top:28rpx;
+  left:20rpx;
+}
+.state image{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top:28rpx;
+  left:20rpx;
+}
+.state .name{
+  font-size:24rpx; 
+  color: #333333;
+  font-weight: bold;
+}
+.state text{
+  color:#F02417;
+}
+.name label:nth-child(1){
+  font-family: PingFangSC-Medium;
+  font-size: 24rpx;
+  color: #333333;
+  font-weight: bold;
+  line-height: 36rpx;
+  float: left;
+}
+.name label:nth-child(2){
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  line-height: 36rpx;  
+  color: #333333;
+  margin-left:40rpx;
+   float: left;
+}
+.addr{
+  font-family:PingFangSC-Regular;
+  font-size:24rpx;
+  color:#333333;
+  margin-top:4rpx;
+  padding-right:20rpx;
+  line-height:36rpx;
+}
+.detail{
+  width: 100%;
+  padding:0 20rpx 100rpx;
+  box-sizing: border-box;
+}
+.menus{
+  display: flex;
+  border-bottom:1rpx solid #E3E3E3;
+  height: 236rpx;
+  align-items: center;
+
+}
+.menus image{
+  height: 200rpx;
+  width:200rpx; 
+  margin-right: 20rpx;
+}
+.desc label:nth-child(1){
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #333333;
+  width: 474rpx;
+  display: block;
+  line-height: 36rpx;
+  height: 72rpx;
+   overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.desc label:nth-child(2){
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #999999;
+  margin-top:28rpx;
+  display: block;
+  
+}
+.desc label:nth-child(3){
+font-family: PingFangSC-Regular;
+font-size: 26rpx;
+color: #151515;
+line-height: 40rpx;
+text-align: right;
+  display: block;
+
+}
+.desc label:nth-child(4){
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+  display: block;
+  color: #333333;
+  line-height: 32rpx;
+}
+
+.info{
+  border-bottom:1rpx solid #E3E3E3;
+}
+.orderMoney{
+  color: #F02417;
+  text-align: right;
+  font-size: 26rpx;
+  margin-top: 20rpx; 
+  margin-bottom: 96rpx; 
+}
+.info view{
+  display: flex;
+  justify-content: space-between
+}
+.info view label:first-child{
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 36rpx;
+  margin-top:18rpx;
+  white-space: nowrap;
+}
+.info view label:last-child{
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #333;
+  line-height: 36rpx;
+  margin-top:18rpx;
+  white-space: nowrap;
+}
+.info view:last-child{
+  margin-bottom: 18rpx;
+}
+.btnBottom{
+  width: 100%;
+  position: absolute;
+  bottom: 30rpx;
+  left:0; 
+  padding:0 20rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 26px;
+  color: #666666;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: flex-end;
+}
+.btnBottom view{
+  margin-left: 30rpx;
+}
+.btnBottom .pay{
+  width: 120rpx;
+  height: 50rpx;
+  line-height:50rpx;
+  text-align: center;
+  display: block;
+  background: #EA2534;
+  color: #fff;
+  font-family: PingFangSC-Regular;
+  border-radius: 3px;
+  font-size: 22rpx;
+}
+.btnBottom .cancel{
+  width: 120rpx;
+  height: 50rpx;
+  border-radius: 3px;
+  box-sizing: border-box;
+  border: 1rpx solid #EA2534;
+
+  line-height:48rpx;
+  text-align: center;
+  display: block;
+  color: #EA2534;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+}
+.btnBottom .cancel.right {
+  background: #EA2534;
+  color: white;
+}
+.shade{
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  z-index: 999;
+  background: rgba(4, 4, 4, 0.4);
+  top: 0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact{
+  border-radius: 6rpx;
+  width: 526rpx;
+  box-sizing: border-box;
+  height: 340rpx;
+  position: fixed;
+  top: 320rpx;
+  left: 114rpx;
+  background: white;
+  z-index: 999;
+  padding: 0 26rpx 0 22rpx;
+}
+.contact .title{
+    font-family: PingFangSC-Regular;
+    font-size: 32rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
+    color: #333333;
+    border-bottom: 1rpx solid #EBEBEB;
+    position: relative;
+}
+.contact  .iphone{
+    display: flex;
+    align-items: center;
+    width: 100%; 
+    justify-content: center;
+    height: 100rpx;
+    font-size: 32rpx;
+    border-top: 1rpx solid #EBEBEB;
+}
+.contact  button{
+    background: #fff;
+    display: flex;
+    align-items: center;
+    width: 100%; 
+    height: 100rpx;
+    font-size: 32rpx;
+    justify-content: center;
+    padding:0;
+}
+.contact  button::after{  
+   border:none; 
+  border-radius: none;
+}  
+.contact button image{
+  padding-left: 6rpx;
+  margin-right: 30rpx;
+  width: 52rpx;
+  height: 40rpx;
+  display: block;
+}
+.contact .iphone image{
+   padding-left: 14rpx;
+ margin-right: 30rpx;
+  width: 42rpx;
+    height: 42rpx;
+    display: block;
+}
+.contact label{
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #666666;
+}
+
+.contact .clear{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  padding-left: 0;
+  top: calc(50% - 20rpx);
+  color: #999999;  
+  right: 0;
+}
+.contact .clear::before{
+  content:'';
+  display: block;
+  position: absolute;
+  width: 40rpx;
+  background: #999999;
+  top: 20rpx;
+  height: 2rpx;
+  transform: rotate(45deg);
+}
+.contact .clear::after{
+  content:'';
+  display: block;
+  position: absolute;
+  background: #999999;
+  width: 40rpx;
+  top: 20rpx;
+  height: 2rpx;
+  transform: rotate(-45deg);
+}

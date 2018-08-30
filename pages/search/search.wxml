@@ -1,0 +1,11 @@
+<!--pages/search/search.wxml-->
+<view class='container'>
+    <view class='search'>
+      	<icon type='search' size='12' color='#999999'></icon>
+      <input bindinput='searchKey' placeholder='{{keyword}}' focus='true' value='{{value}}' confirm-type="搜索" bindconfirm='confirmEvent'></input>
+      <image class='clearKey' src='{{image}}clear.png' bindtap='clearKey'></image>
+    </view>
+    <view class='searchList'>
+        <navigator url='/pages/detail/detail?id={{item.id}}' hover-class='none' wx:key='index' wx:for='{{dataList}}'>{{item.name}}</navigator>
+    </view>
+</view>

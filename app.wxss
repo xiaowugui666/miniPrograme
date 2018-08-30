@@ -1,0 +1,8 @@
+/**app.wxss**/
+
+page{
+	font-family: PingFangSC-Regular;
+}
+image{
+	border-radius: 6rpx;
+}

@@ -1,0 +1,127 @@
+/* pages/recommend/recommend.wxss */
+/* recommend products  */
+page{
+	min-height: 100%;
+	background: #F6F7F7;
+}
+.recommend_container{
+	height: 100%; 
+	display: flex;
+	flex-direction: column;
+}
+.recommend_products{
+	width: 750rpx;
+	overflow-x: hidden;
+	position: relative;
+}
+.recommend_item{
+	width: 710rpx;
+	margin: 0 auto;
+	margin-top: 24rpx;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.item_box{
+	width: 344rpx;
+	margin-bottom: 22rpx;
+	height: 484rpx;
+	background: #FFFFFF;
+}
+.item_box image{
+	width: 344rpx;
+	height: 344rpx;
+  border-bottom-left-radius:0;
+  border-bottom-right-radius:0;
+	display: block;
+}
+.item_box .item_text{
+	display: block;
+	font-size: 24rpx;
+	padding: 0 14rpx 0 18rpx;
+	font-family: PingFangSC-Regular;
+	margin-top: 14rpx;
+	color: #333333;
+	line-height: 36rpx;
+  height: 72rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.item_box .item_text_view{
+	display: flex;
+	align-items: center;
+	padding: 0 14rpx 0 18rpx;
+	height: 32rpx;
+	margin-top: 8rpx;
+	position: relative;
+}
+.item_text_view text:nth-child(1){
+	font-size: 22rpx;
+	font-family: PingFangSC-Regular;
+	color: #EA2534;
+	line-height: 32rpx;
+}
+.item_text_view text:nth-child(2){
+	font-size: 26rpx;
+	font-family: PingFangSC-Regular;
+	color: #EA2534;
+	line-height: 32rpx;
+	margin-right: 18rpx;
+}
+.item_text_view text:nth-child(3){
+	font-size: 22rpx;
+	font-family: PingFangSC-Regular;
+	color: #999999;
+	line-height: 32rpx;
+	position: absolute;
+	right: 16rpx;
+}
+
+/* bottom text  */
+.bottom_text{
+	width: 750rpx;
+	height: 80rpx;
+	background: #F6F7F7;
+	text-align: center;
+	font-size: 22rpx;
+	position: relative;
+	line-height: 80rpx;
+	color: #999999;
+	font-family: PingFangSC-Regular;
+}
+.bottom_text::before{
+		content: "";
+		border-top: 1px solid #DCDCDC;
+		display: block;
+		position: absolute;
+		width: 88rpx;
+		top: 39rpx;
+		left: 156rpx;
+}
+.bottom_text::after{
+		content: "";
+		border-top: 1px solid #DCDCDC;
+		display: block;
+		position: absolute;
+		width: 88rpx;
+		top: 39rpx;
+		right: 156rpx;
+}
+
+/* recommend button  */
+.recommend_up{
+	width: 60rpx;
+	height: 60rpx;
+	position: fixed;
+	right: 20rpx;
+	bottom: 78rpx;
+  z-index: 100;
+}
+.recommend_up image{
+	width: 60rpx;
+	height: 60rpx;
+	display: block;
+}

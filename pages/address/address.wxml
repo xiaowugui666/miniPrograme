@@ -1,0 +1,23 @@
+<view class='address_box'>
+  <view class='container' bindtap='chooseAddress'  data-index='{{index}}' wx:for='{{address}}' wx:for-item='item' wx:key='index'>
+    <view class='userInfo'>
+        <label>姓名：{{item.name}}</label>
+        <label>{{item.mobile}}</label>
+    </view>
+    <view class='userAddr'>地址：{{item.province}}{{item.city}}{{item.county}}{{item.detail}}</view>
+    <view class='contentBtm'>
+      <label catchtap='setDefault' style='width:50%' data-key='{{item.status}}'  data-index='{{index}}'  wx:if='{{item.status==1}}'>
+        <image src='{{image}}unchecked.png?imageslim' data-key='{{item.status}}' catchtap='setDefault'   data-index='{{index}}'></image>
+        设为默认
+      </label>
+      <label catchtap='setDefault' style='width:50%'  data-key='{{item.status}}'  data-index='{{index}}'   wx:if='{{item.status==2}}'>
+        <image src='{{image}}checked.png?imageslim'  data-key='{{item.status}}' catchtap='setDefault'   data-index='{{index}}' ></image>
+        已设为默认
+      </label>
+      <!-- <label catchtap='updateAddr' data-index='{{index}}'><image src='{{image}}updataAddr.png' ></image>编辑</label> -->
+      <label  catchtap='deleteAddr' data-index='{{index}}'><image src='{{image}}del.png'></image>删除</label>
+    </view>
+  </view>
+</view>
+<button wx:if="{{!userId}}" class='address'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">新增收货地址</button>
+<view  wx:else class='address' catchtap='address'>新增收货地址</view>
