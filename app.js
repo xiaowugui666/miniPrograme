@@ -7,6 +7,7 @@ App({
     var that=this
 		this.login()
     this.globalData.apiExt = wx.getExtConfigSync().data
+    console.log(wx.getExtConfigSync().data)
   },
   login:function(){
 		let that = this
@@ -68,7 +69,7 @@ App({
     apiSecret:'',
     login:false,
     timeStamp:'',
-    http:'https://develop.yiqixuan.com',
+    http:'https://retail-mall.51zan.com',
 		image: 'https://image.yiqixuan.com/',
     options: ''
   }
