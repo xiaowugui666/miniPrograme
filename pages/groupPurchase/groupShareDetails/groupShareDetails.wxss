@@ -73,6 +73,11 @@ image {
 
 .group_details_goods .goods_info .spec text {
 	margin-right: 30rpx;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .group_details_goods .goods_info .goods_price_num {

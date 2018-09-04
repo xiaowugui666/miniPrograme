@@ -7,7 +7,6 @@ App({
     var that=this
 		this.login()
     this.globalData.apiExt = wx.getExtConfigSync().data
-    console.log(wx.getExtConfigSync().data)
   },
   login:function(){
 		let that = this
