@@ -105,6 +105,10 @@ page{
   font-size: 24rpx;
   color: #999999;
   margin-top:28rpx;
+  overflow:hidden;
+  white-space:nowrap;
+  width: 474rpx;
+  text-overflow:ellipsis;
   display: block;
 }
 .menus .desc view{

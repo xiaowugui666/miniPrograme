@@ -30,8 +30,6 @@ Page({
           'Api-Ext': app.globalData.apiExt
         },
         success:function(data){
-          console.log(data)
-          console.log(data.statusCode)
           var datas = JSON.parse(data.data)
           var code = data.statusCode.toString()
           if (code.indexOf('20') > -1) {

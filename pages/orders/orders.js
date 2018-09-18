@@ -35,7 +35,7 @@ Page({
 
 
   onShow: function () {
-      var that = this;
+    var that = this;
       wx.showLoading({
         title: '加载中',
       })
@@ -422,17 +422,21 @@ grouponDetail (e) {
    */
   swichNav: function (e) {
     var that = this;
-    var url = app.globalData.http + '/mpa/order';
     var status;
     if (e == 405) {
       status = 405
     } else {
       status = e.target.dataset.current
     }
+    if (status == 500) {
+      var url = app.globalData.http + '/mpa/after_sale';
+    }else{
+      var url = app.globalData.http + '/mpa/order';
+    }
     that.setData({
       index: 0,
       currentTab: status,
-      url: app.globalData.http + '/mpa/order'
+      url: url
     })
     wx.request({
       url:url,

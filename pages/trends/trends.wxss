@@ -201,10 +201,12 @@ input {
   margin-top: 0;
 }
 .box_content .comments text {
-  float: left;
+  /* float: left; */
+  word-break:break-all;
+  word-wrap:break-word;
   color: #000000;
 }
-.box_content .comments text:nth-child(2) {
+.box_content .comments text:nth-child(2n) {
   color: #666666;
 }
 .box_content .comments .comments_count {

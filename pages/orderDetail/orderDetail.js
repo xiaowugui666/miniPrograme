@@ -328,12 +328,17 @@ Page({
             },
             success: function (data) {
               var code = data.statusCode.toString()
-              if (code.indexOf('20') > -1) {
+              if (code >=200 && code<300) {
                 wx.showToast({
                   title: '收货成功',
                   icon: 'success',
                   duration: 1000
                 })
+                setTimeout(function(){
+                  wx.navigateTo({
+                    url: '/pages/orders/orders?curTab=405',
+                  })
+                },1000)
               } else {
                 var tip = data.data.message.toString()
                 wx.showToast({
