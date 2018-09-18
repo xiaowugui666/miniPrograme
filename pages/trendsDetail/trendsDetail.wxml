@@ -69,7 +69,7 @@
               <view style='text-align:right'>{{ite.time}}</view>
           </view>
           <view wx:else class='comment'>
-            <view style='width:75%'><text class='user'>{{name}} </text><text> 回复 </text><text class='store'> {{ite.nick_name}} :</text>{{ite.content}}</view>
+            <view style='width:75%'><text class='user'>{{name}} </text><text> 回复 </text><text class='store'> {{ite.nick_name}} :</text><text>{{ite.content}}</text></view>
             <view style='text-align:right'>{{ite.time}}</view>
           </view>          
         </view>

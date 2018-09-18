@@ -142,7 +142,6 @@ Page({
   },
   // 动态评论
   comment(e) {
-    console.log(111)
     let that = this;
     if (that.data.value) {
       that.setData({

@@ -146,9 +146,14 @@ Page({
             that.setData({
               value: ''
             })
-            wx.showToast({
-              title: '评论成功',
-            })
+            var code = res.statusCode.toString()
+            if (code >= 200 && code < 300) {
+              wx.showToast({
+                title: '评论已提交，需商家审核',
+                icon: 'none',
+                duration: 1000
+              })
+            }
           }
         })
       }

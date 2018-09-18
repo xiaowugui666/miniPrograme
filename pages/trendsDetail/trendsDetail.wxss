@@ -215,10 +215,11 @@ input {
   margin-top: 0;
 }
 .box_content .comments text {
-  float: left;
+   word-break:break-all;
+  word-wrap:break-word;
   color: #000000;
 }
-.box_content .comments text:nth-child(2) {
+.box_content .comments text:nth-child(2n) {
   color: #999999;
 }
 .box_content .comments .comments_count {
@@ -288,10 +289,11 @@ input {
   color: #999999;
 }
 .comment view text {
-  float: left;
+    word-break:break-all;
+  word-wrap:break-word;
   margin-right: 4rpx;
 }
-.comment view text:nth-child(2) {
+.comment view text:nth-child(2n) {
   color: #666666;
 }
 .time{
