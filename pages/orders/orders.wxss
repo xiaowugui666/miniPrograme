@@ -119,6 +119,7 @@ navigator{
 .infoBottom{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top:16rpx;
 }
 .infoBottom label:nth-child(1){
@@ -126,6 +127,9 @@ navigator{
   font-size: 26rpx;
   color: #999999;
   line-height: 32rpx;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
 }
 .infoBottom label:nth-child(2){
   font-family: PingFangSC-Regular;

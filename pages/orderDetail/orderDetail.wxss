@@ -87,6 +87,9 @@ page{
   width:200rpx; 
   margin-right: 20rpx;
 }
+.desc {
+  max-width: 68%;
+}
 .desc label:nth-child(1){
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
@@ -95,11 +98,11 @@ page{
   display: block;
   line-height: 36rpx;
   height: 72rpx;
-   overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .desc label:nth-child(2){
   font-family: PingFangSC-Regular;
@@ -107,6 +110,9 @@ page{
   color: #999999;
   margin-top:28rpx;
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   
 }
 .desc label:nth-child(3){

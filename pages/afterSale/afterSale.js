@@ -93,11 +93,6 @@ Page({
     var s=that.data.info[index].isSelect
     var sale = that.data.saleArr
     var newSale=[]
-    if (that.data.info[index].isSelect){
-      n--
-    }else{
-      n++
-    }
     if (sale.indexOf(that.data.info[index].id)>-1){
         for(var i=0;i<sale.length;i++){
           if (sale[i] !== that.data.info[index].id) {

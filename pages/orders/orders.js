@@ -353,16 +353,7 @@ grouponDetail (e) {
               var code = data.statusCode.toString()
               
               if(code.indexOf('20')>-1){
-                var newArr = that.data.allOrder
-                for (var i = 0; i < newArr.length; i++) {
-                  /*确认收货*/
-                  if (newArr[i].id === id) {
-                    var num = 'allOrder[' + i + '].status'
-                    that.setData({
-                      [num]: 405
-                    })
-                  }
-                }
+                that.swichNav(405)
               }else{
                 var tip=data.data.message.toString()
                   wx.showToast({
@@ -430,11 +421,17 @@ grouponDetail (e) {
    * 点击tab切换 
    */
   swichNav: function (e) {
-    var that = this
-    var url = app.globalData.http + '/mpa/order'
+    var that = this;
+    var url = app.globalData.http + '/mpa/order';
+    var status;
+    if (e == 405) {
+      status = 405
+    } else {
+      status = e.target.dataset.current
+    }
     that.setData({
       index: 0,
-      currentTab: e.target.dataset.current,
+      currentTab: status,
       url: app.globalData.http + '/mpa/order'
     })
     wx.request({
@@ -442,7 +439,7 @@ grouponDetail (e) {
       data: {
         page: 0,
         per_page: 15,
-        status: e.target.dataset.current
+        status: status
       },
       method: 'get',
       header: {

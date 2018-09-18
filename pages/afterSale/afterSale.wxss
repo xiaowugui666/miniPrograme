@@ -53,6 +53,9 @@ display:-webkit-box;
   font-size: 24rpx;
   color: #999999;
   margin:32rpx 0;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
 }
 .price{
   font-family: PingFangSC-Regular;
