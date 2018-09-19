@@ -4,7 +4,7 @@
   <view class='item_box'>
 
     <view class='box_header'>
-      <image src='{{image + logo_url}}'></image>
+      <image wx:if='{{logo_url}}' src='{{image + logo_url}}'></image>
       <view class='user_info'>
         <text>{{name}}</text>
         <text>{{timestamp}}</text>

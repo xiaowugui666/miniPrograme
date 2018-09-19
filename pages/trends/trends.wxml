@@ -62,7 +62,7 @@
           <view wx:if='{{ite.type == 1}}'><text>{{ite.nick_name}} : </text>{{ite.content}}</view>
           <view wx:else><text>{{name}}</text><text> 回复 </text><text>{{ite.nick_name}} : </text> <text>{{ite.content}}</text></view>
         </block>
-        <view class='comments_count' wx:if='{{item.comment_success_count > 10}}' >共{{item.comment_success_count}}条回复></view>
+        <view class='comments_count' wx:if='{{item.comment_success_count > 10}}' data-id='{{item.id}}' data-index='{{index}}' data-comments='{{true}}' catchtap='commentDetail'>共{{item.comment_success_count}}条回复></view>
       </view>
     </view>
   </view>
