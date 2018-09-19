@@ -174,8 +174,9 @@ Page({
   // 跳转动态详情,若存在goods_id,跳转商品详情
   commentDetail (e) {
     let index = e.currentTarget.dataset.index;
+    let isComments = e.currentTarget.dataset.comments;
     let that = this;
-    if (that.data.trendsData[index].goods_id) {
+    if (that.data.trendsData[index].goods_id && !isComments) {
       wx.navigateTo({
         url: '/pages/detail/detail?id=' + that.data.trendsData[index].goods_id,
       })
