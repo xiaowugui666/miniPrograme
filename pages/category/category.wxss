@@ -118,6 +118,10 @@ page{
 	font-size: 24rpx;
   color: #666;
 	line-height: 34rpx;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  width:100%;
 }
 
 /* second:false style  */
