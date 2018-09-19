@@ -122,6 +122,7 @@ page{
   white-space:nowrap;
   text-overflow: ellipsis;
   width:100%;
+  text-align:center;
 }
 
 /* second:false style  */
