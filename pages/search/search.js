@@ -50,6 +50,10 @@ Page({
           }
         }
       })
+    }else{
+      that.setData({
+        dataList: []
+      })
     }
 
 	},
