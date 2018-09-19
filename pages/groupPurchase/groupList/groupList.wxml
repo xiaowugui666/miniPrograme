@@ -20,7 +20,7 @@
         <view class='item_content'>
           <view class='content_title'>{{item.goods.name}}</view>
           <view class='content_spec'>
-            <text>{{item.sku_description}}</text>
+            {{item.sku_description}}
             <!-- <text wx:if='{{item.goods.spec_b}}'>{{item.goods_sku.spec_b}}</text>
             <text wx:if='{{item.goods.spec_c}}'>{{item.goods_sku.spec_c}}</text> -->
           </view>

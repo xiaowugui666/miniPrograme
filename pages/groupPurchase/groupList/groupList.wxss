@@ -29,7 +29,7 @@ page {
 
 .item_boxs {
   margin-top: 20rpx;
-  padding: 24rpx 18rpx 24rpx 20rpx;
+  padding: 24rpx 18rpx 0 20rpx;
   background: white;
 }
 .item_boxs .box .prompt {
@@ -71,6 +71,7 @@ page {
   overflow: hidden;
   text-overflow: ellipsis;
   color: #999999;
+  white-space:nowrap;
 }
 .item_content .content_title {
   height: 70rpx;
