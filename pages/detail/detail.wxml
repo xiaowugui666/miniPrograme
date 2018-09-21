@@ -38,7 +38,7 @@
         <text class='price'>￥{{filters.ptf(goods.activity_type == 1 ? groupInfo.price_low : goods.price)}}</text>
         <view class="group_info">
           <!-- <text wx:if="{{goods.display_price!=0 && goods.display_price}}">￥{{filters.toFix(goods.display_price/100)}}</text> -->
-          <text class='group_display_price'>￥{{filters.ptf(goods.activity_type == 1 ? groupInfo.origin_price_low : goods.price_high)}}</text>
+          <text class='group_display_price'>￥{{filters.ptf(goods.activity_type == 1 ? groupInfo.origin_price_low : goods.display_price)}}</text>
           <text class='group_member'  wx:if='{{goods.activity_type == 1}}'>{{groupInfo.min_join_count}}人拼团</text>
         </view>
       </view>
