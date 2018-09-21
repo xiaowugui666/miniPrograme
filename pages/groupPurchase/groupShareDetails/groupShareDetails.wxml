@@ -11,7 +11,7 @@
 			<view class="goods_price_num">
 				<text class="goods_group_price" wx:if='{{purchased}}'><text>￥</text>{{filters.ptf(goodsData.join.price)}}</text>
 				<text class="goods_group_price" wx:else><text>￥</text>{{filters.ptf(goodsData.groupon_goods.price_low)}}</text>        
-				<text class="goods_original_price">￥{{filters.ptf(goodsData.groupon_goods.origin_price_low)}}</text>
+				<text class="goods_original_price" wx:if="{{goodsData.join.origin_price}}">￥{{filters.ptf(goodsData.join.origin_price)}}</text>
 				<text class="goods_num" wx:if="{{puerchaseInfo.count}}">X{{puerchaseInfo.count}}</text>
 			</view>
 		</view>
