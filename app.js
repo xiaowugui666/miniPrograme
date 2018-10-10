@@ -50,7 +50,7 @@ App({
       },
       fail: function (res) {
       }
-    })
+    }) 
   },
   globalData: {
     userInfo: false,

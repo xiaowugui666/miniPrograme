@@ -758,7 +758,7 @@ Page({
         var cart = []
         goodlist.forEach(function (v, i) {
           var ob = new Object()
-          ob.goods_sku_id = v.goods_sku_id
+          ob.goods_sku_id = v.id
           ob.count = v.count
           cart.push(ob)
         })
