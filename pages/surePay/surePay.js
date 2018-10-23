@@ -40,13 +40,20 @@ Page({
     }
     if (num <= 1) {
       flag = true
-    } 
+    }
+    let tempArr = Object.keys(that.data.sku_ids)
+    let newObj = {
+      [tempArr[0]]: num
+    }
     that.setData({
       count: num,
       minusStatu: flag,
       plusStatu: false,
+      sku_ids: newObj,
       totalMoney: price * num,
       totalOrder: price * num + carriage
+    }, function () {
+      that.getCarriage()
     })
   },
   // 增加数量
@@ -68,12 +75,19 @@ Page({
       })
       flag = true
     }
+    let tempArr = Object.keys(that.data.sku_ids)
+    let newObj = {
+      [tempArr[0]]: num
+    }
     that.setData({
       count: num,
       plusStatu: flag,
       minusStatu: false,
+      sku_ids: newObj,
       totalMoney: price * num,
       totalOrder: price * num + carriage
+    }, function () {
+      that.getCarriage()
     })
   },
   /**
@@ -369,25 +383,25 @@ Page({
 /*获取运费*/
   getCarriage:function(){
     var that=this;
-      wx.request({
-        url: app.globalData.http +'/mpa/order/express/fee',
-        method:"post",
-        dataType:'json',
-        data:{
-          address_id:this.data.address.id,
-          sku_ids: this.data.sku_idd
-        },
-        header: {
-          "Api-Key": app.globalData.apiKey,
-          "Api-Secret": app.globalData.apiSecret,
-          'Api-Ext': app.globalData.apiExt
-        },
-        success:function(data){
-            that.setData({
-              carriage: data.data.free_express_price,
-              totalOrder: parseFloat(data.data.free_express_price) + parseFloat(that.data.totalOrder)
-            })
-        } 
-      })
+    wx.request({
+      url: app.globalData.http +'/mpa/order/express/fee',
+      method:"post",
+      dataType:'json',
+      data:{
+        address_id:this.data.address.id,
+        goods: this.data.sku_ids
+      },
+      header: {
+        "Api-Key": app.globalData.apiKey,
+        "Api-Secret": app.globalData.apiSecret,
+        'Api-Ext': app.globalData.apiExt
+      },
+      success:function(data){
+          that.setData({
+            carriage: data.data.express_fee,
+            totalOrder: parseFloat(data.data.express_fee) + parseFloat(that.data.totalOrder)
+          })
+      } 
+    })
   }
 })

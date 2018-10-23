@@ -45,11 +45,18 @@ Page({
     if (num <= 1) {
       flag = true
     }
+    let tempArr = Object.keys(that.data.sku_ids)
+    let newObj = {
+      [tempArr[0]]: num
+    }
     that.setData({
       count: num,
       plusStatu: false,
+      sku_ids: newObj,
       totalMoney: groupPrice * num,
       totalOrder: groupPrice * num + carriage
+    }, function () {
+      that.getCarriage()
     })
   },
   // 增加数量
@@ -62,8 +69,6 @@ Page({
       carriage = that.data.carriage,
       price = that.data.price,
       groupPrice = that.data.groupPrice;
-      console.log(groupPrice)
-      console.log(carriage)
     if (num >= stock_count) {
       wx.showToast({
         title: '库存不足',
@@ -79,11 +84,18 @@ Page({
     } else {
       num++;
     }
+    let temp = Object.keys(that.data.sku_ids)
+    let newObj = {
+      [temp[0]]: num
+    }
     that.setData({
       count: num,
       plusStatu: flag,
+      sku_ids: newObj,
       totalMoney: groupPrice * num,
       totalOrder: groupPrice * num + carriage
+    },function(){
+      that.getCarriage()
     })
   },
   /**
@@ -97,7 +109,6 @@ Page({
       })
     }
     let data = app.globalData.good;
-    console.log(data)
     // 如果为来源为参团
     if (options.isjoin == 1) {
       this.setData({
@@ -399,7 +410,7 @@ Page({
       dataType: 'json',
       data: {
         address_id: this.data.address.id,
-        sku_ids: this.data.sku_idd
+        goods: this.data.sku_ids
       },
       header: {
         "Api-Key": app.globalData.apiKey,
@@ -408,8 +419,8 @@ Page({
       },
       success: function (data) {
         that.setData({
-          carriage: data.data.free_express_price,
-          totalOrder: parseFloat(data.data.free_express_price) + parseFloat(that.data.totalOrder)
+          carriage: data.data.express_fee,
+          totalOrder: parseFloat(data.data.express_fee) + parseFloat(that.data.totalOrder)
         })
       }
     })

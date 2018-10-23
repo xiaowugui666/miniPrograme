@@ -68,7 +68,7 @@ App({
     apiSecret:'',
     login:false,
     timeStamp:'',
-    http:'https://retail-mall-test.51zan.com',
+    http:'https://retail-mall-develop.51zan.com',
 		image: 'https://image.yiqixuan.com/',
     options: ''
   }
