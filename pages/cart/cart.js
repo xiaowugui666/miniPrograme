@@ -777,7 +777,8 @@ Page({
           success: function (res) {
             if (res.statusCode >= 200 && res.statusCode < 300) {
               that.setData({
-                datalist: that.data.datalist.concat(goodlist)
+                datalist: that.data.datalist.concat(goodlist),
+                local: true
               })
               wx.setStorage({
                 key: 'good',
