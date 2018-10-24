@@ -242,7 +242,7 @@ Page({
 // 拼单详情
 grouponDetail (e) {
   wx.navigateTo({
-    url: '/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid=' + e.currentTarget.dataset.groupid + '&goodsid=' + e.currentTarget.dataset.goods_id,
+    url: '/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid=' + e.currentTarget.dataset.groupid + '&goodsid=' + e.currentTarget.dataset.goodsid,
   })
 },
 /*查看物流*/

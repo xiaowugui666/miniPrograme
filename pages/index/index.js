@@ -127,11 +127,7 @@ Page({
 						that.setData({
 							groupGoods: data.data
 						})
-					}else{
-            that.setData({
-              groupGoods: []
-            })
-          }
+					}
 				}
 			}
 		})

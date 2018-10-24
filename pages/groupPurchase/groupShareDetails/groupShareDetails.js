@@ -235,7 +235,7 @@ Page({
                     that.setData({
                       groupFull: dataHandle.remain_user_count <= 0,
                       remainingTime: dataHandle.count_down,
-                      purchased: (dataHandle.join && dataHandle.join.status > 1) ? true : false
+                      purchased: dataHandle.join.id ? true : false
                     })
 
                     countDown(that, that.data.remainingTime, that.data.timeStampArr)
