@@ -399,7 +399,7 @@ Page({
       success:function(data){
           that.setData({
             carriage: data.data.express_fee,
-            totalOrder: parseFloat(data.data.express_fee) + parseFloat(that.data.totalOrder)
+            totalOrder: parseFloat(data.data.express_fee) + parseFloat(that.data.totalMoney)
           })
       } 
     })
