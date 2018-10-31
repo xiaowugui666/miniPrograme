@@ -61,7 +61,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData.options)
 		let that = this;
 		this.setData({
       user_info: app.globalData.user_info,
@@ -235,7 +234,7 @@ Page({
                     that.setData({
                       groupFull: dataHandle.remain_user_count <= 0,
                       remainingTime: dataHandle.count_down,
-                      purchased: dataHandle.join.id ? true : false
+                      purchased: dataHandle.join && dataHandle.join.id ? true : false
                     })
 
                     countDown(that, that.data.remainingTime, that.data.timeStampArr)

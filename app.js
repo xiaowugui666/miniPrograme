@@ -1,4 +1,3 @@
-//app.js
 App({
   onShow(options) {
     this.globalData.options = options

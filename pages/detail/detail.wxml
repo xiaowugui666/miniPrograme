@@ -170,8 +170,7 @@
 			<image src='{{image}}{{goodUrl}}'></image>
 			<view class='desc'>
 				<text>￥{{filters.ptf(goodPrice)}}</text>
-        <!-- <text wx:if='{{good.stock_shown == 1}}'>库存：{{good.stock_count}}</text> -->
-        <text>库存：{{good.stock_count}}</text>
+        <text wx:if='{{good.stock_shown == 1}}'>库存：{{good.stock_count}}</text>
 				<view>请选择 <text  wx:for='{{groupSpec.length ? groupSpec : spec}}' wx:key='{{index}}'>{{item.name}}</text></view>
 			</view>
 			<image src='{{image}}classification_btn_close@2x.png' bindtap='closeTips'></image>

@@ -34,6 +34,14 @@ Page({
   // 减少数量
   bindminus() {
     let that = this;
+    if (Object.prototype.toString.call(that.data.address) == '[object Number]') {
+      wx.showToast({
+        title: '请添加地址',
+        icon: 'none',
+        duration: 1000
+      })
+      return false
+    }
     let num = that.data.count,
       flag = false,
       carriage = that.data.carriage,
@@ -62,6 +70,14 @@ Page({
   // 增加数量
   bindplus(e) {
     let that = this;
+    if (Object.prototype.toString.call(that.data.address) == '[object Number]') {
+      wx.showToast({
+        title: '请添加地址',
+        icon: 'none',
+        duration: 1000
+      })
+      return false
+    }
     let num = that.data.count,
       flag = false,
       stock_count = that.data.stock_count,
