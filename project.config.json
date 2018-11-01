@@ -39,7 +39,7 @@
 					"id": 0,
 					"name": "拼团分享详情页",
 					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
-					"query": "goodsid=32&groupid=86",
+					"query": "goodsid=21&groupid=79",
 					"scene": "1007"
 				}
 			]
