@@ -142,6 +142,7 @@ Page({
       stockCount: stockCount,
       sku_ids: sku_id,
       sku_idd: sku_idss,
+      minusStatu: count > 1 ? false : true,
       cart_item_ids: cart_item_ids
       // local: local
     })
@@ -413,10 +414,20 @@ Page({
         'Api-Ext': app.globalData.apiExt
       },
       success:function(data){
+        var code = data.statusCode.toString()
+        if (code >= 200 && code < 300) {
           that.setData({
             carriage: data.data.express_fee,
             totalOrder: parseFloat(data.data.express_fee) + parseFloat(that.data.totalMoney)
           })
+        } else {
+          var tip = data.data.message.toString()
+          wx.showToast({
+            title: tip,
+            icon: 'none',
+            duration: 2000
+          })
+        }
       } 
     })
   }

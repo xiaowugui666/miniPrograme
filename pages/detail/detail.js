@@ -407,6 +407,11 @@
           }
         }
         if (chooseAll) {
+          // 重置数量选择框状态
+          that.setData({
+            num: 1,
+            minusStatus: 'disabled'
+          })
           // 找出选定sku
           let sku = {};
           for (let j = 0, len = skus.length; j < len; j++) {
@@ -720,6 +725,10 @@
       let flag = (that.data.flag == 3 || that.data.flag == 4) ? true : false;
       if (num >= that.data.good.stock_count) {
         var minusStatus = 'disabled'
+        wx.showToast({
+          title: '库存不足',
+          icon: 'none'
+        })
       } else if (num >= that.data.groupInfo.buy_limit_count && that.data.goods.activity_type == 1 && flag && that.data.groupInfo.buy_limit_count) {
         var minusStatus = 'disabled';
         wx.showToast({

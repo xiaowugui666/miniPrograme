@@ -673,6 +673,11 @@ Page({
         }
       }
       if (chooseAll) {
+        // 重置数量选择框状态
+        that.setData({
+          num: 1,
+          minusStatus: 'disabled'
+        })
         // 找出选定sku
         let sku = {};
         for (let j = 0, len = skus.length; j < len; j++) {
@@ -837,6 +842,10 @@ Page({
     var num = this.data.num;
     if (num >= this.data.goodsData.stock_count) {
       var minusStatus = 'disabled'
+      wx.showToast({
+        title: '库存不足',
+        icon: 'none'
+      })
     } else if (num >= this.data.goodsData.buy_limit_count && this.data.goodsData.buy_limit_count) {
       minusStatus = 'disabled';
       let that = this;
