@@ -410,7 +410,8 @@
           // 重置数量选择框状态
           that.setData({
             num: 1,
-            minusStatus: 'disabled'
+            minusStatus: 'disabled',
+            minusStatuss: 'normal'
           })
           // 找出选定sku
           let sku = {};

@@ -89,7 +89,7 @@ Page({
             [vote]: voteCount
           })
           wx.showToast({
-            title: '取消点赞',
+            title: '取消点赞成功',
             icon: 'success',
             duration: 1000
           })
