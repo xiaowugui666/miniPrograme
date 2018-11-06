@@ -77,8 +77,8 @@
     <view  wx:if='{{info.status==200}}' bindtap='payMoney' data-orderid='{{info.id}}' class='pay'>立即支付</view>
 </view>
 
-<view class='shade' hidden='{{show}}' catchtouchmove='preventTouchMove'>
-     <view class='contact'>
+<view class='shade' hidden='{{show}}' catchtouchmove='preventTouchMove' catchtap='close'>
+     <view class='contact' catchtap='preventTap'>
         <view class='title'>
           <view>联系商家</view>
           <view class='clear' bindtap='close'></view>          

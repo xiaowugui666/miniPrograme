@@ -213,23 +213,35 @@ Page({
         'Api-Ext': app.globalData.apiExt
       },
       success: function (res) {
-        var time = res.data.timeStamp
-        time = time.toString()
-        wx.requestPayment({
-          'timeStamp': time,
-          'nonceStr': res.data.result.nonce_str,
-          'package': 'prepay_id=' + res.data.result.prepay_id,
-          'signType': 'MD5',
-          'paySign': res.data.paySign,
-          'success': function (res) {
-            that.checkPay(id,index,list)
-          },
-          'fail': function () {
-            that.setData({
-              disabled: false
-            })
-          }
-        })
+        if (res.statusCode >= 200 && res.statusCode < 300) {        
+          var time = res.data.timeStamp
+          time = time.toString()
+          wx.requestPayment({
+            'timeStamp': time,
+            'nonceStr': res.data.result.nonce_str,
+            'package': 'prepay_id=' + res.data.result.prepay_id,
+            'signType': 'MD5',
+            'paySign': res.data.paySign,
+            'success': function (res) {
+                that.checkPay(id, index, list)
+            },
+            'fail': function () {
+              that.setData({
+                disabled: false
+              })
+            }
+          })
+        } else {
+          var tip = res.data.message.toString()
+          wx.showToast({
+            title: tip,
+            icon: 'none',
+            duration: 2000
+          })
+          that.setData({
+            disabled: false
+          })
+        }
       },
       fail: function () {
         that.setData({
