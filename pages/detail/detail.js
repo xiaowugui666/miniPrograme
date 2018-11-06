@@ -532,6 +532,11 @@
                     title: '加入购物车成功',
                     icon: "success"
                   })
+                  that.setData({
+                    num: 1,
+                    minusStatus: 'disabled',
+                    minusStatuss: 'normal'
+                  })
                   wx.request({
                     url: app.globalData.http + '/mpa/cart/count', 
                     header: {
@@ -591,7 +596,10 @@
                 data: local,
               })
               that.setData({
-                cartNum: cartNum
+                cartNum: cartNum,
+                num: 1,
+                minusStatus: 'disabled',
+                minusStatuss: 'normal'
               })
             } else {
               var goodlist = []
@@ -601,7 +609,10 @@
                 data: goodlist,
               })
               that.setData({
-                cartNum: 1
+                cartNum: 1,
+                num: 1,
+                minusStatus: 'disabled',
+                minusStatuss: 'normal'
               })
             }
             wx.showToast({
@@ -624,6 +635,11 @@
           }
           app.globalData.good = []
           app.globalData.good.push(good)
+          that.setData({
+            num: 1,
+            minusStatus: 'disabled',
+            minusStatuss: 'normal'
+          })
           wx.navigateTo({
             url: '/pages/surePay/surePay',
           })
@@ -648,6 +664,11 @@
           }
           app.globalData.good = []
           app.globalData.good.push(good)
+          that.setData({
+            num: 1,
+            minusStatus: 'disabled',
+            minusStatuss: 'normal'
+          })
           wx.navigateTo({
             url: '/pages/groupPurchase/groupSurePay/groupSurePay?isjoin=0',
           })
@@ -674,6 +695,11 @@
           }
           app.globalData.good = []
           app.globalData.good.push(good)
+          that.setData({
+            num: 1,
+            minusStatus: 'disabled',
+            minusStatuss: 'normal'
+          })
           wx.navigateTo({
             url: '/pages/groupPurchase/groupSurePay/groupSurePay?isjoin=1',
           })
