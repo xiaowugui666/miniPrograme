@@ -8,10 +8,9 @@
 
 	 <view class='clearfix' style="height:{{2*winHeight}}rpx"> 
     <view class='left'>
-        <scroll-view class='tab'  style="height:{{2*winHeight -86 }}rpx"   scroll-y="{{true}}">
-               <view wx:for="{{leftTapArray}}" wx:key="{{index}}" data-idx='{{index}}' data-id='{{item.id}}' bindtap='leftCellTap' class="left_cell {{ index == select ? 'selected' : ''}}">{{item.name}}</view>      
+      <scroll-view class='tab'  style="height:{{2*winHeight -86 }}rpx"   scroll-y="{{true}}">
+        <view wx:for="{{leftTapArray}}" wx:key="{{index}}" data-idx='{{index}}' data-id='{{item.id}}' bindtap='leftCellTap' class="left_cell {{ index == select ? 'selected' : ''}}">{{item.name}}</view>
       </scroll-view>
-
     </view>
     <view class='right'>
         <scroll-view class='tab' scroll-y="{{true}}"  style="height:{{2*winHeight -120 }}rpx"  >

@@ -747,7 +747,11 @@ Page({
 		that.animation = animation
 		animation.translateY(450).step()
 		that.setData({
-			animationData: animation.export()
+			animationData: animation.export(),
+      num: 1,
+      minusStatus: 'disabled',
+      minusStatuss: 'normal',
+      good: {}
 		})
 		setTimeout(function () {
 			animation.translateY(0).step()

@@ -692,7 +692,11 @@
       that.animation = animation
       animation.translateY(450).step()
       that.setData({
-        animationData: animation.export()
+        animationData: animation.export(),
+        num: 1,
+        minusStatus: 'disabled',
+        minusStatuss: 'normal',
+        good: {}
       })
       setTimeout(function () {
         animation.translateY(0).step()
@@ -893,7 +897,7 @@
         },
         success(res) {
           wx.hideLoading();
-          if (JSON.stringify(res.data) != '{}') {
+          if (JSON.stringify(res.data) != '{}' && (res.statusCode >= 200 && res.statusCode < 300)) {
             that.setData({
               goods: res.data,
               goodUrl: res.data.cover_url,

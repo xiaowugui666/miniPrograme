@@ -68,23 +68,21 @@ page{
 .left{
 	width: 180rpx;
   float: left;
-  /* margin-top: 86rpx; */
   overflow-y: hidden;
 	background: #F6F7F7;
-  /* height:100%; */
   z-index: 100;
-  /* white-space: nowrap; */
 }
 .left_cell{
 	width: 180rpx;
-	height: 100rpx;
+	min-height: 100rpx;
 	text-align: center;
 	font-size: 28rpx;
 	line-height: 100rpx;
+  white-space: pre-line;
 }
 
- .tab{
-    white-space: nowrap;
+.tab{
+  white-space: nowrap;
 } 
 .right{
 	width: 570rpx;
