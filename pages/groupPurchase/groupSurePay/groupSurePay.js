@@ -435,6 +435,7 @@ Page({
         'Api-Ext': app.globalData.apiExt
       },
       success: function (data) {
+        var code = data.statusCode.toString()        
         if (code >= 200 && code < 300) {
           that.setData({
             carriage: data.data.express_fee,

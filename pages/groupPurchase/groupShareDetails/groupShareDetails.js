@@ -55,7 +55,10 @@ Page({
     //有规格的时候点击确定
     userId:false,
     flag: 1,
-    formId:''
+    formId:'',
+    //动态控制“-”号类名
+    minusStatus: "disabled",
+    minusStatuss: "normal",
   },
   /**
    * 生命周期函数--监听页面加载
@@ -788,7 +791,10 @@ Page({
     that.animation = animation
     animation.translateY(450).step()
     that.setData({
-      animationData: animation.export()
+      animationData: animation.export(),
+      num: 1,
+      minusStatus: 'disabled',
+      minusStatuss: 'normal'
     })
     setTimeout(function () {
       animation.translateY(0).step()
