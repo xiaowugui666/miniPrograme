@@ -9,7 +9,8 @@ Page({
     // tab切换  
     currentTab: 0,
     index:0,
-    allOrder:1,
+    allOrder:[],
+    scrollId: '',
     image: 'http://image.yiqixuan.com/',
     // apiSecret:'',
     // apiKey:'',
@@ -33,8 +34,16 @@ Page({
     
   },
 
+  changeScrollId (e) {
+    this.setData({
+      scrollId: e.currentTarget.id
+    })
+  },
 
   onShow: function () {
+    if (this.data.allOrder.length > 0) {
+      return
+    }
     var that = this;
       wx.showLoading({
         title: '加载中',
