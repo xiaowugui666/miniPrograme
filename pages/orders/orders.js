@@ -10,7 +10,6 @@ Page({
     currentTab: 0,
     index:0,
     allOrder:[],
-    scrollId: '',
     image: 'http://image.yiqixuan.com/',
     // apiSecret:'',
     // apiKey:'',
@@ -34,16 +33,7 @@ Page({
     
   },
 
-  changeScrollId (e) {
-    this.setData({
-      scrollId: e.currentTarget.id
-    })
-  },
-
   onShow: function () {
-    if (this.data.allOrder.length > 0) {
-      return
-    }
     var that = this;
       wx.showLoading({
         title: '加载中',
@@ -51,7 +41,7 @@ Page({
       wx.request({
         url:that.data.url,
         data:{
-          page:this.data.index,
+          page:0,
           per_page:15,
           status: that.data.currentTab
         },

@@ -9,7 +9,7 @@
     <view class="swiper-tab-list {{currentTab==500 ? 'on' : ''}}" data-current="500" bindtap="swichNav">退换/售后</view>  
 </view>  
   
-<scroll-view  current="{{currentTab}}" scroll-into-view="{{scrollId}}" scroll-top="{{scrollTop}}" scroll-y bindscrolltolower="getMore" class="swiper-box"  style="height:{{2*winHeight - 102}}rpx">  
+<scroll-view  current="{{currentTab}}" scroll-top="{{scrollTop}}" scroll-y bindscrolltolower="getMore" class="swiper-box"  style="height:{{2*winHeight - 102}}rpx">  
       <view>
           <view class='container' wx:if='{{allOrder.length==0}}'>
                 <image src='{{image}}empty_order.png?imageslim'></image>
@@ -17,7 +17,7 @@
                 <label>去别的页面看看吧</label>
           </view>
           <view  class='content' wx:if='{{allOrder.length!=0}}' >
-              <navigator wx:if="{{currentTab<500}}" url='/pages/orderDetail/orderDetail?id={{item.id}}' hover-class='none'   wx:for="{{allOrder}}" wx:for-index="index" wx:key="index" id="{{'scroll' + item.id}}" bindtap='changeScrollId'>
+              <navigator wx:if="{{currentTab<500}}" url='/pages/orderDetail/orderDetail?id={{item.id}}' hover-class='none'   wx:for="{{allOrder}}" wx:for-index="index" wx:key="index">
                   <view class='top'>
                       <label>下单时间：{{item.created_at}}</label>
                       <label wx:if='{{item.status==200}}' class='status_red'>待付款</label>
