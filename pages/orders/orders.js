@@ -34,6 +34,7 @@ Page({
   },
 
   onShow: function () {
+    let initPageSize = (this.data.index + 1) * 15
     var that = this;
       wx.showLoading({
         title: '加载中',
@@ -42,7 +43,7 @@ Page({
         url:that.data.url,
         data:{
           page:0,
-          per_page:15,
+          per_page: initPageSize,
           status: that.data.currentTab
         },
 
@@ -57,7 +58,7 @@ Page({
           var code = data.statusCode.toString()
           if (code.indexOf('20') > -1 && data.data.length > 0) {
             that.setData({
-              allOrder: data.data
+              allOrder: data.data,
             })
           } else {
             that.setData({

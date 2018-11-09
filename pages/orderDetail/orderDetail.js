@@ -138,7 +138,7 @@ Page({
               if (code.indexOf('20') > -1) {
                 wx.showToast({
                   title: '取消成功',
-                  icon: 'none',
+                  icon: 'success',
                   duration: 1000
                 })
                 setTimeout(function () {

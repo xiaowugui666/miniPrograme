@@ -9,7 +9,7 @@
     <view class="swiper-tab-list {{currentTab==500 ? 'on' : ''}}" data-current="500" bindtap="swichNav">退换/售后</view>  
 </view>  
   
-<scroll-view  current="{{currentTab}}" scroll-top="{{scrollTop}}" scroll-y bindscrolltolower="getMore" class="swiper-box"  style="height:{{2*winHeight - 102}}rpx">  
+<scroll-view  current="{{currentTab}}" scroll-y bindscrolltolower="getMore" class="swiper-box"  style="height:{{2*winHeight - 102}}rpx">  
       <view>
           <view class='container' wx:if='{{allOrder.length==0}}'>
                 <image src='{{image}}empty_order.png?imageslim'></image>
