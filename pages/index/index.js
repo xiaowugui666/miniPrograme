@@ -24,7 +24,8 @@ Page({
 		special_goods:'',
     special:2,
 		// 拼团商品
-		groupGoods: []
+		groupGoods: [],
+    scrollBottom: false
   },
   // 页面加载
   onLoad: function () {
@@ -259,5 +260,8 @@ Page({
 		wx.navigateTo({
 			url: '/pages'+path,
 		})
-	}
+	},
+  scroll(e) {
+    console.log(e.detail.scrollTop)
+  }
 })

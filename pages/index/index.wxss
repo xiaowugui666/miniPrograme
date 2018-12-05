@@ -118,6 +118,39 @@ swiper {
   box-sizing: border-box;
   border-radius: 10rpx;
 }
+.desc_loading {
+  width: 710rpx;
+  height: 200rpx;
+  background: #ededed;
+  margin: 0 auto;
+  margin-top:20rpx;
+  border-radius: 8rpx;
+}
+.classify_loading {
+  margin: 0 auto;
+  margin-top: 32rpx;
+  height: 156rpx;
+}
+.classify_loading .loading_items {
+  display:inline-block;
+  height:156rpx;
+  width:150rpx;
+}
+.loading_items .loading_item_img {
+  width:90rpx;
+  height:90rpx;
+  border-radius:50%;
+  background: #ededed;  
+  margin:0 auto;
+}
+.loading_items .loading_item_text {
+  margin: 0 auto;
+  width: 90rpx;
+  background: #ededed;
+  border-radius: 8rpx;
+  height: 34rpx;
+  margin-top:20rpx;
+}
 .index_contact .contact_h4 {
   display: block;
   font-family: PingFangSC-Light;

@@ -12,20 +12,26 @@
 	<!--banner  -->
 	 <image class='index_banner1' wx:if="{{description.banner}}"  mode='widthFix' src='{{image}}{{description.banner}}?imageslim'></image> 
   <!-- <view  class='index_classify' wx:if="{{categoryList.length>4}}"> -->
-   <view  class='index_classify'>
-      <scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
-        <view  data-idx="{{index}}"   wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
-          <image src='{{image}}{{item.icon_url}}?imageView2/1/w/104/h/104/imageslim'></image>
-          <text>{{item.name}}</text>
-        </view>
-      </scroll-view>
-  </view> 
+  <view  class='index_classify' wx:if="{{categoryList.length > 0}}">
+    <scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
+      <view  data-idx="{{index}}"   wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
+        <image src='{{image}}{{item.icon_url}}?imageView2/1/w/104/h/104/imageslim'></image>
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <view wx:else class='classify_loading'>
+    <view wx:for="{{[1,1,1,1,1]}}" class='loading_items' wx:key="{{index}}">
+      <view class='loading_item_img'></view>
+      <view class='loading_item_text'></view>
+    </view>
+  </view>
 
     <view class='index_current' wx:if="{{newCate.length>1}}">
       <view wx:key='index' wx:for="{{newCate}}" class='{{current===index?"cur":""}}'></view>
   </view>   
 	<!--contact  -->
-	<view class="index_contact">
+	<view class="index_contact" wx:if="{{description.id}}">
      <image wx:if='{{description.logo_url}}' src='{{image}}{{description.logo_url}}?imageslim'></image>
       <view class='desc'>
           <text class='contact_h4'>Hi 亲爱的小主</text>
@@ -34,6 +40,7 @@
     <button bindtap='callPhone'><image src='/imgs/Content_icon_phone@2x.png'></image></button>
 		
 	</view>
+  <view class='desc_loading' wx:else></view>
 
   <!-- 拼团 -->
   <view wx:if="{{groupGoods.length>0}}">
@@ -137,5 +144,5 @@
         </view>
   </view> 
 	<!--bottom  -->
-	<view class='bottom'>到底啦，去别处逛逛吧</view>
+	<view class='bottom' wx:if="{{scrollBottom}}">到底啦，去别处逛逛吧</view>
 </view>
