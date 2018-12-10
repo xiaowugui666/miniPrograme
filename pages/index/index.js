@@ -28,8 +28,12 @@ Page({
     scrollBottom: false
   },
   // 页面加载
-  onLoad: function () {
+  onLoad: function (options) {
       // let that = this;
+      if (options.scene) {
+        var sceneId = decodeURIComponent(options.scene).split(',')[0]
+        app.globalData.sceneID = sceneId
+      }
       this.getData()
   },
   // 拨打电话

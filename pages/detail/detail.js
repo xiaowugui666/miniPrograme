@@ -834,8 +834,19 @@
         title: '加载中',
       })
 
+      if (options.scene) {
+        var scene = decodeURIComponent(options.scene)
+        wx.showToast({
+          title: scene,
+          duration: 20000,
+          icon: 'none'
+        })
+        options.id = scene.split(',')[1]
+        app.globalData.sceneID = scene.split(',')[0]
+      }
+
       // 如果为分享的页面
-      if (app.globalData.options.path == 'pages/detail/detail' && (app.globalData.options.scene == 1007 || app.globalData.options.scene == 1008 || app.globalData.options.scene == 1044)) {
+      if (app.globalData.options.path == 'pages/detail/detail' && (app.globalData.options.scene == 1007 || app.globalData.options.scene == 1008 || app.globalData.options.scene == 1044 || options.scene)) {
         //获取店家描述数据
         wx.request({
           url: app.globalData.http + '/mpa/index',

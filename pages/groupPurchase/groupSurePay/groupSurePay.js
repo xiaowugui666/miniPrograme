@@ -308,7 +308,7 @@ Page({
     let skuObj = {
       [id]: count
     }
-    let requestUrl,data;
+    let requestUrl, data, sceneID = app.globalData.sceneID ? app.globalData.sceneID : '';
     // 定义不同接口所需参数
     if (that.data.isJoin) {
       requestUrl = app.globalData.http + '/mpa/groupon/' + that.data.groupId + '/join';
@@ -318,7 +318,8 @@ Page({
         goods_sku_arr: skuObj,
         activity_form_id: that.data.dataList[0].groupFormId,
         address_id: that.data.address.id,
-        form_id: e.detail.formId
+        form_id: e.detail.formId,
+        scene: sceneID
       }
     } else {
       requestUrl = app.globalData.http + '/mpa/groupon';
@@ -328,7 +329,8 @@ Page({
         goods_sku_arr: skuObj,
         activity_form_id: that.data.dataList[0].groupFormId,
         address_id: that.data.address.id,
-        form_id: e.detail.formId
+        form_id: e.detail.formId,
+        scene: sceneID
       }
     }
     // 直接支付

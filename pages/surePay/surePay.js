@@ -297,6 +297,7 @@ Page({
         [id]: count
       }
     }
+    let sceneID = app.globalData.sceneID;
     // 直接支付生成订单
     wx.request({
       url: app.globalData.http +'/mpa/order',
@@ -307,7 +308,8 @@ Page({
         address_id:that.data.address.id,
         remarks:'',
         cart_item_ids: that.data.cart_item_ids,
-        form_id: e.detail.formId
+        form_id: e.detail.formId,
+        scene: sceneID ? sceneID : ''
       },
       header: {
         "Api-Key": app.globalData.apiKey,

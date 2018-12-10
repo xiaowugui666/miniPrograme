@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.0",
+	"libVersion": "2.2.2",
 	"appid": "wx3e0f48a85aca5724",
 	"projectname": "mpas",
 	"isGameTourist": false,

@@ -69,6 +69,7 @@ App({
     timeStamp:'',
     http:'https://retail-mall-develop.51zan.com',
 		image: 'https://image.yiqixuan.com/',
-    options: ''
+    options: '',
+    sceneID: 0
   }
 })
