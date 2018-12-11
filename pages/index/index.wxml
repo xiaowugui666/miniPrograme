@@ -27,8 +27,8 @@
     </view>
   </view>
 
-    <view class='index_current' wx:if="{{newCate.length>1}}">
-      <view wx:key='index' wx:for="{{newCate}}" class='{{current===index?"cur":""}}'></view>
+  <view class='index_current' wx:if="{{newCate.length>1}}">
+    <view wx:key='index' wx:for="{{newCate}}" class='{{current===index?"cur":""}}'></view>
   </view>   
 	<!--contact  -->
 	<view class="index_contact" wx:if="{{description.id}}">
@@ -40,7 +40,12 @@
     <button bindtap='callPhone'><image src='/imgs/Content_icon_phone@2x.png'></image></button>
 		
 	</view>
-  <view class='desc_loading' wx:else></view>
+  <view class='index_loading' wx:else>
+    <view class='desc_loading'></view>
+    <view class='items'>
+      <view class='item' wx:for='{{[1,1,1,1]}}' key="{{index}}"></view>      
+    </view>
+  </view>
 
   <!-- 拼团 -->
   <view wx:if="{{groupGoods.length>0}}">
@@ -132,16 +137,16 @@
       </view>
   </view>
   
-   <view wx:if="{{recommend!=1 && special!=1 && groupGoods.length == 0 && good.length>0}}">
-        <view class='index_item'>
-          <view class='item_box' wx:for="{{good}}" data-id='{{item.id}}'  wx:key="index" bindtap='bindDetail'>
-            <image src='{{image}}{{item.cover_url}}?imageView2/1/w/344/h/344/imageslim'></image>
-            <text class='item_text'>{{item.name}}</text>
-            <view class='item_text_view'>
-              <text>￥</text><text>{{filters.toFix(item.price/100)}}</text><text>销量{{item.sales_count}}件</text>
-            </view>
-          </view>
+  <view wx:if="{{recommend!=1 && special!=1 && groupGoods.length == 0 && good.length>0}}">
+    <view class='index_item'>
+      <view class='item_box' wx:for="{{good}}" data-id='{{item.id}}'  wx:key="index" bindtap='bindDetail'>
+        <image src='{{image}}{{item.cover_url}}?imageView2/1/w/344/h/344/imageslim'></image>
+        <text class='item_text'>{{item.name}}</text>
+        <view class='item_text_view'>
+          <text>￥</text><text>{{filters.toFix(item.price/100)}}</text><text>销量{{item.sales_count}}件</text>
         </view>
+      </view>
+    </view>
   </view> 
 	<!--bottom  -->
 	<view class='bottom' wx:if="{{scrollBottom}}">到底啦，去别处逛逛吧</view>

@@ -843,6 +843,8 @@
         })
         options.id = scene.split(',')[1]
         app.globalData.sceneID = scene.split(',')[0]
+      } else if (options.scene_id) {
+        app.globalData.sceneID = options.scene_id
       }
 
       // 如果为分享的页面

@@ -33,6 +33,8 @@ Page({
       if (options.scene) {
         var sceneId = decodeURIComponent(options.scene).split(',')[0]
         app.globalData.sceneID = sceneId
+      } else if (options.scene_id) {
+        app.globalData.sceneID = options.scene_id
       }
       this.getData()
   },
@@ -265,7 +267,4 @@ Page({
 			url: '/pages'+path,
 		})
 	},
-  scroll(e) {
-    console.log(e.detail.scrollTop)
-  }
 })

@@ -118,13 +118,29 @@ swiper {
   box-sizing: border-box;
   border-radius: 10rpx;
 }
-.desc_loading {
+.index_loading {
+  width: 710rpx;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.index_loading .desc_loading {
   width: 710rpx;
   height: 200rpx;
   background: #ededed;
-  margin: 0 auto;
   margin-top:20rpx;
   border-radius: 8rpx;
+}
+.index_loading .items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.index_loading .item {
+  width: 340rpx;
+  height: 340rpx;
+  background: #ededed;
+  margin-top: 30rpx;
+  border-radius: 8rpx;  
 }
 .classify_loading {
   margin: 0 auto;
