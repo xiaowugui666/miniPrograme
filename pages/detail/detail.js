@@ -836,11 +836,6 @@
 
       if (options.scene) {
         var scene = decodeURIComponent(options.scene)
-        wx.showToast({
-          title: scene,
-          duration: 20000,
-          icon: 'none'
-        })
         options.id = scene.split(',')[1]
         app.globalData.sceneID = scene.split(',')[0]
       } else if (options.scene_id) {
