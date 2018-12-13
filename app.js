@@ -51,6 +51,9 @@ App({
       }
     }) 
   },
+  onHide () {
+    this.globalData.sceneID = 0
+  },
   globalData: {
     userInfo: false,
 		user_info: {},

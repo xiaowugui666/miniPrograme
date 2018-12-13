@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -46,7 +46,7 @@
 					"id": 1,
 					"name": "详情页",
 					"pathName": "pages/detail/detail",
-					"query": "id=46",
+					"query": "id=50",
 					"scene": "1007"
 				}
 			]

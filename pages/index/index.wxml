@@ -43,7 +43,7 @@
   <view class='index_loading' wx:else>
     <view class='desc_loading'></view>
     <view class='items'>
-      <view class='item' wx:for='{{[1,1,1,1]}}' key="{{index}}"></view>      
+      <view class='item' wx:for='{{[1,1,1,1]}}' wx:key="{{index}}"></view>      
     </view>
   </view>
 
