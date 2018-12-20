@@ -38,12 +38,6 @@ Page({
       }
       this.getData()
   },
-  // 拨打电话
-  callPhone: function () {
-    wx.makePhoneCall({
-      phoneNumber: app.globalData.mobile
-    })
-  },
   //下拉刷新
   onPullDownRefresh: function () {
 		this.getData()

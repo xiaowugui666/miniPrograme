@@ -4,17 +4,17 @@
 
 	<!--search button  -->
 	<view class='container_search'>
-		<navigator class='container_search_navi' url="/pages/search/search">{{description.search_default_text}}
-			<icon type='search' size='12' color='#999999'></icon>
+		<navigator class='container_search_navi' url="/pages/search/search">{{description.search_default_text ? description.search_default_text: '大量好物等你发现'}}
+			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
 		</navigator>
 	</view>
 
 	<!--banner  -->
-	 <image class='index_banner1' wx:if="{{description.banner}}"  mode='widthFix' src='{{image}}{{description.banner}}?imageslim'></image> 
+	 <image class='index_banner' wx:if="{{description.banner}}"  mode='widthFix' src='{{image}}{{description.banner}}?imageslim'></image> 
   <!-- <view  class='index_classify' wx:if="{{categoryList.length>4}}"> -->
   <view  class='index_classify' wx:if="{{categoryList.length > 0}}">
     <scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
-      <view  data-idx="{{index}}"   wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
+      <view data-idx="{{index}}" wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
         <image src='{{image}}{{item.icon_url}}?imageView2/1/w/104/h/104/imageslim'></image>
         <text>{{item.name}}</text>
       </view>
@@ -32,13 +32,15 @@
   </view>   
 	<!--contact  -->
 	<view class="index_contact" wx:if="{{description.id}}">
-     <image wx:if='{{description.logo_url}}' src='{{image}}{{description.logo_url}}?imageslim'></image>
+    <view class='index_contact_box'>
+      <button open-type='contact' session-from="weapp">
+        <image wx:if='{{description.logo_url}}' src='{{image}}{{description.logo_url}}?imageslim'></image>
+      </button>
       <view class='desc'>
-          <text class='contact_h4'>Hi 亲爱的小主</text>
-          <text class='contact_p'  wx:if="{{description.description}}">{{description.description}}</text> 
+          <text class='contact_h4'>您的专属客服，24小时不打烊~</text>
+          <text class='contact_p'>{{'<<< 我是店主，可以随时咨询我哦！'}}</text> 
+      </view>
     </view>
-    <button bindtap='callPhone'><image src='/imgs/Content_icon_phone@2x.png'></image></button>
-		
 	</view>
   <view class='index_loading' wx:else>
     <view class='desc_loading'></view>
