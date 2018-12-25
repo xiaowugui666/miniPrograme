@@ -248,7 +248,7 @@ page {
   box-sizing: border-box;
 }
 .content {
-  background:linear-gradient(180deg,#FFFFFF 0%,#F7F9FB 15%);
+  background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 324rpx);
 }
 .content swiper {
   height: 100%;

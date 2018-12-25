@@ -46,7 +46,7 @@
 					"id": 1,
 					"name": "详情页",
 					"pathName": "pages/detail/detail",
-					"query": "id=50",
+					"query": "id=48",
 					"scene": "1007"
 				}
 			]
