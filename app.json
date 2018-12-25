@@ -9,11 +9,9 @@
     "pages/groupPurchase/groupPurchaseList/groupPurchaseList",
     "pages/groupPurchase/collageRules/collageRules",
     "pages/afterSale/afterSale",
-    "pages/trends/trends",
     "pages/afterSaleList/afterSaleList",
     "pages/groupPurchase/refundProgress/refundProgress",
     "pages/groupPurchase/groupList/groupList",
-    "pages/trendsDetail/trendsDetail",
     "pages/messageList/messageList",
     "pages/category/category",
     "pages/shoppingCar/shoppingCar",
@@ -46,12 +44,6 @@
         "iconPath": "imgs/index.png",
         "selectedIconPath": "imgs/index_active.png",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/trends/trends",
-        "iconPath": "imgs/trends.png",
-        "selectedIconPath": "imgs/trends_active.png",
-        "text": "动态"
       },
       {
         "pagePath": "pages/category/category",

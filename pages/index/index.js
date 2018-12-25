@@ -2,47 +2,42 @@
 //获取应用实例
 const app=getApp();
 Page({
-  data: {
+	data: {
 		//分类
-    image: 'https://image.yiqixuan.com/',
+		image: 'https://image.yiqixuan.com/',
 		categoryList:[],
 		//店铺描述信息
 		description: {},
-    newCate:'',
-    remain:"",
-    current:0,
-    keyword:'',
-    //屏幕宽度
-    winWidth:'',
+		newCate:'',
+		remain:"",
+		current:0,
+		tabSwiperArr: [],
+		currentTab: 0,
+		tabScrollTop: false,
+		keyword:'',
+		//屏幕宽度
+		winWidth:'',
 		//推荐商品
 		//不参与遍历的第一件推荐商品
-    good:[],
-		recommend_first:'',
-    recommend:2,
-		recommend_goods:'',
-		//特价商品
-		special_goods:'',
-    special:2,
-		// 拼团商品
-		groupGoods: [],
-    scrollBottom: false
-  },
-  // 页面加载
-  onLoad: function (options) {
-      // let that = this;
-      if (options.scene) {
-        var sceneId = decodeURIComponent(options.scene).split(',')[0]
-        app.globalData.sceneID = sceneId
-      } else if (options.scene_id) {
-        app.globalData.sceneID = options.scene_id
-      }
-      this.getData()
-  },
-  //下拉刷新
-  onPullDownRefresh: function () {
+		good:[],
+		swiperHeight: '338',
+	},
+	// 页面加载
+	onLoad: function (options) {
+			// let that = this;
+			if (options.scene) {
+				var sceneId = decodeURIComponent(options.scene).split(',')[0]
+				app.globalData.sceneID = sceneId
+			} else if (options.scene_id) {
+				app.globalData.sceneID = options.scene_id
+			}
+			this.getData()
+	},
+	//下拉刷新
+	onPullDownRefresh: function () {
 		this.getData()
 		wx.stopPullDownRefresh()
-  },
+	},
 	// 打开页面或下拉刷新进行的后台请求
 	getData () {
 		let that = this;
@@ -116,7 +111,7 @@ Page({
 		})
 		//拼团商品
 		wx.request({
-      url: app.globalData.http + '/mpa/groupon_goods?per_page=3',
+			url: app.globalData.http + '/mpa/groupon_goods',
 			header: {
 				'Api-Ext': app.globalData.apiExt
 			},
@@ -124,134 +119,151 @@ Page({
 			method: 'GET',
 			success: function (data) {
 				if (data.statusCode == 200) {
-					if (data.data && data.data.length>0){
-						that.setData({
-							groupGoods: data.data
+					if (data.data && data.data.length > 0) {
+						let tempArr = []
+						tempArr.push({
+							type: 1,
+							label: '超值拼团',
+							data: data.data
 						})
-					} else {
-            that.setData({
-              groupGoods: []
-            })
-          }
-				}
-			}
-		})
-		//获取推荐商品列表
-		wx.request({
-			url: app.globalData.http + '/mpa/goods/recommend?page=0&per_page=7',
-			method: 'GET',
-			header:{
-				'Api-Ext': app.globalData.apiExt
-			},
-			success(res) {
-				var code = res.statusCode.toString()
-				if (code.indexOf('20')>-1) {
-					//截取第一件商品
-					let firstGood = res.data.splice(0, 1);
-					if (firstGood.length>0){
 						that.setData({
-							recommend_first: firstGood,
-							recommend_goods: res.data,
-							recommend: 1
-						})
-					}else{
-						that.setData({
-							recommend_first: [],
-							recommend_goods:[],
-							recommend: 2
+							tabSwiperArr: tempArr
 						})
 					}
 				}
 			},
-			fail: function (res) {
-				console.log(res)
-			}
-		})
-		//获取特价商品列表
-		wx.request({
-			url: app.globalData.http + '/mpa/goods/special?page=0&per_page=6',
-			method: 'GET',
-			header:{
-				'Api-Ext':app.globalData.apiExt
-			},
-			success(res) {
-				if (res.data.length>0) {
-					that.setData({
-						special_goods: res.data,
-						special:1
-					})
-				}else{
-					that.setData({
-						special_goods:[],
-						special: 2
-					})
-				}
-			},
-			fail: function (res) {
-				console.log(res)
+			complete: function () {
+				//获取推荐商品列表
+				wx.request({
+					url: app.globalData.http + '/mpa/goods/recommend?page=0',
+					method: 'GET',
+					header:{
+						'Api-Ext': app.globalData.apiExt
+					},
+					success(res) {
+						var code = res.statusCode.toString()
+						if (code.indexOf('20')>-1) {
+							if (res.data.length > 0) {
+								let tempArr = that.data.tabSwiperArr
+								tempArr.push({
+									type: 2,
+									label: '好物推荐',
+									data: res.data
+								})
+								that.setData({
+									tabSwiperArr: tempArr
+								})
+							}
+						}
+					},
+					fail: function (res) {
+						console.log(res)
+					},
+					complete: function () {
+						//获取特价商品列表
+						wx.request({
+							url: app.globalData.http + '/mpa/goods/special?page=0',
+							method: 'GET',
+							header:{
+								'Api-Ext':app.globalData.apiExt
+							},
+							success(res) {
+								let tempArr = that.data.tabSwiperArr
+								if (res.data.length>0) {
+									tempArr.push({
+										type: 3,
+										label: '精选特价',
+										data: res.data
+									})
+								}
+								// 计算content盒子高度
+								let count = 0, height;
+								for (let i = 0, len = tempArr.length; i < len; i++) {
+									if (tempArr[i].data.length > count) {
+										count = tempArr[i].data.length
+									}
+								}
+								height = count * 328 + 34;
+								that.setData({
+									tabSwiperArr: tempArr,
+									swiperHeight: height
+								})
+							},
+							fail: function (res) {
+								console.log(res)
+							},
+						})
+					}
+				})
 			}
 		})
 	},
-  //一级分类滚动
-  scrollCategory:function(e){
-    //宽度
-    var scrollWidth = parseInt(e.detail.scrollWidth)
-    //滚动的距离
-    var scrollLeft = parseInt(e.detail.scrollLeft)
-    //屏幕的宽度
-    var width = parseInt(this.data.winWidth)
-    //剩余的分类
-    var remain = parseInt(this.data.remain)
-    var cur = Math.floor(scrollLeft / width)
-    var cateNum = Math.floor(scrollWidth / width)
-    if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain-1) * width/5)-20) {
-      cur++
-      this.setData({
-        current: cur
-      })
-    }else{
-      this.setData({
-        current: cur
-      })
-    }
-  },
+	//一级分类滚动
+	scrollCategory:function(e){
+		//宽度
+		var scrollWidth = parseInt(e.detail.scrollWidth)
+		//滚动的距离
+		var scrollLeft = parseInt(e.detail.scrollLeft)
+		//屏幕的宽度
+		var width = parseInt(this.data.winWidth)
+		//剩余的分类
+		var remain = parseInt(this.data.remain)
+		var cur = Math.floor(scrollLeft / width)
+		var cateNum = Math.floor(scrollWidth / width)
+		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain-1) * width/5)-20) {
+			cur++
+			this.setData({
+				current: cur
+			})
+		}else{
+			this.setData({
+				current: cur
+			})
+		}
+	},
+	// 切换tab
+	onChangeTab: function (e) {
+		this.setData({
+			currentTab: e.currentTarget.dataset.value
+		})
+	},
+	onChangeSwiperItem: function (e) {
+		if (e.detail.source === 'touch') {
+			this.setData({
+				currentTab: e.detail.current
+			})
+		}
+	},
 	//跳转商品详情页
 	bindDetail(e){
-    wx.navigateTo({
-      url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id,
-    })
+		wx.navigateTo({
+			url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id,
+		})
 	},
-  //定义分享转发
-  onShareAppMessage: function (res) {
-    if (res.from === "button") {
-    }
-    if (this.data.description.share_logo_url){
-      var url = this.data.image + this.data.description.share_logo_url
-    }else{
-      var url = this.data.image + this.data.description.logo_url
-    }
-    return {
-      title: this.data.description.share_text,
-      path: "/pages/index/index",
-      imageUrl: url,
-      success(res) {
-      }
-    }
-  },
-  // 点击分类跳转分类页面
+	//定义分享转发
+	onShareAppMessage: function (res) {
+		if (res.from === "button") {
+		}
+		if (this.data.description.share_logo_url){
+			var url = this.data.image + this.data.description.share_logo_url
+		}else{
+			var url = this.data.image + this.data.description.logo_url
+		}
+		return {
+			title: this.data.description.share_text,
+			path: "/pages/index/index",
+			imageUrl: url,
+			success(res) {
+			}
+		}
+	},
+	// 点击分类跳转分类页面
 	switchCate(e){
 		//当前点击索引,保存到globalData
-    var idx = e.currentTarget.dataset.idx;
-    app.globalData.classIdx =idx
-    wx.switchTab({
-      url: '/pages/category/category',
-    })
-	},
-	//查看更多点击事件
-	showMore(e){
-		var path = e.currentTarget.dataset.type;
-		wx.navigateTo({
-			url: '/pages/'+path+"/"+path,
+		var idx = e.currentTarget.dataset.idx;
+		app.globalData.classIdx =idx
+		wx.switchTab({
+			url: '/pages/category/category',
 		})
 	},
 	//点击跳转到新页面
@@ -261,4 +273,24 @@ Page({
 			url: '/pages'+path,
 		})
 	},
+	onPageScroll: function () {
+		const that = this
+		const query = wx.createSelectorQuery()
+		query.select('#marketing-tab').boundingClientRect()
+		query.selectViewport().scrollOffset()
+		query.exec(function (res) {
+			if(res[0].top <= 0) {
+				that.setData({
+					tabScrollTop: true
+				})
+			} else {
+				that.setData({
+					tabScrollTop: false
+				})
+			}
+		})
+	},
+	onReachBottom: function (e) {
+		console.log(1111)
+	}
 })
