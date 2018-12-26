@@ -1,98 +1,79 @@
-/**index.wxss**/
+/**用户信息**/
 page{
   height:100%;
- background: #F9F9F9;
+  background: #F9F9F9;
+  font-family: PingFangSC-Semibold;
+  padding: 0 15rpx;
+}
+.userinfo-bg{
+  display: block;
+  width:720rpx;
+  height: 312rpx;
+  overflow: hidden;
+  margin-top: 16rpx;
+}
+.userinfo-bg-avatar{
+  width: 100%;
+  height: 100%;
 }
 .container {
-  width:750rpx;
+  margin-top: -312rpx;
+  width:720rpx;
   height: 312rpx;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(0deg,#FF7D7D  4%, #FF6286 96%);
 }
 .userinfo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
-button{
-    background: transparent;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    padding:0;
-}
-button::after{  
-  border:none; 
-  border-radius: none;
-}  
-button image{
-  width: 156rpx;
-  height: 156rpx;
-  border-radius: 50%;
-  display: block;
-}
-button label{
-  font-family: PingFangSC-Semibold;
-  font-size: 24rpx;
-  color: #FFFFFF;
-  margin-top: 26rpx;
+.userinfo-right{
+  margin-left: 25rpx;
 }
 .userinfo-avatar {
   width: 156rpx;
   height: 156rpx;
   border-radius: 50%;
 }
-
 .userinfo-nickname {
-  font-family: PingFangSC-Semibold;
-  font-size: 40rpx;
-  line-height: 56rpx;
-  margin-top: 26rpx;
+  font-size:36rpx;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+}
+.userinfo-count{
+  font-size:26rpx;
+  font-weight:400;
   color: #FFFFFF;
+  margin-top: 16rpx;
+}
+.userinfo button{
+    background: transparent;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    padding:0;
+}
+.userinfo button::after{  
+  border:none; 
+  border-radius: none;
+}
+.userinfo-right label{
+  color: #FFFFFF;
+  font-size:36rpx;
+  font-weight:500;
 }
 
-.usermotto {
-  margin-top: 200px;
-}
-.bind_mobile {
-  display: flex;
-  height: 100rpx;
-  padding: 0 20rpx;
-  font-size: 24rpx;
-  color: #999999;
-  align-items: center;
-  justify-content: space-between;
-}
-.bind_mobile view {
-  display: flex;
-  font-size: 24rpx;
-  color: #999999;
-  align-items: center;
-}
-.bind_mobile button {
-  width: 124rpx;
-  height: 50rpx;
-  color: #EA2534;
-  padding: 0;
-  margin: 0;
-  border: 1px solid #EA2534;
-  text-align: center;
-  line-height: 50rpx;
-  font-size: 22rpx;
-}
-.bind_mobile image {
-  width: 46rpx;
-  height: 46rpx;
-  margin-right: 10rpx;
-}
+
+/**订单**/
 .orderinfo {
-  width: 750rpx;
+  width: 720rpx;
   overflow: hidden;
-  
+  margin-top: 32rpx;
+  border-radius: 8rpx;
 }
 .myorder {
   display: flex;
@@ -105,93 +86,143 @@ button label{
   background: #fff;
 }
 .myorder view{
-font-family: PingFangSC-Regular;
-font-size: 32rpx;
-color: #333333;
-display: flex;
-align-items: center;
-}
-.icon{
-  width: 12rpx;
-  height: 20rpx;
-}
-.myorder label{
-  margin-right: 10rpx;
-  font-family: PingFangSC-Regular;
-  font-size: 28rpx;
-  color: #999999;
+  font-size: 32rpx;
+  color: #333333;
+  display: flex;
+  align-items: center;
 }
 .orderList{
-  width: 750rpx;
+  width: 720rpx;
   display: flex;
   align-items: center;
   justify-content: space-around;
   height: 156rpx;
-  border-bottom:20rpx solid #f7f7f7;
   background:#fff;
-
+  padding: 16rpx 0;
 }
 .orderList view{
   position: relative;
 }
 .orderList image{
-  width: 46rpx;
-  height: 46rpx;
+  width: 80rpx;
+  height: 80rpx;
   display: block;
   margin:0 auto;
-
 }
 .orderList label{
   display: block;
   text-align: center;
-  font-family: PingFangSC-Regular;
-  font-size: 24rpx;
   margin-top:14rpx;
-  color: #666666;
+  font-size:26rpx;
+  font-weight:400;
+  color:rgba(85,102,117,1);
 }
 .orderList text{
   position: absolute;
   height: 32rpx;
   min-width: 32rpx;
   border-radius: 50%;
-  top:-14rpx;
-  right:-2rpx;
-  background: #EA2534;
+  top:-6rpx;
+  right:-6rpx;
+  background: #fff;
+  border: 4rpx solid #FF8660;
   line-height: 32rpx;
   text-align: center;
-  font-family: PingFangSC-Medium;
-  font-size: 20rpx;
-  color: #FFFFFF;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #FF8660;
 }
-.otherInfo{
-  padding-left:20rpx;
-  box-sizing: border-box;
-  width: 750rpx;
+
+
+/* 没有订单或优惠券 */
+.bind_mobile {
+  display: flex;
+  height: 100rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  align-items: center;
+  justify-content: space-between;
+  border-top:1px solid #EBEBEB;
+  background-color: #fff;
+}
+.bind_mobile_text{
+  font-size:26rpx;
+  font-weight:400;
+  color:rgba(158,168,177,1);
+}
+.bind_mobile image {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 10rpx;
+}
+.bind_mobile view {
+  display: flex;
+  font-size: 24rpx;
+  align-items: center;
+}
+.bind_mobile button {
+  width: 136rpx;
+  font-size: 22rpx;
+  color:rgba(243,93,81,1);
+  background:rgba(255,255,255,1);
+  border-radius:8rpx;
+  border:2rpx solid rgba(243,93,81,1);
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+
+/* 其他信息 */
+.my_other{
+  width: 720rpx;
   background: #fff;
+  margin-top: 32rpx;
+  border-radius: 8rpx;
 }
-.otherInfo .nav{
+.my_other_nav{
   box-sizing: border-box;
   padding-right:20rpx;
-  height: 82rpx;
+  height: 96rpx;
   width:100%;
   position: relative;
   justify-content: space-between;
   align-items: center;
   display: flex;
   border-bottom: 1rpx solid  #EBEBEB; 
+  background-color: #fff;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: unset;
+  margin: 0;
+  padding: 0 20rpx;
 }
-.otherInfo .nav:last-child{
-  border-bottom:0;
+.my_other_nav::after {
+  border: none;
+  padding: 0;
 }
-.otherInfo .nav text{
-  position: absolute;
-  right: 40rpx;
-  font-size: 24rpx;
+.otherInfo .my_other_nav:last-child{
+  border-bottom: 0;
 }
-.otherInfo view{
-  font-family: PingFangSC-Regular;
-  font-size: 32rpx;
-  color: #333333;
-  display: flex;
-  align-items: center;
+.no_border{
+  border-bottom: 0;
+}
+.my_other_text{
+  font-size:32rpx;
+  font-weight:400;
+  color:rgba(37,58,78,1);
+}
+.my_other_text image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: -14rpx;
+  margin-right: 20rpx;
+}
+.my_other_text view{
+  display: inline-block;
+}
+.icon{
+  width:16rpx;
+  height:24rpx;
 }

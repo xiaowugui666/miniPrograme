@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "订单列表"
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "订单列表",
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "black"
 }
