@@ -47,7 +47,6 @@
       goodPrice: 0,
       goodUrl: "",
       imgs: {},
-      description: '',
       content: '',
       //是否又规格
       isSpec: '',
@@ -60,8 +59,6 @@
       clickGroupId: '',
       formId: '',
       group_id: '',
-      // 是否分享出去的页面
-      isSharePage: false
     },
     // 滑动商品图片
     changeCurrent: function(e) {
@@ -797,7 +794,11 @@
         url: '/pages/cart/cart',
       })
     },
-
+    goIndex () {
+      wx.switchTab({
+        url: '/pages/index/index',
+      })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -842,31 +843,6 @@
         app.globalData.sceneID = scene.split(',')[0]
       } else if (options.scene_id) {
         app.globalData.sceneID = options.scene_id
-      }
-
-      // 如果为分享的页面
-      if ((app.globalData.options.path == 'pages/detail/detail' || app.globalData.options.path == 'pages/detail/detail.html') && (app.globalData.options.scene == 1007 || app.globalData.options.scene == 1008 || app.globalData.options.scene == 1044 || options.scene || options.scene_id)) {
-        //获取店家描述数据
-        wx.request({
-          url: app.globalData.http + '/mpa/index',
-          method: 'GET',
-          header: {
-            'Api-Ext': app.globalData.apiExt
-          },
-          success(res) {
-            app.globalData.mobile = res.data.customer_service_mobile
-            app.globalData.logo_url = res.data.logo_url
-            app.globalData.name = res.data.name
-            that.setData({
-              description: res.data,
-              isSharePage: true
-            })
-            app.globalData.keyword = res.data.search_default_text
-          },
-          fail: function (res) {
-            console.log(res)
-          }
-        })
       }
 
       //获取商品规格

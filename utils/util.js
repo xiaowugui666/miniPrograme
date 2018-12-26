@@ -19,6 +19,7 @@ const countDown = function (_this,timeStamp,timeStampArr, id) {
 			minute = Math.floor(timeStamp % (60 * 60) / 60);
 			second = Math.floor(timeStamp % (60));
 		}
+		if (day <= 9) day = '0' + day;
 		if (hour <= 9) hour = '0' + hour;
 		if (minute <= 9) minute = '0' + minute;
 		if (second <= 9) second = '0' + second;
