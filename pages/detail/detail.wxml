@@ -1,129 +1,122 @@
 <!--pages/detail/detail.wxml-->
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
- <view class='detail_container'   wx:if='{{show==1}}'  > 
-	
+<view class='detail_container' wx:if='{{show==1}}'>
 	<!-- detail images  -->
-	
-  <view class='banner'>
-      <swiper
-        autoplay='{{true}}'  interval='{{3500}}' duration='{{500}}' bindchange='changeCurrent'  current='{{current}}' circular='{{true}}'>
-        <block wx:for='{{imgs}}' wx:key="{{index}}">
-          <swiper-item>
-            <view class='detail_imgs'>
-              <image src='{{image}}{{item.icon_url}}?imageslim' data-index='{{index}}' catchtap='viewImages'></image>
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
-      <view class='showIndex'>{{current+1}}/{{imgs.length}} </view>
+    <view class='banner'>
+        <swiper
+        	autoplay='{{true}}'  interval='{{3500}}' duration='{{500}}' bindchange='changeCurrent'  current='{{current}}' circular='{{true}}'>
+			<block wx:for='{{imgs}}' wx:key="{{index}}">
+			<swiper-item>
+				<view class='detail_imgs'>
+				<image src='{{image}}{{item.icon_url}}?imageslim' data-index='{{index}}' catchtap='viewImages'></image>
+				</view>
+			</swiper-item>
+			</block>
+        </swiper>
       <image  wx:if="{{status==2}}"  src='{{image}}soldOut.png?imageslim'></image>
-      <view class='count_down' wx:if='{{goods.activity_type == 1}}'>
-        <text>{{timeStampArr[0]}}:{{timeStampArr[1]}}:{{timeStampArr[2]}}</text>
-        <text>后恢复原价</text>
-      </view>
-  </view>
+    </view>
+    <view class="goods_info">
+		<view class='price_info'>
+			<view class='price'><text>￥</text>{{filters.ptf(goods.activity_type == 1 ? groupInfo.price_low : goods.price)}}</view>
+			<view class='info'>
+				<view class='info_number'>{{groupInfo.min_join_count}}人拼团</view>
+				<view class='info_origin_price'>￥{{filters.ptf(goods.activity_type == 1 ? groupInfo.origin_price_low : goods.display_price)}}</view>
+			</view>
+		</view>
+		<view class='count_down'>
+			<view class="count_copywrite">距拼团结束仅剩</view>
+			<view class="count_time">
+				<text class='time'>{{timeStampArr[0]}}</text>
+				<text class='colon'>:</text>
+				<text class='time'>{{timeStampArr[1]}}</text>
+				<text class='colon'>:</text>
+				<text class='time'>{{timeStampArr[2]}}</text>
+				<text class='colon'>:</text>
+				<text class='time'>{{timeStampArr[3]}}</text>
+			</view>
+		</view>
+    </view>
 	<!-- description  -->
 	<view class='detail_description'>
-		<view class='name_share padding'>
-			<text class='des_name'>{{goods.name}}</text>
-			<view>
-				<button open-type='share'>
-					<image src='{{image}}product_btn_share@2x.png'></image>
-					<text>分享</text>
-				</button>
-			</view>	
+		<view class='name_share'>
+			<view class='des_name'>{{goods.name}}</view>
+			<button open-type='share'>
+				<image src='../../imgs/icon_share.png'></image>
+				<view>分享</view>
+			</button>
 		</view>
-		<view class='detail_price padding'>
-      <view class='display_member'>
-        <text class='price'>￥{{filters.ptf(goods.activity_type == 1 ? groupInfo.price_low : goods.price)}}</text>
-        <view class="group_info">
-          <!-- <text wx:if="{{goods.display_price!=0 && goods.display_price}}">￥{{filters.toFix(goods.display_price/100)}}</text> -->
-          <text class='group_display_price' wx:if="{{ (groupInfo.origin_price_low && goods.activity_type == 1) || ( !groupInfo.origin_price_low &&goods.display_price)  }}" >￥{{filters.ptf(goods.activity_type == 1 ? groupInfo.origin_price_low : goods.display_price)}}</text>
-          <text class='group_member'  wx:if='{{goods.activity_type == 1}}'>{{groupInfo.min_join_count}}人拼团</text>
-        </view>
-      </view>
-      <view class='sales_count'>销量 : {{goods.sales_count}}</view>
+		<view class="express_sales">
+			<view>快递：{{goods.is_free_express === 1 ? '免运费' : filters.ptf(goods.free_express_price)}}</view>
+			<view>销量{{goods.sales_count}}笔</view>
 		</view>
-		<!-- <view class='detail_info'>
-			<text>月销{{goods.sales_count}}笔</text>
-      <text wx:if="{{goods.is_free_express==1}}">快递:包邮</text>
-      <text wx:else="{{goods.is_free_express==2}}">快递:{{filters.toFix(goods.free_express_price/100)}}</text>
-       <text></text>
-		</view> -->
-    <view class='detail_promise padding'  wx:if="{{goods.free_return==1||goods.quick_delivery==1||goods.genuine_article==1}}" > 
-			<view wx:if="{{goods.free_return==1}}"><image src='{{image}}product_icon_sign@2x.png'></image><text>7天包退换</text></view>
-			<view wx:if="{{goods.quick_delivery==1}}"><image src='{{image}}product_icon_sign@2x.png'></image><text>24小时发货</text></view>
-			<view wx:if="{{goods.genuine_article==1}}"><image src='{{image}}product_icon_sign@2x.png'></image><text>100%正品</text></view>	
+    	<view class='detail_promise'  wx:if="{{goods.free_return==1||goods.quick_delivery==1||goods.genuine_article==1}}" >
+			<text>服务</text>
+			<text class="promises">
+				<text wx:if="{{goods.free_return==1}}">7天包退换</text>
+				<text wx:if="{{goods.quick_delivery==1}}"> · 24小时发货</text>
+				<text wx:if="{{goods.genuine_article==1}}"> · 100%正品</text>
+			</text>
 		</view>
-    <view class='store' wx:if='{{isSharePage}}'>
-        <view>
-            <image src="{{image}}{{description.logo_url}}"></image>
-            <view>{{description.name}}</view>
-        </view>      
-        <navigator open-type='switchTab' hover-class='none'  url="/pages/index/index">
-        店铺看看
-        </navigator>
-    </view> 
 	</view>
 
-  <!-- 拼单或砍价信息  -->
-  <view class='groups' wx:if='{{goods.activity_type == 1}}'>
-    <view class='groups_header' wx:if='{{groupMembers.length}}'>
-      <view class='group_show_more'>
-        <text class='copy_right'>小伙伴们正在拼单，快来参与</text>      
-      </view>
-      <view class='header_users'>
-        <view class='user_item' wx:for='{{groupMembers}}' wx:key='index'>
-          <view class='user_info'>
-            <image src='{{item.avatar_url}}'></image>
-            <text>{{item.nick_name}}</text>
-          </view>
-          <view class='user_operation'>
-            <view class='user_prompt'>
-              <view class='prompt_texts'><text>还差</text><text class='red'>{{item.remain_user_count}}</text><text>人拼成</text></view>
-              <text class='rest_time'>剩余{{item.timeStampArr[0]}}:{{item.timeStampArr[1]}}:{{item.timeStampArr[2]}}</text>
-            </view>
-            <form bindsubmit='submit' report-submit='true'>
-              <button class='prompt_button' wx:if='{{!hasUserInfo}}' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>立即参团</button>
-              <button class='prompt_button' wx:elif='{{!userId}}' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>立即参团</button>
-              <button class='prompt_button' wx:else data-flag='4' data-id='{{item.id}}' form-type='submit'>立即参团</button>
-            </form>
-          </view>
-        </view>
-      </view>
+    <!-- 拼单或砍价信息  -->
+    <view class='groups' wx:if='{{goods.activity_type == 1}}'>
+		<view class='groups_header' wx:if='{{groupMembers.length}}'>
+			<view class='group_show_more'>
+				<text class='copy_right'>小伙伴们正在拼单，快来参与</text>      
+			</view>
+			<view class='header_users'>
+			<view class='user_item' wx:for='{{groupMembers}}' wx:key='index'>
+				<view class='user_info'>
+					<image src='{{item.avatar_url}}'></image>
+					<text>{{item.nick_name}}</text>
+				</view>
+				<view class='user_operation'>
+					<view class='user_prompt'>
+					<view class='prompt_texts'><text>还差</text><text class='red'>{{item.remain_user_count}}</text><text>人拼成</text></view>
+					<text class='rest_time'>剩余{{item.timeStampArr[0]}}:{{item.timeStampArr[1]}}:{{item.timeStampArr[2]}}</text>
+					</view>
+					<form bindsubmit='submit' report-submit='true'>
+					<button class='prompt_button' wx:if='{{!hasUserInfo}}' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>立即参团</button>
+					<button class='prompt_button' wx:elif='{{!userId}}' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>立即参团</button>
+					<button class='prompt_button' wx:else data-flag='4' data-id='{{item.id}}' form-type='submit'>立即参团</button>
+					</form>
+				</view>
+			</view>
+			</view>
+		</view>
+		<view class='groups_bottom'>
+			<navigator class='play_rules' hover-class="none" url='/pages/groupPurchase/collageRules/collageRules'>
+				<text class='rules_copy'>拼团规则</text>
+				<image class='step_arrow_right' src="/imgs/icon_arrow.png"></image>
+			</navigator>
+			<view class='rules_step'>
+				<view class='step_item'>
+					<image src='../../imgs/icon_detail1_discount.png'></image>
+					<view class='step_text'>
+						<text>下单支付</text>
+						<text>开团/参团</text>
+					</view>
+				</view>
+				<view class="dashed_line"></view>
+				<view class='step_item'>
+					<image src='../../imgs/icon_detail2_friends.png'></image>
+					<view class='step_text'>
+						<text>邀请好友</text>
+						<text>一起参团</text>
+					</view>
+				</view>
+				<view class="dashed_line"></view>
+				<view class='step_item'>
+					<image src='../../imgs/icon_detail3_trans.png'></image>
+					<view class='step_text'>
+						<text>成团发货</text>
+						<text>逾期退款</text>
+					</view>
+				</view> 
+			</view>
+		</view>
     </view>
-    <view class='groups_bottom'>
-      <view class='play_rules'>
-        <text class='rules_copy'>拼团玩法</text>
-        <navigator class='more' hover-class="none" url='/pages/groupPurchase/collageRules/collageRules'>拼团规则 <image class='step_arrow_right' src="/imgs/right.png"></image></navigator>
-      </view>
-      <view class='rules_step'>
-        <view class='step_item'>
-          <image src='{{image}}icon-zhifu@2x.png'></image>
-          <view class='step_text'>
-            <text>支付</text>
-            <text>开团/参团</text>
-          </view>
-        </view>
-        <image class='step_arrow_right' src="/imgs/right.png"></image>
-        <view class='step_item'>
-          <image src='{{image}}icon_yaoqing@2x.png'></image>
-          <view class='step_text'>
-            <text>邀请</text>
-            <text>好友参团</text>
-          </view>
-        </view>
-        <image class='step_arrow_right' src="/imgs/right.png"></image>
-        <view class='step_item'>
-          <image src='{{image}}icon_wuliu@2x.png'></image>
-          <view class='step_text'>
-            <text>成团立即发货</text>
-            <text>逾期未成团自动退款</text>
-          </view>
-        </view> 
-      </view>
-    </view>
-  </view>
 
 	<!-- bottom button  -->
   <!-- 下架提示 -->
@@ -197,7 +190,7 @@
 					<text class='add' class='{{minusStatuss}}' bindtap='bindPlus'>+</text>
 				</view>
 		</view> 
-    <view class='confirm' bindtap='closeModal'>确认</view>
+    	<view class='confirm' bindtap='closeModal'>确认</view>
 	</view>
     <view class='description'>
         <view style='font-size:28rpx'>商品详情</view>

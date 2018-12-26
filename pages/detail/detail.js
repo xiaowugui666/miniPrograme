@@ -65,10 +65,12 @@
     },
     // 滑动商品图片
     changeCurrent: function(e) {
-      var cur = e.detail.current
-      this.setData({
-        current: cur
-      })
+      if (e.detail.source === 'touch') {
+        var cur = e.detail.current
+        this.setData({
+          current: cur
+        })
+      }
     },
     // 阻止选择规格事件冒泡
     preventDefault () {},
