@@ -49,38 +49,40 @@ Page({
     that.setData({
       id: id
     })
-    wx.request({
-      url: app.globalData.http + '/mpa/order/' + id,
-      method: 'GET',
-      dataType: 'json',
-      header: {
-        "Api-Key": app.globalData.apiKey,
-        "Api-Secret": app.globalData.apiSecret,
-        'Api-Ext': app.globalData.apiExt
-      },
-      success: function (data) {
-        if (data.statusCode == 200) {
-          that.setData({
-            info: data.data
-          })
-          if (data.data.status == 200) {
-            var time = data.data.expire_at
-            that.setInterval(time)
+    app.login().then(() => {
+      wx.request({
+        url: app.globalData.http + '/mpa/order/' + id,
+        method: 'GET',
+        dataType: 'json',
+        header: {
+          "Api-Key": app.globalData.apiKey,
+          "Api-Secret": app.globalData.apiSecret,
+          'Api-Ext': app.globalData.apiExt
+        },
+        success: function (data) {
+          if (data.statusCode == 200) {
+            that.setData({
+              info: data.data
+            })
+            if (data.data.status == 200) {
+              var time = data.data.expire_at
+              that.setInterval(time)
+            }
+          } else {
+            wx.showToast({
+              title: '无法获取正确用户信息，请正常进入小程序完成授权',
+              icon: 'none',
+              duration: 3000
+            })
+            that.setData({
+              pageVisible: false
+            })
           }
-        } else {
-          wx.showToast({
-            title: '无法获取正确用户信息，请正常进入小程序完成授权',
-            icon: 'none',
-            duration: 3000
-          })
-          that.setData({
-            pageVisible: false
-          })
+        },
+        complete() {
+          wx.hideLoading()
         }
-      },
-      complete() {
-        wx.hideLoading()
-      }
+      })
     })
   },
   /*关闭联系商家*/

@@ -124,7 +124,7 @@ Page({
     for(var i=0;i<data.length;i++){
       count = data[i].count;
       price = data[i].price;
-      stockCount = data[i].stock_count;
+      stockCount = data[i].stock_count ? data[i].stock_count: 0 ;
       sum += parseFloat(data[i].price) * parseFloat(data[i].count)
       sku_id[[data[i].goods_sku_id]]=data[i].count
       sku_idss.push(data[i].goods_sku_id)

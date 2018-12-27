@@ -136,15 +136,13 @@ swiper{
 
 /* 拼团或砍价  */
 .groups .groups_header {
-  border-top:20rpx solid #f6f7f7;  
+	border-top:24rpx solid #F7F9FB;
 }
 .group_show_more {
-  font-size: 28rpx;
-  padding: 10rpx 20rpx;
-  background: #FDE5DB;
-  color: #FF893F;
-  display: flex;
-  justify-content: space-between;
+	font-size: 28rpx;
+	padding: 24rpx;
+	color: #556675;
+	border-bottom: 2rpx solid #F3F4F5;
 }
 .group_show_more .more {
   color: #999999;
@@ -157,7 +155,7 @@ swiper{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20rpx 0;
+  padding: 24rpx 0;
   font-size: 24rpx;
 }
 .header_users .user_item:not(:last-child) {
@@ -173,14 +171,14 @@ swiper{
 }
 .user_item .user_info image {
   display: block;
-  width: 64rpx;
-  height: 64rpx;
+  width: 48rpx;
+  height: 48rpx;
   border-radius: 50%;
 }
 .user_item .user_info text {
-  font-size: 32rpx;
-  color: #333333;
-  margin-left: 10rpx;
+  font-size: 28rpx;
+  color: #253A4E;
+  margin-left: 8rpx;
   display:inline-block;
   max-width:75%;
   overflow: hidden;
@@ -192,29 +190,27 @@ swiper{
   align-items: center;
 }
 .user_operation .user_prompt {
-  margin-right: 54rpx;
+  margin-right: 16rpx;
 }
 .user_prompt .prompt_texts {
-  font-size: 28rpx;
-  color: #333333;
+  color: #253A4E;
 }
 .user_prompt .prompt_texts .red {
-  color: #F02417;
+  color: #F35D51;
 }
 .user_prompt .rest_time {
-  font-size: 24rpx;
-  color: #999;
+  color: #9EA8B1;
 }
 .user_operation .prompt_button {
-  width: 128rpx;
-  height: 50rpx;
-  background-image: linear-gradient(90deg, #FC4E61 0%, #EB5362 100%);
+  width: 110rpx;
+  height: 48rpx;
+  background-image: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
   border-radius: 4rpx;
-  font-size: 24rpx;
+  font-size: 26rpx;
   padding: 0;
   color: #FFFFFF;
   text-align: center;
-  line-height: 50rpx;
+  line-height: 48rpx;
 }
 .groups .groups_bottom {
   border-top: 24rpx solid #F7F9FB;
@@ -277,7 +273,6 @@ swiper{
 
 /* description  */
 .name_share{
-	overflow: hidden;
 	display: flex;
 	justify-content: space-between;
 }
@@ -361,7 +356,7 @@ swiper{
 	box-shadow:0px -2rpx 0px 0px #E6E9EB;
 }
 .detail_bottom image{
-	width: 50rpx;
+	width: 48rpx;
 	height: 48rpx;
 }
 .detail_bottom .detail_cart{
