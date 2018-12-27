@@ -199,10 +199,18 @@ page {
   background: #ededed;
   margin: 0;
   flex-shrink: 0;
+  position: relative;
 }
 .index_contact button image {
   width: 96rpx;
   height: 96rpx;
+}
+.index_contact button image.wechat {
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 .index_contact button::after {
   border: none;
@@ -229,6 +237,9 @@ page {
 }
 .marketing_tabs.single_market .active_tab {
   border-bottom: 0;
+  background: url('https://image.51zan.com/home_sort_background.png');
+  background-size: 200rpx 40rpx;
+  background-position: center center;
 }
 .marketing_fixed_tabs {
   position: fixed;
@@ -245,6 +256,9 @@ page {
 .marketing_tab.active_tab {
   color: #F35D51;
   border-bottom: 4rpx solid #F35D51;
+  background: url('https://image.51zan.com/home_sort_background.png') no-repeat;
+  background-size: 200rpx 40rpx;
+  background-position: center center;
   box-sizing: border-box;
 }
 .content {

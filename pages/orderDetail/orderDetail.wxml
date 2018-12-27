@@ -26,17 +26,17 @@
             <label>{{items.name}}</label>
             <label>{{items.sku_description}}</label>
             <label>x{{items.count}}</label>
-            <label>￥{{filters.toFix(items.price/100)}}</label>
+            <label>￥{{filters.ptf(items.price/100)}}</label>
         </view>
     </view>
     <view class='info'>
       <view>
         <label>商品总价</label> 
-        <label>￥{{filters.toFix(info.goods_amount/100)}}</label>
+        <label>￥{{filters.ptf(info.goods_amount/100)}}</label>
       </view>
       <view>
         <label>运费（快递）</label> 
-        <label>￥{{filters.toFix(info.express_amount/100)}}</label>
+        <label>￥{{filters.ptf(info.express_amount/100)}}</label>
       </view>
       <!-- <view>
         <label>拼团价</label> 
@@ -64,7 +64,7 @@
         </view>   
     </view>
     <view class='orderMoney'>
-       订单总价：￥{{filters.toFix(info.amount/100)}}
+       订单总价：￥{{filters.ptf(info.amount/100)}}
     </view>
 </view>
 <view class='btnBottom'>

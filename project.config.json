@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -46,7 +46,21 @@
 					"id": 1,
 					"name": "详情页",
 					"pathName": "pages/detail/detail",
-					"query": "id=49",
+					"query": "id=48",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "确认订单页",
+					"pathName": "pages/surePay/surePay",
+					"query": "",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/orderDetail/orderDetail",
+					"query": "id=172",
 					"scene": "1007"
 				}
 			]
