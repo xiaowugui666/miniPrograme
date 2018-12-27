@@ -32,11 +32,34 @@ var filters = {
   trim: function (value) {
     var reg = getRegExp('^\s*|\s*$/g')
     return value.replace(reg, '') //去除2端的空格
+  },
+  statu: function (statu) {
+    var string = ''
+    switch (statu){
+      case 200: 
+        string = '待付款'
+        break
+      case 205: 
+        string = '待发货'
+        break
+      case 255: 
+        string = '待成团'
+        break
+      case 400: 
+        string = '待收货'
+        break
+      case 405: 
+        string = '已完成'
+        break
+      default:
+    }
+    return string
   }
 }
 module.exports = {
   toFix: filters.toFix,
   getTime: filters.getTime,
   trim:filters.trim,
-	ptf: filters.ptf
+  ptf: filters.ptf,
+  statu: filters.statu
 }

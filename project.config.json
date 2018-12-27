@@ -57,10 +57,10 @@
 					"scene": "1007"
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "订单详情",
 					"pathName": "pages/orderDetail/orderDetail",
-					"query": "id=172",
+					"query": "id=173",
 					"scene": "1007"
 				}
 			]
