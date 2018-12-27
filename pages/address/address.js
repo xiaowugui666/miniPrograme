@@ -1,18 +1,105 @@
 // pages/address/address.js
 var app=getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
       address:[],
+      // address:[
+      //   {
+      //     name: '测试',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '长宁区',
+      //     detail: 'XXX街道XXX街道XXX街道XXX街道XXX街道XXX街道',
+      //     status: 2
+      //   },
+      //   {
+      //     name: '测试2',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '徐汇',
+      //     detail: 'XXX小区',
+      //     status: 1
+      //   },
+      //   {
+      //     name: '测试2',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '徐汇',
+      //     detail: 'XXX小区',
+      //     status: 1
+      //   },
+      //   {
+      //     name: '测试2',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '徐汇',
+      //     detail: 'XXX小区',
+      //     status: 1
+      //   },
+      //   {
+      //     name: '测试2',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '徐汇',
+      //     detail: 'XXX小区',
+      //     status: 1
+      //   },
+      //   {
+      //     name: '测试2',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '徐汇',
+      //     detail: 'XXX小区',
+      //     status: 1
+      //   },
+      //   {
+      //     name: '测试2',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '徐汇',
+      //     detail: 'XXX小区',
+      //     status: 1
+      //   },
+      //   {
+      //     name: '测试2',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '徐汇',
+      //     detail: 'XXX小区',
+      //     status: 1
+      //   },
+      //   {
+      //     name: '测试2',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '徐汇',
+      //     detail: 'XXX小区',
+      //     status: 1
+      //   },
+      //   {
+      //     name: '测试2',
+      //     mobile: '15856869998',
+      //     province: '上海',
+      //     city: '上海',
+      //     county: '徐汇',
+      //     detail: 'XXX小区',
+      //     status: 1
+      //   }
+      // ],
+      touchStartX: 0,
+      touchStartY: 0,
       userId:true,
       image: 'http://image.yiqixuan.com/'
   },
-  /*
-   * 生命周期函数--监听页面加载
-   */
   onLoad:function(){
     this.setData({
       userId: app.globalData.userId
@@ -330,6 +417,42 @@ Page({
           } 
         }
       })
+  },
+  touchStart: function (e){
+    var index = e.currentTarget.dataset.index;
+    var touchStartX = e.touches[0].pageX;
+    var touchStartY = e.touches[0].pageY;
+    this.setData({
+      index: index,
+      touchStartX: touchStartX,
+      touchStartY: touchStartY
+    })
+  },
+  touchMove: function (e) {
+    var index = this.data.index;
+    var touchEndX = e.changedTouches[0].pageX;
+    var touchEndY = e.changedTouches[0].pageY;
+    var tmX = touchEndX - this.data.touchStartX;
+    var tmY = touchEndY - this.data.touchStartY;
+    var address = this.data.address;
+    var item = address[index];
+    if (Math.abs(tmX) > Math.abs(tmY)) {
+      if (tmX < 0) {
+
+        address.forEach(function (v, k) {
+          if (index == k) {
+            v.isdelete = true;
+          } else {
+            v.isdelete = false;
+          }
+        })
+      } else {
+        item.isdelete = false;
+      }
+      this.setData({
+        address: address
+      })
+    }
   },
   getPhoneNumber: function (e) {
     var that=this
