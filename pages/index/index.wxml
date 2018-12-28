@@ -57,10 +57,12 @@
 	<view class="marketing_fixed_tabs marketing_tabs" wx:if="{{tabScrollTop}}">
 		<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
 	</view>
-	<view class="content" style="height: {{swiperHeight}}rpx;">
-		<swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="{{500}}" current="{{currentTab}}" bindchange='onChangeSwiperItem'>
+	<view class="content">
+	<!-- <view class="content" style="height: {{swiperHeight}}rpx;"> -->
+		<!-- <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="{{500}}" current="{{currentTab}}" bindchange='onChangeSwiperItem'> -->
 			<block wx:for="{{tabSwiperArr}}" wx:key="index">
-				<swiper-item>
+				<!-- <swiper-item> -->
+					<view wx:if="{{currentTab === index}}" class="content_box">
 					<block wx:for="{{item.data}}" wx:key="ind" wx:for-item="ite">
 						<view class="swiper_box" data-id='{{item.type === 1 ? ite.goods_id : ite.id}}' bindtap='bindDetail'>
 							<block wx:if="{{item.type === 1}}">
@@ -101,9 +103,10 @@
 							</block>
 						</view>
 					</block>
-				</swiper-item>
+					</view>
+				<!-- </swiper-item> -->
 			</block>
-		</swiper>
+		<!-- </swiper> -->
 	</view>
   </block>
   <block wx:else>

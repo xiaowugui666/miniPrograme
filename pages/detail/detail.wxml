@@ -164,13 +164,12 @@
 	<!-- 规格选择  -->
 	<view class='mask' wx:if='{{chooseModal}}' bindtap='closeTips' catchtouchmove='preventDefault'></view>
 	<view class='choose' wx:if='{{chooseModal}}' animation="{{animationData}}" catchtouchmove='preventDefault'>
-		
 		<view class='choose_price'>
 			<image src='{{image}}{{goodUrl}}'></image>
 			<view class='desc'>
 				<text><text>￥</text>{{filters.ptf(goodPrice)}}</text>
 				<text wx:if='{{goods.stock_shown == 1}}'>库存：{{good.stock_count}}</text>
-				<view>请选择<text wx:for='{{groupSpec.length ? groupSpec : spec}}' wx:key='{{index}}'>{{item.name}}</text></view>
+				<view>请选择 <text wx:for='{{groupSpec.length ? groupSpec : spec}}' wx:key='{{index}}'>{{item.name}}</text></view>
 			</view>
 			<image src='/imgs/icon_close1.png' bindtap='closeTips'></image>
 		</view>
@@ -193,7 +192,7 @@
 			<view>
 				<text class='{{minusStatus}}' bindtap='bindMinus'>-</text>
 				<text class='num'>{{num}}</text>
-				<text class='add' class='{{minusStatuss}}' bindtap='bindPlus'>+</text>
+				<text class='{{minusStatuss}}' bindtap='bindPlus'>+</text>
 			</view>
 		</view> 
     	<view class='confirm' bindtap='closeModal'>确定</view>

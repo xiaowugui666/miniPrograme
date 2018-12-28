@@ -10,13 +10,17 @@ Page({
     show: true,
     expire_at: '00 时 00 分 00 秒',
     // apiKey:'',
-    image: 'http://image.yiqixuan.com/'
-    // apiSecret:''
+    image: 'http://image.yiqixuan.com/',
+    contactShow: false
   },
   // 阻止蒙层事件冒泡
   preventTouchMove() {
   },
-  preventTap () {},
+  preventTap () {
+    this.setData({
+      contactShow: true
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -86,9 +90,16 @@ Page({
     })
   },
   /*关闭联系商家*/
-  close: function () {
-    this.setData({
-      show: true
+  hiddenModal: function (e) {
+    const that = this;
+    that.setData({
+      contactShow: false
+    },function(){
+      setTimeout(function(){
+        that.setData({
+          show: true,
+        })
+      },300)
     })
   },
   groupDetail () {
@@ -104,7 +115,8 @@ Page({
   /*联系商家*/
   contacts: function () {
     this.setData({
-      show: false
+      show: false,
+      contactShow: true
     })
   },
   /*查看物流*/

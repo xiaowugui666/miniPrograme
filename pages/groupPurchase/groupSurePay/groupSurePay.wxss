@@ -140,14 +140,13 @@ page{
   font-size: 26rpx;
   color: #9EA8B1;
   width: 100%;
-  height: 30rpx;
+  height: 34rpx;
   margin-top:8rpx;
   overflow: hidden;
 	text-overflow:ellipsis;
 	display:-webkit-box;
 	-webkit-box-orient:vertical;
   -webkit-line-clamp:1;
-  white-space: nowrap;
 }
 .desc>view{
   display: flex;
@@ -169,24 +168,30 @@ page{
 .count_control {
   display: flex;
   align-items: center;
-	width: 150rpx;
-	height: 44rpx;
-  font-size: 26rpx;
-  color: #151515;
-	line-height: 44rpx;
-	border: 1rpx solid #d9d9d9;
+  font-size: 24rpx;
+  color: #0D1A26;
 }
 .count_control text {
-  display: inline-block;
-  width: 49rpx;
-  height: 44rpx;
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
   text-align: center;
+  box-sizing: border-box;
+  border: 2rpx solid #CFD3D8;
+}
+.count_control text:nth-child(2) {
+  width: 64rpx;
+  border-left: 0;
+  border-right: 0;
+}
+.count_control text:first-child {
+  border-radius: 4rpx 0 0 4rpx;
+}
+.count_control text:last-child {
+  border-radius: 0 4rpx 4rpx 0;
 }
 .count_control text.disabled {
-  color: #d9d9d9;
-}
-.count_control text:not(:last-child) {
-  border-right: 1px solid #d9d9d9;
+  color: #CFD3D8;
 }
 .info{
   padding: 0 24rpx;

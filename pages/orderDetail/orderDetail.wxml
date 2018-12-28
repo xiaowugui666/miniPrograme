@@ -78,20 +78,15 @@
     <view wx:if='{{info.status==400}}' bindtap='confirm' data-sure='405' class='pay'>确认收货</view>	
 </view>
 
-<view class='shade' hidden='{{show}}' catchtouchmove='preventTouchMove' catchtap='close'>
-	<view class='contact' catchtap='preventTap'>
-        <view class='title'>
-			<view>联系商家</view>
-			<view class='clear' bindtap='close'></view>          
-        </view>
-        <button open-type='contact' session-from="weapp">
-			<image src='{{image}}wechat@2x.png'></image>
-			<label>微信联系</label>
-        </button>
-        <view class='iphone' bindtap='callPhone'>
-            <image src='{{image}}phone@2x.png'></image>
-            <label>电话联系</label>
-        </view> 
-    </view>
+<view class='shade' hidden='{{show}}' catchtouchmove='preventTouchMove' catchtap='hiddenModal'></view>
+<view class="contact {{contactShow ? 'contactShow' : ''}}" hidden='{{show}}' catchtap='preventTap'>
+	<button open-type="contact" session-from="weapp">
+		<image src='/imgs/icon_wechat.png'></image>
+		<label>微信联系</label>
+	</button>
+	<view class='iphone' bindtap='callPhone'>
+		<image src='/imgs/icon_phone.png'></image>
+		<label>电话联系</label>
+	</view>
+	<view class="cancel" catchtap='hiddenModal'>取消</view>
 </view>
-

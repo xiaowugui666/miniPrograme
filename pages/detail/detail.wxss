@@ -466,9 +466,10 @@ swiper{
 	bottom: 0;
 	background: #FFFFFF;
 	padding: 24rpx;
+	border-radius: 20rpx 20rpx 0 0;
 }
 .choose_price{
-	margin-bottom: 64rpx;
+	margin-bottom: 40rpx;
 	color: #9EA8B1;
 	display: flex;
 	align-items: flex-end;
@@ -513,13 +514,14 @@ swiper{
 }
 
 /* choose color  */
-.choose_color{
-	/* border-bottom: 1rpx solid #EDEDED; */
-}
 .title{
 	display: block;
 	margin-bottom: 16rpx;
 	font-size: 26rpx;
+}
+.choose_color {
+	border-bottom: 2rpx solid #F3F4F5;
+	padding-top: 24rpx;
 }
 .choose_color view{
 	display: flex;
@@ -550,7 +552,6 @@ swiper{
 
 /* count  */
 .count{
-	border-top: 1rpx solid #F3F4F5;
 	padding-top: 24rpx;
 	display: flex;
 	align-items: center;
@@ -570,22 +571,25 @@ swiper{
 	width: 64rpx;
 	height: 64rpx;
 	text-align: center;
-	line-height: 64rpx;
-	border: 1rpx solid #CFD3D8;
+	line-height: 60rpx;
+	border: 2rpx solid #CFD3D8;
 	box-sizing: border-box;
 }
-.count view text.add{
-	color: #FF547B;
+.count view text:first-child {
+	border-radius: 4rpx 0 0 4rpx;
 }
-.count view .num{
+.count view text:last-child{
+	border-radius: 0 4rpx 4rpx 0;
+}
+.count view .num {
 	width: 96rpx;
 	height: 64rpx;
 	font-size: 28rpx;
 	border: none;
-	border-top: 1rpx solid #CFD3D8;
-	border-bottom: 1rpx solid #CFD3D8;
+	border-top: 2rpx solid #CFD3D8;
+	border-bottom: 2rpx solid #CFD3D8;
 	color: #253A4E;
-	line-height: 64rpx;
+	line-height: 60rpx;
 	text-align: center;
 }
 
