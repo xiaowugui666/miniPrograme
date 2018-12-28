@@ -33,7 +33,11 @@
 			"list": []
 		},
 		"miniprogram": {
+<<<<<<< HEAD
 			"current": 1,
+=======
+			"current": 5,
+>>>>>>> 8b719592cc7db96f273ae334f67017a42d63e537
 			"list": [
 				{
 					"id": 0,
@@ -61,6 +65,20 @@
 					"name": "订单详情",
 					"pathName": "pages/orderDetail/orderDetail",
 					"query": "id=172",
+					"scene": "1007"
+				},
+				{
+					"id": 4,
+					"name": "拼团",
+					"pathName": "pages/groupPurchase/groupList/groupList",
+					"query": "rank=4",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "拼团详情",
+					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
+					"query": "rank=4",
 					"scene": "1007"
 				}
 			]
