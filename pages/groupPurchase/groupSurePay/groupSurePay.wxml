@@ -14,8 +14,11 @@
         <image src="/imgs/icon_arrow.png" />
     </view> 
     <view class='chooseAddress' wx:if='{{address===1}}'>
-        <view></view>
-        <view>新增收货地址</view>
+        <view>
+            <image src="/imgs/icon_address_none.png" />
+            <view>新增收货地址</view>
+        </view>
+        <image src="/imgs/icon_arrow.png" />
     </view>
 
 </navigator>

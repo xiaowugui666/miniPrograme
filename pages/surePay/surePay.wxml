@@ -1,6 +1,6 @@
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 <navigator url='/pages/address/address' hover-class='none'>
-     <view class='address' wx:if='{{address!==1}}'>
+    <view class='address' wx:if='{{address!==1}}'>
         <view class="adress_info">
             <image src='/imgs/icon_address.png'></image>
             <view class="adress_user">
@@ -14,10 +14,12 @@
         <image src="/imgs/icon_arrow.png" />
     </view> 
     <view class='chooseAddress' wx:if='{{address===1}}'>
-        <view></view>
-        <view>新增收货地址</view>
+        <view>
+            <image src="/imgs/icon_address_none.png" />
+            <view>新增收货地址</view>
+        </view>
+        <image src="/imgs/icon_arrow.png" />
     </view>
-
 </navigator>
 
 <!-- 商品信息 -->

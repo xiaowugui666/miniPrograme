@@ -112,10 +112,9 @@ swiper{
 }
 .description{
   font-size: 26rpx;
-  padding-bottom: 100rpx;
   width: 100%;
   box-sizing: border-box;
-  padding: 24rpx 24rpx 100rpx;
+  padding: 24rpx 24rpx 128rpx;
   border-top: 24rpx solid #F7F9FB;
 }
 

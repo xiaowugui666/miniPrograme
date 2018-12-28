@@ -79,6 +79,7 @@ page{
   background: #fff;
   box-sizing: border-box;
   margin-top: 24rpx;
+  margin-bottom: 104rpx;
 }
 .menus_box {
   padding: 0 24rpx;
