@@ -30,7 +30,7 @@
                   </view>
                   <view class='group_body_price'>
                       <view>拼团价￥{{filters.toFix(item.price / 100)}}</view>
-                      <view>x{{item.sales_count}}</view>
+                      <view>x{{item.count}}</view>
                   </view>
               </view>
           </view>
@@ -38,7 +38,7 @@
           <view class='group_box_bottom'>
               <view>{{rank == 4 ? '已退款' : '实付'}}:￥{{filters.toFix(item.price / 100)}}</view>
               <view wx:if="{{rank == 2}}">
-                <navigator url='/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid={{item.groupon_id}}&goodsid={{item.goods_id}}'>差<text>1人</text>成团</navigator>
+                <navigator url='/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid={{item.groupon_id}}&goodsid={{item.goods_id}}'>差<text>{{item.groupon.remain_user_count}}人</text>成团</navigator>
               </view>
               <view wx:if="{{rank == 3}}" class='button_order button' data-id='{{item.order.id}}' catchtap='toOrderDetail'>查看订单</view>
               <view wx:if="{{rank == 4}}" class='botton_buy button' data-id='{{item.order.id}}' catchtap='toDetail'>重新购买</view>

@@ -6,9 +6,15 @@ page{
 }
 .address_box {
   height: calc(100% - 100rpx);
+  width: 100%;
   overflow: scroll;
+  overflow-x: hidden;
   box-sizing: border-box;
   padding: 24rpx;
+}
+.container_warp{
+  width: 100%;
+  overflow: hidden;
 }
 .container{
   box-sizing: border-box; 
@@ -20,7 +26,7 @@ page{
   flex-direction: row;
   justify-content: space-between;
   border-radius:8rpx;
-  -webkit-transition: all 0.4s;
+  width: calc(100% + 128rpx);
   transition: all 0.4s;
 }
 .container::after{
@@ -31,9 +37,11 @@ page{
 .address_left{
   overflow: hidden;
   padding: 24rpx;
-  width: calc(100% - 128rpx);
+  flex-grow: 1;
+  flex-basis: 0;
 }
 .address_right{
+  flex-basis: 128rpx;
   width: 128rpx;
   display: flex;
 }

@@ -33,7 +33,11 @@
 			"list": []
 		},
 		"miniprogram": {
+<<<<<<< HEAD
 			"current": 3,
+=======
+			"current": 6,
+>>>>>>> 213be40f496b10a7deec562a92dc5f91833baccf
 			"list": [
 				{
 					"id": 0,
@@ -53,7 +57,7 @@
 					"id": 4,
 					"name": "拼团",
 					"pathName": "pages/groupPurchase/groupList/groupList",
-					"query": "rank=4",
+					"query": "rank=2",
 					"scene": "1007"
 				},
 				{
@@ -61,6 +65,13 @@
 					"name": "搜索",
 					"pathName": "pages/search/search",
 					"query": "",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "地址列表",
+					"pathName": "pages/address/address",
+					"query": "rank=2",
 					"scene": "1007"
 				}
 			]

@@ -95,6 +95,7 @@ Page({
       //     status: 1
       //   }
       // ],
+      btnwidth: 128,
       touchStartX: 0,
       touchStartY: 0,
       userId:true,
@@ -430,6 +431,7 @@ Page({
   },
   touchMove: function (e) {
     var index = this.data.index;
+    var btnwidth = this.data.btnwidth;
     var touchEndX = e.changedTouches[0].pageX;
     var touchEndY = e.changedTouches[0].pageY;
     var tmX = touchEndX - this.data.touchStartX;
@@ -438,15 +440,49 @@ Page({
     var item = address[index];
     if (Math.abs(tmX) > Math.abs(tmY)) {
       if (tmX < 0) {
-
+        var len = Math.abs(tmX) > btnwidth ? btnwidth : Math.abs(tmX); 
         address.forEach(function (v, k) {
           if (index == k) {
+            v.transrpx = -len;
             v.isdelete = true;
           } else {
+            v.transrpx = 0;
             v.isdelete = false;
           }
         })
       } else {
+        item.transrpx = 0;
+        item.isdelete = false;
+      }
+      this.setData({
+        address: address
+      })
+    }
+  },
+  touchEnd: function (e) {
+    var index = this.data.index;
+    var btnwidth = this.data.btnwidth;
+    var touchEndX = e.changedTouches[0].pageX;
+    var touchEndY = e.changedTouches[0].pageY;
+    var tmX = touchEndX - this.data.touchStartX;
+    var tmY = touchEndY - this.data.touchStartY;
+    var address = this.data.address;
+    var item = address[index];
+    if (Math.abs(tmX) > Math.abs(tmY)) {
+      if (tmX < 0) {
+        if (Math.abs(tmX) > (btnwidth / 2)){
+          address.forEach(function (v, k) {
+            if (index == k) {
+              v.transrpx = -btnwidth;
+              v.isdelete = true;
+            } else {
+              v.transrpx = 0;
+              v.isdelete = false;
+            }
+          })
+        }
+      } else {
+        item.transrpx = 0;
         item.isdelete = false;
       }
       this.setData({
