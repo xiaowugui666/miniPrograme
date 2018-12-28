@@ -86,7 +86,7 @@
           </view>
           <image class='icon' src='{{image}}right.png?imageslim'></image>
     </navigator>  
-    <navigator url='/pages/address/address' class='my_other_nav' hover-class="none">
+    <navigator url='/pages/groupPurchase/groupList/groupList' class='my_other_nav' hover-class="none">
           <view class='my_other_text'>
               <image src='/imgs/icon_discount.png'></image>
               <view>我的拼团</view>

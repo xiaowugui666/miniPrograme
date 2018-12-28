@@ -6,8 +6,90 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rank:2,
+    rank: 2,
     data: [],
+    // data: [
+    //   {
+    //     goods: {
+    //       id: 0,
+    //       name: '橄榄绿半',
+    //       cover_url: '2018/12/28/Fh2Nbvs2qr4rLczlXmIvGV4PtWle.jpg'
+    //     },
+    //     groupon: {
+    //       expire_at: '2018年12月28日11:07:16'
+    //     },
+    //     members: {
+          
+    //     },
+    //     sales_count: 1,
+    //     groupon_user_count: 4,
+    //     created_at: '2018年12月28日11:07:47',
+    //     sku_description: '橄榄绿; xs',
+    //     price: 200,
+    //     origin_price: 100,
+    //     groupon_id: 0, 
+    //   },
+    //   {
+    //     goods: {
+    //       id: 0,
+    //       name: '橄榄绿半高领复古宽松欧美风针织套头毛衣欧美风针织套头毛衣欧美风针织套头毛衣欧美风针织套头毛衣',
+    //       cover_url: '2018/12/28/Fh2Nbvs2qr4rLczlXmIvGV4PtWle.jpg'
+    //     },
+    //     order: {
+    //       id: 0,
+    //     },
+    //     groupon: {
+    //       expire_at: '2018年12月28日11:07:16'
+    //     },
+    //     sales_count: 1,
+    //     groupon_user_count: 4,
+    //     created_at: '2018年12月28日11:07:47',
+    //     sku_description: '橄榄绿; xs',
+    //     price: 200,
+    //     origin_price: 100,
+    //     groupon_id: 0,
+    //   },
+    //   {
+    //     goods: {
+    //       id: 0,
+    //       name: '橄榄绿半高领复古宽松欧美风针织套头毛衣欧美风针织套头毛衣欧美风针织套头毛衣欧美风针织套头毛衣',
+    //       cover_url: '2018/12/28/Fh2Nbvs2qr4rLczlXmIvGV4PtWle.jpg'
+    //     },
+    //     order: {
+    //       id: 0,
+    //     },
+    //     groupon: {
+    //       expire_at: '2018年12月28日11:07:16'
+    //     },
+    //     sales_count: 1,
+    //     groupon_user_count: 4,
+    //     created_at: '2018年12月28日11:07:47',
+    //     sku_description: '橄榄绿; xs',
+    //     price: 200,
+    //     origin_price: 100,
+    //     groupon_id: 0,
+    //   },
+    //   {
+    //     goods: {
+    //       id: 0,
+    //       name: '橄榄绿半高领复古宽松欧美风针织套头毛衣欧美风针织套头毛衣欧美风针织套头毛衣欧美风针织套头毛衣',
+    //       cover_url: '2018/12/28/Fh2Nbvs2qr4rLczlXmIvGV4PtWle.jpg'
+    //     },
+    //     order: {
+    //       id: 0,
+    //     },
+    //     groupon: {
+    //       expire_at: '2018年12月28日11:07:16'
+    //     },
+    //     sales_count: 1,
+    //     groupon_user_count: 4,
+    //     created_at: '2018年12月28日11:07:47',
+    //     sku_description: '橄榄绿; xs',
+    //     price: 200,
+    //     origin_price: 100,
+    //     groupon_id: 0,
+    //   }
+    // ],
     x:[0,1],
     image: 'http://image.yiqixuan.com/'
   },
@@ -68,53 +150,5 @@ Page({
       title: '加载中',
     })
     this.getData();
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })
