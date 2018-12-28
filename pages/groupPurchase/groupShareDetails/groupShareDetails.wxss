@@ -36,6 +36,7 @@ image {
 .group_details_goods .goods_img {
 	width: 200rpx;
 	height: 200rpx;
+  border-radius:4rpx;
 	margin-right: 20rpx;
 	position: relative;
 }
@@ -56,8 +57,9 @@ image {
 }
 
 .group_details_goods .goods_info .goods_title {
-	font-size: 26rpx;
-	color: #333;
+  font-size:28rpx;
+  font-weight:400;
+  color:rgba(37,58,78,1);
 	margin-bottom: 28rpx;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -67,8 +69,9 @@ image {
 }
 
 .group_details_goods .goods_info .spec {
-	font-size: 24rpx;
-	color: #999;
+  font-size:26rpx;
+  font-weight:400;
+  color:rgba(158,168,177,1);
 }
 
 .group_details_goods .goods_info .spec text {
@@ -88,10 +91,10 @@ image {
 }
 
 .goods_info .goods_price_num .goods_group_price {
-	font-size: 32rpx;
-	color: #ea2534;
-	font-weight: 600;
 	margin-right: 8rpx;
+  font-size:32rpx;
+  font-weight:400;
+  color:rgba(243,93,81,1);
 }
 
 .goods_info .goods_price_num .goods_group_price text {
@@ -107,8 +110,9 @@ image {
 
 .goods_info .goods_price_num .goods_num {
 	float: right;
-	font-size: 28rpx;
-	color: #333;
+  font-size:26rpx;
+  font-weight:400;
+  color:rgba(158,168,177,1);
 }
 /*商品部分 end*/
 

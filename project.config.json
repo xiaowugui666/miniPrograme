@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -67,7 +67,7 @@
 					"id": 4,
 					"name": "拼团",
 					"pathName": "pages/groupPurchase/groupList/groupList",
-					"query": "rank=4",
+					"query": "rank=2",
 					"scene": "1007"
 				},
 				{
@@ -75,6 +75,13 @@
 					"name": "拼团详情",
 					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
 					"query": "rank=4",
+					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "地址列表",
+					"pathName": "pages/address/address",
+					"query": "rank=2",
 					"scene": "1007"
 				}
 			]
