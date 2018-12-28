@@ -269,6 +269,10 @@ page {
   padding: 22rpx 0 0 24rpx;
   box-sizing: border-box;
 }
+.content .content_box {
+  padding: 22rpx 0 0 24rpx;
+  box-sizing: border-box;
+}
 .content .swiper_box {
   width: 702rpx;
   height: 304rpx;
