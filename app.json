@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/index",    
+	"pages/index/index",
+    "pages/category/category",
     "pages/groupPurchase/groupShareDetails/groupShareDetails",    
     "pages/user/user",
     "pages/detail/detail",    
@@ -13,7 +14,6 @@
     "pages/groupPurchase/refundProgress/refundProgress",
     "pages/groupPurchase/groupList/groupList",
     "pages/messageList/messageList",
-    "pages/category/category",
     "pages/shoppingCar/shoppingCar",
     "pages/search/search",
     "pages/address/address",

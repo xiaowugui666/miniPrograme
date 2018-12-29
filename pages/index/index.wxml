@@ -120,7 +120,7 @@
 				<view class="marketing_loading_tab loading"></view>
 			</view>
 		</view>
-		<view class="goods_loading loading" wx:for="{{[1,1,1]}}"></view>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
 	</block>
 	<block wx:else>
 		<view class="marketing_tabs single_market" id="marketing-tab">宝贝推荐</view>

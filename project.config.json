@@ -33,11 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-<<<<<<< HEAD
-			"current": 3,
-=======
-			"current": 6,
->>>>>>> 213be40f496b10a7deec562a92dc5f91833baccf
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -73,6 +69,12 @@
 					"pathName": "pages/address/address",
 					"query": "rank=2",
 					"scene": "1007"
+				},
+				{
+					"id": 5,
+					"name": "搜索结果页",
+					"pathName": "pages/result/result",
+					"query": "keyword=商"
 				}
 			]
 		}

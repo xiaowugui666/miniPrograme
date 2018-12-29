@@ -291,6 +291,6 @@ Page({
 		})
 	},
 	onReachBottom: function (e) {
-		console.log(1111)
+		console.log('首页触底加载更多功能尚未完成')
 	}
 })

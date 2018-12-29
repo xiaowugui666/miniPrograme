@@ -66,7 +66,7 @@ App({
   globalData: {
     userInfo: false,
 		user_info: {},
-		classIdx:0,
+		classIdx: '',
 		good:[],
     address:1,
     info:'',

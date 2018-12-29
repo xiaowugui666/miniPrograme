@@ -1,62 +1,50 @@
 
 .search{
-  width:710rpx;
+  width:702rpx;
   display: flex;
   margin:0 auto;
-  height: 68rpx;
-  background: #EDEDED;
-  border-radius: 40rpx;
+  height: 80rpx;
+  background: #F7F9FB;
+  border-radius: 8rpx;
   box-sizing: border-box;
-  padding:0 56rpx;
+  padding:0 24rpx 0 80rpx;
   position: relative;
   align-items: center;
-  
 }
-.search  icon{
-    display:block;
-  width:24rpx;
-  height:24rpx;
+.search icon{
+  display:block;
   position:absolute;
   top:22rpx;
   left:20rpx;
-
 }
-.fangdajing{
-  width: 24rpx;
-  height: 24rpx;
-  position: absolute;
-  left:16rpx;
-}
-.clearKey{
-  right:20rpx;
-  width:30rpx;
-  height: 30rpx;
+.clearKey {
+  right: 24rpx;
+  width: 40rpx;
+  height: 40rpx;
   position: absolute;
 }
 input{
-  width:596rpx;
-  font-family: PingFangSC-Regular;
-  font-size: 28rpx;
-  color: #333333;
+  width:558rpx;
+  font-size: 32rpx;
+  color: #253A4E;
 }
 .searchList{
   box-sizing: border-box;
-  padding:0 20rpx;
-  width:750rpx;
-  border-top:1rpx solid #E3E3E3;
-  margin-top:20rpx;
+  padding: 0 24rpx;
+  width: 750rpx;
+  margin-top:16rpx;
 }
 .searchList navigator{
-  height:74rpx;
-  line-height: 74rpx;
-  border-bottom:1rpx solid #E3E3E3;
+  height: 96rpx;
+  line-height: 96rpx;
   display: block;
-  font-family: PingFangSC-Regular;
-  font-size: 24rpx;
-  color: #3F3F3F;
-     overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #253A4E;
+  border-bottom: 2rpx solid #E6E9EB;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }

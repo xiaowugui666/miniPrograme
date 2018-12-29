@@ -3,14 +3,14 @@
 
 	<!--search  -->
 	<view class='container_search'>
-		<navigator open-type='navigateBack' class='container_search_navi' url="/pages/search/search">{{inputValue}}
-			<icon class='search_icon1' type='search' size='12' color='#999999'></icon>
-			<icon class='search_icon2' type='clear' size='12' color='#999999'></icon>
+		<navigator open-type='navigateBack' class='container_search_navi' url="/pages/search/search">{{keyword}}
+			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
+			{{inputValue}}
 		</navigator>
 	</view>
 
 	<!--family  -->
-  <view class='search_family'>
+  	<view class='search_family'>
 		<view class='new {{rank == 0 ? "selected" : "normal"}}' data-id='0' bindtap='bindRank'>新品</view>
 		<view class='sale_num {{rank == 1 ? "selected" : "normal"}}' data-id='1' bindtap='bindRank'>销量</view>
 		<view class='family_arrow {{rank == 2 ? "selected" : "normal"}}' data-id='2' bindtap='bindRank'>
@@ -19,16 +19,15 @@
 				<text class='arrow_up {{flag==1?"up":""}}'></text><text class='arrow_down {{flag==2?"down":""}}'></text>
 			</view>
 		</view>
-	</view>  
-
-	<!-- search products  -->
-	<view class='search_products'>
-		<view class='search_item' wx:if="{{produList.length!=0}}">
-			<view class='item_box' wx:for="{{produList}}" wx:key='{{index}}'  data-id='{{item.id}}' bindtap='goDetail'>
-				<image src='{{image}}{{item.cover_url}}?imageslim'></image>
-				<text class='item_text'>{{item.name}}</text>
-				<view class='item_text_view'>
-					<text>￥</text><text>{{filters.toFix(item.price/100)}}</text><text>销量{{item.sales_count}}件</text>
+	</view>
+	<view class="goods_list" wx:if="{{produList.length}}">
+		<view class="goods_item" wx:for="{{produList}}" wx:key="index" data-id="{{item.id}}" catchtap="goDetail">
+			<image src="{{image}}{{item.cover_url}}?imageslim" />
+			<view class="goods_info">
+				<view class="title">{{item.name}}</view>
+				<view class="info">
+					<text class="price"><text>￥</text>{{filters.ptf(item.price)}}</text>
+					<text>销量{{item.sales_count}}件</text>
 				</view>
 			</view>
 		</view>
