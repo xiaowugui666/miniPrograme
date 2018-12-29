@@ -4,9 +4,12 @@ page {
   min-height: 100%;
   font-family:PingFangSC-Regular;
 }
+
+.loading {
+  background: #E6E9EB;
+}
 .index_container {
   background: #fff;
-  
   min-height: 100%;
   position: relative;
 }
@@ -30,6 +33,12 @@ page {
   top: 20rpx;
   left: 28rpx;
 }
+.search_loading {
+  width: 702rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  margin: 0 auto;
+}
 
 .index_banner {
   display: block;
@@ -38,6 +47,11 @@ page {
   margin: 0 auto;
   margin-top: 24rpx;
   border-radius: 0;
+}
+.banner_loading {
+  height: 352rpx;
+  width: 750rpx;
+  margin-top: 24rpx;
 }
 
 .index_classify {
@@ -119,29 +133,18 @@ page {
   box-sizing: border-box;
   padding: 24rpx;
 }
-.index_loading {
-  width: 710rpx;
-  margin: 0 auto;
-  overflow: hidden;
+.contact_loading_img {
+  width:96rpx;
+  height:96rpx;
+  border-radius:8rpx;
 }
-.index_loading .desc_loading {
-  width: 710rpx;
-  height: 200rpx;
-  background: #ededed;
-  margin-top:20rpx;
-  border-radius: 8rpx;
+.contact_loading_text {
+  width: 534rpx;
+  height: 44rpx;
 }
-.index_loading .items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.index_loading .item {
-  width: 340rpx;
-  height: 340rpx;
-  background: #ededed;
-  margin-top: 30rpx;
-  border-radius: 8rpx;  
+.contact_loading_text:last-child {
+  margin-top: 16rpx;
+  height: 36rpx;
 }
 .classify_loading {
   margin: 0 auto;
@@ -150,23 +153,20 @@ page {
 }
 .classify_loading .loading_items {
   display:inline-block;
-  height:156rpx;
+  height:152rpx;
   width:150rpx;
 }
 .loading_items .loading_item_img {
-  width:90rpx;
-  height:90rpx;
-  border-radius:50%;
-  background: #ededed;  
+  width:96rpx;
+  height:96rpx;
+  border-radius: 40rpx;
   margin:0 auto;
 }
 .loading_items .loading_item_text {
   margin: 0 auto;
-  width: 90rpx;
-  background: #ededed;
-  border-radius: 8rpx;
-  height: 34rpx;
-  margin-top:20rpx;
+  width: 96rpx;
+  height: 36rpx;
+  margin-top:16rpx;
 }
 .index_contact .contact_h4 {
   display: block;
@@ -260,6 +260,18 @@ page {
   background-size: 200rpx 40rpx;
   background-position: center center;
   box-sizing: border-box;
+}
+.marketing_tab .marketing_loading_tab {
+  width: 200rpx;
+  height: 40rpx;
+  margin-top: 20rpx;
+}
+.goods_loading {
+  width: 702rpx;
+  height: 304rpx;
+  border-radius: 8rpx;
+  margin: 0 auto;
+  margin-top: 22rpx;
 }
 .content {
   background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 324rpx);
