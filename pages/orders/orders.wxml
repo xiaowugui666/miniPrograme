@@ -46,13 +46,13 @@
                       </view>
                   </view>
                   <view class='goods_price'>
-                      <label>￥{{filters.toFix(items.price/100)}}</label>
+                      <label>￥{{filters.ptf(items.price)}}</label>
                   </view>
               </view>
           </view>
           <!-- 根据状态显示底部内容 -->
           <view class='bottom'>
-              <label>实付：￥{{filters.toFix(item.amount/100)}}</label>
+              <label>实付：￥{{filters.ptf(item.amount)}}</label>
               <view>
                 <label wx:if='{{item.status==200}}' class='cancel btn_style' data-orderid='{{item.id}}'   catchtap='cancel'>取消订单</label>
                 <label class='pay btn_style' wx:if='{{item.status==200}}'  data-index="{{index}}" data-no="{{item.no}}" data-orderid='{{item.id}}' catchtap='payMoney'>立即付款</label>
@@ -84,12 +84,12 @@
                         </view>
                     </view>
                     <view class='goods_price'>
-                        <label>￥{{filters.toFix(items.price/100)}}</label>
+                        <label>￥{{filters.ptf(items.amount)}}</label>
                     </view>
                 </view>
             </view>
             <view class='bottom'>
-                <label>退款金额：￥{{filters.toFix(item.refund_amount/100)}}</label>
+                <label>退款金额：￥{{filters.ptf(item.refund_amount)}}</label>
             </view>
         </navigator>
 

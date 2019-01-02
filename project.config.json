@@ -33,20 +33,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
 					"name": "拼团分享详情页",
 					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
 					"query": "goodsid=21&groupid=79",
-					"scene": "1007"
-				},
-				{
-					"id": 1,
-					"name": "详情页",
-					"pathName": "pages/detail/detail",
-					"query": "id=56",
 					"scene": "1007"
 				},
 				{
@@ -58,23 +51,17 @@
 				},
 				{
 					"id": -1,
-					"name": "搜索",
-					"pathName": "pages/search/search",
-					"query": "",
-					"scene": "1007"
-				},
-				{
-					"id": -1,
 					"name": "地址列表",
 					"pathName": "pages/address/address",
 					"query": "rank=2",
 					"scene": "1007"
 				},
 				{
-					"id": 5,
-					"name": "搜索结果页",
-					"pathName": "pages/result/result",
-					"query": "keyword=商"
+					"id": -1,
+					"name": "购物车页面",
+					"pathName": "pages/shoppingCar/shoppingCar",
+					"query": "",
+					"scene": "1007"
 				}
 			]
 		}

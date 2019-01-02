@@ -83,11 +83,11 @@ page{
 }
 .menus_box {
   padding: 0 24rpx;
-  border-bottom:1rpx solid #F3F4F5;
+  border-bottom:2rpx solid #F3F4F5;
 }
 .menus {
   display: flex;
-  border-bottom:1rpx solid #F3F4F5;
+  border-bottom:2rpx solid #F3F4F5;
   align-items: center;
   padding: 24rpx 0;
 }
@@ -147,6 +147,9 @@ page{
   color: #253A4E;
   font-size: 26rpx;
   padding: 24rpx 0;
+}
+.info:last-child {
+  border-bottom: none;
 }
 .info .orderMoney {
   color: #F35D51;
@@ -224,7 +227,7 @@ page{
     background: #FFFFFF;
     height: 100rpx;
     font-size: 32rpx;
-    border-top: 1rpx solid #EBEBEB;
+    border-top: 2rpx solid #EBEBEB;
     box-sizing: border-box;
 }
 .contact button{

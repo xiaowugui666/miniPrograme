@@ -40,8 +40,8 @@
               <view wx:if="{{rank == 2}}">
                 <navigator url='/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid={{item.groupon_id}}&goodsid={{item.goods_id}}'>差<text>{{item.groupon.remain_user_count}}人</text>成团</navigator>
               </view>
-              <view wx:if="{{rank == 3}}" class='button_order button' data-id='{{item.order.id}}' catchtap='toOrderDetail'>查看订单</view>
-              <view wx:if="{{rank == 4}}" class='botton_buy button' data-id='{{item.order.id}}' catchtap='toDetail'>重新购买</view>
+              <view wx:elif="{{rank == 3}}" class='button_order button' data-id='{{item.order.id}}' catchtap='toOrderDetail'>查看订单</view>
+              <view wx:elif="{{rank == 4}}" class='botton_buy button' data-id='{{item.goods.id}}' catchtap='toDetail'>重新购买</view>
           </view>
           
       </view>
