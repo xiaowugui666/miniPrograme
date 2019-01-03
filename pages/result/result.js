@@ -123,9 +123,6 @@ Page({
 			value: options.keyword,
 			inputValue: options.keyword
 		})
-		wx.setNavigationBarTitle({
-			title: options.keyword,
-		})
 		wx.request({
 			url: app.globalData.http + '/mpa/goods/search',
 			data: {

@@ -10,7 +10,7 @@
 	</view>
 
   <view class='group_box' wx:if='{{data.length}}' wx:for='{{data}}' wx:key='index'>
-      <view>
+      <view data-groupid="{{item.groupon_id}}" data-goodsid="{{item.goods_id}}" catchtap="handleGroupDetail">
           <!-- 头部 -->
           <view class='group_box_head'>
               <view class='group_box_head_time'>{{item.groupon.expire_at + '结束'}}</view>
@@ -37,9 +37,7 @@
           <!-- 底部 -->
           <view class='group_box_bottom'>
               <view>{{rank == 4 ? '已退款' : '实付'}}:￥{{filters.toFix(item.price / 100)}}</view>
-              <view wx:if="{{rank == 2}}">
-                <navigator url='/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid={{item.groupon_id}}&goodsid={{item.goods_id}}'>差<text>{{item.groupon.remain_user_count}}人</text>成团</navigator>
-              </view>
+              <view wx:if="{{rank == 2}}">差<text>{{item.groupon.remain_user_count}}人</text>成团</view>
               <view wx:elif="{{rank == 3}}" class='button_order button' data-id='{{item.order.id}}' catchtap='toOrderDetail'>查看订单</view>
               <view wx:elif="{{rank == 4}}" class='botton_buy button' data-id='{{item.goods.id}}' catchtap='toDetail'>重新购买</view>
           </view>

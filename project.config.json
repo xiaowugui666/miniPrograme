@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.2",
+	"libVersion": "2.4.3",
 	"appid": "wx3e0f48a85aca5724",
 	"projectname": "mpas",
 	"isGameTourist": false,
@@ -58,9 +58,9 @@
 				},
 				{
 					"id": -1,
-					"name": "购物车页面",
-					"pathName": "pages/shoppingCar/shoppingCar",
-					"query": "",
+					"name": "拼团详情页",
+					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
+					"query": "goodsid=54&groupid=106",
 					"scene": "1007"
 				}
 			]

@@ -5,7 +5,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		select:0,
+		select:  '',
 		image: 'http://image.yiqixuan.com/',
 		good: [],
 		category: [],
@@ -43,11 +43,20 @@ Page({
 		})
 	},
 	selectAll () {
+		let  cateArr = this.data.leftTapArray
+		for (let i = 0, leng = cateArr.length; i < leng; i++) {
+			cateArr[i].isSelect = false
+			for (let j = 0, len = cateArr[i].children.length; j < len; j++) {
+				cateArr[i].children[j].isSelect = false
+			}
+		}
 		this.setData({
 			isAll: true,
 			categoryId: '',
+			leftTapArray: cateArr,
 			rank: 0,
-			flag: 0
+			flag: 0,
+			select: ''
 		})
 		app.globalData.classIdx = ''
 		this.onCloseModal()
@@ -65,6 +74,9 @@ Page({
 				}
 			}
 			cateArr[parentIndex].children[childcateindex].isSelect = true
+			this.setData({
+				select: '已选择二级类目'
+			})
 		} else {
 			for (let i = 0, leng = cateArr.length; i < leng; i++) {
 				cateArr[i].isSelect = false
@@ -79,7 +91,7 @@ Page({
 			isAll: false,
 			rank: 0,
 			flag: 0,
-			categoryId: id
+			categoryId: id,
 		})
 		this.onCloseModal()
 		this.getData({
@@ -142,7 +154,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onShow: function () {
-		if (this.data.select != app.globalData.classIdx) {
+		if (this.data.select !== app.globalData.classIdx) {
 			this.onLoad()
 		}
 	},

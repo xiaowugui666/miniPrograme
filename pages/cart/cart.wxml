@@ -1,72 +1,86 @@
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 
 <view class='content' wx:if="{{ session || local}}">
-    <!-- 本地购物车 -->
-    <view wx:for="{{locallist}}"   data-index="{{index}}"   wx:key="index" class="carInfo">
-      <navigator class='contents'  url='/pages/detail/detail?id={{item.goods_id}}&&name={{item.name}}' hover-class='none'>
-        <view  catchtap='selLocal' class='sel' data-index="{{index}}">
-               <view class='select {{item.isSelect?"cur":""}}'></view> 
-        </view>
-      <image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
-      <view class='goodsInfo'>    
-              <view>{{item.name}}</view>
-              <label>{{item.sku_description}}</label>
-          <view class='infoBottom'>
-                  <label>￥{{filters.toFix(item.price/100)}}</label>
-                  <view class='changNum'>
-                    <label data-index="{{index}}" class='btn' data-id="{{item.id}}"  catchtap='subLocal'>-</label>
-                    <text>{{item.count}}</text>
-                    <label class='btn' data-index="{{index}}" data-id="{{item.id}}"  catchtap='addLocal'>+</label>
-                  </view>
-              </view>
-      </view>
-      </navigator>
-      <!-- <view class='delete' catchtap='del' data-index="{{index}}" data-id='{{item.id}}'>
-        删除
-      </view> -->
-    </view>
-
-    <!-- 远程购物车 -->
-    <view wx:for="{{datalist}}"   data-index="{{index}}"   wx:key="{{index}}" class="carInfo">
-      <navigator class='contents clearfix' url='/pages/detail/detail?id={{item.goods_id}}' hover-class='none'>
-        <view  catchtap='selSession' class='sel' data-index="{{index}}" data-id="{{item.id}}">
-               <view class='select {{item.isSelect?"cur":""}}'></view> 
-        </view>
-      <image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
-      <view class='goodsInfo'>    
-              <view>{{item.name}}</view>
-              <label>{{item.sku_description}}</label>
-          <view class='infoBottom'>
-                  <label>￥{{filters.toFix(item.price/100)}}</label>
-                  <view class='changNum'>
-                    <label data-index="{{index}}" data-id="{{item.id}}" class='btn' catchtap='subtraction'>-</label>
-                    <text>{{item.count}}</text>
-                    <label class='btn' data-index="{{index}}" data-id="{{item.id}}" catchtap='add'>+</label>
-                  </view>
-              </view>
-      </view>
-      </navigator>
-      <!-- <view class='delete' catchtap='del' data-index="{{index}}" data-id='{{item.id}}'>
-        删除
-      </view> -->
-    </view>
-
-
-		<!-- 删除/全选  -->
-		<view class='bottom'>
-       <view class='select {{selectAll?"cur":""}}' bindtap='selectAll'></view>  
-			<view class='total_text'>
-				<view><text>全选</text><text bindtap='bottomDelete'>删除</text></view><text>合计：￥{{filters.toFix(totalPrice/100)}}</text>
-			</view>
-      <button wx:if="{{!userId}}" class='balance'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">结算</button>
-      <view  wx:if="{{userId}}" class='balance' bindtap='balance'>结算</view>
+	<!-- 本地购物车 -->
+	<view
+		wx:for="{{locallist}}"
+		wx:key="{{index}}"
+		data-index="{{index}}"
+		class="carInfo_box"
+		bindtouchstart="touchStart"
+		bindtouchmove="touchMove"
+		bindtouchend="touchEnd"
+		style="transform: translate({{item.transrpx || 0}}rpx)"
+	>
+		<view class="carInfo">
+			<navigator class='contents'  url='/pages/detail/detail?id={{item.goods_id}}&&name={{item.name}}' hover-class='none'>
+				<view class='select {{item.isSelect?"cur":""}}' data-index="{{index}}" catchtap='selLocal'></view>
+				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
+				<view class='goodsInfo'>    
+					<view class='infoTitle'>{{item.name}}</view>
+					<label class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</label>
+					<view class='infoBottom'>
+						<label class="bottom_price"><text>￥</text>{{filters.ptf(item.price)}}</label>
+						<view class='changNum'>
+							<label data-index="{{index}}" class="btn {{item.count == 1 ? 'disable' : ''}}" data-id="{{item.id}}" catchtap='subLocal'>-</label>
+							<text>{{item.count}}</text>
+							<label class='btn' data-index="{{index}}" data-id="{{item.id}}" catchtap='addLocal'>+</label>
+						</view>
+					</view>
+				</view>
+			</navigator>
 		</view>
+		<view class='delete' catchtap='del' data-index="{{index}}" data-type='local' data-id='{{item.id}}'>删除</view>
+	</view>
+
+	<!-- 远程购物车 -->
+	<view
+		wx:for="{{datalist}}"
+		wx:key="{{index}}"
+		data-index="{{index}}"
+		class="carInfo_box"
+		bindtouchstart="touchStart"
+		bindtouchmove="touchMove"
+		bindtouchend="touchEnd"
+		style="transform: translate({{item.transrpx || 0}}rpx)"
+	>
+		<view class="carInfo">
+			<navigator class='contents clearfix' url='/pages/detail/detail?id={{item.goods_id}}' hover-class='none'>
+				<view class='select {{item.isSelect?"cur":""}}' data-index="{{index}}" data-id="{{item.id}}" catchtap='selSession'></view>
+				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
+				<view class='goodsInfo'>    
+					<view class='infoTitle'>{{item.name}}</view>
+					<label class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</label>
+					<view class='infoBottom'>
+						<label class="bottom_price"><text>￥</text>{{filters.ptf(item.price)}}</label>
+						<view class='changNum'>
+							<label data-index="{{index}}" data-id="{{item.id}}" class="btn {{item.count == 1 ? 'disable' : ''}}" catchtap='subtraction'>-</label>
+							<text>{{item.count}}</text>
+							<label class='btn' data-index="{{index}}" data-id="{{item.id}}" catchtap='add'>+</label>
+						</view>
+					</view>
+				</view>
+			</navigator>
+		</view>
+		<view class='delete' catchtap='del' data-index="{{index}}" data-type='origin' data-id='{{item.id}}'>删除</view>
+	</view>
+
+
+	<!-- 全选  -->
+	<view class='bottom'>
+		<view>
+			<view class='select {{selectAll?"cur":""}}' bindtap='selectAll'></view>
+			<view>全选</view>
+		</view>
+		<view>
+			<view class="total_price">合计：<text><text>￥</text>{{filters.ptf(totalPrice)}}</text></view>
+			<button wx:if="{{!userId}}" class='balance'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">结算</button>
+			<view wx:if="{{userId}}" class='balance' bindtap='balance'>结算</view>
+		</view>
+	</view>
 </view>
-<view class='container' wx:if="{{ !session && !local}}">
-      <image src='{{image}}emptyCar.png'></image>
-      <view>购物车竟然是空的</view>
-      <text>"快买点东西犒劳自己吧"</text>
-      <view class='switch_index' hover-class='none' bindtap='goIndex'>
-      去看看
-      </view>
+<view class='container' wx:if="{{!session && !local}}">
+	<image src='/imgs/no_data_2.png'></image>
+	<view class="empty_car">购物车竟然是空的</view>
+	<view class="empty_copy">现在就去买点什么犒劳自己吧~</view>
 </view>

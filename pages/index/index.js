@@ -144,12 +144,19 @@ Page({
 						var code = res.statusCode.toString()
 						if (code.indexOf('20')>-1) {
 							if (res.data.length > 0) {
-								let tempArr = that.data.tabSwiperArr
-								tempArr.push({
-									type: 2,
-									label: '好物推荐',
-									data: res.data
-								})
+								let tempArr = that.data.tabSwiperArr, hasCurrentData = false
+								for (let i = 0, leng = tempArr.length; i < leng; i++) {
+									if (tempArr[i].type == 2) {
+										hasCurrentData = true
+									}
+								}
+								if (tempArr.length == 0 || !hasCurrentData) {
+									tempArr.push({
+										type: 2,
+										label: '好物推荐',
+										data: res.data
+									})
+								}
 								that.setData({
 									tabSwiperArr: tempArr
 								})
@@ -170,11 +177,18 @@ Page({
 							success(res) {
 								let tempArr = that.data.tabSwiperArr
 								if (res.data.length>0) {
-									tempArr.push({
-										type: 3,
-										label: '精选特价',
-										data: res.data
-									})
+									for (let i = 0, leng = tempArr.length; i < leng; i++) {
+										if (tempArr[i].type == 3) {
+											hasCurrentData = true
+										}
+									}
+									if (tempArr.length == 0 || !hasCurrentData) {
+										tempArr.push({
+											type: 3,
+											label: '精选特价',
+											data: res.data
+										})
+									}
 								}
 								// 计算content盒子高度
 								let count = 0, height;

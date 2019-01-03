@@ -10,7 +10,33 @@
   to {right: -392rpx;}
 }
 page{
-	background: #F7F9FBFF;
+  background: #F7F9FBFF;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.empty {
+  background: #FFFFFF;
+  text-align: center;
+  flex-grow: 1;
+  overflow: hidden;
+}
+.empty image {
+  width: 500rpx;
+  height: 320rpx;
+  display: block;
+  margin: 0 auto;
+  margin-top: 200rpx;
+}
+.empty .copywrite {
+  color: #9EA8B1;
+  font-size: 26rpx;
+  margin-top: 16rpx;
+}
+.empty .copywrite.lite {
+  margin-top: 64rpx;
+  font-size: 32rpx;
+  color: #253A4E;
 }
 .category_container{
 	min-height: 100%;

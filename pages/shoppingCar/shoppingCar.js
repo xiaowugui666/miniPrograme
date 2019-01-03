@@ -18,7 +18,10 @@ Page({
 		//本地购物车
 		local: false,
 		locallist: [],
-		userId: false
+		userId: false,
+		touchStartX: 0,
+		touchStartY: 0,
+		btnwidth: 128
 	},
 	//点击结算
 	balance() {
@@ -105,52 +108,6 @@ Page({
 					}
 				}
 			})
-		} else if (parseInt(_this.data.datalist[index].count) == 1) {//当删除数量等于1时，调用DELETE接口删除所选
-			wx.showModal({
-				// title: '删除',
-				content: '确定删除该商品？',
-				success(res) {
-					// 当用户点击确定按钮
-					if (res.confirm) {
-						wx.request({
-							url: app.globalData.http + '/mpa/cart/' + _this.data.datalist[index].id,
-							method: "DELETE",
-							header: {
-								"Api-Key": app.globalData.apiKey,
-								"Api-Secret": app.globalData.apiSecret,
-								'Api-Ext': app.globalData.apiExt
-							},
-							success(res) {
-								//如果删除成功
-								if (res.statusCode == 200) {
-
-									//计算合计金额，单选情况
-									if (_this.data.datalist[index].isSelect) {
-										total -= _this.data.datalist[index].price
-										_this.setData({
-											totalPrice: total
-										})
-									}
-									_this.data.datalist.splice(index, 1);
-									_this.setData({
-										datalist: _this.data.datalist
-									})
-									if (_this.data.datalist.length == 0) {
-										_this.setData({
-											session: false
-										})
-									}
-								} else {
-									wx.showToast({
-										title: '请重新尝试',
-										icon: "none"
-									})
-								}
-							}
-						})
-					}
-				}
-			})
 		}
 
 	},
@@ -177,40 +134,6 @@ Page({
 					})
 			})
 
-		} else if (parseInt(_this.data.locallist[index].count) == 1) {//当删除数量等于1时，调用DELETE接口删除所选
-			wx.showModal({
-				// title: '删除',
-				content: '确定删除该商品？',
-				success(res) {
-					// 当用户点击确定按钮
-					if (res.confirm) {
-						var local = wx.getStorageSync('good')
-						if (_this.data.locallist[index].isSelect) {
-							total -= _this.data.locallist[index].price
-						}
-
-						local.forEach(function (v, i) {
-							if (v.id == _this.data.locallist[index].id) {
-								local.splice(i, 1)
-							}
-						})
-
-						if (local.length == 0) {
-							_this.setData({
-								local: false
-							})
-						}
-						_this.setData({
-							locallist: local,
-							totalPrice: total
-						})
-						wx.setStorage({
-							key: 'good',
-							data: local,
-						})
-					}
-				}
-			})
 		}
 	},
 	/*增加数量 远程购物车*/
@@ -411,135 +334,148 @@ Page({
 			totalPrice: total
 		})
 	},
-	//底部删除点击事件
-	bottomDelete() {
-		var that = this;
-		//未选中item数组
-		var seleArr1 = [], deleArr1 = [];
-		var seleArr2 = [], deleArr2 = [];
-		var nowArr1 = that.data.datalist;
-		var nowArr2 = that.data.locallist;
-
-		//远程仓库
-		for (var i = 0; i < nowArr1.length; i++) {
-			var val = nowArr1[i]
-			if (!val.isSelect) {
-				seleArr1.push(val)
+	touchStart: function (e){
+		var index = e.currentTarget.dataset.index;
+		var touchStartX = e.touches[0].pageX;
+		var touchStartY = e.touches[0].pageY;
+		this.setData({
+		  index: index,
+		  touchStartX: touchStartX,
+		  touchStartY: touchStartY
+		})
+	},
+	touchMove: function (e) {
+		var index = this.data.index;
+		var btnwidth = this.data.btnwidth;
+		var touchEndX = e.changedTouches[0].pageX;
+		var touchEndY = e.changedTouches[0].pageY;
+		var tmX = touchEndX - this.data.touchStartX;
+		var tmY = touchEndY - this.data.touchStartY;
+		var datalist = this.data.datalist;
+		var item = datalist[index];
+		if (Math.abs(tmX) > Math.abs(tmY)) {
+			if (tmX < 0) {
+				var len = Math.abs(tmX) > btnwidth ? btnwidth : Math.abs(tmX); 
+				datalist.forEach(function (v, k) {
+					if (index == k) {
+						v.transrpx = -len;
+						v.isdelete = true;
+					} else {
+						v.transrpx = 0;
+						v.isdelete = false;
+					}
+				})
 			} else {
-				deleArr1.push(val.id)
+					item.transrpx = 0;
+					item.isdelete = false;
 			}
-		}
-
-		//本地仓库
-		for (var j = 0; j < nowArr2.length; j++) {
-			var val = nowArr2[j]
-			if (!val.isSelect) {
-				seleArr2.push(val)
-			} else {
-				deleArr2.push(val)
-			}
-		};
-
-		if (deleArr1.length == 0 && deleArr2.length == 0) {
-			wx.showToast({
-				title: '请选择商品',
-				icon: 'none',
-				duration: 1000
+			this.setData({
+				datalist: datalist
 			})
-		} else {
-			//点击删除提示信息
-			wx.showModal({
-				// title: '删除',
-				content: '是否确认删除此商品？',
-				confirmColor: '#EA2534',
-				success(res) {
-					if (res.confirm) {
-						//删除远程购物车
-						if (deleArr1.length > 0) {
-							//删除单个商品
-							if (deleArr1.length == 1) {
-								wx.request({
-									url: app.globalData.http + '/mpa/cart/' + deleArr1[0],
-									method: "DELETE",
-									header: {
-										"Api-Key": app.globalData.apiKey,
-										"Api-Secret": app.globalData.apiSecret,
-										'Api-Ext': app.globalData.apiExt
-									},
-									success(res) {
-										that.setData({
-											datalist: seleArr1,
-											totalPrice: 0.00,
-											locallist: seleArr2
-										})
-										wx.setStorage({
-											key: 'good',
-											data: seleArr2,
-										})
-										if (seleArr1.length == 0) {
-											that.setData({
-												session: false,
-											})
-										}
-										if (seleArr2.length == 0) {
-											that.setData({
-												local: false,
-											})
-										}
-									}
-								})
-							} else {
-								//批量删除请求
-								wx.request({
-									url: app.globalData.http + '/mpa/cart/batch',
-									method: "DELETE",
-									data: {
-										ids: deleArr1
-									},
-									header: {
-										"Api-Key": app.globalData.apiKey,
-										"Api-Secret": app.globalData.apiSecret,
-										'Api-Ext': app.globalData.apiExt
-									},
-									success(res) {
-										that.setData({
-											datalist: seleArr1,
-											totalPrice: 0.00,
-											locallist: seleArr2
-										})
-										wx.setStorage({
-											key: 'good',
-											data: seleArr2,
-										})
-										if (seleArr1.length == 0 && seleArr2.length == 0) {
-											that.setData({
-												session: false,
-												local: false
-											})
-										}
-									}
-								})
-							}
+		}
+	  },
+	  touchEnd: function (e) {
+		var index = this.data.index;
+		var btnwidth = this.data.btnwidth;
+		var touchEndX = e.changedTouches[0].pageX;
+		var touchEndY = e.changedTouches[0].pageY;
+		var tmX = touchEndX - this.data.touchStartX;
+		var tmY = touchEndY - this.data.touchStartY;
+		var datalist = this.data.datalist;
+		var item = datalist[index];
+		if (Math.abs(tmX) > Math.abs(tmY)) {
+			if (tmX < 0) {
+				if (Math.abs(tmX) >= (btnwidth / 2)){
+					datalist.forEach(function (v, k) {
+						if (index == k) {
+							v.transrpx = -btnwidth;
+							v.isdelete = true;
 						} else {
-							wx.setStorage({
-								key: 'good',
-								data: seleArr2,
-							})
-							that.setData({
-								totalPrice: 0.00,
-								locallist: seleArr2
-							})
-							if (seleArr2.length == 0) {
-								that.setData({
-									local: false
-								})
+							v.transrpx = 0;
+							v.isdelete = false;
+						}
+					})
+				} else {
+					datalist.forEach(function (v, k) {
+						v.transrpx = 0;
+						v.isdelete = false;
+					})
+				}
+			} else {
+				item.transrpx = 0;
+				item.isdelete = false;
+			}
+			this.setData({
+				datalist: datalist
+			})
+		}
+	  },
+	del: function (e) {
+		var id = e.currentTarget.dataset.id,
+			index = e.currentTarget.dataset.index,
+			type = e.currentTarget.dataset.type,
+			nowArr1 = this.data.datalist,
+			nowArr2 = this.data.locallist,
+			that = this;
+		wx.showModal({
+			// title: '删除',
+			content: '是否确认删除此商品？',
+			success(res) {
+				if (res.confirm) {
+					//删除远程购物车
+					if (type == 'origin') {
+						wx.request({
+							url: app.globalData.http + '/mpa/cart/' + id,
+							method: "DELETE",
+							header: {
+								"Api-Key": app.globalData.apiKey,
+								"Api-Secret": app.globalData.apiSecret,
+								'Api-Ext': app.globalData.apiExt
+							},
+							success(res) {
+								if (res.statusCode >= 200 && res.statusCode < 300) {
+									nowArr1.splice(index, 1)
+									nowArr2.splice(index, 1)
+									that.setData({
+										datalist: nowArr1,
+										totalPrice: 0.00,
+									})
+									wx.setStorage({
+										key: 'good',
+										data: nowArr2,
+									})
+									if (nowArr1.length == 0) {
+										that.setData({
+											session: false,
+										})
+									}
+									if (nowArr2.length == 0) {
+										that.setData({
+											local: false,
+										})
+									}
+								}
 							}
+						})
+					} else {
+						nowArr2.splice(index, 1)
+						wx.setStorage({
+							key: 'good',
+							data: nowArr2,
+						})
+						that.setData({
+							totalPrice: 0.00,
+							locallist: nowArr2
+						})
+						if (nowArr2.length == 0) {
+							that.setData({
+								local: false
+							})
 						}
 					}
 				}
-			})
-		}
-
+			}
+		})
 	},
 	/**
 	 * 生命周期函数--监听页面加载
@@ -699,16 +635,6 @@ Page({
 						}
 					})
 				}
-			})
-		}
-	},
-	onLoad: function () {
-		if (!app.globalData.userId) {
-			wx.showLoading({
-				title: '加载中',
-			})
-			app.login().then(() => {
-				this.onShow()
 			})
 		}
 	},

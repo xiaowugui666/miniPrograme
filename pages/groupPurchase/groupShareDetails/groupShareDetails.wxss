@@ -1,7 +1,7 @@
 /* pages/recommend/recommend.wxss */
 /* recommend products  */
 page{
-	background: #F6F7F7;
+	background: #F7F9FB;
 	padding-top: 20rpx;
 }
 
@@ -11,34 +11,28 @@ image {
 }
 
 .group_num {
-	color: #EA2534;
+	color: #F35D51;
 }
 
-.group_details_subject {
-	padding: 0 20rpx 20rpx;
-	background: #fff;
-}
 
 /*商品部分*/
-.group_details_goods_box {
-	padding-top: 20rpx;
-	background: #fff;
-	padding: 0 20rpx;
-	position: relative;
-}
 
 .group_details_goods {
-	padding: 20rpx 0;
-	font-size: 0;
-	position: relative;
+	padding: 24rpx;
+	background: #FFFFFF;
+	width: 750rpx;
+	height: 240rpx;
+	box-sizing: border-box;
+	display: flex;
+	border-bottom: 2rpx solid #F3F4F5;
 }
 
 .group_details_goods .goods_img {
-	width: 200rpx;
-	height: 200rpx;
+	width: 192rpx;
+	height: 192rpx;
   border-radius:4rpx;
-	margin-right: 20rpx;
 	position: relative;
+	flex-shrink: 0;
 }
 
 .group_details_goods .goods_img .finished {
@@ -51,16 +45,17 @@ image {
 }
 
 .group_details_goods .goods_info {
-	display: inline-block;
-	vertical-align: top;
-	width: 490rpx;
+	margin-left: 24rpx;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .group_details_goods .goods_info .goods_title {
   font-size:28rpx;
-  font-weight:400;
-  color:rgba(37,58,78,1);
-	margin-bottom: 28rpx;
+	color:#253A4E;
+	height: 72rpx;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display:-webkit-box; 
@@ -70,8 +65,14 @@ image {
 
 .group_details_goods .goods_info .spec {
   font-size:26rpx;
-  font-weight:400;
-  color:rgba(158,168,177,1);
+	color:#9EA8B1;
+	margin-top: 16rpx;
+	height: 36rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display:-webkit-box; 
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
 }
 
 .group_details_goods .goods_info .spec text {
@@ -84,48 +85,41 @@ image {
 }
 
 .group_details_goods .goods_info .goods_price_num {
-	position: absolute;
-	bottom: 20rpx;
-	left: 220rpx;
-	width: 490rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .goods_info .goods_price_num .goods_group_price {
-	margin-right: 8rpx;
+	margin-right: 16rpx;
   font-size:32rpx;
-  font-weight:400;
-  color:rgba(243,93,81,1);
+  color:#F35D51;
 }
 
 .goods_info .goods_price_num .goods_group_price text {
-	font-size: 18rpx;
-	vertical-align: middle;
+	font-size: 24rpx;
 }
 
 .goods_info .goods_price_num .goods_original_price {
-		font-size: 22rpx;
-		color: #999;
+		font-size: 24rpx;
+		color: #9EA8B1;
 		text-decoration:line-through;
 }
-
 .goods_info .goods_price_num .goods_num {
-	float: right;
   font-size:26rpx;
-  font-weight:400;
-  color:rgba(158,168,177,1);
+  color:#9EA8B1;
 }
 /*商品部分 end*/
 
 /*拼单部分*/
 .group_situation_box {
-	padding-top: 46rpx;
+	padding: 48rpx 24rpx 24rpx;
+	background: #FFFFFF;
 	text-align: center;
-	font-size: 0;
-	border-top: 2rpx solid #E3E3E3;
 }
 
 .group_situation_box .user_list {
-	margin-bottom: 54rpx;
+	margin-top: 48rpx;
 }
 
 .group_situation_box .user_list .img_box {
@@ -134,20 +128,43 @@ image {
 	vertical-align: middle;
 	margin-left: 34rpx;
 }
+.img_box .avatar_circle {
+	width: 96rpx;
+	height: 96rpx;
+	box-sizing: border-box;
+	border: 2rpx dashed #CFD3D8;
+	border-radius: 50%;
+	text-align: center;
+	background: #F7F9FB;
+}
+.img_box .avatar_circle .empty_avatar {
+	width: 48rpx;
+	height: 48rpx;
+	margin-top: 18rpx;
+}
 
 .group_situation_box .user_list .colonel {
 	margin-left: 0;
 }
 
 .group_situation_box .user_list image {
-	width: 80rpx;
-	height: 80rpx;
+	width: 96rpx;
+	height: 96rpx;
 	border-radius: 50%;
 	box-sizing: border-box;
 }
 
 .group_situation_box .user_list .colonel image {
-	border: 2rpx solid #FF5C68;
+	border: 4rpx solid #F35D51;
+}
+
+.user_list .colonel .avatar_leader {
+	border: none !important;
+	width: 24rpx;
+	height: 24rpx;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .group_situation_box .user_list .colonel text {
@@ -164,38 +181,36 @@ image {
 }
 
 .group_situation_box .short {
-	font-size: 16px;
-	color: #333333;
-	line-height: 16px;
-	margin-bottom: 24rpx;
+	font-size: 28rpx;
+	color: #556675;
 }
 
 .group_situation_box .remaining_time {
-	margin-bottom: 40rpx;
-	font-size: 28rpx;
-	color: #999;
+	margin-top: 24rpx;
+	font-size: 26rpx;
+	color: #9EA8B1;
 }
 
 .group_situation_box .remaining_time text {
 	vertical-align: top;
 	display: inline-block;
-	font-size: 20rpx;
-	color: #FF626E;
-	margin-left: 8rpx;
+	font-size: 22rpx;
+	color: #F15043;
+	margin-left: 4rpx;
 }
 
 .group_situation_box .remaining_time text:last-child {
-	margin-right: 8rpx;
+	margin-right: 4rpx;
 }
 
 .group_situation_box .remaining_time .time_block {
-	background: #FF5C68;
+	background: #F35D51;
 	border-radius: 4rpx;
 	width: 36rpx;
 	height: 36rpx;
 	line-height: 36rpx;
 	color: #fff;
-	font-size: 24rpx;
+	font-size: 22rpx;
 }
 
 .group_situation_box .successful_collage_tips {
@@ -205,89 +220,37 @@ image {
 }
 
 .group_situation_box .invitation_btn {
-	width: 574rpx;
-	height: 88rpx;
-	line-height: 88rpx;
-	background: #EA2534;
-	border-radius: 6rpx;
+	width: 702rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+	border-radius: 8rpx;
 	font-size: 32rpx;
 	color: #fff;
-	margin-bottom: 20rpx;
+	margin-top: 48rpx;
 }
 
-.group_situation_box .group_tips {
-	font-size: 24rpx;
-	color: #999;
-	margin-bottom: 10rpx;
-}
 /*拼单部分end*/
 
 /*拼单须知等其他信息*/
 .group_other_info {
-	padding: 0 20rpx;
 	margin-top: 20rpx;
 	background: #fff;
 }
 
 .group_other_info .column {
-	font-size: 0;
-	height: 80rpx;
-	line-height: 80rpx;
-	border-top: 2rpx solid #E3E3E3;
-}
-
-.group_other_info .column:first-child {
-	border-top: none;
-}
-
-.group_other_info .column::after {
-	content: '';
-	display: block;
-	clear: both;
-}
-
-.group_other_info .column .left {
-	float: left;
-	font-size: 26rpx;
-	color: #666;
-}
-
-.group_other_info .column .right {
-	float: right;
-	font-size: 24rpx;
-	color: #333;
-}
-
-.group_other_info .collage_notes .right text {
-	display: inline-block;
-	margin-left: 16rpx;
-}
-
-.group_other_info .collage_notes .right text:first-child {
-	margin-left: 0;
-}
-
-.group_other_info .collage_notes .right text::before {
-	content: '';
-	display: inline-block;
-	float: left;
-	margin-top: 38rpx;
-	width: 10rpx;
-	height: 10rpx;
-	background: #666;
-	border-radius: 50%;
-	margin-right: 6rpx;
-}
-
-.group_other_info .collage_palying .right {
+	font-size: 28rpx;
+	border-bottom: 2rpx solid #E3E3E3;
+	padding: 24rpx;
+	color: #253A4E;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .group_other_info .collage_palying image {
-	width: 12rpx;
-	height: 20rpx;
-	float: right;
-	margin-top: 32rpx;
-	margin-left: 10rpx;
+	width: 40rpx;
+	height: 40rpx;
 }
 
 .group_other_info .play_steps {
@@ -787,9 +750,6 @@ image {
 .user_prompt .prompt_texts {
   font-size: 24rpx;
   color: #FF5C68;
-}
-.user_prompt .prompt_texts .red {
-  /*color: #F02417;*/
 }
 .user_prompt .rest_time {
   font-size: 24rpx;

@@ -11,7 +11,7 @@
 	</view>
 
 	<!--banner  -->
-	 <image class='index_banner' wx:if="{{description.banner}}" mode='widthFix' src='{{image}}{{description.banner}}?imageslim'></image>
+	 <image class='index_banner' wx:if="{{description.banner}}" mode='aspectFill' src='{{image}}{{description.banner}}?imageslim'></image>
 	 <view class="banner_loading loading" wx:elif="{{!description.id}}"></view>
 	<!-- <view  class='index_classify' wx:if="{{categoryList.length>4}}"> -->
 	<view  class='index_classify' wx:if="{{categoryList.length > 0}}">
@@ -59,7 +59,7 @@
 		<view class="marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" id="marketing-tab">
 			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
 		</view>
-		<view class="marketing_fixed_tabs marketing_tabs" wx:if="{{tabScrollTop}}">
+		<view class="marketing_fixed_tabs marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop}}">
 			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
 		</view>
 		<view class="content">

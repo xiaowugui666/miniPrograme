@@ -64,6 +64,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
 		let that = this;
 		this.setData({
       user_info: app.globalData.user_info,
