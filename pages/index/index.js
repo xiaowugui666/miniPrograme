@@ -6,7 +6,6 @@ Page({
 		//分类
 		image: 'https://image.yiqixuan.com/',
 		categoryList:[],
-		//店铺描述信息
 		description: {},
 		newCate:'',
 		remain:"",
@@ -15,16 +14,12 @@ Page({
 		currentTab: 0,
 		tabScrollTop: false,
 		keyword:'',
-		//屏幕宽度
 		winWidth:'',
-		//推荐商品
-		//不参与遍历的第一件推荐商品
 		good:[],
 		swiperHeight: '338',
 	},
 	// 页面加载
 	onLoad: function (options) {
-			// let that = this;
 			if (options.scene) {
 				var sceneId = decodeURIComponent(options.scene).split(',')[0]
 				app.globalData.sceneID = sceneId
@@ -35,8 +30,14 @@ Page({
 	},
 	//下拉刷新
 	onPullDownRefresh: function () {
+		this.setData({tabSwiperArr: []})
 		this.getData()
 		wx.stopPullDownRefresh()
+	},
+	phoneCall: function () {
+		wx.makePhoneCall({
+			phoneNumber: app.globalData.mobile
+		})	  
 	},
 	// 打开页面或下拉刷新进行的后台请求
 	getData () {
@@ -175,7 +176,7 @@ Page({
 								'Api-Ext':app.globalData.apiExt
 							},
 							success(res) {
-								let tempArr = that.data.tabSwiperArr
+								let tempArr = that.data.tabSwiperArr, hasCurrentData = false
 								if (res.data.length>0) {
 									for (let i = 0, leng = tempArr.length; i < leng; i++) {
 										if (tempArr[i].type == 3) {
@@ -290,19 +291,21 @@ Page({
 	onPageScroll: function () {
 		const that = this
 		const query = wx.createSelectorQuery()
-		query.select('#marketing-tab').boundingClientRect()
-		query.selectViewport().scrollOffset()
-		query.exec(function (res) {
-			if(res[0].top <= 0) {
-				that.setData({
-					tabScrollTop: true
-				})
-			} else {
-				that.setData({
-					tabScrollTop: false
-				})
-			}
-		})
+		if (query.select('#marketing-tab')._component) {
+			query.select('#marketing-tab').boundingClientRect()
+			query.selectViewport().scrollOffset()
+			query.exec(function (res) {
+				if(res[0].top <= 0) {
+					that.setData({
+						tabScrollTop: true
+					})
+				} else {
+					that.setData({
+						tabScrollTop: false
+					})
+				}
+			})
+		}
 	},
 	onReachBottom: function (e) {
 		console.log('首页触底加载更多功能尚未完成')

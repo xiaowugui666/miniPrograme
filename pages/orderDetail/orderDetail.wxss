@@ -47,6 +47,7 @@ page{
   width: 48rpx;
   height: 48rpx;
   margin-right: 22rpx;
+  flex-shrink: 0;
 }
 .state .name{
   font-size: 32rpx; 
@@ -63,8 +64,8 @@ page{
 .state text{
   color:#F35D51;
 }
-.name label {
-  float: left;
+.name label:last-child {
+  margin-left: 20rpx;
 }
 .addr{
   margin-top: 6rpx;
@@ -79,7 +80,7 @@ page{
   background: #fff;
   box-sizing: border-box;
   margin-top: 24rpx;
-  margin-bottom: 104rpx;
+  padding-bottom: 120rpx;
 }
 .menus_box {
   padding: 0 24rpx;
@@ -98,9 +99,6 @@ page{
   height: 192rpx;
   width:192rpx; 
   margin-right: 24rpx;
-}
-.desc {
-  max-width: 68%;
 }
 .desc label:nth-child(1){
   font-family: PingFangSC-Regular;

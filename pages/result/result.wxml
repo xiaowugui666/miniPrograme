@@ -1,16 +1,15 @@
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
-<view class='search_container'>
+<!--search  -->
+<view class='container_search'>
+	<navigator open-type='navigateBack' class='container_search_navi' url="/pages/search/search">{{keyword}}
+		<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
+		{{inputValue}}
+	</navigator>
+</view>
 
-	<!--search  -->
-	<view class='container_search'>
-		<navigator open-type='navigateBack' class='container_search_navi' url="/pages/search/search">{{keyword}}
-			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
-			{{inputValue}}
-		</navigator>
-	</view>
-
-	<!--family  -->
-  	<view class='search_family'>
+<!--family  -->
+<block wx:if="{{produList.length}}">
+	<view class='search_family'>
 		<view class='new {{rank == 0 ? "selected" : "normal"}}' data-id='0' bindtap='bindRank'>新品</view>
 		<view class='sale_num {{rank == 1 ? "selected" : "normal"}}' data-id='1' bindtap='bindRank'>销量</view>
 		<view class='family_arrow {{rank == 2 ? "selected" : "normal"}}' data-id='2' bindtap='bindRank'>
@@ -20,7 +19,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="goods_list" wx:if="{{produList.length}}">
+	<view class="goods_list">
 		<view class="goods_item" wx:for="{{produList}}" wx:key="index" data-id="{{item.id}}" catchtap="goDetail">
 			<image src="{{image}}{{item.cover_url}}?imageslim" />
 			<view class="goods_info">
@@ -37,4 +36,11 @@
 	<view class='search_up' catchtap='goTop'>
 		<image src='{{image}}Stick@2x.png?imageslim'></image>
 	</view>
-</view>
+</block>
+<block wx:else>
+	<view class="empty">
+		<image src="/imgs/img_nogood.png" />
+		<view class="copywrite lite">暂无此类商品哦~</view>
+		<view class="copywrite">换个搜索词试试</view>
+	</view>
+</block>

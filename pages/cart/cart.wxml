@@ -18,7 +18,7 @@
 				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
 				<view class='goodsInfo'>    
 					<view class='infoTitle'>{{item.name}}</view>
-					<label class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</label>
+					<view class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</view>
 					<view class='infoBottom'>
 						<label class="bottom_price"><text>￥</text>{{filters.ptf(item.price)}}</label>
 						<view class='changNum'>
@@ -50,7 +50,7 @@
 				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
 				<view class='goodsInfo'>    
 					<view class='infoTitle'>{{item.name}}</view>
-					<label class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</label>
+					<view class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</view>
 					<view class='infoBottom'>
 						<label class="bottom_price"><text>￥</text>{{filters.ptf(item.price)}}</label>
 						<view class='changNum'>

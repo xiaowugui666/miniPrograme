@@ -35,7 +35,7 @@
 	<!--contact  -->
 	<view class="index_contact" wx:if="{{description.id}}">
 		<view class='index_contact_box'>
-			<button open-type='contact' session-from="weapp">
+			<button bindtap="phoneCall">
 				<image wx:if='{{description.logo_url}}' src='{{image}}{{description.logo_url}}?imageslim'></image>
 				<image class="wechat" src="/imgs/icon_home_contact.png" />
 			</button>
@@ -59,7 +59,7 @@
 		<view class="marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" id="marketing-tab">
 			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
 		</view>
-		<view class="marketing_fixed_tabs marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop}}">
+		<view class="marketing_fixed_tabs marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop && tabSwiperArr.length > 1}}">
 			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
 		</view>
 		<view class="content">
@@ -67,7 +67,7 @@
 			<!-- <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="{{500}}" current="{{currentTab}}" bindchange='onChangeSwiperItem'> -->
 				<block wx:for="{{tabSwiperArr}}" wx:key="index">
 					<!-- <swiper-item> -->
-						<view wx:if="{{currentTab === index}}" class="content_box">
+					<view wx:if="{{currentTab === index}}" class="content_box">
 						<block wx:for="{{item.data}}" wx:key="ind" wx:for-item="ite">
 							<view class="swiper_box" data-id='{{item.type === 1 ? ite.goods_id : ite.id}}' bindtap='bindDetail'>
 								<block wx:if="{{item.type === 1}}">
@@ -77,7 +77,7 @@
 										<view class='info'>
 											<text>拼团中 | </text>
 											<text>已团</text>
-											<text class='info_count'>99</text>
+											<text class='info_count'>{{ite.sales_count}}</text>
 											<text>件</text>
 										</view>
 										<view class="price">
@@ -92,11 +92,13 @@
 								<block wx:else>
 									<image src='{{image}}{{ite.cover_url}}' mode="aspectFill"/>
 									<view class='swiper_box_item'>
-										<view class='title'>{{ite.name}}</view>
-										<view class='info'>
-											<text>销量</text>
-											<text class='info_count'>99</text>
-											<text>件</text>
+										<view>
+											<view class='title'>{{ite.name}}</view>
+											<view class='info' wx:if="{{item.type != 3}}">
+												<text>销量</text>
+												<text class='info_count'>{{ite.sales_count}}</text>
+												<text>件</text>
+											</view>
 										</view>
 										<view class="price">
 											<view class='price_text'>
@@ -108,7 +110,7 @@
 								</block>
 							</view>
 						</block>
-						</view>
+					</view>
 					<!-- </swiper-item> -->
 				</block>
 			<!-- </swiper> -->
@@ -123,9 +125,11 @@
 		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
 	</block>
 	<block wx:else>
-		<view class="marketing_tabs single_market" id="marketing-tab">宝贝推荐</view>
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">宝贝推荐</view>
+		</view>
 		<view class="goods_recommend">
-			<view class="goods_item" wx:for="{{good}}" wx:key="index">
+			<view class="goods_item" wx:for="{{good}}" wx:key="index"  data-id="{{item.id}}" bindtap='bindDetail'>
 				<image src="{{image}}{{item.cover_url}}" />
 				<view class="goods_info">
 					<view class="title">{{item.name}}</view>

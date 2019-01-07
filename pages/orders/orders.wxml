@@ -37,16 +37,14 @@
           </view>
           <!-- 订单详情 -->
           <view class='orderList'  wx:for="{{item.items}}" wx:for-index="id" wx:for-item="items" wx:key="id">
-              <image class='goodImg' src='{{image}}{{items.cover_url}}?imageView2/1/w/164/h/160/imageslim'></image>
+              <image class='goodImg' wx:if="{{items.cover_url}}" src='{{image}}{{items.cover_url}}?imageView2/1/w/164/h/160/imageslim'></image>
               <view class='goodsInfo'>     
                   <view>
                       <view class='title'>{{items.name}}</view>
-                      <view class='infoBottom'>
-                        <label>{{items.sku_description}}</label> <label>x{{items.count}}</label>
-                      </view>
+                      <view class='infoBottom'>{{items.sku_description}}</view>
                   </view>
                   <view class='goods_price'>
-                      <label>￥{{filters.ptf(items.price)}}</label>
+                      <label>￥{{filters.ptf(items.price)}}</label><label>x{{items.count}}</label>
                   </view>
               </view>
           </view>
@@ -57,15 +55,15 @@
                 <label wx:if='{{item.status==200}}' class='cancel btn_style' data-orderid='{{item.id}}'   catchtap='cancel'>取消订单</label>
                 <label class='pay btn_style' wx:if='{{item.status==200}}'  data-index="{{index}}" data-no="{{item.no}}" data-orderid='{{item.id}}' catchtap='payMoney'>立即付款</label>
                 <label class='cancel btn_style' wx:if='{{item.status==255}}' data-groupid='{{item.groupon_member.groupon_id}}' data-goodsid='{{item.groupon_member.goods_id}}' catchtap='grouponDetail'>拼单详情</label>
-                <label class='cancel btn_style' wx:if='{{item.status==400 || item.status==305}}'  data-orderid='{{item.id}}'  catchtap='confirm'>确认收货</label>
-                <label  wx:if="{{item.after_sale_status==1 && item.status==405}}"   class='cancel btn_style' data-orderid='{{item.id}}' catchtap='cancelOrder'>申请售后</label>
-                <label class='pay btn_style' wx:if='{{item.status==400 || item.status==305 ||item.status==500||item.status==405}}' data-orderid='{{item.id}}' catchtap='checkLogistics'>查看物流</label>
+                <label  wx:if="{{item.after_sale_status==1 && item.status==405}}" class='cancel btn_style' data-orderid='{{item.id}}' catchtap='cancelOrder'>申请售后</label>
+                <label class='cancel btn_style' wx:if='{{item.status==400 || item.status==305 ||item.status==500||item.status==405}}' data-orderid='{{item.id}}' catchtap='checkLogistics'>查看物流</label>                
+                <label class='pay btn_style' wx:if='{{item.status==400 || item.status==305}}'  data-orderid='{{item.id}}' catchtap='confirm'>确认收货</label>
               </view>
           </view>
         </navigator>
 
 
-        <navigator  wx:if="{{currentTab==500}}"  url='/pages/refundDetail/refundDetail?id={{item.id}}' hover-class='none'   wx:for="{{allOrder}}" wx:for-index="index" wx:key="index">
+        <navigator wx:if="{{currentTab==500}}"  url='/pages/refundDetail/refundDetail?id={{item.id}}' hover-class='none' wx:for="{{allOrder}}" wx:for-index="index" wx:key="index">
             <view class='top'>
                 <label>{{item.created_at}}</label>
                 <label wx:if='{{item.status==1}}'>待处理</label>
@@ -79,12 +77,10 @@
                 <view class='goodsInfo'> 
                     <view>
                         <view class='title'>{{items.name}}</view>
-                        <view class='infoBottom'>
-                          <label>{{items.sku_description}}</label> <label>x{{items.count}}</label>
-                        </view>
+                        <view class='infoBottom'>{{currentTab == 500 ? items.order_items.sku_description : items.sku_description}}</view>
                     </view>
                     <view class='goods_price'>
-                        <label>￥{{filters.ptf(items.amount)}}</label>
+                        <label>￥{{filters.ptf(items.amount)}}</label><label>x{{items.count}}</label>
                     </view>
                 </view>
             </view>

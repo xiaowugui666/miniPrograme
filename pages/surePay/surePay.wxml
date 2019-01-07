@@ -5,7 +5,7 @@
             <image src='/imgs/icon_address.png'></image>
             <view class="adress_user">
                 <view  class='name clearfix'>
-                    <label>收件人：{{address.name}}</label>
+                    <label>收货人：{{address.name}}</label>
                     <label>{{address.mobile}}</label>
                 </view>
                 <view class='addr'>收货地址：{{address.province}} {{address.city}} {{address.county}} {{address.detail}}</view>

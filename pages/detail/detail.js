@@ -62,7 +62,7 @@
     },
     // 滑动商品图片
     changeCurrent: function(e) {
-      if (e.detail.source === 'touch') {
+      if (e.detail.source === 'touch' || e.detail.source === 'autoplay') {
         var cur = e.detail.current
         this.setData({
           current: cur
@@ -534,7 +534,8 @@
                   that.setData({
                     num: 1,
                     minusStatus: 'disabled',
-                    minusStatuss: 'normal'
+                    minusStatuss: 'normal',
+                    good: {}
                   })
                   wx.request({
                     url: app.globalData.http + '/mpa/cart/count', 
@@ -611,7 +612,8 @@
                 cartNum: 1,
                 num: 1,
                 minusStatus: 'disabled',
-                minusStatuss: 'normal'
+                minusStatuss: 'normal',
+                good: {}
               })
             }
             wx.showToast({

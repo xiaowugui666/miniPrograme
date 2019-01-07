@@ -16,7 +16,8 @@ Page({
 		drawerShow: false,
 		animationShow: false,
 		isAll: true,
-		leftTapArray: []
+		leftTapArray: [],
+		order_by: 'created_at desc'
 	},
 	onTouchMove () {},
 	onDetail (e) {
@@ -92,11 +93,10 @@ Page({
 			rank: 0,
 			flag: 0,
 			categoryId: id,
-		})
-		this.onCloseModal()
-		this.getData({
 			order_by: 'created_at desc',
 		})
+		this.onCloseModal()
+		this.getData()
 	},
 	// //排序方式点击
 	bindRank(e) {
@@ -108,41 +108,34 @@ Page({
 			if (flag == 0 || flag == 2) {
 				flag = 1
 				this.setData({
-					page: 0
-				})
-				this.getData({
-					order_by: 'price desc',
+					page: 0,
+					order_by: 'price asc',
 				})
 			} else if (flag == 1) {
 				flag = 2
 				this.setData({
-					page: 0
-				})
-				this.getData({
-					order_by: 'price asc',
+					page: 0,
+					order_by: 'price desc',
 				})
 			}
 		} else if (currIndex == 1) {
 			this.setData({
-				page: 0
-			})
-			flag = 0
-			this.getData({
+				page: 0,
 				order_by: 'sales_count desc',
 			})
+			flag = 0
 		} else {
 			this.setData({
-				page: 0
-			})
-			flag = 0
-			this.getData({
+				page: 0,
 				order_by: 'created_at desc',
 			})
+			flag = 0
 		}
 		this.setData({
 			rank: currIndex,
 			flag: flag
 		})
+		this.getData()
 	},
 	//点击商品跳转商品详情
 	goDetail(e){
@@ -194,18 +187,13 @@ Page({
 				})
 			},
 			complete:function(){
-				that.getData({
-					order_by: 'created_at desc'
-				})
+				that.getData()
 				wx.hideLoading();
 			}
 		})
 	},
-	onReady: function (option) {
-		
-	},
 	getData (params) {
-		const that = this, currentPage = this.data.page, categoryId = this.data.categoryId;
+		const that = this, currentPage = this.data.page,orderBy = this.data.order_by, categoryId = this.data.categoryId;
 		wx.showLoading({
 			title: '加载中'
 		})
@@ -218,19 +206,40 @@ Page({
 			data: {
 				page: currentPage,
 				category_id: categoryId,
-				...params,
+				order_by: orderBy,
 			},
 			dataType: 'json',
 			method: 'GET',
 			success: function (data) {
 				wx.hideLoading()
-				that.setData({
-					good:data.data
-				})
+				if (data.statusCode >= 200 && data.statusCode < 300) {
+					if (data.data.length === 0 && params === 'isConcat') {
+						let newPage = that.data.page
+						newPage--
+						that.setData({
+							page: newPage
+						})
+					} else if (params === 'isConcat') {
+						let tempArr = that.data.good
+						let newArr = tempArr.concat(data.data)
+						that.setData({
+							good:newArr
+						})
+					} else {
+						that.setData({
+							good: data.data
+						})
+					}
+				}
 			}
 		})
 	},
 	onReachBottom: function (e) {
-		console.log('分类页触底加载更多功能尚未完成')
+		let newPage = this.data.page
+		newPage++
+		this.setData({
+			page: newPage
+		})
+		this.getData('isConcat')
 	}
 })

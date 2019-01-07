@@ -108,19 +108,14 @@ navigator{
   height: 192rpx;
   flex: 0 0 192rpx;
   object-fit: cover;
+  flex-shrink: 0;
 }
 .orderList .goodsInfo{
-  margin:0 20rpx;
-  width: 464rpx;
+  margin-left: 24rpx;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-content:space-between; 
-}
-.goodsInfo > view:nth-child(1){
-  height:150px;
-}
-.goodsInfo > view:nth-child(2){
-  height:38rpx;
+  justify-content:space-between; 
 }
 .goodsInfo .title{
   font-size:28rpx;
@@ -145,15 +140,12 @@ navigator{
   color:rgba(37,58,78,1);
   vertical-align:top;
 }
-.infoBottom label{
-  font-size: 26rpx;
-  color: #999999;
-  line-height: 32rpx;
+.goods_price {
+  display: flex;
+  justify-content: space-between;
 }
-.infoBottom label:nth-child(1){
-  overflow: hidden;
-  white-space:nowrap;
-  text-overflow: ellipsis;
+.goods_price label:last-child {
+  color: #9EA8B1;
 }
 /* 订单-底部 */
 .bottom{

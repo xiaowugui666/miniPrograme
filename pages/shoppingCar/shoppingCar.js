@@ -374,7 +374,7 @@ Page({
 			})
 		}
 	  },
-	  touchEnd: function (e) {
+	touchEnd: function (e) {
 		var index = this.data.index;
 		var btnwidth = this.data.btnwidth;
 		var touchEndX = e.changedTouches[0].pageX;
@@ -409,7 +409,7 @@ Page({
 				datalist: datalist
 			})
 		}
-	  },
+	},
 	del: function (e) {
 		var id = e.currentTarget.dataset.id,
 			index = e.currentTarget.dataset.index,

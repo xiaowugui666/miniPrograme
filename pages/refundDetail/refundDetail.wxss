@@ -1,149 +1,138 @@
 page{
-  width: 100%;
-  height: 100%;
-  background: #f7f7f7;
+  background: #F7F9FB;
 }
 .container{
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 20rpx;
-  background: #fff;
-  border-top: 1rpx solid #EBEBEB;
+  font-size: 28rpx;
+  color: #253A4E;
+  overflow: hidden;
+  margin-bottom: 104rpx;
 }
 .top{
-  border-bottom: 1rpx solid #EBEBEB;
+  padding: 24rpx;
+  background: #FFFFFF;
+  margin-top: 24rpx;
 }
 .top .title{
-  font-family: PingFangSC-Semibold;
-  font-size: 32rpx;
-  color: #333333;
   font-weight: bold;
-  padding:26rpx 0;
-}
-.orderID{
-  font-family: PingFangSC-Semibold;
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #333333;
-  padding:26rpx 0 20rpx 0;
-  border-bottom: 1rpx solid #DEDEDE;
 }
 .top .desc{
-  font-family: PingFangSC-Regular;
-  font-size: 14px;
-  line-height: 40rpx;
-  color: #333333;
+  margin-top: 16rpx;
 }
 .top .time{
-    font-family: PingFangSC-Regular;
-    font-size: 28rpx;
-    color: #666666;
-    margin-top: 10rpx;
-    padding-bottom: 24rpx;
-}
-
-.container .menus{
-  display: flex;
-  border-bottom:1rpx solid #E3E3E3;
-  height: 236rpx;
-  align-items: center;
-
-}
-.container .menus:last-child{
-  border-bottom:none;
-}
-.menus image{
-  height: 200rpx;
-  width:200rpx; 
-  margin-right: 20rpx;
-}
-.refundMoney{
-  width: 100%;
-  height: 120rpx;
-  line-height: 120rpx;
-  text-align: center;
-  font-family: PingFangSC-Semibold;
-  font-size: 36rpx;
-  color: #F02417;
-  background: #fff;
-  font-weight: 500;
-  margin-top: 20rpx;
-}
-.bottom{
-   width: 100%;
-  box-sizing: border-box;
-  padding: 0 20rpx;
-  margin-top: 80rpx;
-}
-.cancel{
-  background: #F02417;
-  border-radius: 4px;
-  height: 96rpx;
-  line-height: 96rpx;
-  font-family: PingFangSC-Semibold;
-  font-size: 18px;
-  color: #FFFFFF;
-  text-align: center;
-}
-
-.desc>label:nth-child(1){
-  font-family: PingFangSC-Regular;
   font-size: 26rpx;
-  color: #333333;
-  width: 474rpx;
-  display: block;
-  height: 72rpx;
-  line-height: 36rpx;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
+  margin-top: 16rpx;
+  color: #9EA8B1;
 }
-.desc>label:nth-child(2){
+.order_info {
+  background: #FFFFFF;
+  margin-top: 24rpx;
+}
+.orderID{
+  font-size: 26rpx;
+	color: #253A4E;
+	padding: 24rpx;
+	border-bottom: 2rpx solid #F3F4F5;
+}
+.menus_box {
+  padding: 0 24rpx;
+  border-bottom:2rpx solid #F3F4F5;
+}
+.menus {
+  display: flex;
+  border-bottom:2rpx solid #F3F4F5;
+  align-items: center;
+  padding: 24rpx 0;
+}
+.menus:last-child {
+  border: none;
+}
+.menus image {
+  height: 192rpx;
+  width:192rpx; 
+  margin-right: 24rpx;
+}
+.desc label:nth-child(1){
   font-family: PingFangSC-Regular;
-  font-size: 24rpx;
-  color: #999999;
-  margin-top:28rpx;
-  overflow:hidden;
-  white-space:nowrap;
-  width: 474rpx;
-  text-overflow:ellipsis;
-  display: block;
+  font-size: 28rpx;
+  color: #253A4E;
+  line-height: 36rpx;
+  height: 72rpx;
+  width: 486rpx;
+  overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+  word-break: break-all;
 }
-.menus .desc view{
+.desc label:nth-child(2){
+  font-size: 26rpx;
+  color: #9EA8B1;
+  width: 100%;
+  height: 34rpx;
+  margin-top:8rpx;
+  overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
+}
+.desc view {
+  text-align: right;
+  margin-top: 32rpx;
+  font-size: 26rpx;
+  color: #9EA8B1;
+}
+.desc view .price {
+  color: #253A4E;
+  margin-right: 8rpx;
+}
+
+.refund_info {
+  padding: 24rpx;
+  background: #FFFFFF;
+}
+.info_item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 40rpx;
-}
-.menus .desc view label{
-    font-family: PingFangSC-Regular;
-    font-size: 26rpx;
-    color: #151515;
-}
-
-
-.menus .info{
-  border-bottom:1rpx solid #E3E3E3;
-}
-.menus .detail .info:last-child{
-    border-bottom:none;
-}
-.menus .info view{
-  display: flex;
-  justify-content: space-between
-}
-.menus .info label{
-  font-family: PingFangSC-Regular;
   font-size: 26rpx;
-  color: #666666;
-  line-height: 36rpx;
-  margin-top:18rpx;
+  margin-bottom: 24rpx;
 }
-.menus .info view:last-child{
-  margin-bottom: 18rpx;
+.info_item:last-child {
+  margin-bottom: 0;
 }
-
+.refundMoney text:last-child {
+  color: #F35D51;
+}
+.refund_remark text:last-child {
+  display: inline-block;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bottom{
+  width: 100%;
+  box-sizing: border-box;
+  background: #FEFEFE;
+  padding: 24rpx;
+  position: fixed;
+  bottom: 0;
+  font-size: 26rpx;
+  color: #556675;
+  display: flex;
+  justify-content: flex-end;
+  box-shadow:0px -2rpx 0px 0px #E6E9EB;
+}
+.cancel{
+  width: 152rpx;
+  height: 56rpx;
+  line-height:56rpx;
+  text-align: center;
+  border-radius: 4rpx;
+  box-sizing: border-box;
+  margin-left: 24rpx;
+  border: 2rpx solid #CFD3D8;
+}
 
 

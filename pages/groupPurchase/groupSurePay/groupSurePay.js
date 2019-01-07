@@ -254,6 +254,13 @@ Page({
                     url: '/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid=' + that.data.groupId + '&goodsid=' + that.data.dataList[0].goods_id,
                   })
                 }, 1000)
+              } else if (code == 207) {
+                clearInterval(time)
+                wx.hideLoading()
+                wx.showToast({
+                  title: '团成员出错',
+                  duration: 1000
+                })
               }
             }
           },

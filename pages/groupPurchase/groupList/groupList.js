@@ -34,9 +34,11 @@ Page({
 	},
 	handleGroupDetail: function (e) {
 		let groupid = e.currentTarget.dataset.groupid, goodsid = e.currentTarget.dataset.goodsid
-		wx.navigateTo({
-			url: `/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid=${groupid}&goodsid=${goodsid}`
-		})
+		if (this.data.rank == 2) {
+			wx.navigateTo({
+				url: `/pages/groupPurchase/groupShareDetails/groupShareDetails?groupid=${groupid}&goodsid=${goodsid}`
+			})
+		}
 	},
 	// 获取列表数据
 	getData () {

@@ -6,6 +6,8 @@
         <image class='clearKey' src='/imgs/icon_close2.png' bindtap='clearKey'></image>
     </view>
     <view class='searchList'>
-        <navigator url='/pages/detail/detail?id={{item.id}}' hover-class='none' wx:key='index' wx:for='{{dataList}}'>{{item.name}}</navigator>
+        <navigator url='/pages/detail/detail?id={{item.id}}' hover-class='none' wx:key='index' wx:for='{{dataList}}'>
+            <text class="{{ite === keyName ? 'highlight' : ''}}" wx:for="{{item.newStringArr}}" wx:for-item="ite" wx:for-index="ind" wx:key="ind">{{ite}}</text>
+        </navigator>
     </view>
 </view>

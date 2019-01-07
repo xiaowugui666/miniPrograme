@@ -140,7 +140,6 @@ view.carInfo{
   font-size: 26rpx;
   color: #9EA8B1;
   height:48rpx;
-  display: inline-block;
   margin-top:8rpx;
   max-width: 374rpx;
   line-height: 36rpx;
@@ -160,6 +159,7 @@ view.carInfo{
   justify-content: space-between;
   align-items: center;
   font-size: 24rpx;
+  margin-top: 16rpx;
 }
 .changNum{
   display: flex;

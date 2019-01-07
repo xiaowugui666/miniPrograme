@@ -4,16 +4,17 @@
 	<!-- detail images  -->
     <view class='banner'>
         <swiper
-        	autoplay='{{true}}'  interval='{{3500}}' duration='{{500}}' bindchange='changeCurrent'  current='{{current}}' circular='{{true}}'>
+        	autoplay='{{true}}'  interval='{{3500}}' duration='{{500}}' bindchange='changeCurrent' current='{{current}}' circular='{{true}}'>
 			<block wx:for='{{imgs}}' wx:key="{{index}}">
-			<swiper-item>
-				<view class='detail_imgs'>
-				<image src='{{image}}{{item.icon_url}}?imageslim' data-index='{{index}}' catchtap='viewImages'></image>
-				</view>
-			</swiper-item>
+				<swiper-item>
+					<view class='detail_imgs'>
+					<image src='{{image}}{{item.icon_url}}?imageslim' data-index='{{index}}' catchtap='viewImages'></image>
+					</view>
+				</swiper-item>
 			</block>
         </swiper>
-      <image  wx:if="{{status==2}}"  src='{{image}}soldOut.png?imageslim'></image>
+      	<image wx:if="{{status==2}}" src='{{image}}soldOut.png?imageslim'></image>
+		<view class='showIndex'>{{current + 1}}/{{imgs.length}} </view>
     </view>
     <view class="goods_info {{goods.activity_type == 1 ? 'group_info' : 'normal_info'}}">
 		<view class='price_info'>
@@ -46,8 +47,8 @@
 			</button>
 		</view>
 		<view class="express_sales">
-			<view>快递：{{goods.is_free_express === 1 ? '免运费' : filters.ptf(goods.free_express_price)}}</view>
-			<view>销量{{goods.sales_count}}笔</view>
+			<view>快递：{{goods.is_free_express === 1 ? '包邮' : (goods.postage_temp_id === null ? filters.ptf(goods.free_express_price) : '动态运费' )}}</view>
+			<view>销量{{goods.sales_count}}件</view>
 		</view>
     	<view class='detail_promise'  wx:if="{{goods.free_return==1||goods.quick_delivery==1||goods.genuine_article==1}}" >
 			<text>服务</text>
@@ -198,7 +199,7 @@
     	<view class='confirm' bindtap='closeModal'>确定</view>
 	</view>
     <view class='description'>
-        <view style='font-size:28rpx'>商品详情</view>
+        <view class="description_detail">商品详情</view>
         <rich-text nodes="{{content}}"></rich-text>
    </view>   
 </view>

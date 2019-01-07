@@ -70,7 +70,7 @@ Page({
 			flag = 1
 			//按价格降序
 			that.setData({
-				order_by: 'price desc',
+				order_by: 'price asc',
 				page: 0
 			})
 			this.getList()
@@ -78,7 +78,7 @@ Page({
 			flag = 2
 			//按价格升序
 			that.setData({
-				order_by: 'price asc',
+				order_by: 'price desc',
 				page: 0
 			})
 			this.getList()
@@ -135,15 +135,9 @@ Page({
 			method: 'GET',
 			success: function (data) {
 				if (data.data.length > 0) {
-				that.setData({
-					produList: data.data
-				})
-				} else {
-				wx.showToast({
-					title: '暂无商品',
-					icon: 'none',
-					duration: 2000
-				})
+					that.setData({
+						produList: data.data
+					})
 				}
 			},
 			complete:function(){

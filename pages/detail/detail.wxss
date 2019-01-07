@@ -25,6 +25,19 @@ swiper{
   left: 50%;
   transform: translate(-50%,-50%);
 }
+.banner .showIndex {
+	position: absolute;
+	right: 24rpx;
+	bottom: 24rpx;
+	width: 96rpx;
+	height: 48rpx;
+	background: rgba(0,0,0,0.5);
+	border-radius: 24rpx;
+	color: #FFFFFF;
+	font-size: 26rpx;
+	line-height: 48rpx;
+	text-align: center;
+}
 .goods_info.group_info {
 	height: 104rpx;
 	width: 750rpx;
@@ -117,7 +130,12 @@ swiper{
   padding: 24rpx 24rpx 128rpx;
   border-top: 24rpx solid #F7F9FB;
 }
-
+.description .description_detail {
+	font-size: 28rpx;
+	color: #9EA8B1;
+	line-height: 44rpx;
+	padding-bottom: 24rpx;
+}
 .description img{
   width: 100% !important;
   padding: 0;

@@ -1,47 +1,32 @@
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 <view class='container'>
-    <view class='orderID'>订单编号：{{items.no}}</view>
-    <view class='clearfix' wx:for='{{info}}' wx:for-index='index' wx:key='index'>
-         <image class='select' bindtap='select' data-index="{{index}}"  wx:if='{{item.isSelect}}'src='{{image}}checked.png'></image>
-        <image class='select' data-index="{{index}}"   bindtap='select'  wx:else='{{item.isSelect}}'src='{{image}}unchecked.png'></image>
-        <image src='{{image}}{{item.cover_url}}?imageslim' class='img'></image>
-        <view class='info'>
-            <label class='title'>{{item.name}}</label>
-            <label class='size'>{{item.sku_description}}</label>
-            <label class='price'>￥{{filters.toFix(item.price/100)}}</label>
-        </view>
-    </view>
-    <!-- <view class='desc'>
-      <label>退货数量</label> 
-      <label>{{num}}</label>
-    </view> -->
-     <!-- <view  class='desc' bindtap='selectReason'>
-      <label>退货理由</label> 
-      <label>{{reasonText}}</label>
-    </view>  -->
-    <picker  class='picker' bindchange="bindPickerChange"  range="{{reason}}">
-      <label>退货理由</label> 
-      <label style='float:right'>
-      {{reasonText}}
-      </label>
-    </picker>
-     <view class='reason'>
-      <label>退货备注</label> 
-      <textarea maxlength='500'   bindconfirm='remark' value='{{value}}'></textarea>  
-    </view> 
-    <view class='tip'>
-      注：目前只支持自寄退货
-    </view>
+	<view class='orderID'>订单编号：{{items.no}}</view>
+	<view class="info_box">
+		<view class="carInfo" wx:for='{{info}}' wx:for-index='index' wx:key='index'>
+			<view class='select {{item.isSelect?"cur":""}}' data-index="{{index}}" catchtap='select'></view>
+			<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
+			<view class='goodsInfo'>    
+				<view class='infoTitle'>{{item.name}}</view>
+				<label class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</label>
+				<view class="bottom_price"><text>￥</text>{{filters.ptf(item.price)}}</view>
+			</view>
+		</view>
+	</view>
 </view>
-<view class='submit' bindtap='submit'>下一步</view>
-
-<!-- 弹出框  -->
-<view class='modal_mask' wx:if='{{modalVisi}}'></view>
-<view class='modal'  wx:if='{{modalVisi}}'>
-  <view class='modal_title'>
-    <view>提示</view>
-    <view class='clear' bindtap='closeModal'></view>
-  </view>
-  <view class='modal_content'>该订单为拼团订单，成团
-  时已经金额原路返回</view>
+<view class="refund_info">
+	<picker class='picker' bindchange="bindPickerChange" range="{{reason}}">
+		<view class="picker_view">
+			<view>
+				<view>退货理由：</view>
+				<label>{{reasonText}}</label>
+			</view>
+			<image src="/imgs/icon_arrow.png" />
+		</view>
+	</picker>
+	<view class='reason'>
+		<label>退货备注：</label> 
+		<!-- <textarea></textarea> -->
+		<input placeholder="选填" maxlength='500' bindconfirm='remark' value='{{value}}' placeholder-style="color: #9EA8B1;" />
+	</view>
 </view>
+<view class='submit' bindtap='submit'>提交</view>

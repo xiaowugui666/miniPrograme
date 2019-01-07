@@ -40,11 +40,14 @@ input{
   display: block;
   box-sizing: border-box;
   font-size: 28rpx;
-  color: #253A4E;
+  color: #9EA8B1;
   border-bottom: 2rpx solid #E6E9EB;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+}
+.searchList .highlight {
+  color: #253A4E;
 }

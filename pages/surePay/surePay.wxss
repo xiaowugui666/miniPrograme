@@ -14,6 +14,7 @@
 page{
   width: 100%;
   background: #F7F9FB;
+  padding-bottom: 130rpx;
 }
 .address .adress_info {
   display: flex;

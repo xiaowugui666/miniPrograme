@@ -178,6 +178,7 @@ page{
   font-size: 24rpx;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: #9EA8B1;
 }
 .goods_info .info .price {

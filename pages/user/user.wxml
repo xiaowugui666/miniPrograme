@@ -86,18 +86,11 @@
           </view>
           <image class='icon' src='{{image}}right.png?imageslim'></image>
     </navigator>  
-    <navigator url='/pages/groupPurchase/groupList/groupList' class='my_other_nav' hover-class="none">
+    <navigator url='/pages/groupPurchase/groupList/groupList' class='my_other_nav no_border' hover-class="none">
           <view class='my_other_text'>
               <image src='/imgs/icon_discount.png'></image>
               <view>我的拼团</view>
           </view>
           <image class='icon' src='{{image}}right.png?imageslim'></image>
     </navigator>
-    <button class='my_other_nav no_border' open-type='contact'>
-          <view class='my_other_text'>
-              <image src='/imgs/icon_contact.png'></image>
-              <view>联系卖家</view>
-          </view>
-          <image class='icon' src='{{image}}right.png?imageslim'></image>
-    </button>
 </view>
