@@ -34,7 +34,6 @@
 			<view>3. 完成支付，即刻开团</view>
 			<image src="/imgs/rule4.png" />
 			<view>4. 返回拼团详情，邀请好友</view>
-			<image src="/imgs/rule5.png" />
 			<view>5. 有效期内达到成团人数，团购成功，等待发货</view>
 		</view>
 	</view>

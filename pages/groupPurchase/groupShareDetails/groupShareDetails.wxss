@@ -86,24 +86,17 @@ image {
 }
 
 .group_details_goods .goods_info .spec {
-  font-size:26rpx;
+  	font-size:26rpx;
 	color:#9EA8B1;
 	margin-top: 16rpx;
-	height: 36rpx;
+}
+
+.group_details_goods .goods_info .spec text {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display:-webkit-box; 
 	-webkit-box-orient:vertical;
 	-webkit-line-clamp:1;
-}
-
-.group_details_goods .goods_info .spec text {
-	margin-right: 30rpx;
-  overflow: hidden;
-  display: inline-block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  width: 100%;
 }
 
 .group_details_goods .goods_info .goods_price_num {
@@ -263,6 +256,84 @@ image {
 .group_other_info .rule_container {
 	padding-left: 24rpx;
 }
+
+.more_groupons {
+	margin-top: 20rpx;
+	background: #FFFFFF;
+}
+.group_show_more {
+	font-size: 28rpx;
+	padding: 24rpx;
+	color: #556675;
+	border-bottom: 2rpx solid #F3F4F5;
+}
+.header_users {
+  padding: 0 20rpx;
+}
+.header_users .user_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  font-size: 24rpx;
+}
+.header_users .user_item:not(:last-child) {
+  border-bottom: 1px solid #EBEBEB;
+}
+.user_item .user_info {
+  display: flex;
+  max-width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  align-items: center;
+}
+.user_item .user_info image {
+  display: block;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+}
+.user_item .user_info text {
+  font-size: 28rpx;
+  color: #253A4E;
+  margin-left: 8rpx;
+  display:inline-block;
+  max-width:75%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.user_item .user_operation {
+  display: flex;
+  align-items: center;
+}
+.user_operation .user_prompt {
+  margin-right: 16rpx;
+}
+.user_prompt .prompt_texts {
+	color: #253A4E;
+}
+.user_prompt .prompt_texts .red {
+  color: #F35D51;
+}
+.user_prompt .rest_time {
+	color: #9EA8B1;
+	display: inline-block;
+	width: 166rpx;
+}
+.user_operation .prompt_button {
+  width: 110rpx;
+  height: 48rpx;
+  background-image: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+  border-radius: 4rpx;
+  font-size: 26rpx;
+  padding: 0;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 48rpx;
+}
+
 .group_other_info .column {
 	font-size: 28rpx;
 	border-bottom: 2rpx solid #E3E3E3;

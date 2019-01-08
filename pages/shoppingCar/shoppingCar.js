@@ -69,6 +69,11 @@ Page({
 			url: '/pages/index/index',
 		})
 	},
+	handleDetail: function (e) {
+		wx.navigateTo({
+			url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id,
+		})
+	},
 	/*减少数量  远程购物车*/
 	subtraction(e) {
 		var _this = this;
@@ -434,11 +439,25 @@ Page({
 							},
 							success(res) {
 								if (res.statusCode >= 200 && res.statusCode < 300) {
+									let totalPrice = 0
 									nowArr1.splice(index, 1)
 									nowArr2.splice(index, 1)
+									nowArr1.forEach(item => {
+										if (item.isSelect) {
+											totalPrice += item.price * item.count
+										}
+									})
+									nowArr2.forEach(item => {
+										if (item.isSelect) {
+											totalPrice += item.price * item.count
+										}
+									})
+									console.log(nowArr1)
+									console.log(nowArr2)
+									console.log(totalPrice)
 									that.setData({
 										datalist: nowArr1,
-										totalPrice: 0.00,
+										totalPrice: totalPrice,
 									})
 									wx.setStorage({
 										key: 'good',

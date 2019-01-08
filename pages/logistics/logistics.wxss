@@ -56,16 +56,14 @@ page{
 
 .info label:first-child{
     display: block;
-    font-family: PingFangSC-Regular;
     font-size: 28rpx;
-    line-height: 30rpx;
-    color: #E6E9EB;
-    padding-top: 30rpx
+    line-height: 44rpx;
+    color: #000000;
+    padding-top: 24rpx
 }
 .info label:last-child{
     display: block;
-    font-family: PingFangSC-Regular;
     font-size: 24rpx;
-    color: #E6E9EB;
-    padding-bottom:19rpx
+    color: #9EA8B1;
+    padding-bottom:24rpx
 }

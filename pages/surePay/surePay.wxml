@@ -1,5 +1,5 @@
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
-<navigator url='/pages/address/address' hover-class='none'>
+<navigator url='/pages/address/address?type=issurepay' hover-class='none'>
     <view class='address' wx:if='{{address!==1}}'>
         <view class="adress_info">
             <image src='/imgs/icon_address.png'></image>

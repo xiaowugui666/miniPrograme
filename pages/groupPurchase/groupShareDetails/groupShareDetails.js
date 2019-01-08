@@ -362,7 +362,7 @@ Page({
 							// dataHandle[i].limit_at = 1
 							dataHandle[i].timeStampArr = []
 						}
-						// 处理完成后把data赋值给groupMembers
+            // 处理完成后把data赋值给groupMembers
 						that.setData({
 							groupMembers: dataHandle
 						})

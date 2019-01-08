@@ -202,7 +202,7 @@
                           icon: 'none',
                           duration: 1000
                         })
-                      } else {
+                      } else if (code.indexOf('20') > -1) {
                         wx.showToast({
                           title: '加入购物车成功',
                           icon: "success"
@@ -243,7 +243,15 @@
                     } else {
                       for (var i = 0; i < local.length; i++) {
                         if (local[i].id == good.goods_sku_id) {
-                          local[i].count = parseInt(local[i].count) + 1
+                          if (parseInt(local[i].count) >= good.stock_count) {
+                            wx.showToast({
+                              title: '库存不足',
+                              title: 'none'
+                            })
+                            return false
+                          } else {
+                            local[i].count = parseInt(local[i].count) + 1
+                          }
                         }
                       }
                     }
@@ -587,6 +595,13 @@
               } else {
                 for (var i = 0; i < local.length; i++) {
                   if (local[i].id == goods.goods_sku_id) {
+                    if ((parseInt(local[i].count) + goods.count) > goods.stock_count) {
+                      wx.showToast({
+                        title: '库存不足',
+                        icon: 'none'
+                      })
+                      return false
+                    }
                     local[i].count = parseInt(local[i].count) + goods.count
                   }
                 }
@@ -1031,51 +1046,51 @@
         if (that.data.groupMembers.length == 0) {
           return false
         }
-        setTime(i)
+		setTime(i)
 
         that.data.groupMembers[i].timer = setInterval(function () {
-          if (that.data.groupMembers.length == 0) {
-            return false
-          }
-          setTime(i, that.data.groupMembers[i].timer)
-          // 如果某一项倒计时结束
-          if (arr[i].count_down <= 0) {
+			if (that.data.groupMembers.length == 0) {
+				return false
+			}
+			setTime(i, that.data.groupMembers[i].timer)
+			// 如果某一项倒计时结束
+			if (arr[i].count_down <= 0) {
 
-            let list = JSON.parse(JSON.stringify(that.data.groupMembers));
-            list.splice(i, 1)
-            that.setData({
-              groupMembers: list
-            })
-            that.countDownList(that.data.groupMembers)
-          }
-        }, 1000);
+				let list = JSON.parse(JSON.stringify(that.data.groupMembers));
+				list.splice(i, 1)
+				that.setData({
+					groupMembers: list
+				})
+				that.countDownList(that.data.groupMembers)
+			}
+		}, 1000);
         
       }
 
-      function setTime(i, timer) {
-        var hour = 0,
-          minute = 0,
-          second = 0;//时间默认值
-          
-        if (that.data.groupMembers[i].count_down <= 0) {
-          clearInterval(timer);
-        } else {
-          hour = Math.floor(that.data.groupMembers[i].count_down / (60 * 60));
-          minute = Math.floor(that.data.groupMembers[i].count_down / 60) - (hour * 60);
-          second = Math.floor(that.data.groupMembers[i].count_down) - (hour * 60 * 60) - (minute * 60);
-        }
+		function setTime(i, timer) {
+			var hour = 0,
+			minute = 0,
+			second = 0;//时间默认值
+			
+			if (that.data.groupMembers[i].count_down <= 0) {
+				clearInterval(timer);
+			} else {
+				hour = Math.floor(that.data.groupMembers[i].count_down / (60 * 60));
+				minute = Math.floor(that.data.groupMembers[i].count_down / 60) - (hour * 60);
+				second = Math.floor(that.data.groupMembers[i].count_down) - (hour * 60 * 60) - (minute * 60);
+			}
 
-        if (hour <= 9) hour = '0' + hour;
-        if (minute <= 9) minute = '0' + minute;
-        if (second <= 9) second = '0' + second;
+			if (hour <= 9) hour = '0' + hour;
+			if (minute <= 9) minute = '0' + minute;
+			if (second <= 9) second = '0' + second;
 
-        let tA = 'groupMembers[' + i + '].timeStampArr'
-        that.setData({ [tA]: [hour, minute, second] })
+			let tA = 'groupMembers[' + i + '].timeStampArr'
+			that.setData({ [tA]: [hour, minute, second] })
 
-        // let limit = 'grouponData['+i+'].limit_at'
-        // that.setData({[limit]: --that.data.grouponData[i].limit_at})
-        that.data.groupMembers[i].count_down--;
-      }
+			// let limit = 'grouponData['+i+'].limit_at'
+			// that.setData({[limit]: --that.data.grouponData[i].limit_at})
+			that.data.groupMembers[i].count_down--;
+		}
     },
     // 获取用户信息
     getUserInfo: function (e) {

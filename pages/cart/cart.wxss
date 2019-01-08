@@ -19,9 +19,6 @@ page{
 	display: block;
   margin-top: 118rpx;
 }
-.carInfo  navigator{
-  height: 100%;
-}
 .container .empty_car {
   font-size: 32rpx;
   color: #253A4E;

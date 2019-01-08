@@ -210,13 +210,15 @@ swiper{
   margin-right: 16rpx;
 }
 .user_prompt .prompt_texts {
-  color: #253A4E;
+	color: #253A4E;
 }
 .user_prompt .prompt_texts .red {
   color: #F35D51;
 }
 .user_prompt .rest_time {
-  color: #9EA8B1;
+	color: #9EA8B1;
+	display: inline-block;
+	width: 166rpx;
 }
 .user_operation .prompt_button {
   width: 110rpx;
@@ -452,7 +454,7 @@ swiper{
 }
 .soldTips{
   position: fixed;
-  bottom: 100rpx;
+  bottom: 128rpx;
   left: 0;
   width: 100%;
   height: 106rpx;

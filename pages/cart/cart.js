@@ -69,6 +69,11 @@ Page({
 			url: '/pages/index/index',
 		})
 	},
+	handleDetail: function (e) {
+		wx.navigateTo({
+			url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id,
+		})
+	},
 	/*减少数量  远程购物车*/
 	subtraction(e) {
 		var _this = this;

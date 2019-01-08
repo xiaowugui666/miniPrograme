@@ -13,12 +13,12 @@
 		style="transform: translate({{item.transrpx || 0}}rpx)"
 	>
 		<view class="carInfo">
-			<navigator class='contents'  url='/pages/detail/detail?id={{item.goods_id}}&&name={{item.name}}' hover-class='none'>
+			<view class='contents'>
 				<view class='select {{item.isSelect?"cur":""}}' data-index="{{index}}" catchtap='selLocal'></view>
-				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
+				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim' data-id="{{item.goods_id}}" catchtap="handleDetail"></image>
 				<view class='goodsInfo'>    
-					<view class='infoTitle'>{{item.name}}</view>
-					<view class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</view>
+					<view class='infoTitle' data-id="{{item.goods_id}}" catchtap="handleDetail">{{item.name}}</view>
+					<view class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}" data-id="{{item.goods_id}}" catchtap="handleDetail">{{item.sku_description}}</view>
 					<view class='infoBottom'>
 						<label class="bottom_price"><text>￥</text>{{filters.ptf(item.price)}}</label>
 						<view class='changNum'>
@@ -28,7 +28,7 @@
 						</view>
 					</view>
 				</view>
-			</navigator>
+			</view>
 		</view>
 		<view class='delete' catchtap='del' data-index="{{index}}" data-type='local' data-id='{{item.id}}'>删除</view>
 	</view>
@@ -45,12 +45,12 @@
 		style="transform: translate({{item.transrpx || 0}}rpx)"
 	>
 		<view class="carInfo">
-			<navigator class='contents clearfix' url='/pages/detail/detail?id={{item.goods_id}}' hover-class='none'>
+			<view class='contents clearfix'>
 				<view class='select {{item.isSelect?"cur":""}}' data-index="{{index}}" data-id="{{item.id}}" catchtap='selSession'></view>
-				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
+				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim' data-id="{{item.goods_id}}" catchtap="handleDetail"></image>
 				<view class='goodsInfo'>    
-					<view class='infoTitle'>{{item.name}}</view>
-					<view class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</view>
+					<view class='infoTitle' data-id="{{item.goods_id}}" catchtap="handleDetail">{{item.name}}</view>
+					<view class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}" data-id="{{item.goods_id}}" catchtap="handleDetail">{{item.sku_description}}</view>
 					<view class='infoBottom'>
 						<label class="bottom_price"><text>￥</text>{{filters.ptf(item.price)}}</label>
 						<view class='changNum'>
@@ -60,7 +60,7 @@
 						</view>
 					</view>
 				</view>
-			</navigator>
+			</view>
 		</view>
 		<view class='delete' catchtap='del' data-index="{{index}}" data-type='origin' data-id='{{item.id}}'>删除</view>
 	</view>

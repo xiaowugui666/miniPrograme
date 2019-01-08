@@ -5,7 +5,8 @@
     <view class='container' bindtap='chooseAddress' wx:for='{{address}}' wx:for-item='item' wx:key='index' bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" data-index='{{index}}' style="transform: translate({{item.transrpx || 0}}rpx)">
           <view class='address_left'>
               <view>
-                  <view class='is_memo' wx:if="{{item.status==2}}">默认</view>
+                  <view class='is_memo' wx:if="{{item.status==2}}" data-index="{{index}}" data-status="{{item.status}}" catchtap="handleSetDetault">默认</view>
+                  <view class='is_memo setable' wx:else data-index="{{index}}" data-status="{{item.status}}" catchtap="handleSetDetault">设为默认</view>
                   <label>{{item.name}}</label>
                   <label>{{item.mobile}}</label>
               </view>

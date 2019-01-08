@@ -21,19 +21,16 @@ page{
   font-size:28rpx;
   font-weight:400;
   color:rgba(85,102,117,1);
-}  
+}
+.swiper-box {
+  height: calc(100% - 84rpx);
+}
 .on{ 
   font-family:PingFangSC-Medium;
   font-weight:500;
   color:rgba(243,93,81,1);
   border-bottom: 3rpx solid rgba(243,93,81,1);
-}  
-.swiper-box{ 
-  display: block; 
-  height: 100%; 
-  width: 100%; 
-  overflow: hidden; 
-}   
+}
 
 /* 没有订单 */
 .container{
@@ -126,9 +123,11 @@ navigator{
   overflow: hidden;
 }
 .goodsInfo .infoBottom{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
   margin-top:16rpx;
   font-size:26rpx;
   font-weight:400;

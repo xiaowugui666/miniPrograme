@@ -104,50 +104,50 @@ Page({
 	submit:function(){
 		var that=this;
 		if (that.data.saleArr.length==0){
-		wx.showToast({
-			title: '请选择退换货商品',
-			icon:'none',
-			duration:2000
-		})
+			wx.showToast({
+				title: '请选择退换货商品',
+				icon:'none',
+				duration:2000
+			})
 		}else{
-		wx.request({
-			url: app.globalData.http + '/mpa/after_sale',
-			method: "POST",
-			dataType: 'json',
-			data: {
-			order_id: that.data.orderId,
-			reason: that.data.reasonID,
-			remark: that.data.value,
-			order_item_ids: that.data.saleArr
-			},
-			header: {
-			"Api-Key": app.globalData.apiKey,
-			"Api-Secret": app.globalData.apiSecret,
-			'Api-Ext': app.globalData.apiExt
-			},
-			success: function (data) {
-			var code = data.statusCode.toString()
-			if (code.indexOf('20') > -1) {
-				wx.showToast({
-					title: '退款申请成功',
-					icon: 'success',
-					duration: 1000
-				})
-				setTimeout(function () {
-					wx.navigateTo({
-						url: '/pages/refundDetail/refundDetail?id=' + data.data.id
-					})
-				}, 1000)
-			} else {
-				var tip = data.data
-				wx.showToast({
-					title: tip.message,
-					icon: 'none',
-					duration: 1000
-				})
-			}
-			}
-		})
+			wx.request({
+				url: app.globalData.http + '/mpa/after_sale',
+				method: "POST",
+				dataType: 'json',
+				data: {
+					order_id: that.data.orderId,
+					reason: that.data.reasonID - 1,
+					remark: that.data.value,
+					order_item_ids: that.data.saleArr
+				},
+				header: {
+					"Api-Key": app.globalData.apiKey,
+					"Api-Secret": app.globalData.apiSecret,
+					'Api-Ext': app.globalData.apiExt
+				},
+				success: function (data) {
+					var code = data.statusCode.toString()
+					if (code.indexOf('20') > -1) {
+						wx.showToast({
+							title: '退款申请成功',
+							icon: 'success',
+							duration: 1000
+						})
+						setTimeout(function () {
+							wx.navigateTo({
+								url: '/pages/refundDetail/refundDetail?id=' + data.data.id
+							})
+						}, 1000)
+					} else {
+						var tip = data.data
+						wx.showToast({
+							title: tip.message,
+							icon: 'none',
+							duration: 1000
+						})
+					}
+				}
+			})
 		}
 	},
 	// /*选择原因*/

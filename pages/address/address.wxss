@@ -56,6 +56,9 @@ page{
   padding: 8rpx 15rpx;
   margin-right: 20rpx;
 }
+.is_memo.setable {
+  background: #CFD3D8;
+}
 .address_left label{
   margin-right: 20rpx;
   font-size:28rpx;

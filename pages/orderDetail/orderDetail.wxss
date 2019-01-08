@@ -42,6 +42,7 @@ page{
   width: 48rpx;
   height: 48rpx;
   margin-right: 22rpx;
+  flex-shrink: 0;
 }
 .state image{
   width: 48rpx;
@@ -99,6 +100,7 @@ page{
   height: 192rpx;
   width:192rpx; 
   margin-right: 24rpx;
+  flex-shrink: 0;
 }
 .desc label:nth-child(1){
   font-family: PingFangSC-Regular;

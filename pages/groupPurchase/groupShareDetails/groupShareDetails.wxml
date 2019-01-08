@@ -60,27 +60,31 @@
 			进入店铺
 			</navigator>
 		</view>
-		<view class="group_other_info">
-			<view class="group_full_tips column" wx:if="{{groupFull && groupMembers.length>0}}">
+		<view wx:if="{{groupFull && groupMembers.length>0}}" class="more_groupons">
+			<view class="group_show_more">
 				<text>以下小伙伴正在发起拼团，您可以直接参与：</text>
 			</view>
-			<view class='user_item column' wx:for='{{groupMembers}}' wx:key='index'>
-				<view class='user_info'>
-					<image src='{{item.avatar_url}}'></image>
-					<text>{{item.nick_name}}</text>
-				</view>
-				<view class='user_operation'>
-					<view class='user_prompt'>
-						<view class='prompt_texts'><text>还差</text><text class='red'>{{item.remain_user_count}}</text><text>人拼成</text></view>
-						<text class='rest_time'>剩余{{item.timeStampArr[0]}}:{{item.timeStampArr[1]}}:{{item.timeStampArr[2]}}</text>
+			<view class='header_users'>
+				<view class='user_item' wx:for='{{groupMembers}}' wx:key='index'>
+					<view class='user_info'>
+						<image src='{{item.avatar_url}}'></image>
+						<text>{{item.nick_name}}</text>
 					</view>
-					<form bindsubmit='submit' report-submit='true'>
-						<button class='prompt_button' wx:if='{{!hasUserInfo}}' open-type="getUserInfo" bindgetuserinfo="getInfo">来参团</button>
-						<button class='prompt_button' wx:elif='{{!userId}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNum">来参团</button>
-						<button class='prompt_button' wx:else form-type='submit' data-groupid='{{item.id}}' data-flag='2'>来参团</button>
-					</form>
+					<view class='user_operation'>
+						<view class='user_prompt'>
+							<view class='prompt_texts'><text>还差</text><text class='red'>{{item.remain_user_count}}</text><text>人拼成</text></view>
+							<text class='rest_time'>剩余{{item.timeStampArr[0]}}:{{item.timeStampArr[1]}}:{{item.timeStampArr[2]}}</text>
+						</view>
+						<form bindsubmit='submit' report-submit='true'>
+							<button class='prompt_button' wx:if='{{!hasUserInfo}}' open-type="getUserInfo" bindgetuserinfo="getInfo">来参团</button>
+							<button class='prompt_button' wx:elif='{{!userId}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNum">来参团</button>
+							<button class='prompt_button' wx:else form-type='submit' data-groupid='{{item.id}}' data-flag='2'>来参团</button>
+						</form>
+					</view>
 				</view>
 			</view>
+		</view>
+		<view class="group_other_info">
 			<view class="collage_notes column">
 				<view>拼团须知</view>
 				<view>

@@ -30,8 +30,8 @@ Page({
     var ts = setInterval(function () {
       if (t <= 1) {
         clearInterval(ts)
-        wx.switchTab({
-          url: '/pages/index/index'
+        wx.navigateTo({
+          url: '/pages/orders/orders?curTab=200'
         })
       }
       t = t - 1;
@@ -156,8 +156,8 @@ Page({
                   duration: 1000
                 })
                 setTimeout(function () {
-                  wx.navigateBack({
-                    delta: 1
+                  wx.navigateTo({
+                    url: '/pages/orders/orders?curTab=200'
                   })
                 }, 1000)
               } else {

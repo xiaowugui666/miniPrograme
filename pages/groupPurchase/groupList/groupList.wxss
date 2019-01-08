@@ -45,6 +45,9 @@ page {
 .group_box_head_time{
   flex: 1 0 auto;
 }
+.group_box_head_time.mark text {
+  color: #F35D51;
+}
 .group_box_head .pending{
   color:rgba(243,93,81,1);
 }
@@ -89,6 +92,11 @@ page {
   font-size:26rpx;
   font-weight:400;
   color:rgba(158,168,177,1);
+  overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
 }
 .group_body_price{
   display: flex;

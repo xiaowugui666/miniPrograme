@@ -23,7 +23,6 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		console.log(options)
 		var that=this
 		var id=options.id;
 		that.setData({
@@ -53,7 +52,6 @@ Page({
 						duration: 1000
 					})
 				}
-				console.log(that.data.data)
 			}
 		})
 	},
@@ -75,7 +73,6 @@ Page({
 							'Api-Ext': app.globalData.apiExt
 						},
 						success: function (res) {
-							console.log(res)
 							var code=res.statusCode.toString()
 							if(code.indexOf('20')>-1){
 								wx.showToast({
@@ -84,8 +81,8 @@ Page({
 									duration: 1000
 								})
 								setTimeout(function () {
-									wx.switchTab({
-										url: '/pages/index/index'
+									wx.navigateTo({
+										url: '/pages/orders/orders?curTab=500'
 									})
 								}, 1000)
 							}else{

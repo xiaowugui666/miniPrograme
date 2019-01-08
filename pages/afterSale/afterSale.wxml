@@ -29,4 +29,8 @@
 		<input placeholder="选填" maxlength='500' bindconfirm='remark' value='{{value}}' placeholder-style="color: #9EA8B1;" />
 	</view>
 </view>
+<view class="tips">
+	<image src="/imgs/icon_attention.png" />
+	目前只支持自寄退货
+</view>
 <view class='submit' bindtap='submit'>提交</view>

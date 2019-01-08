@@ -10,7 +10,7 @@
 </view>  
 
 
-<scroll-view  current="{{currentTab}}" scroll-y bindscrolltolower="getMore" class="swiper-box"  style="height:{{2*winHeight - 102}}rpx">
+<scroll-view current="{{currentTab}}" scroll-y="{{true}}" bindscrolltolower="getMore" class="swiper-box">
   <view>
 
       <!-- 没有订单 -->
