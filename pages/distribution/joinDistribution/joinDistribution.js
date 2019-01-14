@@ -5,9 +5,20 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-
+		modalVisible: false
 	},
-
+	handleClick: function () {
+		this.setData({
+			modalVisible: true
+		})
+	},
+	handleCloseModal: function () {
+		this.setData({
+			modalVisible: false
+		})
+	},
+	// 阻止蒙层事件冒泡
+	handleTouchmove: function () {},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */

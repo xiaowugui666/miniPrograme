@@ -1,2 +1,26 @@
-<!--pages/distribution/distributionCenter/distributionCenter.wxml-->
-<text>pages/distribution/distributionCenter/distributionCenter.wxml</text>
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+<view class="content_header content_margintop">
+    <view class="user_info">
+        <image src="/imgs/me_head0.png" />
+        <view class="info_detail">
+            <view>Hugee</view>
+            <view class="info_time">加入时间:2018-12-14</view>
+        </view>
+    </view>
+    <view class="commission">
+        <view class="total_commission commission_box">
+            <view class="price">￥<text>{{filters.ptf(80000)}}</text></view>
+            <view class="price_tips">累计佣金</view>
+        </view>
+        <view class="pending_commission commission_box">
+            <view class="price">￥<text>{{filters.ptf(10000)}}</text></view>
+            <view class="price_tips">待结算佣金</view>
+        </view>
+        <view class="avail_commission commission_box">
+            <view class="price">￥<text>{{filters.ptf(10000)}}</text></view>
+            <view class="price_tips">可提现金额</view>
+        </view>
+    </view>
+</view>
+<view class="content_body content_margintop"></view>
+<view class="content_bottom content_margintop"></view>

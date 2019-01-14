@@ -36,9 +36,9 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
-					"name": "申请加入分销页",
-					"pathName": "pages/distribution/joinDistribution/joinDistribution",
+					"id": 0,
+					"name": "分销中心",
+					"pathName": "pages/distribution/distributionCenter/distributionCenter",
 					"query": "",
 					"scene": "1007"
 				}
