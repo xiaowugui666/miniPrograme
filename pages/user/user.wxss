@@ -3,6 +3,7 @@ page{
   background: #F9F9F9;
   font-family: PingFangSC-Semibold;
   padding: 0 15rpx;
+  box-sizing: border-box;
 }
 .userinfo-bg{
   display: block;
