@@ -1,68 +1,72 @@
 {
-  "pages": [
-	"pages/index/index",
-    "pages/category/category",
-    "pages/groupPurchase/groupShareDetails/groupShareDetails",    
-    "pages/user/user",
-    "pages/detail/detail",    
-    "pages/orders/orders",
-    "pages/groupPurchase/goodsGroupList/goodsGroupList",
-    "pages/groupPurchase/groupPurchaseList/groupPurchaseList",
-    "pages/groupPurchase/collageRules/collageRules",
-    "pages/afterSale/afterSale",
-    "pages/afterSaleList/afterSaleList",
-    "pages/groupPurchase/refundProgress/refundProgress",
-    "pages/groupPurchase/groupList/groupList",
-    "pages/messageList/messageList",
-    "pages/shoppingCar/shoppingCar",
-    "pages/search/search",
-    "pages/address/address",
-    "pages/surePay/surePay",
-    "pages/result/result",
-    "pages/refundDetail/refundDetail",
-    "pages/logistics/logistics",
-    "pages/orderDetail/orderDetail",
-    "pages/special/special",
-    "pages/recommend/recommend",
-    "pages/cart/cart",
-    "pages/categoryList/categoryList",
-    "pages/groupPurchase/groupSurePay/groupSurePay"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#999",
-    "selectedColor": "#fb5d5d",
-    "borderStyle": "#e3e3e3",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "iconPath": "imgs/icon_home_off.png",
-        "selectedIconPath": "imgs/icon_home_on.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/category/category",
-        "iconPath": "imgs/icon_goods_off.png",
-        "selectedIconPath": "imgs/icon_goods_on.png",
-        "text": "宝贝"
-      },
-      {
-        "pagePath": "pages/shoppingCar/shoppingCar",
-        "iconPath": "imgs/icon_buy_off.png",
-        "selectedIconPath": "imgs/icon_buy_on.png",
-        "text": "购物车"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "iconPath": "imgs/icon_me_off.png",
-        "selectedIconPath": "imgs/icon_me_on.png",
-        "text": "我的"
-      }
-    ]
-  }
+	"pages": [
+		"pages/index/index",
+		"pages/category/category",
+		"pages/groupPurchase/groupShareDetails/groupShareDetails",
+		"pages/user/user",
+		"pages/detail/detail",
+		"pages/orders/orders",
+		"pages/groupPurchase/goodsGroupList/goodsGroupList",
+		"pages/groupPurchase/groupPurchaseList/groupPurchaseList",
+		"pages/groupPurchase/collageRules/collageRules",
+		"pages/afterSale/afterSale",
+		"pages/afterSaleList/afterSaleList",
+		"pages/groupPurchase/refundProgress/refundProgress",
+		"pages/groupPurchase/groupList/groupList",
+		"pages/messageList/messageList",
+		"pages/shoppingCar/shoppingCar",
+		"pages/search/search",
+		"pages/address/address",
+		"pages/surePay/surePay",
+		"pages/result/result",
+		"pages/refundDetail/refundDetail",
+		"pages/logistics/logistics",
+		"pages/orderDetail/orderDetail",
+		"pages/special/special",
+		"pages/recommend/recommend",
+		"pages/cart/cart",
+		"pages/categoryList/categoryList",
+		"pages/groupPurchase/groupSurePay/groupSurePay",
+		"pages/distribution/joinDistribution/joinDistribution",
+		"pages/distribution/distributionCenter/distributionCenter",
+		"pages/distribution/distributionRule/distributionRule",
+		"pages/distribution/myCustomer/myCustomer"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTextStyle": "black"
+	},
+	"tabBar": {
+		"color": "#999",
+		"selectedColor": "#fb5d5d",
+		"borderStyle": "#e3e3e3",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "imgs/icon_home_off.png",
+				"selectedIconPath": "imgs/icon_home_on.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/category/category",
+				"iconPath": "imgs/icon_goods_off.png",
+				"selectedIconPath": "imgs/icon_goods_on.png",
+				"text": "宝贝"
+			},
+			{
+				"pagePath": "pages/shoppingCar/shoppingCar",
+				"iconPath": "imgs/icon_buy_off.png",
+				"selectedIconPath": "imgs/icon_buy_on.png",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"iconPath": "imgs/icon_me_off.png",
+				"selectedIconPath": "imgs/icon_me_on.png",
+				"text": "我的"
+			}
+		]
+	}
 }
