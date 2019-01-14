@@ -201,10 +201,7 @@ page{
   border: none;
   padding: 0;
 }
-.otherInfo .my_other_nav:last-child{
-  border-bottom: 0;
-}
-.no_border{
+.my_other_nav:last-child{
   border-bottom: 0;
 }
 .my_other_text{
