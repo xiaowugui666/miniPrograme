@@ -64,135 +64,137 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-		let that = this;
-		this.setData({
-      user_info: app.globalData.user_info,
-      hasUserInfo: app.globalData.user_info.nickName || app.globalData.user_info.nick_name ? true : false,
-      userId: app.globalData.userId,
-      goodsid: options.goodsid,
-      groupid: options.groupid
-    })
-
-    // 如果为分享的页面
-    if (app.globalData.options.path == 'pages/groupPurchase/groupShareDetails/groupShareDetails' && (app.globalData.options.scene == 1007 || app.globalData.options.scene == 1008 || app.globalData.options.scene == 1044)) {
-      //获取店家描述数据
+    let that = this;
+    app.login().then(() => {
+      this.setData({
+        user_info: app.globalData.user_info,
+        hasUserInfo: app.globalData.user_info.nickName || app.globalData.user_info.nick_name ? true : false,
+        userId: app.globalData.userId,
+        goodsid: options.goodsid,
+        groupid: options.groupid
+      })
+  
+      // 如果为分享的页面
+      if (app.globalData.options.path == 'pages/groupPurchase/groupShareDetails/groupShareDetails' && (app.globalData.options.scene == 1007 || app.globalData.options.scene == 1008 || app.globalData.options.scene == 1044)) {
+        //获取店家描述数据
+        wx.request({
+          url: app.globalData.http + '/mpa/index',
+          method: 'GET',
+          header: {
+            'Api-Ext': app.globalData.apiExt
+          },
+          success(res) {
+            app.globalData.mobile = res.data.customer_service_mobile
+            app.globalData.logo_url = res.data.logo_url
+            app.globalData.name = res.data.name
+            that.setData({
+              description: res.data,
+              isSharePage: true
+            })
+            app.globalData.keyword = res.data.search_default_text
+          },
+          fail: function (res) {
+            console.log(res)
+          }
+        })
+      }
+  
+      //获取商品规格
       wx.request({
-        url: app.globalData.http + '/mpa/index',
-        method: 'GET',
+        url: app.globalData.http + '/mpa/goods/' + options.goodsid + '/specs',
+        header: {
+          'Api-Ext': app.globalData.apiExt
+        },
+        success(data) {
+          if (data.statusCode == 200) {
+            if (Object.prototype.toString.call(data.data) == '[object Array]') {
+              that.setData({
+                isSpec: false
+              })
+            } else {
+              var specs = []
+              var specType = []
+              for (var key in data.data) {
+                specs.push(data.data[key])
+                let specArr = [];
+                for (let i = 0, len = data.data[key].propertis.length; i < len; i++) {
+                  let specObj = {
+                    ite: '',
+                    optional: false
+                  };
+                  specObj.ite = data.data[key].propertis[i]
+                  specArr.push(specObj)
+                }
+                data.data[key].propertis = specArr
+                specType.push(key)
+              }
+              var chooseSpec = []
+              for (var i = 0; i < specType.length; i++) {
+                chooseSpec.push(-1)
+              }
+              that.setData({
+                spec: specs,
+                specType: specType,
+                chooseSpec: chooseSpec,
+                isSpec: true
+              })
+            }
+          } else {
+            wx.showToast({
+              title: '规格信息加载失败',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        }
+      })
+  
+      // 获取商品规格详情列表
+      wx.request({
+        url: app.globalData.http + '/mpa/goods/' + options.goodsid + '/groupon_goods/skus',
         header: {
           'Api-Ext': app.globalData.apiExt
         },
         success(res) {
-          app.globalData.mobile = res.data.customer_service_mobile
-          app.globalData.logo_url = res.data.logo_url
-          app.globalData.name = res.data.name
-          that.setData({
-            description: res.data,
-            isSharePage: true
-          })
-          app.globalData.keyword = res.data.search_default_text
-        },
-        fail: function (res) {
-          console.log(res)
-        }
-      })
-    }
-
-    //获取商品规格
-    wx.request({
-      url: app.globalData.http + '/mpa/goods/' + options.goodsid + '/specs',
-      header: {
-        'Api-Ext': app.globalData.apiExt
-      },
-      success(data) {
-        if (data.statusCode == 200) {
-          if (Object.prototype.toString.call(data.data) == '[object Array]') {
+          if (res.statusCode == 200) {
             that.setData({
-              isSpec: false
+              skus: res.data
             })
           } else {
-            var specs = []
-            var specType = []
-            for (var key in data.data) {
-              specs.push(data.data[key])
-              let specArr = [];
-              for (let i = 0, len = data.data[key].propertis.length; i < len; i++) {
-                let specObj = {
-                  ite: '',
-                  optional: false
-                };
-                specObj.ite = data.data[key].propertis[i]
-                specArr.push(specObj)
-              }
-              data.data[key].propertis = specArr
-              specType.push(key)
-            }
-            var chooseSpec = []
-            for (var i = 0; i < specType.length; i++) {
-              chooseSpec.push(-1)
-            }
-            that.setData({
-              spec: specs,
-              specType: specType,
-              chooseSpec: chooseSpec,
-              isSpec: true
+            wx.showToast({
+              title: '数据加载失败',
+              icon: 'none'
             })
           }
-        } else {
-          wx.showToast({
-            title: '规格信息加载失败',
-            icon: 'none',
-            duration: 2000
-          })
         }
-      }
-    })
-
-    // 获取商品规格详情列表
-    wx.request({
-      url: app.globalData.http + '/mpa/goods/' + options.goodsid + '/groupon_goods/skus',
-      header: {
-        'Api-Ext': app.globalData.apiExt
-      },
-      success(res) {
-        if (res.statusCode == 200) {
+      })
+      
+      if (JSON.stringify(this.data.user_info) == "{}") {
+        const getUser = this.getUserInfo()
+        getUser.then((res) => {
           that.setData({
-            skus: res.data
+            user_info: res.data,
+            hasUserInfo: res.data.nickName || res.data.nick_name ? true : false,
+            userId: res.data.user_id ? true : false
           })
-        } else {
+          // 获取拼团详情
+          this.getGroupData(options.groupid) // options.groupid
+        }).then(() => {
+          this.setData({showPage:true})
+        }).catch(err => {
           wx.showToast({
-            title: '数据加载失败',
+            title: '授权请求失败，请稍后重试',
             icon: 'none'
           })
-        }
-      }
-    })
-		
-    if (JSON.stringify(this.data.user_info) == "{}") {
-      const getUser = this.getUserInfo()
-      getUser.then((res) => {
-        that.setData({
-          user_info: res.data,
-          hasUserInfo: res.data.nickName || res.data.nick_name ? true : false,
-          userId: res.data.user_id ? true : false
         })
+      } else {
         // 获取拼团详情
         this.getGroupData(options.groupid) // options.groupid
-      }).then(() => {
+  
         this.setData({showPage:true})
-      }).catch(err => {
-        wx.showToast({
-          title: '授权请求失败，请稍后重试',
-          icon: 'none'
-        })
-      })
-    } else {
-      // 获取拼团详情
-      this.getGroupData(options.groupid) // options.groupid
-
-      this.setData({showPage:true})
-    }
-
+      }  
+    })
+		
   },
 	// 获取拼团商品数据
 	getGroupData (groupid) {
