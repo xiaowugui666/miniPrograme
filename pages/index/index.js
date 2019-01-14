@@ -246,7 +246,7 @@ Page({
 								})
 							}
 							that.setData({
-								tabSwiperArr: tempArr
+								tabSwiperArr: tempArr,
 							})
 						}
 						resolve()
@@ -419,14 +419,27 @@ Page({
 		this.setData({
 			currentPage: newPage
 		})
-		let currentTab = this.data.currentTab;
-		if (currentTab == 0 && this.data.tabSwiperArr.length > 0) {
+		let currentTab = this.data.currentTab, tabSwiperArr = this.data.tabSwiperArr;
+		if (currentTab == 0 && tabSwiperArr.length > 1) {
 			this.getGroupData('isConcat').then(() => wx.hideLoading())
-		} else if (currentTab == 0) {
+		} else if (currentTab == 0 && tabSwiperArr.length === 1) {
+			switch (tabSwiperArr[0].type) {
+				case 1:
+					this.getGroupData('isConcat').then(() => wx.hideLoading())
+					break
+				case 2:
+					this.getRecommendData('isConcat').then(() => wx.hideLoading())
+					break
+				case 3:
+					this.getSpecialData('isConcat').then(() => wx.hideLoading())
+					break
+				default:
+			}
+		} else if (currentTab == 0 && tabSwiperArr.length === 0) {
 			this.getNormalData('isConcat').then(() => wx.hideLoading())
 		} else if (currentTab == 1) {
 			this.getRecommendData('isConcat').then(() => wx.hideLoading())
-		} else if (currentTab == 3) {
+		} else if (currentTab == 2) {
 			this.getSpecialData('isConcat').then(() => wx.hideLoading())
 		}
 	}
