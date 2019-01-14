@@ -143,6 +143,7 @@ view.carInfo{
   padding: 6rpx 16rpx;
   background: #F7F9FB;
   border-radius: 4rpx;
+  display: inline-block;
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;

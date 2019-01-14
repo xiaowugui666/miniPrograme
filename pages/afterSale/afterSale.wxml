@@ -33,4 +33,6 @@
 	<image src="/imgs/icon_attention.png" />
 	目前只支持自寄退货
 </view>
-<view class='submit' bindtap='submit'>提交</view>
+<view class="submit_box">
+	<view class='submit' bindtap='submit'>提交</view>
+</view>
