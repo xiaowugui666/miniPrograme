@@ -30,7 +30,10 @@ Page({
 	},
 	//下拉刷新
 	onPullDownRefresh: function () {
-		this.setData({tabSwiperArr: []})
+		this.setData({
+			tabSwiperArr: [],
+			currentPage: 0
+		})
 		this.getData()
 		wx.stopPullDownRefresh()
 	},
