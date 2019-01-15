@@ -11,7 +11,8 @@ Page({
     expire_at: '00 时 00 分 00 秒',
     // apiKey:'',
     image: 'http://image.yiqixuan.com/',
-    contactShow: false
+    contactShow: false,
+    pageVisible: true
   },
   // 阻止蒙层事件冒泡
   preventTouchMove() {
@@ -66,7 +67,8 @@ Page({
         success: function (data) {
           if (data.statusCode == 200) {
             that.setData({
-              info: data.data
+              info: data.data,
+              pageVisible: true
             })
             if (data.data.status == 200) {
               var time = data.data.expire_at
@@ -74,7 +76,7 @@ Page({
             }
           } else {
             wx.showToast({
-              title: '无法获取正确用户信息，请正常进入小程序完成授权',
+              title: '订单不存在',
               icon: 'none',
               duration: 3000
             })
@@ -156,7 +158,7 @@ Page({
                   duration: 1000
                 })
                 setTimeout(function () {
-                  wx.navigateTo({
+                  wx.redirectTo({
                     url: '/pages/orders/orders?curTab=200'
                   })
                 }, 1000)
