@@ -66,9 +66,26 @@ page {
 .commission_box .price_tips {
     opacity: 0.8;
     font-size: 24rpx;
-    margin-top: 4rpx;
 }
-.commission_box .price text {
+.commission_box .price {
+    overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+}
+.commission_box .price text:first-child {
     font-size: 48rpx;
     margin-left: -6rpx;
+}
+.commission_box .price text:last-child {
+    font-size: 24rpx;
+}
+
+.content_body {
+    width: 750rpx;
+    height: 280rpx;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    padding-left: 24rpx;
 }

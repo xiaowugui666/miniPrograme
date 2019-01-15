@@ -9,18 +9,22 @@
     </view>
     <view class="commission">
         <view class="total_commission commission_box">
-            <view class="price">￥<text>{{filters.ptf(80000)}}</text></view>
+            <view class="price">￥<text>{{filters.humpPrice(80000)[0]}}</text><text>.{{filters.humpPrice(80000)[1]}}</text></view>
             <view class="price_tips">累计佣金</view>
         </view>
         <view class="pending_commission commission_box">
-            <view class="price">￥<text>{{filters.ptf(10000)}}</text></view>
+            <view class="price">￥<text>{{filters.humpPrice(10000)[0]}}</text><text>.{{filters.humpPrice(80000)[1]}}</text></view>
             <view class="price_tips">待结算佣金</view>
         </view>
         <view class="avail_commission commission_box">
-            <view class="price">￥<text>{{filters.ptf(10000)}}</text></view>
+            <view class="price">￥<text>{{filters.humpPrice(100000)[0]}}</text><text>.{{filters.humpPrice(80000)[1]}}</text></view>
             <view class="price_tips">可提现金额</view>
         </view>
     </view>
 </view>
-<view class="content_body content_margintop"></view>
+<view class="content_body content_margintop">
+    <view class="body_box"></view>
+    <view class="body_box"></view>
+    <view class="body_box"></view>
+</view>
 <view class="content_bottom content_margintop"></view>

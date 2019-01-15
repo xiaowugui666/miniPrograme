@@ -9,7 +9,17 @@ var filters = {
 		} else {
 			return '0.00'
 		}
-	},
+  },
+  humpPrice: function (value) {
+    var arr = [],price = '';
+    if (!isNaN(value)) {
+			price =  parseFloat(value/100).toFixed(2)
+		} else {
+			price = '0.00'
+    }
+    arr = price.split('.')
+    return arr
+  },
   getTime: function (value){
     var reg = getRegExp('/-/')
     var timestamp = value.replace(reg, '/')
@@ -61,5 +71,6 @@ module.exports = {
   getTime: filters.getTime,
   trim:filters.trim,
   ptf: filters.ptf,
-  statu: filters.statu
+  statu: filters.statu,
+  humpPrice: filters.humpPrice
 }
