@@ -32,7 +32,8 @@ Page({
 	onPullDownRefresh: function () {
 		this.setData({
 			tabSwiperArr: [],
-			currentPage: 0
+			currentPage: 0,
+			currentTab: 0
 		})
 		this.getData()
 		wx.stopPullDownRefresh()
@@ -276,40 +277,45 @@ Page({
 					page: page
 				},
 				success(res) {
-					if (res.data.length >0 && params === 'isConcat') {
-						let tempArr = that.data.tabSwiperArr;
-						tempArr.map(item => {
-							if (item.type === 3) {
-								item.data = item.data.concat(data.data)
+					if (res.statusCode >= 200 && res.statusCode < 300) {
+						if (res.data.length >0 && params === 'isConcat') {
+							let tempArr = that.data.tabSwiperArr;
+							tempArr.map(item => {
+								if (item.type === 3) {
+									item.data = item.data.concat(data.data)
+								}
+								return item
+							});
+							that.setData({
+								tabSwiperArr: tempArr
+							})
+						} else if (params === 'isConcat') {
+							let newPage = that.data.currentPage
+							newPage--
+							that.setData({
+								currentPage: newPage
+							})
+						} else if (res.data.length > 0) {
+							let tempArr = that.data.tabSwiperArr, hasCurrentData = false
+							for (let i = 0, leng = tempArr.length; i < leng; i++) {
+								if (tempArr[i].type == 3) {
+									hasCurrentData = true
+								}
 							}
-							return item
-						});
-						that.setData({
-							tabSwiperArr: tempArr
-						})
-					} else if (params === 'isConcat') {
-						let newPage = that.data.currentPage
-						newPage--
-						that.setData({
-							currentPage: newPage
-						})
-					} else if (res.data.length > 0) {
-						let tempArr = that.data.tabSwiperArr, hasCurrentData = false
-						for (let i = 0, leng = tempArr.length; i < leng; i++) {
-							if (tempArr[i].type == 3) {
-								hasCurrentData = true
+							if (tempArr.length == 0 || !hasCurrentData) {
+								tempArr.push({
+									type: 3,
+									label: '精选特价',
+									data: res.data
+								})
 							}
-						}
-						if (tempArr.length == 0 || !hasCurrentData) {
-							tempArr.push({
-								type: 3,
-								label: '精选特价',
-								data: res.data
+							that.setData({
+								tabSwiperArr: tempArr,
 							})
 						}
-						that.setData({
-							tabSwiperArr: tempArr,
-						})
+						resolve()
+					} else {
+						reject()
 					}
 				},
 				fail: function (res) {

@@ -42,6 +42,9 @@ var filters = {
       case 205: 
         string = '待发货'
         break
+      case 207: 
+        string = '已取消'
+        break
       case 255: 
         string = '待成团'
         break
