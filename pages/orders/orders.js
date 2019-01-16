@@ -5,7 +5,6 @@ Page({
         * 页面配置 
         */
     winWidth: 0,
-    winHeight: 0,
     // tab切换  
     currentTab: 0,
     index:0,
@@ -36,57 +35,45 @@ Page({
   onShow: function () {
     let initPageSize = (this.data.index + 1) * 15
     var that = this;
-      wx.showLoading({
-        title: '加载中',
-      })
-      wx.request({
-        url:that.data.url,
-        data:{
-          page:0,
-          per_page: initPageSize,
-          status: that.data.currentTab
-        },
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url:that.data.url,
+      data:{
+        page:0,
+        per_page: initPageSize,
+        status: that.data.currentTab
+      },
 
-        method:'get',
-        dataType:'json',
-        header: {
-          "Api-Key": app.globalData.apiKey,
-          "Api-Secret": app.globalData.apiSecret,
-          'Api-Ext': app.globalData.apiExt
-        },
-        success:function(data){
-          var code = data.statusCode.toString()
-          if (code.indexOf('20') > -1 && data.data.length > 0) {
-            that.setData({
-              allOrder: data.data,
-            })
-          } else {
-            that.setData({
-              allOrder: ''
-            })
-          }         
-        },
-        fail:function(){
+      method:'get',
+      dataType:'json',
+      header: {
+        "Api-Key": app.globalData.apiKey,
+        "Api-Secret": app.globalData.apiSecret,
+        'Api-Ext': app.globalData.apiExt
+      },
+      success:function(data){
+        var code = data.statusCode.toString()
+        if (code.indexOf('20') > -1 && data.data.length > 0) {
+          that.setData({
+            allOrder: data.data,
+          })
+        } else {
           that.setData({
             allOrder: ''
           })
-        },
-        complete:function(){
-          wx.hideLoading()
-        }
-      })
-    /** 
-     * 获取系统信息 
-     */
-    wx.getSystemInfo({
-      success: function (res) {
+        }         
+      },
+      fail:function(){
         that.setData({
-          winWidth: res.windowWidth,
-          winHeight: res.windowHeight
-        });
+          allOrder: ''
+        })
+      },
+      complete:function(){
+        wx.hideLoading()
       }
-
-    });
+    })
   },
   /* 查询支付状态*/
   checkPay: function (id,index,list) {

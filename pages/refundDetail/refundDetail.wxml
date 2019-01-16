@@ -5,26 +5,41 @@
         <view class='desc'>{{data.description}}</view>
         <view class='time'>{{data.created_at}}</view>
     </view>
-     <!-- <view class='top'>
-        <view class='title'>退货地址</view>
-        <view class='desc'>江苏省昆山市淀山湖双马路1号普洛斯物流园A1库商家物流
-中心</view>
-        <view class='time'>商家电话 132 5232 4242</view>
-    </view> -->
-    <view class='orderID'>订单编号:{{data.no}}</view>
-     <view  class='menus' wx:for="{{data.items}}" wx:key='{{index}}'>
-        <image src='{{image}}{{item.order_items.cover_url}}?imageslim'></image>
-        <view class='desc'>
-            <label>{{item.name}}</label>
-            <label>{{item.order_items.sku_description}}</label>
-            <view>
-                <label>￥{{filters.toFix(item.amount/100)}}</label>
-                <label>x{{item.count}}</label>
+    <view class="order_info">
+        <view class='orderID'>订单编号: {{data.no}}</view>
+        <view class="menus_box">
+            <view class='menus' wx:for='{{data.items}}' wx:key='index'>
+                <image src='{{image}}{{item.order_items.cover_url}}?imageView2/1/w/200/h/200'></image>
+                <view class='desc'>
+                    <label>{{item.name}}</label>
+                    <label>{{item.order_items.sku_description}}</label>
+                    <view>
+                        <text class="price">￥{{filters.ptf(item.amount)}}</text>
+                        <text>x{{item.count}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="refund_info">
+            <view class="info_item">
+                <text>退货理由</text>
+                <text>{{reason[data.reason]}}</text>
+            </view>
+            <view class="info_item refund_remark">
+                <text>退货备注</text>
+                <text>{{data.remark}}</text>
+            </view>
+            <view class="info_item">
+                <text>申请时间</text>
+                <text>{{data.created_at}}</text>
+            </view>
+            <view class='refundMoney info_item'>
+                <text>退款金额</text>
+                <text>￥{{filters.ptf(data.refund_amount)}}</text>
             </view>
         </view>
     </view>
 </view>
-<view class='refundMoney'>退款金额 ¥{{filters.toFix(data.refund_amount/100)}}</view>
 <view class='bottom' wx:if="{{data.status==1}}" >
     <view class='cancel' data-id='1' bindtap='cancel'>取消申请</view>
 </view>

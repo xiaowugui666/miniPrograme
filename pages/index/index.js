@@ -2,53 +2,47 @@
 //获取应用实例
 const app=getApp();
 Page({
-  data: {
+	data: {
 		//分类
-    image: 'https://image.yiqixuan.com/',
+		image: 'https://image.yiqixuan.com/',
 		categoryList:[],
-		//店铺描述信息
 		description: {},
-    newCate:'',
-    remain:"",
-    current:0,
-    keyword:'',
-    //屏幕宽度
-    winWidth:'',
-		//推荐商品
-		//不参与遍历的第一件推荐商品
-    good:[],
-		recommend_first:'',
-    recommend:2,
-		recommend_goods:'',
-		//特价商品
-		special_goods:'',
-    special:2,
-		// 拼团商品
-		groupGoods: [],
-    scrollBottom: false
-  },
-  // 页面加载
-  onLoad: function (options) {
-      // let that = this;
-      if (options.scene) {
-        var sceneId = decodeURIComponent(options.scene).split(',')[0]
-        app.globalData.sceneID = sceneId
-      } else if (options.scene_id) {
-        app.globalData.sceneID = options.scene_id
-      }
-      this.getData()
-  },
-  // 拨打电话
-  callPhone: function () {
-    wx.makePhoneCall({
-      phoneNumber: app.globalData.mobile
-    })
-  },
-  //下拉刷新
-  onPullDownRefresh: function () {
+		newCate:'',
+		remain:"",
+		current:0,
+		tabSwiperArr: [],
+		currentTab: 0,
+		tabScrollTop: false,
+		keyword:'',
+		winWidth:'',
+		good:[],
+		currentPage: 0
+	},
+	// 页面加载
+	onLoad: function (options) {
+			if (options.scene) {
+				var sceneId = decodeURIComponent(options.scene).split(',')[0]
+				app.globalData.sceneID = sceneId
+			} else if (options.scene_id) {
+				app.globalData.sceneID = options.scene_id
+			}
+			this.getData()
+	},
+	//下拉刷新
+	onPullDownRefresh: function () {
+		this.setData({
+			tabSwiperArr: [],
+			currentPage: 0,
+			currentTab: 0
+		})
 		this.getData()
 		wx.stopPullDownRefresh()
-  },
+	},
+	phoneCall: function () {
+		wx.makePhoneCall({
+			phoneNumber: app.globalData.mobile
+		})	  
+	},
 	// 打开页面或下拉刷新进行的后台请求
 	getData () {
 		let that = this;
@@ -84,20 +78,6 @@ Page({
 				});
 			}
 		});
-		//所有商品
-		wx.request({
-			url: app.globalData.http + '/mpa/goods/search?per_page=10',
-			header: {
-				'Api-Ext': app.globalData.apiExt
-			},
-			dataType: 'json',
-			method: 'GET',
-			success: function (data) {
-				that.setData({
-					good:data.data
-				})
-			}
-		})
 
 		//商品分类
 		wx.request({
@@ -120,144 +100,297 @@ Page({
 				})
 			}
 		})
-		//拼团商品
-		wx.request({
-      url: app.globalData.http + '/mpa/groupon_goods?per_page=3',
-			header: {
-				'Api-Ext': app.globalData.apiExt
-			},
-			dataType: 'json',
-			method: 'GET',
-			success: function (data) {
-				if (data.statusCode == 200) {
-					if (data.data && data.data.length>0){
-						that.setData({
-							groupGoods: data.data
-						})
+		this.getNormalData()
+		this.getGroupData()
+			.then(() => this.getRecommendData())
+			.then(() => this.getSpecialData())
+	},
+	// 获取商品列表
+	getNormalData: function (params) {
+		let that = this, page = this.data.currentPage;
+		return new Promise((resolve, reject) => {
+			wx.request({
+				url: app.globalData.http + '/mpa/goods/search',
+				header: {
+					'Api-Ext': app.globalData.apiExt
+				},
+				data: {
+					page: page
+				},
+				dataType: 'json',
+				method: 'GET',
+				success: function (data) {
+					if (data.statusCode >= 200 && data.statusCode < 300) {
+						if (params === 'isConcat' && data.data.length > 0) {
+							let tempArr = that.data.good
+							let newArr = tempArr.concat(data.data)
+							that.setData({
+								good: newArr
+							})
+						} else if (params === 'isConcat' &&  data.data.length == 0) {
+							let newPage = that.data.currentPage
+							newPage--
+							that.setData({
+								currentPage: newPage
+							})
+						} else {
+							that.setData({
+								good:data.data
+							})
+						}
+						resolve()
 					} else {
-            that.setData({
-              groupGoods: []
-            })
-          }
-				}
-			}
-		})
-		//获取推荐商品列表
-		wx.request({
-			url: app.globalData.http + '/mpa/goods/recommend?page=0&per_page=7',
-			method: 'GET',
-			header:{
-				'Api-Ext': app.globalData.apiExt
-			},
-			success(res) {
-				var code = res.statusCode.toString()
-				if (code.indexOf('20')>-1) {
-					//截取第一件商品
-					let firstGood = res.data.splice(0, 1);
-					if (firstGood.length>0){
-						that.setData({
-							recommend_first: firstGood,
-							recommend_goods: res.data,
-							recommend: 1
-						})
-					}else{
-						that.setData({
-							recommend_first: [],
-							recommend_goods:[],
-							recommend: 2
-						})
+						reject()
 					}
+				},
+				fail: function (data) {
+					reject()
 				}
-			},
-			fail: function (res) {
-				console.log(res)
-			}
-		})
-		//获取特价商品列表
-		wx.request({
-			url: app.globalData.http + '/mpa/goods/special?page=0&per_page=6',
-			method: 'GET',
-			header:{
-				'Api-Ext':app.globalData.apiExt
-			},
-			success(res) {
-				if (res.data.length>0) {
-					that.setData({
-						special_goods: res.data,
-						special:1
-					})
-				}else{
-					that.setData({
-						special_goods:[],
-						special: 2
-					})
-				}
-			},
-			fail: function (res) {
-				console.log(res)
-			}
+			})
 		})
 	},
-  //一级分类滚动
-  scrollCategory:function(e){
-    //宽度
-    var scrollWidth = parseInt(e.detail.scrollWidth)
-    //滚动的距离
-    var scrollLeft = parseInt(e.detail.scrollLeft)
-    //屏幕的宽度
-    var width = parseInt(this.data.winWidth)
-    //剩余的分类
-    var remain = parseInt(this.data.remain)
-    var cur = Math.floor(scrollLeft / width)
-    var cateNum = Math.floor(scrollWidth / width)
-    if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain-1) * width/5)-20) {
-      cur++
-      this.setData({
-        current: cur
-      })
-    }else{
-      this.setData({
-        current: cur
-      })
-    }
-  },
+	getGroupData: function (params) {
+		let that = this, page = this.data.currentPage;
+		return new Promise((resolve, reject) => {
+			wx.request({
+				url: app.globalData.http + '/mpa/groupon_goods',
+				header: {
+					'Api-Ext': app.globalData.apiExt
+				},
+				data: {
+					page: page
+				},
+				dataType: 'json',
+				method: 'GET',
+				success: function (data) {
+					if (data.statusCode >= 200 && data.statusCode < 300) {
+						if (data.data && data.data.length > 0 && params === 'isConcat') {
+							let tempArr = that.data.tabSwiperArr;
+							tempArr.map(item => {
+								if (item.type === 1) {
+									item.data = item.data.concat(data.data)
+								}
+								return item
+							});
+							that.setData({
+								tabSwiperArr: tempArr
+							})
+						} else if (data.data && params === 'isConcat') {
+							let newPage = that.data.currentPage
+							newPage--
+							that.setData({
+								currentPage: newPage
+							})
+						} else if (data.data && data.data.length > 0) {
+							let tempArr = []
+							tempArr.push({
+								type: 1,
+								label: '超值拼团',
+								data: data.data
+							})
+							that.setData({
+								tabSwiperArr: tempArr
+							})
+						}
+						resolve()
+					} else {
+						reject()
+					}
+				},
+				fail: function (res) {
+					reject()
+				},
+			})
+		})
+	},
+	getRecommendData: function (params) {
+		let that = this, page = this.data.currentPage;		
+		return new Promise((resolve, reject) => {
+			wx.request({
+				url: app.globalData.http + '/mpa/goods/recommend',
+				method: 'GET',
+				header:{
+					'Api-Ext': app.globalData.apiExt
+				},
+				data: {
+					page: page
+				},
+				success(res) {
+					var code = res.statusCode.toString()
+					if (code.indexOf('20')>-1) {
+						if (res.data.length > 0 && params === 'isConcat') {
+							let tempArr = that.data.tabSwiperArr;
+							tempArr.map(item => {
+								if (item.type === 2) {
+									item.data = item.data.concat(data.data)									
+								}
+								return item
+							});
+							that.setData({
+								tabSwiperArr: tempArr
+							})
+						} else if (params === 'isConcat') {
+							let newPage = that.data.currentPage
+							newPage--
+							that.setData({
+								currentPage: newPage
+							})
+						} else if (res.data.length > 0) {
+							let tempArr = that.data.tabSwiperArr, hasCurrentData = false
+							for (let i = 0, leng = tempArr.length; i < leng; i++) {
+								if (tempArr[i].type == 2) {
+									hasCurrentData = true
+								}
+							}
+							if (tempArr.length == 0 || !hasCurrentData) {
+								tempArr.push({
+									type: 2,
+									label: '好物推荐',
+									data: res.data
+								})
+							}
+							that.setData({
+								tabSwiperArr: tempArr,
+							})
+						}
+						resolve()
+					} else {
+						reject()
+					}
+				},
+				fail: function (res) {
+					reject()
+				},
+			})
+		})
+	},
+	getSpecialData: function (params) {
+		let that = this, page = this.data.currentPage;		
+		return new Promise((resolve, reject) => {
+			wx.request({
+				url: app.globalData.http + '/mpa/goods/special',
+				method: 'GET',
+				header:{
+					'Api-Ext':app.globalData.apiExt
+				},
+				data: {
+					page: page
+				},
+				success(res) {
+					if (res.statusCode >= 200 && res.statusCode < 300) {
+						if (res.data.length >0 && params === 'isConcat') {
+							let tempArr = that.data.tabSwiperArr;
+							tempArr.map(item => {
+								if (item.type === 3) {
+									item.data = item.data.concat(data.data)
+								}
+								return item
+							});
+							that.setData({
+								tabSwiperArr: tempArr
+							})
+						} else if (params === 'isConcat') {
+							let newPage = that.data.currentPage
+							newPage--
+							that.setData({
+								currentPage: newPage
+							})
+						} else if (res.data.length > 0) {
+							let tempArr = that.data.tabSwiperArr, hasCurrentData = false
+							for (let i = 0, leng = tempArr.length; i < leng; i++) {
+								if (tempArr[i].type == 3) {
+									hasCurrentData = true
+								}
+							}
+							if (tempArr.length == 0 || !hasCurrentData) {
+								tempArr.push({
+									type: 3,
+									label: '精选特价',
+									data: res.data
+								})
+							}
+							that.setData({
+								tabSwiperArr: tempArr,
+							})
+						}
+						resolve()
+					} else {
+						reject()
+					}
+				},
+				fail: function (res) {
+					reject()
+				},
+			})
+		})
+	},
+	//一级分类滚动
+	scrollCategory:function(e){
+		//宽度
+		var scrollWidth = parseInt(e.detail.scrollWidth)
+		//滚动的距离
+		var scrollLeft = parseInt(e.detail.scrollLeft)
+		//屏幕的宽度
+		var width = parseInt(this.data.winWidth)
+		//剩余的分类
+		var remain = parseInt(this.data.remain)
+		var cur = Math.floor(scrollLeft / width)
+		var cateNum = Math.floor(scrollWidth / width)
+		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain-1) * width/5)-20) {
+			cur++
+			this.setData({
+				current: cur
+			})
+		}else{
+			this.setData({
+				current: cur
+			})
+		}
+	},
+	// 切换tab
+	onChangeTab: function (e) {
+		this.setData({
+			currentTab: e.currentTarget.dataset.value,
+			currentPage: 0
+		})
+	},
+	onChangeSwiperItem: function (e) {
+		if (e.detail.source === 'touch') {
+			this.setData({
+				currentTab: e.detail.current
+			})
+		}
+	},
 	//跳转商品详情页
 	bindDetail(e){
-    wx.navigateTo({
-      url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id,
-    })
+		wx.navigateTo({
+			url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id,
+		})
 	},
-  //定义分享转发
-  onShareAppMessage: function (res) {
-    if (res.from === "button") {
-    }
-    if (this.data.description.share_logo_url){
-      var url = this.data.image + this.data.description.share_logo_url
-    }else{
-      var url = this.data.image + this.data.description.logo_url
-    }
-    return {
-      title: this.data.description.share_text,
-      path: "/pages/index/index",
-      imageUrl: url,
-      success(res) {
-      }
-    }
-  },
-  // 点击分类跳转分类页面
+	//定义分享转发
+	onShareAppMessage: function (res) {
+		if (res.from === "button") {
+		}
+		if (this.data.description.share_logo_url){
+			var url = this.data.image + this.data.description.share_logo_url
+		}else{
+			var url = this.data.image + this.data.description.logo_url
+		}
+		return {
+			title: this.data.description.share_text,
+			path: "/pages/index/index",
+			imageUrl: url,
+			success(res) {
+			}
+		}
+	},
+	// 点击分类跳转分类页面
 	switchCate(e){
 		//当前点击索引,保存到globalData
-    var idx = e.currentTarget.dataset.idx;
-    app.globalData.classIdx =idx
-    wx.switchTab({
-      url: '/pages/category/category',
-    })
-	},
-	//查看更多点击事件
-	showMore(e){
-		var path = e.currentTarget.dataset.type;
-		wx.navigateTo({
-			url: '/pages/'+path+"/"+path,
+		var idx = e.currentTarget.dataset.idx;
+		app.globalData.classIdx =idx
+		wx.switchTab({
+			url: '/pages/category/category',
 		})
 	},
 	//点击跳转到新页面
@@ -267,4 +400,56 @@ Page({
 			url: '/pages'+path,
 		})
 	},
+	onPageScroll: function () {
+		const that = this
+		const query = wx.createSelectorQuery()
+		query.select('#marketing-tab').boundingClientRect()
+		query.selectViewport().scrollOffset()
+		query.exec(function (res) {
+			if (res[0] != null) {
+				if(res[0].top <= 0) {
+					that.setData({
+						tabScrollTop: true
+					})
+				} else {
+					that.setData({
+						tabScrollTop: false
+					})
+				}
+			}
+		})
+	},
+	onReachBottom: function (e) {
+		wx.showLoading({
+			title: '加载中',
+		})
+		let newPage = this.data.currentPage
+		newPage++
+		this.setData({
+			currentPage: newPage
+		})
+		let currentTab = this.data.currentTab, tabSwiperArr = this.data.tabSwiperArr;
+		if (currentTab == 0 && tabSwiperArr.length > 1) {
+			this.getGroupData('isConcat').then(() => wx.hideLoading())
+		} else if (currentTab == 0 && tabSwiperArr.length === 1) {
+			switch (tabSwiperArr[0].type) {
+				case 1:
+					this.getGroupData('isConcat').then(() => wx.hideLoading())
+					break
+				case 2:
+					this.getRecommendData('isConcat').then(() => wx.hideLoading())
+					break
+				case 3:
+					this.getSpecialData('isConcat').then(() => wx.hideLoading())
+					break
+				default:
+			}
+		} else if (currentTab == 0 && tabSwiperArr.length === 0) {
+			this.getNormalData('isConcat').then(() => wx.hideLoading())
+		} else if (currentTab == 1) {
+			this.getRecommendData('isConcat').then(() => wx.hideLoading())
+		} else if (currentTab == 2) {
+			this.getSpecialData('isConcat').then(() => wx.hideLoading())
+		}
+	}
 })

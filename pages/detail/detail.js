@@ -47,7 +47,6 @@
       goodPrice: 0,
       goodUrl: "",
       imgs: {},
-      description: '',
       content: '',
       //是否又规格
       isSpec: '',
@@ -60,15 +59,15 @@
       clickGroupId: '',
       formId: '',
       group_id: '',
-      // 是否分享出去的页面
-      isSharePage: false
     },
     // 滑动商品图片
     changeCurrent: function(e) {
-      var cur = e.detail.current
-      this.setData({
-        current: cur
-      })
+      if (e.detail.source === 'touch' || e.detail.source === 'autoplay') {
+        var cur = e.detail.current
+        this.setData({
+          current: cur
+        })
+      }
     },
     // 阻止选择规格事件冒泡
     preventDefault () {},
@@ -203,7 +202,7 @@
                           icon: 'none',
                           duration: 1000
                         })
-                      } else {
+                      } else if (code.indexOf('20') > -1) {
                         wx.showToast({
                           title: '加入购物车成功',
                           icon: "success"
@@ -244,7 +243,15 @@
                     } else {
                       for (var i = 0; i < local.length; i++) {
                         if (local[i].id == good.goods_sku_id) {
-                          local[i].count = parseInt(local[i].count) + 1
+                          if (parseInt(local[i].count) >= good.stock_count) {
+                            wx.showToast({
+                              title: '库存不足',
+                              title: 'none'
+                            })
+                            return false
+                          } else {
+                            local[i].count = parseInt(local[i].count) + 1
+                          }
                         }
                       }
                     }
@@ -535,7 +542,8 @@
                   that.setData({
                     num: 1,
                     minusStatus: 'disabled',
-                    minusStatuss: 'normal'
+                    minusStatuss: 'normal',
+                    good: {}
                   })
                   wx.request({
                     url: app.globalData.http + '/mpa/cart/count', 
@@ -587,6 +595,13 @@
               } else {
                 for (var i = 0; i < local.length; i++) {
                   if (local[i].id == goods.goods_sku_id) {
+                    if ((parseInt(local[i].count) + goods.count) > goods.stock_count) {
+                      wx.showToast({
+                        title: '库存不足',
+                        icon: 'none'
+                      })
+                      return false
+                    }
                     local[i].count = parseInt(local[i].count) + goods.count
                   }
                 }
@@ -612,7 +627,8 @@
                 cartNum: 1,
                 num: 1,
                 minusStatus: 'disabled',
-                minusStatuss: 'normal'
+                minusStatuss: 'normal',
+                good: {}
               })
             }
             wx.showToast({
@@ -795,7 +811,11 @@
         url: '/pages/cart/cart',
       })
     },
-
+    goIndex () {
+      wx.switchTab({
+        url: '/pages/index/index',
+      })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -803,9 +823,6 @@
       var that = this
       //获取购物车数量
       var goodlist = wx.getStorageSync('good')
-      that.setData({
-        userId: app.globalData.userId
-      })
       if (app.globalData.userId) {
         wx.request({
           url: app.globalData.http + '/mpa/cart/count', 
@@ -841,192 +858,171 @@
       } else if (options.scene_id) {
         app.globalData.sceneID = options.scene_id
       }
-
-      // 如果为分享的页面
-      if ((app.globalData.options.path == 'pages/detail/detail' || app.globalData.options.path == 'pages/detail/detail.html') && (app.globalData.options.scene == 1007 || app.globalData.options.scene == 1008 || app.globalData.options.scene == 1044 || options.scene || options.scene_id)) {
-        //获取店家描述数据
+      app.login().then(() => {
+        this.setData({
+          userId: app.globalData.userId
+        })
+        //获取商品规格
         wx.request({
-          url: app.globalData.http + '/mpa/index',
-          method: 'GET',
+          url: app.globalData.http + '/mpa/goods/' + options.id + '/specs',
+          header: {
+            'Api-Ext': app.globalData.apiExt
+          },
+          success(data) {
+            if (Object.prototype.toString.call(data.data) == '[object Array]') {
+              that.setData({
+                isSpec: false
+              })
+            } else {
+              var specs = []
+              var specType = []
+              for (var key in data.data) {
+                specs.push(data.data[key])
+                let specArr = [];
+                for (let i = 0, len = data.data[key].propertis.length; i < len; i++ ) {
+                  let specObj = {
+                    ite: '',
+                    optional: false
+                  };
+                  specObj.ite = data.data[key].propertis[i]
+                  specArr.push(specObj)
+                }
+                data.data[key].propertis = specArr
+                specType.push(key)
+              }
+              var chooseSpec = []
+              for (var i = 0; i < specType.length; i++) {
+                chooseSpec.push(-1)
+              }
+              that.setData({
+                spec: specs,
+                specType: specType,
+                chooseSpec: chooseSpec,
+                isSpec: true
+              })
+            }
+          }
+        })
+
+        // 获取商品规格详情列表
+        wx.request({
+          url: app.globalData.http + '/mpa/goods/' + options.id + '/skus',
+          method: "GET",
+          header: {
+            'Api-Ext': app.globalData.apiExt
+          },
+          success (res) {
+            that.setData({
+              skus: res.data
+            })
+          }
+        })
+
+        //获取商品详情
+        wx.request({
+          url: app.globalData.http + '/mpa/goods/' + options.id,
           header: {
             'Api-Ext': app.globalData.apiExt
           },
           success(res) {
-            app.globalData.mobile = res.data.customer_service_mobile
-            app.globalData.logo_url = res.data.logo_url
-            app.globalData.name = res.data.name
-            that.setData({
-              description: res.data,
-              isSharePage: true
-            })
-            app.globalData.keyword = res.data.search_default_text
-          },
-          fail: function (res) {
-            console.log(res)
-          }
-        })
-      }
-
-      //获取商品规格
-      wx.request({
-        url: app.globalData.http + '/mpa/goods/' + options.id + '/specs',
-        header: {
-          'Api-Ext': app.globalData.apiExt
-        },
-        success(data) {
-          if (Object.prototype.toString.call(data.data) == '[object Array]') {
-            that.setData({
-              isSpec: false
-            })
-          } else {
-            var specs = []
-            var specType = []
-            for (var key in data.data) {
-              specs.push(data.data[key])
-              let specArr = [];
-              for (let i = 0, len = data.data[key].propertis.length; i < len; i++ ) {
-                let specObj = {
-                  ite: '',
-                  optional: false
-                };
-                specObj.ite = data.data[key].propertis[i]
-                specArr.push(specObj)
-              }
-              data.data[key].propertis = specArr
-              specType.push(key)
-            }
-            var chooseSpec = []
-            for (var i = 0; i < specType.length; i++) {
-              chooseSpec.push(-1)
-            }
-            that.setData({
-              spec: specs,
-              specType: specType,
-              chooseSpec: chooseSpec,
-              isSpec: true
-            })
-          }
-        }
-      })
-
-      // 获取商品规格详情列表
-      wx.request({
-        url: app.globalData.http + '/mpa/goods/' + options.id + '/skus',
-        method: "GET",
-        header: {
-          'Api-Ext': app.globalData.apiExt
-        },
-        success (res) {
-          that.setData({
-            skus: res.data
-          })
-        }
-      })
-
-      //获取商品详情
-      wx.request({
-        url: app.globalData.http + '/mpa/goods/' + options.id,
-        header: {
-          'Api-Ext': app.globalData.apiExt
-        },
-        success(res) {
-          wx.hideLoading();
-          if (JSON.stringify(res.data) != '{}' && (res.statusCode >= 200 && res.statusCode < 300)) {
-            that.setData({
-              goods: res.data,
-              goodUrl: res.data.cover_url,
-              goodPrice: res.data.price,
-              imgs: res.data.images,
-              name: res.data.name,
-              show: 1,
-              status: res.data.status,
-              hasUserInfo: app.globalData.user_info.nick_name || app.globalData.user_info.nickName ? true : false
-            })
-            if (res.data.detail) {
+            wx.hideLoading();
+            if (JSON.stringify(res.data) != '{}' && (res.statusCode >= 200 && res.statusCode < 300)) {
               that.setData({
-                content: res.data.detail.content.replace(/\<img style="max-width:750.0px;"/gi, '<img style="width:100%;height:auto" ').replace(/750.0px/gi, '100%').replace(/width="\d+"/gi, '').replace(/height="\d+"/gi, '').replace(/\s+id/gi, ' class').replace(/\<img/gi, '<img style="width:100%;height:auto" ').replace(/<p/gi, '<p style="font-size:12px;line-height:16px;"'),
+                goods: res.data,
+                goodUrl: res.data.cover_url,
+                goodPrice: res.data.price,
+                imgs: res.data.images,
+                name: res.data.name,
+                show: 1,
+                status: res.data.status,
+                hasUserInfo: app.globalData.user_info.nick_name || app.globalData.user_info.nickName ? true : false
               })
-            }
+              if (res.data.detail) {
+                that.setData({
+                  content: res.data.detail.content.replace(/\<img style="max-width:750.0px;"/gi, '<img style="width:100%;height:auto" ').replace(/750.0px/gi, '100%').replace(/width="\d+"/gi, '').replace(/height="\d+"/gi, '').replace(/\s+id/gi, ' class').replace(/\<img/gi, '<img style="width:100%;height:auto" ').replace(/<p/gi, '<p style="font-size:12px;line-height:16px;"'),
+                })
+              }
 
 
-            // 如果为拼团详情，请求商品拼团信息详情
-            if (res.data.activity_type == 1) {
-              wx.request({
-                url: app.globalData.http + '/mpa/goods/' + res.data.id + '/groupon_goods',
-                header: {
-                  'Api-Ext': app.globalData.apiExt
-                },
-                success(res) {
-                  that.setData({
-                    groupInfo: res.data
-                  })
-                  countDown(that, res.data.count_down, that.data.timeStampArr, options.id)
-                }
-              })
-
-              // 该商品的拼团规格详情
-              wx.request({
-                url: app.globalData.http + '/mpa/goods/' + that.data.goods.id + '/groupon_goods/skus',
-                header: {
-                  'Api-Ext': app.globalData.apiExt
-                },
-                success (res) {
-                  that.setData({
-                    groupSkus: res.data
-                  })
-                }
-              })
-
-              // 该商品的所有拼团
-              wx.request({
-                url: app.globalData.http + '/mpa/goods/' + res.data.id + '/groupons',
-                header: {
-                  'Api-Ext': app.globalData.apiExt,
-                  "Api-Key": app.globalData.apiKey,
-                  "Api-Secret": app.globalData.apiSecret,
-                },
-                data: {
-                  per_page: 3,
-                  page: 0
-                },
-                success(res) {
-                  if (res.statusCode == 200) {
-                    // 处理返回数据
-                    let handleArr = res.data;
-                    for (let i = 0; i < handleArr.length; i ++) {
-                      handleArr[i].timeStampArr = []
-                    }
-                    // 处理完成后把data赋值给groupMembers
+              // 如果为拼团详情，请求商品拼团信息详情
+              if (res.data.activity_type == 1) {
+                wx.request({
+                  url: app.globalData.http + '/mpa/goods/' + res.data.id + '/groupon_goods',
+                  header: {
+                    'Api-Ext': app.globalData.apiExt
+                  },
+                  success(res) {
                     that.setData({
-                      groupMembers: handleArr
+                      groupInfo: res.data
                     })
-                    // 给每条数据加上倒计时定时器
-                    that.countDownList(that.data.groupMembers)
-                  } else {
-                    wx.showToast({
-                      title: '拼团信息加载失败',
-                      icon: 'none',
-                      duration: 2000
+                    countDown(that, res.data.count_down, that.data.timeStampArr, options.id)
+                  }
+                })
+
+                // 该商品的拼团规格详情
+                wx.request({
+                  url: app.globalData.http + '/mpa/goods/' + that.data.goods.id + '/groupon_goods/skus',
+                  header: {
+                    'Api-Ext': app.globalData.apiExt
+                  },
+                  success (res) {
+                    that.setData({
+                      groupSkus: res.data
                     })
                   }
-                }
+                })
+
+                // 该商品的所有拼团
+                wx.request({
+                  url: app.globalData.http + '/mpa/goods/' + res.data.id + '/groupons',
+                  header: {
+                    'Api-Ext': app.globalData.apiExt,
+                    "Api-Key": app.globalData.apiKey,
+                    "Api-Secret": app.globalData.apiSecret,
+                  },
+                  data: {
+                    per_page: 3,
+                    page: 0
+                  },
+                  success(res) {
+                    if (res.statusCode == 200) {
+                      // 处理返回数据
+                      let handleArr = res.data;
+                      for (let i = 0; i < handleArr.length; i ++) {
+                        handleArr[i].timeStampArr = []
+                      }
+                      // 处理完成后把data赋值给groupMembers
+                      that.setData({
+                        groupMembers: handleArr
+                      })
+                      // 给每条数据加上倒计时定时器
+                      that.countDownList(that.data.groupMembers)
+                    } else {
+                      wx.showToast({
+                        title: '拼团信息加载失败',
+                        icon: 'none',
+                        duration: 2000
+                      })
+                    }
+                  }
+                })
+              }
+            } else {
+              wx.showToast({
+                title: '该商品已找不到',
+                icon: 'none',
+                duration: 2000
               })
             }
-          } else {
+          },
+          fail: function() {
             wx.showToast({
-              title: '该商品已找不到',
-              icon: 'none',
-              duration: 2000
+              title: '暂无网络',
+              icon: 'none'
             })
+            wx.hideLoading();
           }
-        },
-        fail: function() {
-          wx.showToast({
-            title: '暂无网络',
-            icon: 'none'
-          })
-          wx.hideLoading();
-        }
+        })
       })
     },
     // 图片点击放大
@@ -1050,51 +1046,51 @@
         if (that.data.groupMembers.length == 0) {
           return false
         }
-        setTime(i)
+		setTime(i)
 
         that.data.groupMembers[i].timer = setInterval(function () {
-          if (that.data.groupMembers.length == 0) {
-            return false
-          }
-          setTime(i, that.data.groupMembers[i].timer)
-          // 如果某一项倒计时结束
-          if (arr[i].count_down <= 0) {
+			if (that.data.groupMembers.length == 0) {
+				return false
+			}
+			setTime(i, that.data.groupMembers[i].timer)
+			// 如果某一项倒计时结束
+			if (arr[i].count_down <= 0) {
 
-            let list = JSON.parse(JSON.stringify(that.data.groupMembers));
-            list.splice(i, 1)
-            that.setData({
-              groupMembers: list
-            })
-            that.countDownList(that.data.groupMembers)
-          }
-        }, 1000);
+				let list = JSON.parse(JSON.stringify(that.data.groupMembers));
+				list.splice(i, 1)
+				that.setData({
+					groupMembers: list
+				})
+				that.countDownList(that.data.groupMembers)
+			}
+		}, 1000);
         
       }
 
-      function setTime(i, timer) {
-        var hour = 0,
-          minute = 0,
-          second = 0;//时间默认值
-          
-        if (that.data.groupMembers[i].count_down <= 0) {
-          clearInterval(timer);
-        } else {
-          hour = Math.floor(that.data.groupMembers[i].count_down / (60 * 60));
-          minute = Math.floor(that.data.groupMembers[i].count_down / 60) - (hour * 60);
-          second = Math.floor(that.data.groupMembers[i].count_down) - (hour * 60 * 60) - (minute * 60);
-        }
+		function setTime(i, timer) {
+			var hour = 0,
+			minute = 0,
+			second = 0;//时间默认值
+			
+			if (that.data.groupMembers[i].count_down <= 0) {
+				clearInterval(timer);
+			} else {
+				hour = Math.floor(that.data.groupMembers[i].count_down / (60 * 60));
+				minute = Math.floor(that.data.groupMembers[i].count_down / 60) - (hour * 60);
+				second = Math.floor(that.data.groupMembers[i].count_down) - (hour * 60 * 60) - (minute * 60);
+			}
 
-        if (hour <= 9) hour = '0' + hour;
-        if (minute <= 9) minute = '0' + minute;
-        if (second <= 9) second = '0' + second;
+			if (hour <= 9) hour = '0' + hour;
+			if (minute <= 9) minute = '0' + minute;
+			if (second <= 9) second = '0' + second;
 
-        let tA = 'groupMembers[' + i + '].timeStampArr'
-        that.setData({ [tA]: [hour, minute, second] })
+			let tA = 'groupMembers[' + i + '].timeStampArr'
+			that.setData({ [tA]: [hour, minute, second] })
 
-        // let limit = 'grouponData['+i+'].limit_at'
-        // that.setData({[limit]: --that.data.grouponData[i].limit_at})
-        that.data.groupMembers[i].count_down--;
-      }
+			// let limit = 'grouponData['+i+'].limit_at'
+			// that.setData({[limit]: --that.data.grouponData[i].limit_at})
+			that.data.groupMembers[i].count_down--;
+		}
     },
     // 获取用户信息
     getUserInfo: function (e) {

@@ -2,176 +2,196 @@
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
 
 <view wx:if="{{showPage}}">
-<view class="group_details_goods_box" wx:if="{{goodsData.goods}}" data-id="{{goodsData.goods.id}}" bind:tap="goDetail">
-	<view class="group_details_goods">
-		<image class="goods_img" src="{{image+goodsData.goods.cover_url}}"><image wx:if="{{remainingTime<=0}}" class="finished" src="{{image}}tab_over@2x.png"></image></image>
+	<view class="group_details_goods {{remainingTime<=0 ? 'details_goods_end' : ''}}" wx:if="{{goodsData.goods}}" data-id="{{goodsData.goods.id}}" bind:tap="goDetail">
+		<image class="goods_img" src="{{image+goodsData.goods.cover_url}}">
+			<view wx:if="{{remainingTime<=0}}" class="finished"></view>
+			<text wx:if="{{remainingTime<=0}}" class="finished_text">已结束</text>
+		</image>
 		<view class="goods_info">
-			<view class="goods_title">{{goodsData.goods.name}}</view>
-			<view class="spec" wx:if="{{puerchaseInfo.sku_description}}"><text>{{puerchaseInfo.sku_description}}</text></view>
+			<view>
+				<view class="goods_title">{{goodsData.goods.name}}</view>
+				<view class="spec">
+					<text wx:if="{{puerchaseInfo.sku_description}}">{{puerchaseInfo.sku_description}}</text>
+				</view>
+			</view>
 			<view class="goods_price_num">
-				<text class="goods_group_price" wx:if='{{purchased}}'><text>￥</text>{{filters.ptf(goodsData.join.price)}}</text>
-				<text class="goods_group_price" wx:else><text>￥</text>{{filters.ptf(goodsData.groupon_goods.price_low)}}</text>        
-				<text class="goods_original_price" wx:if="{{goodsData.join.origin_price}}">￥{{filters.ptf(goodsData.join.origin_price)}}</text>
-				<text class="goods_num" wx:if="{{puerchaseInfo.count}}">X{{puerchaseInfo.count}}</text>
+				<view>
+					<text class="goods_group_price" wx:if='{{purchased}}'><text>￥</text>{{filters.ptf(goodsData.join.price)}}</text>
+					<text class="goods_group_price" wx:else><text>￥</text>{{filters.ptf(goodsData.groupon_goods.price_low)}}</text>
+					<text class="goods_original_price" wx:if="{{goodsData.join.origin_price}}">￥{{filters.ptf(goodsData.join.origin_price)}}</text>
+				</view>
+				<text class="goods_num" wx:if="{{puerchaseInfo.count}}">x{{puerchaseInfo.count}}</text>
 			</view>
 		</view>
 	</view>
-</view>
 
-<view wx:if="{{remainingTime>0}}">
-	<view class="group_details_subject">
+	<view wx:if="{{remainingTime>0}}">
 		<view class="group_situation_box">
+			<view class="successful_collage_tips" wx:if="{{groupFull}}">拼团成功，该团已满！</view>
+			<view wx:else>
+				<view class="short">还差<text class="group_num">{{goodsData.remain_user_count}}人</text>{{purchased ? '成团，快去召唤小伙伴们吧' : '成团，就等你来成团啦'}}</view>
+				<view class="remaining_time">剩余 <text class="time_block">{{timeStampArr[1]}}</text><text>:</text><text class="time_block">{{timeStampArr[2]}}</text><text>:</text><text class="time_block">{{timeStampArr[3]}}</text> 结束</view>
+			</view>
 			<view class="user_list">
 				<view class="img_box {{index==0?'colonel':''}}" wx:if='{{!groupFull}}' wx:for="{{groupPerson}}" wx:key="index">
 					<image src="{{item.avatar_url}}"></image>
-					<text wx:if="{{item.role == 1}}">团长</text>
+					<image wx:if="{{item.role == 1}}" src="/imgs/icon_leader.png" class="avatar_leader" />
 				</view>
 				<view class="img_box" wx:if="{{!groupFull}}">
-					<image src="/imgs/groupPurchase/icon_default@2x.png"></image>
+					<view class="avatar_circle">
+						<image class="empty_avatar" src="/imgs/icon_invite@2x.png"></image>
+					</view>
 				</view>
 			</view>
-			<view class="successful_collage_tips" wx:if="{{groupFull}}">拼团成功，该团已满！</view>
-			<view wx:else>
-				<view class="short">还差<text class="group_num">{{goodsData.remain_user_count}}人</text>拼成</view>
-				<view class="remaining_time">剩余 <text class="time_block">{{timeStampArr[0]}}</text><text>:</text><text class="time_block">{{timeStampArr[1]}}</text><text>:</text><text class="time_block">{{timeStampArr[2]}}</text> 结束</view>
-			</view>
-      <form bindsubmit='submit' report-submit='true'>
-          <button class="invitation_btn" wx:if='{{!hasUserInfo}}' open-type="getUserInfo" bindgetuserinfo="getInfo">{{groupFull?'一键开团':'一键参团'}}</button>
-          <button class="invitation_btn" wx:elif='{{!userId}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNum">{{groupFull?'一键开团':'一键参团'}}</button>
-          <button class="invitation_btn" open-type="share" wx:elif="{{purchased && !groupFull}}">邀请好友拼单</button>
-          <!-- <button class="invitation_btn" form-type='submit' wx:elif="{{groupFull}}" data-flag='1'>一键开团</button> -->
-          <button class="invitation_btn" form-type='submit' wx:else data-detail='1' data-flag='{{groupFull ? 1 : 2}}'>{{groupFull?'一键开团':'一键参团'}}</button>
-      </form>
-			<view class="group_tips" wx:if="{{purchased && !groupFull}}">分享到很多的群和更多的好友，拼成率高达98%</view>
+			<form bindsubmit='submit' report-submit='true'>
+				<button class="invitation_btn" wx:if='{{!hasUserInfo}}' open-type="getUserInfo" bindgetuserinfo="getInfo">{{groupFull?'一键开团':'一键参团'}}</button>
+				<button class="invitation_btn" wx:elif='{{!userId}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNum">{{groupFull?'一键开团':'一键参团'}}</button>
+				<button class="invitation_btn" open-type="share" wx:elif="{{purchased && !groupFull}}">邀请好友拼团</button>
+				<!-- <button class="invitation_btn" form-type='submit' wx:elif="{{groupFull}}" data-flag='1'>一键开团</button> -->
+				<button class="invitation_btn" form-type='submit' wx:else data-detail='1' data-flag='{{groupFull ? 1 : 2}}'>{{groupFull?'一键开团':'一键参团'}}</button>
+			</form>
 		</view>
-	</view>
-	<view class="group_other_info">
-		<view class="group_full_tips column" wx:if="{{groupFull && groupMembers.length>0}}">
-			<text>以下小伙伴正在发起拼团，您可以直接参与：</text>
-		</view>
-		<view class='user_item column' wx:for='{{groupMembers}}' wx:key='index'>
-			<view class='user_info'>
-				<image src='{{item.avatar_url}}'></image>
-				<text>{{item.nick_name}}</text>
-			</view>
-			<view class='user_operation'>
-				<view class='user_prompt'>
-					<view class='prompt_texts'><text>还差</text><text class='red'>{{item.remain_user_count}}</text><text>人拼成</text></view>
-					<text class='rest_time'>剩余{{item.timeStampArr[0]}}:{{item.timeStampArr[1]}}:{{item.timeStampArr[2]}}</text>
-				</view>
-        <form bindsubmit='submit' report-submit='true'>
-          <button class='prompt_button' wx:if='{{!hasUserInfo}}' open-type="getUserInfo" bindgetuserinfo="getInfo">来参团</button>
-          <button class='prompt_button' wx:elif='{{!userId}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNum">来参团</button>
-          <button class='prompt_button' wx:else form-type='submit' data-groupid='{{item.id}}' data-flag='2'>来参团</button>
-        </form>
-			</view>
-		</view>
-    <view class='store' wx:if='{{isSharePage}}'>
-        <view>
-            <image src="{{image}}{{description.logo_url}}"></image>
-            <view>{{description.name}}</view>
-        </view>      
-        <navigator open-type='switchTab' hover-class='none'  url="/pages/index/index">
-        店铺看看
-        </navigator>
-    </view>
-		<view class="collage_notes column">
-				<text class="left">拼单须知</text>
-				<text class="right">
-					<text>好友拼单</text>
-					<text>人满发货</text>
-					<text>人不满退款</text>
-				</text>
-		</view>
-		<view class="collage_palying column">
-			<text class="left">拼单玩法</text>
-			<navigator class="right" hover-class="none" url="../collageRules/collageRules">查看规则 <image src="/imgs/right.png"></image></navigator>
-		</view>
-		<view class="play_steps">
-			<view class="first_step">
-				<image src="/imgs/groupPurchase/icon-zhifu@2x.png"></image>
-				<view>支付</view>
-				<view>开团/参团</view>
-			</view>
-			<image class="arrow_right" src="/imgs/right.png"></image>
-			<view class="second_step">
-				<image src="/imgs/groupPurchase/icon_yaoqing@2x.png"></image>
-				<view>邀请</view>
-				<view>好友参团</view>
-			</view>
-			<image class="arrow_right" src="/imgs/right.png"></image>
-			<view class="third_step">
-				<image src="/imgs/groupPurchase/icon_wuliu@2x.png"></image>
-				<view>成团立即发货</view>
-				<view>逾期未成团自动退款</view>
-			</view>
-		</view>
-	</view>
-</view>
-
-<view class="group_finish" wx:elif="{{goodsData && groupGoodsList.length>0}}">
-	<view class="more_group_box">
-		<view class="more_group">
-			<text>更多拼团</text>
-			<navigator class="show_more_group" url="../groupPurchaseList/groupPurchaseList" hover-class="none">查看更多 <image src="{{image}}right.png?imageslim"></image></navigator>
-		</view>
-		<!--拼团商品列表-->
-		<view class='group_li' wx:for="{{groupGoodsList}}" wx:key='{{index}}' data-id='{{item.goods.id}}' bindtap='goDetail'>
-			<image class='group_li_img' src='{{image+item.goods.cover_url}}'></image>
-			<view class='group_li_info'>
-				<view class='group_li_title'>{{item.goods.name}}</view>
-				<view class="group_user" wx:if="{{item.groupons.length>0}}">
-					<image wx:for="{{item.groupons}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2" src="{{item2.avatar_url}}"></image>
-					<view wx:if="{{item.members.length>0}}" class="group_user_num"><text class='nick_name'>{{item.members[0].nick_name}}</text>等<text class='mark_red'>{{item.groupon_user_count}}</text>人正在拼团</view>
-				</view>
-				<view class="regiment">已团<text class="group_num">{{item.sales_count}}</text>件</view>
-				<view class="price_box">
-					<text class="group_purchase_price"><text>￥</text>{{filters.ptf(item.price_low)}}</text>
-					<text class="original_price">￥{{filters.ptf(item.origin_price_low)}}</text>
-				</view>
-				<view class="go_group">马上团</view>
-			</view>
-		</view>
-	</view>
-</view>
-
-<!-- 规格选择  -->
-<view class='mask' wx:if='{{chooseModal}}' bindtap='closeTips'></view>
-<view class='choose' wx:if='{{chooseModal}}' animation="{{animationData}}">
-	<view class='choose_price'>
-		<image src='{{image}}{{goodUrl}}'></image>
-		<view class='desc'>
-			<text>￥{{filters.toFix(goodPrice/100)}}</text>
-			<text wx:if='{{stockShown == 1}}'>库存：{{good.stock_count}}</text>
-			<view>请选择 <text  wx:for='{{spec}}' wx:key='{{index}}'>{{item.name}}</text></view>
-		</view>
-		<image src='{{image}}classification_btn_close@2x.png' data-id='0' bindtap='closeTips'></image>
-	</view>
-
-	<view class='color_size'>
-    <view class='choose_color' wx:for='{{spec}}' wx:for-index="id" wx:key='{{id}}'> 
-      <text class='title'>{{item.name}}</text>
-      <view class='color'>
-      <block wx:for='{{item.propertis}}' wx:for-item='items' wx:key='{{index}}'>
-        <label class='select {{!items.optional ? "disabled" : (index == chooseSpec[id]? "active" : "")}}' data-index="{{index}}" data-id="{{id}}" data-disabled='{{items.optional}}' bindtap='chooseSpecs'>
-          {{items.ite}}
-        </label>
-        </block>
-      </view>
-    </view>
-  </view>
-	
-	<view class='count'>
-			<text class='number'>数量</text>
+		<view class='store' wx:if='{{isSharePage}}'>
 			<view>
-				<text class='{{minusStatus}}' bindtap='bindMinus'>-</text>
-				<text class='num'>{{num}}</text>
-				<text class='add' class='{{minusStatuss}}' bindtap='bindPlus'>+</text>
+				<image src="{{image}}{{description.logo_url}}"></image>
+				<view>{{description.name}}</view>
 			</view>
+			<navigator open-type='switchTab' hover-class='none'  url="/pages/index/index">
+			进入店铺
+			</navigator>
+		</view>
+		<view wx:if="{{groupFull && groupMembers.length>0}}" class="more_groupons">
+			<view class="group_show_more">
+				<text>以下小伙伴正在发起拼团，您可以直接参与：</text>
+			</view>
+			<view class='header_users'>
+				<view class='user_item' wx:for='{{groupMembers}}' wx:key='index'>
+					<view class='user_info'>
+						<image src='{{item.avatar_url}}'></image>
+						<text>{{item.nick_name}}</text>
+					</view>
+					<view class='user_operation'>
+						<view class='user_prompt'>
+							<view class='prompt_texts'><text>还差</text><text class='red'>{{item.remain_user_count}}</text><text>人拼成</text></view>
+							<text class='rest_time'>剩余{{item.timeStampArr[0]}}:{{item.timeStampArr[1]}}:{{item.timeStampArr[2]}}</text>
+						</view>
+						<form bindsubmit='submit' report-submit='true'>
+							<button class='prompt_button' wx:if='{{!hasUserInfo}}' open-type="getUserInfo" bindgetuserinfo="getInfo">来参团</button>
+							<button class='prompt_button' wx:elif='{{!userId}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNum">来参团</button>
+							<button class='prompt_button' wx:else form-type='submit' data-groupid='{{item.id}}' data-flag='2'>来参团</button>
+						</form>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="group_other_info">
+			<view class="collage_notes column">
+				<view>拼团须知</view>
+				<view>
+					<text>好友拼单</text>
+					<text> · 人满发货</text>
+					<text> · 逾期退款</text>
+				</view>
+			</view>
+			<view class="rule_container">
+				<navigator hover-class="none" url="/pages/groupPurchase/collageRules/collageRules" class="collage_palying column">
+					<text class="left">拼团规则</text>
+					<image src="/imgs/icon_arrow.png"></image>
+				</navigator>
+				<view class='rules_step'>
+					<view class='step_item'>
+						<image src='/imgs/icon_detail1_discount.png'></image>
+						<view class='step_text'>
+							<text>下单支付</text>
+							<text>开团/参团</text>
+						</view>
+					</view>
+					<view class="dashed_line"></view>
+					<view class='step_item'>
+						<image src='/imgs/icon_detail2_friends.png'></image>
+						<view class='step_text'>
+							<text>邀请好友</text>
+							<text>一起参团</text>
+						</view>
+					</view>
+					<view class="dashed_line"></view>
+					<view class='step_item'>
+						<image src='/imgs/icon_detail3_trans.png'></image>
+						<view class='step_text'>
+							<text>成团发货</text>
+							<text>逾期退款</text>
+						</view>
+					</view> 
+				</view>
+			</view>
+		</view>
 	</view>
-	
-	<button wx:if="{{flag==2 && !userId}}" class='confirm'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNum">确认 </button> 
-	<view  wx:else class='confirm' data-id='1' bindtap='closeModal'>确认</view>
-</view>
+
+	<view class="group_finish" wx:elif="{{goodsData && groupGoodsList.length>0}}">
+		<view class="more_group_box">
+			<view class="more_group">- 更多拼团 -</view>
+			<block wx:for="{{groupGoodsList}}" wx:key="ind" wx:for-item="ite">
+				<view class="swiper_box" data-id='{{ite.goods.id}}' bindtap='goDetail'>
+					<image src='{{image}}{{ite.goods.cover_url}}' mode="aspectFill"/>
+					<view class='swiper_box_item'>
+						<view class='title'>{{ite.goods.name}}</view>
+						<view class='info'>
+							<text>拼团中 | </text>
+							<text>已团</text>
+							<text class='info_count'>{{ite.sales_count}}</text>
+							<text>件</text>
+						</view>
+						<view class="price">
+							<view class='price_text'>
+								<text class='display_price'><text>￥</text>{{filters.ptf(ite.price_low)}}</text>
+								<text class="original_price">￥{{filters.ptf(ite.origin_price_low)}}</text>
+							</view>
+							<view class='buy_button'>马上抢</view>
+						</view>
+					</view>
+				</view>
+			</block>
+
+		</view>
+	</view>
+
+	<!-- 规格选择  -->
+	<view class='mask' wx:if='{{chooseModal}}' bindtap='closeTips'></view>
+	<view class='choose' wx:if='{{chooseModal}}' animation="{{animationData}}">
+		<view class='choose_price'>
+			<image src='{{image}}{{goodUrl}}'></image>
+			<view class='desc'>
+				<text>￥{{filters.toFix(goodPrice/100)}}</text>
+				<text wx:if='{{stockShown == 1}}'>库存：{{good.stock_count}}</text>
+				<view>请选择 <text  wx:for='{{spec}}' wx:key='{{index}}'>{{item.name}}</text></view>
+			</view>
+			<image src='/imgs/icon_close1.png' data-id='0' bindtap='closeTips'></image>
+		</view>
+
+		<view class='color_size'>
+		<view class='choose_color' wx:for='{{spec}}' wx:for-index="id" wx:key='{{id}}'> 
+		<text class='title'>{{item.name}}</text>
+		<view class='color'>
+		<block wx:for='{{item.propertis}}' wx:for-item='items' wx:key='{{index}}'>
+			<label class='select {{!items.optional ? "disabled" : (index == chooseSpec[id]? "active" : "")}}' data-index="{{index}}" data-id="{{id}}" data-disabled='{{items.optional}}' bindtap='chooseSpecs'>
+			{{items.ite}}
+			</label>
+			</block>
+		</view>
+		</view>
+	</view>
+		
+		<view class='count'>
+				<text class='number'>数量</text>
+				<view>
+					<text class='{{minusStatus}}' bindtap='bindMinus'>-</text>
+					<text class='num'>{{num}}</text>
+					<text class='add' class='{{minusStatuss}}' bindtap='bindPlus'>+</text>
+				</view>
+		</view>
+		
+		<button wx:if="{{flag==2 && !userId}}" class='confirm'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNum">确认 </button> 
+		<view  wx:else class='confirm' data-id='1' bindtap='closeModal'>确认</view>
+	</view>
 
 </view>

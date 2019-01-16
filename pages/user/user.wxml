@@ -1,67 +1,96 @@
+<!-- 如果没有用户信息 -->
+<view wx:if='{{!hasUserInfo}}'>
+  <view class="userinfo-bg">
+    <image class="userinfo-bg-avatar" src='/imgs/me_background_off.png'></image>
+  </view>
   <view class="container">
-   <!-- <open-data type="userAvatarUrl"></open-data>
-  <open-data type="userNickName" lang="zh_CN"></open-data>  -->
-  <view class="userinfo">
-    <block wx:if='{{!hasUserInfo}}'>
-          <button  open-type="getUserInfo" bindgetuserinfo="getInfo"   hover-class='none'>
-              <image src='{{image}}userHead.png?imageslim'></image>
-               <label>点击头像获取信息</label> 
-        </button> 
-    </block>
-     <block wx:else='{{hasUserInfo}}'>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block> 
+    <view class="userinfo">
+      <block>
+          <button open-type="getUserInfo" bindgetuserinfo="getInfo" hover-class='none'>
+              <image class="userinfo-avatar"  src='/imgs/me_head0.png'></image>
+              <view class="userinfo-right">
+                <label>点击头像获取信息</label> 
+              </view>
+          </button> 
+      </block>
+    </view>
   </view>
 </view>
-<view class='bind_mobile' wx:if="{{!userId}}">
-  <view><image src='{{image}}icon-phone @2x.png'></image><text>找不到订单或优惠券，绑定手机试试</text></view>
-  <button open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>立即绑定</button>
+<!-- 如果有用户信息 -->
+<view wx:else='{{!!hasUserInfo}}'>
+  <view class="userinfo-bg">
+    <image class="userinfo-bg-avatar" src='/imgs/me_background_on.png'></image>
+  </view>
+  <view class="container">
+    <view class="userinfo">
+      <block>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <view class="userinfo-right">
+          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+          <!-- <view class="userinfo-count">已累计消费0笔</view> -->
+        </view>
+      </block> 
+    </view>
+  </view>
 </view>
-<view class='orderinfo'> 
+
+
+<!-- 我的订单 -->
+<view class='orderinfo'>
     <view data-curTab='1' class='myorder'  bindtap='toOrder' hover-class="none">
         <view>我的订单</view>
-        <view><label>全部订单</label><image class='icon' src='{{image}}right.png?imageslim'></image></view>
+        <view><image class='icon' src='{{image}}right.png?imageslim'></image></view>
     </view>
     <view class='orderList'>
         <view  data-curTab='200'  bindtap='toOrder' hover-class="none">
-          <image src='{{image}}daifukuan.png?imageslim'></image>
+          <image src='/imgs/icon_me_paid1.png'></image>
           <label>待付款</label>
           <text wx:if='{{count1}}'>{{count1}}</text>
         </view>
 
         <view data-curTab='205'  bindtap='toOrder' hover-class="none">
-          <image src='{{image}}daifahuo.png?imageslim'></image>
+          <image src='/imgs/icon_me_paid1.png'></image>
           <label>待发货</label>
           <text wx:if='{{count2}}'>{{count2}}</text>
         </view>
 
         <view data-curTab='400'  bindtap='toOrder'  hover-class="none">
-          <image src='{{image}}daishouhuo.png?imageslim'></image>
+          <image src='/imgs/icon_me_onway1.png'></image>
           <label>待收货</label>
           <text wx:if='{{count3}}'>{{count3}}</text>
         </view>
 
         <view data-curTab='500' bindtap='toOrder' hover-class="none">
-          <image src='{{image}}shouhou.png?imageslim'></image>
+          <image src='/imgs/icon_me_change1.png'></image>
           <label>售后</label>
           <text wx:if='{{count4}}'>{{count4}}</text>
         </view>
     </view>
-</view>
-<view class='otherInfo'>
-    <navigator url='/pages/address/address' class='nav' hover-class="none">
-          <view>我的地址</view>
-          <image class='icon' src='{{image}}right.png?imageslim'></image>
-    </navigator>  
-     <navigator url='/pages/messageList/messageList' class='nav' hover-class="none">
-          <view>我的消息</view>
-          <image class='icon' src='{{image}}right.png'></image>
-           <text wx:if='{{messageNum>0}}'>{{messageNum}}</text>
-    </navigator>
-    <navigator url='/pages/groupPurchase/groupList/groupList' class='nav' hover-class="none">
-          <view>我的拼团</view>
-          <image class='icon' src='{{image}}right.png'></image>
-    </navigator>  
+    <!-- 没有订单或优惠券 -->
+    <view class='bind_mobile' wx:if="{{!userId}}">
+      <view>
+        <image src='/imgs/icon_attention.png'></image>
+        <text class='bind_mobile_text'>找不到订单或优惠券，绑定手机试试</text>
+      </view>
+      <button open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>立即绑定</button>
+    </view>
 </view>
 
+
+<!--  -->
+<view class='my_other'>
+    <navigator url='/pages/address/address' class='my_other_nav' hover-class="none">
+          <view class='my_other_text'>
+              <image src='/imgs/icon_address.png'></image>
+              <view>我的地址</view>
+          </view>
+          <image class='icon' src='{{image}}right.png?imageslim'></image>
+    </navigator>  
+    <navigator url='/pages/groupPurchase/groupList/groupList' class='my_other_nav no_border' hover-class="none">
+          <view class='my_other_text'>
+              <image src='/imgs/icon_discount.png'></image>
+              <view>我的拼团</view>
+          </view>
+          <image class='icon' src='{{image}}right.png?imageslim'></image>
+    </navigator>
+</view>

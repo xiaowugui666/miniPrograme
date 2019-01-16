@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.2",
+	"libVersion": "2.4.3",
 	"appid": "wx3e0f48a85aca5724",
 	"projectname": "mpas",
 	"isGameTourist": false,
@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -43,11 +43,32 @@
 					"scene": "1007"
 				},
 				{
-					"id": 1,
-					"name": "详情页",
-					"pathName": "pages/detail/detail",
-					"query": "id=50",
+					"id": 4,
+					"name": "拼团",
+					"pathName": "pages/groupPurchase/groupList/groupList",
+					"query": "rank=2",
 					"scene": "1007"
+				},
+				{
+					"id": -1,
+					"name": "地址列表",
+					"pathName": "pages/address/address",
+					"query": "rank=2",
+					"scene": "1007"
+				},
+				{
+					"id": 3,
+					"name": "售后页",
+					"pathName": "pages/afterSale/afterSale",
+					"query": "id=192",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "拼团规则",
+					"pathName": "pages/groupPurchase/collageRules/collageRules",
+					"query": "",
+					"scene": "1001"
 				}
 			]
 		}

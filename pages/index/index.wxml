@@ -4,150 +4,141 @@
 
 	<!--search button  -->
 	<view class='container_search'>
-		<navigator class='container_search_navi' url="/pages/search/search">{{description.search_default_text}}
-			<icon type='search' size='12' color='#999999'></icon>
+		<navigator class='container_search_navi' wx:if="{{description.id}}" url="/pages/search/search">{{description.search_default_text ? description.search_default_text: '大量好物等你发现'}}
+			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
 		</navigator>
+		<view class="search_loading loading" wx:else></view>
 	</view>
 
 	<!--banner  -->
-	 <image class='index_banner1' wx:if="{{description.banner}}"  mode='widthFix' src='{{image}}{{description.banner}}?imageslim'></image> 
-  <!-- <view  class='index_classify' wx:if="{{categoryList.length>4}}"> -->
-  <view  class='index_classify' wx:if="{{categoryList.length > 0}}">
-    <scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
-      <view  data-idx="{{index}}"   wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
-        <image src='{{image}}{{item.icon_url}}?imageView2/1/w/104/h/104/imageslim'></image>
-        <text>{{item.name}}</text>
-      </view>
-    </scroll-view>
-  </view>
-  <view wx:else class='classify_loading'>
-    <view wx:for="{{[1,1,1,1,1]}}" class='loading_items' wx:key="{{index}}">
-      <view class='loading_item_img'></view>
-      <view class='loading_item_text'></view>
-    </view>
-  </view>
+	 <image class='index_banner' wx:if="{{description.banner}}" mode='aspectFill' src='{{image}}{{description.banner}}?imageslim'></image>
+	 <view class="banner_loading loading" wx:elif="{{!description.id}}"></view>
+	<!-- <view  class='index_classify' wx:if="{{categoryList.length>4}}"> -->
+	<view  class='index_classify' wx:if="{{categoryList.length > 0}}">
+		<scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
+			<view data-idx="{{index}}" wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
+				<image src='{{image}}{{item.icon_url}}?imageView2/1/w/104/h/104/imageslim'></image>
+				<text>{{item.name}}</text>
+			</view>
+		</scroll-view>
+	</view>
+	<view wx:else class='classify_loading'>
+		<view wx:for="{{[1,1,1,1,1]}}" class='loading_items' wx:key="{{index}}">
+			<view class='loading_item_img loading'></view>
+			<view class='loading_item_text loading'></view>
+		</view>
+	</view>
 
-  <view class='index_current' wx:if="{{newCate.length>1}}">
-    <view wx:key='index' wx:for="{{newCate}}" class='{{current===index?"cur":""}}'></view>
-  </view>   
+	<view class='index_current' wx:if="{{newCate.length>1}}">
+		<view wx:key='index' wx:for="{{newCate}}" class='{{current===index?"cur":""}}'></view>
+	</view>   
 	<!--contact  -->
 	<view class="index_contact" wx:if="{{description.id}}">
-     <image wx:if='{{description.logo_url}}' src='{{image}}{{description.logo_url}}?imageslim'></image>
-      <view class='desc'>
-          <text class='contact_h4'>Hi 亲爱的小主</text>
-          <text class='contact_p'  wx:if="{{description.description}}">{{description.description}}</text> 
-    </view>
-    <button bindtap='callPhone'><image src='/imgs/Content_icon_phone@2x.png'></image></button>
-		
+		<view class='index_contact_box'>
+			<button bindtap="phoneCall">
+				<image wx:if='{{description.logo_url}}' src='{{image}}{{description.logo_url}}?imageslim'></image>
+				<image class="wechat" src="/imgs/icon_home_contact.png" />
+			</button>
+			<view class='desc'>
+				<text class='contact_h4'>您的专属客服，24小时不打烊~</text>
+				<text class='contact_p'>{{'<<< 我是店主，可以随时咨询我哦！'}}</text> 
+			</view>
+		</view>
 	</view>
-  <view class='index_loading' wx:else>
-    <view class='desc_loading'></view>
-    <view class='items'>
-      <view class='item' wx:for='{{[1,1,1,1]}}' wx:key="{{index}}"></view>      
-    </view>
-  </view>
-
-  <!-- 拼团 -->
-  <view wx:if="{{groupGoods.length>0}}">
-    <view class='index_recommend'>
-      <text>超值</text>
-      <text>拼团</text>
-      <view data-type='/groupPurchase/groupPurchaseList/groupPurchaseList' catchtap='goNavigator'>
-        <text>查看更多</text>
-        <image class='icon' src='/imgs/right.png'></image>
-      </view>
-      <image src='{{image}}Group 3@2x.png?imageslim'></image>
-    </view>
-    <view class="index_group_list">
-      <view class="group_goods" wx:for="{{groupGoods}}" wx:key="index" bindtap="bindDetail" data-id="{{item.goods_id}}">
-        <view class="goods_image_box">
-          <image src='{{image}}{{item.goods.cover_url}}' mode="aspectFill"></image>
-          <view class="number_of_groups">
-            <image src='/imgs/groupPurchase/Fill@2x.png'></image>
-            <text class="text">已团{{item.sales_count}}件</text>
-          </view>
-        </view>
-        <view class="goods_info_box">
-          <text class="goods_title">{{item.goods.name}}</text>
-          <view class="price_box">
-            <text class="group_purchase_price"><text>￥</text>{{filters.ptf(item.price_low)}}</text>
-            <text class="original_price">￥{{filters.ptf(item.origin_price_low)}}</text>
-          </view>
-          <view class="group_user">
-            <image wx:if="{{item.members.length>0}}" wx:for="{{item.members}}" wx:key="index2" wx:for-index="index2" wx:for-item="item2" src="{{item2.avatar_url}}"></image>
-            <view wx:if="{{item.members.length>0}}" class="group_user_num"><text class='nick_name'>{{item.members[0].nick_name}}</text>等<text class='mark_red'>{{item.groupon_user_count}}</text>人正在拼团</view>
-            <view class="go_group">马上团</view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-	<!--recommend products  -->
-  <view wx:if="{{recommend==1}}">
-    <view class='index_recommend'>
-      <text>精品</text>
-      <text>推荐</text>
-      <view data-type='recommend'  catchtap='showMore'><text>查看更多</text> <image class='icon' src='/imgs/right.png'></image> </view>
-      <image src='{{image}}Group 3@2x.png?imageslim'></image>
-      <!-- <image data-type='special' bindtap='showMore' src='/imgs/button_right@2x.png'></image> -->
-    </view>
-
-    <view class='index_re_produ' data-id='{{recommend_first[0].id}}' bindtap='bindDetail' >
-      <image class='re_produ_img' mode='widthFix' src='{{image}}{{recommend_first[0].cover_url}}?imageslim'></image>
-      <text class='re_produ_text' data-id='{{recommend_first[0].id}}' data-name="{{recommend_first[0].name}}" bindtap='bindDetail'>{{recommend_first[0].name}}</text>
-      <view class='buy_view'>
-        <view class='re_text_view'>
-          <text>￥</text><text>{{filters.toFix(recommend_first[0].price/100)}}</text><text>销量{{recommend_first[0].sales_count}}件</text>
-        </view>
-        <!-- <view class='buy_button' data-id='{{recommend_first[0].id}}' data-name="{{recommend_first[0].name}}" bindtap='bindDetail'>立即购买</view>  -->
-      </view>
-    </view>
-
-    <view class='index_item'>
-      <view class='item_box' wx:for="{{recommend_goods}}" data-id='{{item.id}}'  wx:key="index" bindtap='bindDetail'>
-        <image src='{{image}}{{item.cover_url}}?imageView2/1/w/344/h/344/imageslim'></image>
-        <text class='item_text'>{{item.name}}</text>
-        <view class='item_text_view'>
-          <text>￥</text><text>{{filters.toFix(item.price/100)}}</text><text>销量{{item.sales_count}}件</text>
-        </view>
-      </view>
-    </view>
-  </view>
-
-	<!--special  -->
-	
-  <view wx:if="{{special==1}}">
-      <view class='index_recommend index_special' >
-        <text>特价</text>
-        <text>促销</text>
-        <view data-type='special' catchtap='showMore'><text>查看更多</text><image class='icon' src='/imgs/right.png'></image></view>
-        <image src='{{image}}Group 3@2x.png'></image>
-        <!-- <image data-type='special' bindtap='showMore' src='/imgs/button_right@2x.png'></image> -->
-      </view>
-
-      <view class='index_item'>
-        <view class='item_box' wx:key="index" wx:for="{{special_goods}}" data-id='{{item.id}}'  bindtap='bindDetail'>
-          <image src='{{image}}{{item.cover_url}}?imageView2/1/w/344/h/344/imageslim'></image>
-          <text class='item_text'>{{item.name}}</text>
-          <view class='item_text_view special_item'>
-            <text>￥</text><text>{{filters.toFix(item.price/100)}}</text><text>￥{{filters.toFix(item.display_price/100)}}</text>
-          </view>
-        </view>
-      </view>
-  </view>
-  
-  <view wx:if="{{recommend!=1 && special!=1 && groupGoods.length == 0 && good.length>0}}">
-    <view class='index_item'>
-      <view class='item_box' wx:for="{{good}}" data-id='{{item.id}}'  wx:key="index" bindtap='bindDetail'>
-        <image src='{{image}}{{item.cover_url}}?imageView2/1/w/344/h/344/imageslim'></image>
-        <text class='item_text'>{{item.name}}</text>
-        <view class='item_text_view'>
-          <text>￥</text><text>{{filters.toFix(item.price/100)}}</text><text>销量{{item.sales_count}}件</text>
-        </view>
-      </view>
-    </view>
-  </view> 
-	<!--bottom  -->
-	<view class='bottom' wx:if="{{scrollBottom}}">到底啦，去别处逛逛吧</view>
+	<view class='index_contact' wx:else>
+		<view class='index_contact_box'>
+			<view class="loading contact_loading_img"></view>
+			<view class='desc'>
+				<view class="loading contact_loading_text"></view>
+				<view class="loading contact_loading_text"></view>
+			</view>
+		</view>
+	</view>
+	<!-- 营销活动tab列，若无营销活动，则显示商品列表 -->
+	<block wx:if="{{tabSwiperArr.length > 0 }}">
+		<view class="marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" id="marketing-tab">
+			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
+		</view>
+		<view class="marketing_fixed_tabs marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop && tabSwiperArr.length > 1}}">
+			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
+		</view>
+		<view class="content">
+		<!-- <view class="content" style="height: {{swiperHeight}}rpx;"> -->
+			<!-- <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="{{500}}" current="{{currentTab}}" bindchange='onChangeSwiperItem'> -->
+				<block wx:for="{{tabSwiperArr}}" wx:key="index">
+					<!-- <swiper-item> -->
+					<view wx:if="{{currentTab === index}}" class="content_box">
+						<block wx:for="{{item.data}}" wx:key="ind" wx:for-item="ite">
+							<view class="swiper_box" data-id='{{item.type === 1 ? ite.goods_id : ite.id}}' bindtap='bindDetail'>
+								<block wx:if="{{item.type === 1}}">
+									<image src='{{image}}{{ite.goods.cover_url}}' mode="aspectFill"/>
+									<view class='swiper_box_item'>
+										<view class='title'>{{ite.goods.name}}</view>
+										<view class='info'>
+											<text>拼团中 | </text>
+											<text>已团</text>
+											<text class='info_count'>{{ite.sales_count}}</text>
+											<text>件</text>
+										</view>
+										<view class="price">
+											<view class='price_text'>
+												<text class='display_price'><text>￥</text>{{filters.ptf(ite.price_low)}}</text>
+												<text class="original_price">￥{{filters.ptf(ite.origin_price_low)}}</text>
+											</view>
+											<view class='buy_button'>马上抢</view>
+										</view>
+									</view>
+								</block>
+								<block wx:else>
+									<image src='{{image}}{{ite.cover_url}}' mode="aspectFill"/>
+									<view class='swiper_box_item'>
+										<view>
+											<view class='title'>{{ite.name}}</view>
+											<view class='info' wx:if="{{item.type != 3}}">
+												<text>销量</text>
+												<text class='info_count'>{{ite.sales_count}}</text>
+												<text>件</text>
+											</view>
+										</view>
+										<view class="price">
+											<view class='price_text'>
+												<text class='display_price'><text>￥</text>{{filters.ptf(ite.price)}}</text>
+												<text class="original_price" wx:if="{{item.type === 3}}">￥{{filters.ptf(ite.display_price)}}</text>
+											</view>
+										</view>
+									</view>
+								</block>
+							</view>
+						</block>
+					</view>
+					<!-- </swiper-item> -->
+				</block>
+			<!-- </swiper> -->
+		</view>
+	</block>
+	<block wx:elif="{{!good.length}}">
+		<view class="marketing_tabs">
+			<view class="marketing_tab" wx:for="{{[1,2,3]}}" wx:key="index">
+				<view class="marketing_loading_tab loading"></view>
+			</view>
+		</view>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
+	</block>
+	<block wx:else>
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">宝贝推荐</view>
+		</view>
+		<view class="goods_recommend">
+			<view class="goods_item" wx:for="{{good}}" wx:key="index"  data-id="{{item.id}}" bindtap='bindDetail'>
+				<image src="{{image}}{{item.cover_url}}" />
+				<view class="goods_info">
+					<view class="title">{{item.name}}</view>
+					<view class="info">
+						<text class="price"><text>￥</text>{{filters.ptf(item.price)}}</text>
+						<text>销量{{item.sales_count}}件</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</block>
 </view>

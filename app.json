@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/index",    
+	"pages/index/index",
+    "pages/category/category",
     "pages/groupPurchase/groupShareDetails/groupShareDetails",    
     "pages/user/user",
     "pages/detail/detail",    
@@ -9,13 +10,10 @@
     "pages/groupPurchase/groupPurchaseList/groupPurchaseList",
     "pages/groupPurchase/collageRules/collageRules",
     "pages/afterSale/afterSale",
-    "pages/trends/trends",
     "pages/afterSaleList/afterSaleList",
     "pages/groupPurchase/refundProgress/refundProgress",
     "pages/groupPurchase/groupList/groupList",
-    "pages/trendsDetail/trendsDetail",
     "pages/messageList/messageList",
-    "pages/category/category",
     "pages/shoppingCar/shoppingCar",
     "pages/search/search",
     "pages/address/address",
@@ -43,32 +41,26 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "imgs/index.png",
-        "selectedIconPath": "imgs/index_active.png",
+        "iconPath": "imgs/icon_home_off.png",
+        "selectedIconPath": "imgs/icon_home_on.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/trends/trends",
-        "iconPath": "imgs/trends.png",
-        "selectedIconPath": "imgs/trends_active.png",
-        "text": "动态"
-      },
-      {
         "pagePath": "pages/category/category",
-        "iconPath": "imgs/search.png",
-        "selectedIconPath": "imgs/search_active.png",
-        "text": "搜索"
+        "iconPath": "imgs/icon_goods_off.png",
+        "selectedIconPath": "imgs/icon_goods_on.png",
+        "text": "宝贝"
       },
       {
         "pagePath": "pages/shoppingCar/shoppingCar",
-        "iconPath": "imgs/shoppingCar.png",
-        "selectedIconPath": "imgs/shoppingCar_active.png",
+        "iconPath": "imgs/icon_buy_off.png",
+        "selectedIconPath": "imgs/icon_buy_on.png",
         "text": "购物车"
       },
       {
         "pagePath": "pages/user/user",
-        "iconPath": "imgs/user.png",
-        "selectedIconPath": "imgs/user_active.png",
+        "iconPath": "imgs/icon_me_off.png",
+        "selectedIconPath": "imgs/icon_me_on.png",
         "text": "我的"
       }
     ]

@@ -1,122 +1,47 @@
-.rule_content {
-	border-top: 2rpx solid #E3E3E3;
-	padding: 20rpx 20rpx 0;
+page {
+	background: #F7F9FB;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
 }
-
-image {
-	display: inline-block;
-	vertical-align: middle;
+.content {
+	padding-left: 24rpx;
+	background: #FFFFFF;
+	margin-top: 24rpx;
+	flex-grow: 1;
 }
-
-.QA_list {
+.rules {
+	padding: 24rpx 24rpx 24rpx 0;
+	border-bottom: 2rpx solid #F3F4F5;
+}
+.rules:last-child {
+	border-bottom: 0;
+}
+.rules_header {
 	font-size: 28rpx;
-	color: #333;
-	margin-bottom: 44rpx;
-}
-
-.QA_list .question {
-	font-family: PingFangSC-Medium;
+	color: #253A4E;
 	margin-bottom: 16rpx;
+	display: flex;
+	align-items: center;
+	font-weight: bold;
 }
-
-.QA_list .question .spot {
-	width: 8rpx;
-	height: 8rpx;
-	background: #333;
-	margin-right: 10rpx;
-	margin-left: 4rpx;
-	border-radius: 50%;
-	display: inline-block;
-	vertical-align: middle;
+.rules_header .block {
+	width: 4rpx;
+	height: 28rpx;
+	background: #F35D51;
+	margin-right: 16rpx;
 }
-
-.QA_list .answer {
-	padding-left: 56rpx;
+.rules_body {
+	padding-left: 20rpx;
+	font-size: 26rpx;
+	color: #556675;
+	line-height: 38rpx;
 }
-
-/*拼团流程*/
-.QA_list .question.collage_process {
-	margin-bottom: 68rpx;
+.rules_body.steps view {
+	margin: 16rpx 0 32rpx 0;
 }
-
-.QA_list .answer.collage_process {
-	padding-left: 100rpx;
-}
-
-.QA_list .answer.collage_process::after {
-	content: '';
+.rules_body image {
+	width: 532rpx;
+	height: 320rpx;
 	display: block;
-	clear: both;
 }
-
-.QA_list .answer.collage_process .column {
-		float: left;
-		width: 200rpx;
-		font-size: 26rpx;
-		color: #666;
-}
-
-.QA_list .answer.collage_process .left {
-}
-
-.QA_list .answer.collage_process .right  {
-	width: 208rpx;
-}
-
-.pro_detail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 88rpx 54rpx 0;
-  float: left;
-}
-.pro_detail .circle {
-  width: 28rpx;
-  height: 28rpx;
-  background: #FFC0C5;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.pro_detail .circle_inner {
-  width: 18rpx;
-  height: 18rpx;
-  border-radius: 50%;
-  background: #FF5C68;
-}
-.pro_detail .line {
-  width: 1px;
-  height: 238rpx;
-  background: #E2E2E2;
-}
-
-.QA_list .answer.collage_process .column >image {
-	width: 200rpx;
-	height: 200rpx;
-	margin-bottom: 64rpx;
-}
-
-.QA_list .answer.collage_process .column >view {
-	position: relative;
-	width: 100%;
-	height: 200rpx;
-	margin-bottom: 70rpx;
-}
-
-.QA_list .answer.collage_process .column >view .middle {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	left: 0;
-}
-
-
-
-
-
-
-
-
-
-

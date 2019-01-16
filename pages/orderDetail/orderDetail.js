@@ -10,13 +10,18 @@ Page({
     show: true,
     expire_at: '00 时 00 分 00 秒',
     // apiKey:'',
-    image: 'http://image.yiqixuan.com/'
-    // apiSecret:''
+    image: 'http://image.yiqixuan.com/',
+    contactShow: false,
+    pageVisible: true
   },
   // 阻止蒙层事件冒泡
   preventTouchMove() {
   },
-  preventTap () {},
+  preventTap () {
+    this.setData({
+      contactShow: true
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -26,8 +31,8 @@ Page({
     var ts = setInterval(function () {
       if (t <= 1) {
         clearInterval(ts)
-        wx.switchTab({
-          url: '/pages/index/index'
+        wx.navigateTo({
+          url: '/pages/orders/orders?curTab=200'
         })
       }
       t = t - 1;
@@ -49,44 +54,54 @@ Page({
     that.setData({
       id: id
     })
-    wx.request({
-      url: app.globalData.http + '/mpa/order/' + id,
-      method: 'GET',
-      dataType: 'json',
-      header: {
-        "Api-Key": app.globalData.apiKey,
-        "Api-Secret": app.globalData.apiSecret,
-        'Api-Ext': app.globalData.apiExt
-      },
-      success: function (data) {
-        if (data.statusCode == 200) {
-          that.setData({
-            info: data.data
-          })
-          if (data.data.status == 200) {
-            var time = data.data.expire_at
-            that.setInterval(time)
+    app.login().then(() => {
+      wx.request({
+        url: app.globalData.http + '/mpa/order/' + id,
+        method: 'GET',
+        dataType: 'json',
+        header: {
+          "Api-Key": app.globalData.apiKey,
+          "Api-Secret": app.globalData.apiSecret,
+          'Api-Ext': app.globalData.apiExt
+        },
+        success: function (data) {
+          if (data.statusCode == 200) {
+            that.setData({
+              info: data.data,
+              pageVisible: true
+            })
+            if (data.data.status == 200) {
+              var time = data.data.expire_at
+              that.setInterval(time)
+            }
+          } else {
+            wx.showToast({
+              title: '订单不存在',
+              icon: 'none',
+              duration: 3000
+            })
+            that.setData({
+              pageVisible: false
+            })
           }
-        } else {
-          wx.showToast({
-            title: '无法获取正确用户信息，请正常进入小程序完成授权',
-            icon: 'none',
-            duration: 3000
-          })
-          that.setData({
-            pageVisible: false
-          })
+        },
+        complete() {
+          wx.hideLoading()
         }
-      },
-      complete() {
-        wx.hideLoading()
-      }
+      })
     })
   },
   /*关闭联系商家*/
-  close: function () {
-    this.setData({
-      show: true
+  hiddenModal: function (e) {
+    const that = this;
+    that.setData({
+      contactShow: false
+    },function(){
+      setTimeout(function(){
+        that.setData({
+          show: true,
+        })
+      },300)
     })
   },
   groupDetail () {
@@ -102,7 +117,8 @@ Page({
   /*联系商家*/
   contacts: function () {
     this.setData({
-      show: false
+      show: false,
+      contactShow: true
     })
   },
   /*查看物流*/
@@ -142,8 +158,8 @@ Page({
                   duration: 1000
                 })
                 setTimeout(function () {
-                  wx.navigateBack({
-                    delta: 1
+                  wx.redirectTo({
+                    url: '/pages/orders/orders?curTab=200'
                   })
                 }, 1000)
               } else {
