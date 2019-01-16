@@ -8,8 +8,12 @@ Page({
 		amount: 5564
 	},
 	handleInput: function (e) {
-		let value = parseFloat(e.detail.value)
-		console.log(value)
+		let value = e.detail.value
+		let regExp = /^[0-9]+(.[0-9]{0,2})?$/
+		console.log(regExp.test(value))
+		if (!regExp.test(value)) {
+			return parseFloat(value).toString().match(/^\d+(?:\.\d{0,2})?/) || ''
+		}
 	},
 	/**
 	 * 生命周期函数--监听页面加载
