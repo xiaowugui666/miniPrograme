@@ -1,11 +1,11 @@
 page{
   background: #F7F9FB;
+	padding-bottom: 224rpx;
 }
 .container{
   font-size: 28rpx;
   color: #253A4E;
   overflow: hidden;
-  margin-bottom: 104rpx;
 }
 .top{
   padding: 24rpx;
