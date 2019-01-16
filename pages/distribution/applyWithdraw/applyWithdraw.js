@@ -5,9 +5,12 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-
+		amount: 5564
 	},
-
+	handleInput: function (e) {
+		let value = parseFloat(e.detail.value)
+		console.log(value)
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
