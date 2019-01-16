@@ -1,0 +1,19 @@
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+
+<view class="content">
+    <view class="withdraw_items">
+        <navigator class="item" hover-class="none" url="/pages/distribution/withdrawParticu/withdrawParticu">
+            <view class="item_left">
+                <view>佣金提现-到微信零钱</view>
+                <view class="time">2018-12-24 09:36</view>
+            </view>
+            <view class="item_right">
+                <view>
+                    <view>{{filters.ptf(56464)}}</view>
+                    <view class="status">打款成功</view>
+                </view>
+                <image src="/imgs/icon_arrow.png" />
+            </view>
+        </navigator>
+    </view>
+</view>

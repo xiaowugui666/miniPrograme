@@ -14,6 +14,9 @@ page {
 .orange {
     color: #F35D51;
 }
+.disabled {
+    color: rgba(255,255,255,0.49) !important;
+}
 .medium_weight {
     font-weight: 500;
 }

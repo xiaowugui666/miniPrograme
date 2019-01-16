@@ -33,7 +33,9 @@
 		"pages/distribution/myCustomer/myCustomer",
 		"pages/distribution/myPromotion/myPromotion",
 		"pages/distribution/myOrders/myOrders",
-		"pages/distribution/applyWithdraw/applyWithdraw"
+		"pages/distribution/applyWithdraw/applyWithdraw",
+		"pages/distribution/withdrawDetail/withdrawDetail",
+		"pages/distribution/withdrawParticu/withdrawParticu"
 	],
 	"window": {
 		"backgroundTextStyle": "light",

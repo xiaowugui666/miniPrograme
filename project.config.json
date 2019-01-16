@@ -37,8 +37,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "我要提现",
-					"pathName": "pages/distribution/applyWithdraw/applyWithdraw",
+					"name": "分销规则",
+					"pathName": "pages/distribution/distributionRule/distributionRule",
 					"query": "",
 					"scene": "1007"
 				}

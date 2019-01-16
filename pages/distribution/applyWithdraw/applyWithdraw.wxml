@@ -8,11 +8,13 @@
                 <text>￥</text>
                 <input class="draw_input" type="digit" bindinput="handleInput"/>
             </view>
-            <view class="content_tips">
+            <view class="content_tips orange" wx:if="{{(amount / 100) < inputValue && inputValue > 50}}">输入金额超过可用余额</view>
+            <view class="content_tips orange" wx:elif="{{inputValue < 50 && inputValue}}">输入金额不可低于50元</view>
+            <view class="content_tips" wx:else>
                 <text>可提现金额 ¥ {{filters.ptf(amount)}}，</text>
                 <text class="orange">全部提现</text>
             </view>
-            <view class="applic_draw">申请提现</view>
+            <view class="applic_draw {{disabled ? 'disabled' : ''}}">申请提现</view>
         </view>
         <view class="draw_bottom">
             <view>提现说明：</view>
@@ -21,8 +23,8 @@
             <view>3. 提现申请通过后,金额将于<text class="orange">2小时内</text>到账微信零钱，如提现失败，请及时联系商家处理。</view>
         </view>
     </view>
-    <view class="withdraw_detail">
+    <navigator class="withdraw_detail" hover-class="none" url="/pages/distribution/withdrawDetail/withdrawDetail">
         <text>提现明细</text>
         <image src="/imgs/icon_arrow.png" />
-    </view>
+    </navigator>
 </view>

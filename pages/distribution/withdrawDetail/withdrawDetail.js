@@ -1,28 +1,13 @@
-// pages/distribution/applyWithdraw/applyWithdraw.js
+// pages/distribution/withdrawDetail/withdrawDetail.js
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		amount: 5564,
-		inputValue: 0,
-		disabled: true
+
 	},
-	handleInput: function (e) {
-		let value = e.detail.value, regExp = /^[0-9]+(.[0-9]{0,2})?$/, buttonDisable = true, amount = this.data.amount
-		if (!regExp.test(value) && value) {
-			value = parseFloat(value).toString().match(/^\d+(?:\.\d{0,2})?/)
-			return parseFloat(value).toString().match(/^\d+(?:\.\d{0,2})?/) || ''
-		}
-		if (value <= (amount / 100) && value >= 50) {
-			buttonDisable = false
-		}
-		this.setData({
-			inputValue: value,
-			disabled: buttonDisable
-		})
-	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
