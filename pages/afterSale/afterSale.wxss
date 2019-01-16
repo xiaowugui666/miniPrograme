@@ -141,6 +141,7 @@ view.carInfo{
 	padding-left: 8rpx;
 	color: #253A4E;
 	font-size: 28rpx;
+	flex-grow: 1;
 }
 .submit_box {
 	width: 750rpx;

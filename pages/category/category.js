@@ -57,7 +57,8 @@ Page({
 			leftTapArray: cateArr,
 			rank: 0,
 			flag: 0,
-			select: ''
+			select: '',
+			page: 0
 		})
 		app.globalData.classIdx = ''
 		this.onCloseModal()
@@ -94,6 +95,7 @@ Page({
 			flag: 0,
 			categoryId: id,
 			order_by: 'created_at desc',
+			page: 0
 		})
 		this.onCloseModal()
 		this.getData()
