@@ -1,2 +1,21 @@
-<!--pages/distribution/myCustomer/myCustomer.wxml-->
-<text>pages/distribution/myCustomer/myCustomer.wxml</text>
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+
+<view class="cus_item">
+    <view class="user_info">
+        <image src="/imgs/me_head0.png" />
+        <view>
+            <view>长安有故</view>
+            <view class="info_time">绑定时间 : 2018-12-12</view>
+        </view>
+    </view>
+    <view class="user_transtion">
+        <view class="transtion_box">
+            <view><text >付款订单：</text><text class="tran_black">{{60}} 笔</text></view>
+            <view><text >交易金额：</text><text class="tran_black">￥{{filters.ptf(887700)}}</text></view>
+        </view>
+        <view class="transtion_box">
+            <view><text >完成订单：</text><text class="tran_black">{{60}} 笔</text></view>
+            <view><text >所得佣金：</text><text class="tran_black">￥{{filters.ptf(887700)}}</text></view>
+        </view>
+    </view>
+</view>

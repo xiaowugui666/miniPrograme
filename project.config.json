@@ -36,9 +36,9 @@
 			"current": 0,
 			"list": [
 				{
-					"id": 0,
-					"name": "分销中心",
-					"pathName": "pages/distribution/distributionCenter/distributionCenter",
+					"id": -1,
+					"name": "我要提现",
+					"pathName": "pages/distribution/applyWithdraw/applyWithdraw",
 					"query": "",
 					"scene": "1007"
 				}

@@ -83,9 +83,36 @@ page {
 }
 
 .content_body {
-    width: 750rpx;
-    height: 280rpx;
     background: #FFFFFF;
     box-sizing: border-box;
+    padding-left: 24rpx;
+}
+.body_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24rpx 24rpx 24rpx 0;
+    color: #253A4E;
+    font-size: 32rpx;
+    border-bottom: 2rpx solid #F3F4F5;
+}
+.body_box:last-child {
+    border-bottom: none;
+}
+.body_box .body_counts {
+    display: flex;
+    align-items: center;
+    color: #556675;
+}
+.body_box image {
+    width: 40rpx;
+    height: 40rpx;
+    display: block;
+    flex-shrink: 0;
+    margin-left: 8rpx;
+}
+
+.content_bottom {
+    background: #FFFFFF;
     padding-left: 24rpx;
 }

@@ -4,7 +4,7 @@
         <image src="/imgs/me_head0.png" />
         <view class="info_detail">
             <view>Hugee</view>
-            <view class="info_time">加入时间:2018-12-14</view>
+            <view class="info_time">加入时间: 2018-12-14</view>
         </view>
     </view>
     <view class="commission">
@@ -23,8 +23,35 @@
     </view>
 </view>
 <view class="content_body content_margintop">
-    <view class="body_box"></view>
-    <view class="body_box"></view>
-    <view class="body_box"></view>
+    <navigator class="body_box" hover-class="none" url="/pages/distribution/myCustomer/myCustomer">
+        <view>我的客户</view>
+        <view class="body_counts">
+            <text>500</text>
+            <image src="/imgs/icon_arrow.png" />
+        </view>
+    </navigator>
+    <navigator class="body_box" hover-class="none" url="/pages/distribution/myPromotion/myPromotion">
+        <view>我的推广</view>
+        <view class="body_counts">
+            <text>500</text>
+            <image src="/imgs/icon_arrow.png" />
+        </view>
+    </navigator>
+    <navigator class="body_box" hover-class="none" url="/pages/distribution/myOrders/myOrders">
+        <view>我的订单</view>
+        <view class="body_counts">
+            <text>500</text>
+            <image src="/imgs/icon_arrow.png" />
+        </view>
+    </navigator>
 </view>
-<view class="content_bottom content_margintop"></view>
+<view class="content_bottom content_margintop">
+    <navigator class="bottom_box body_box" hover-class="none" url="/pages/distribution/applyWithdraw/applyWithdraw">
+        <view>我要提现</view>
+        <image src="/imgs/icon_arrow.png" />
+    </navigator>
+    <navigator class="bottom_box body_box" hover-class="none" url="/pages/distribution/distributionRule/distributionRule">
+        <view>分销规则</view>
+        <image src="/imgs/icon_arrow.png" />
+    </navigator>
+</view>

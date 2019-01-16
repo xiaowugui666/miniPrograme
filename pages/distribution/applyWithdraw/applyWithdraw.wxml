@@ -1,0 +1,20 @@
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+<!-- <web-view src="https://retail-develop.51zan.com/public/packets/%2B6Y0EiVMndCR0BbnSA/fans" bindmessage="msgHandler"></web-view> -->
+<view class="content">
+    <view class="withdraw_box">
+        <view class="draw_header">到账微信零钱</view>
+        <view class="draw_operation">
+            <view class="title_tips">提现金额</view>
+            <view class="input_box">
+                <text>￥</text>
+                <input class="draw_input" type="digit"/>
+            </view>
+            <view class="content_tips">
+                <text>可提现金额 ¥ {{filters.ptf(2345)}},</text>
+                <text class="draw_all">全部提现</text>
+            </view>
+            <view class="applic_draw">申请提现</view>
+        </view>
+    </view>
+    <view class="withdraw_detail"></view>
+</view>

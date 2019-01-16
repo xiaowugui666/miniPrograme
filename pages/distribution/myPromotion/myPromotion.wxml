@@ -1,0 +1,22 @@
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+
+<view class="promotion_item">
+    <view class="pro_time">最近推广：{{'2018-12-14 17:29:37'}}</view>
+    <view class="good_info">
+        <image src="/imgs/rule1.png" />
+        <view class="info_detail">
+            <view class="descri">
+                <view class="title">米白色宽松深V领雪纺复古衬衫</view>
+                <view class="skus">现货; xs</view>
+            </view>
+            <view class="price">
+                <view>￥{{filters.ptf(22545)}}</view>
+                <view>佣金：<text>￥{{filters.ptf(22545)}}</text></view>
+            </view>
+        </view>
+    </view>
+    <view class="pro_bottom">
+        <view class="prom_data"><text>浏览量：{{36}}</text><text>付款笔数：{{54}}</text></view>
+        <view class="pro_button">再次推广</view>
+    </view>
+</view>

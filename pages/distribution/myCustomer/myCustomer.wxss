@@ -1,1 +1,46 @@
-/* pages/distribution/myCustomer/myCustomer.wxss */
+page {
+    background: #F7F9FB;
+}
+.cus_item {
+    margin-top: 24rpx;
+    background: #FFFFFF;
+    padding-left: 24rpx;
+}
+.cus_item .user_info {
+    padding: 24rpx 0;
+    display: flex;
+    align-items: center;
+    font-size: 28rpx;
+    color: #253A4E;
+    border-bottom: 2rpx solid #F3F4F5;
+}
+.user_info .info_time {
+    font-size: 26rpx;
+    color: #9EA8B1;
+    margin-top: 4rpx;
+}
+.user_info image {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 8rpx;
+}
+.user_transtion {
+    padding: 24rpx 0;
+    font-size: 26rpx;
+    color: #9EA8B1;
+}
+.user_transtion .transtion_box {
+    display: flex;
+    justify-content: space-between;
+}
+.user_transtion .transtion_box:last-child {
+    margin-top: 24rpx;
+}
+.transtion_box view {
+    width: 350rpx;
+}
+.transtion_box .tran_black {
+    color: #314558;
+}

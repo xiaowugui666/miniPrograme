@@ -1,0 +1,44 @@
+page {
+    background: #F7F9FB;
+}
+.content {
+    padding: 0 24rpx;
+}
+.withdraw_box {
+    background: #FFFFFF;
+    margin-top: 24rpx;
+    border-radius: 8rpx;
+    box-shadow: 0px 6px 16px 0px rgba(13,37,59,0.04);
+    overflow: hidden;
+}
+.withdraw_box .draw_header {
+    font-size: 32rpx;
+    color: #253A4E;
+    padding: 24rpx;
+    border-bottom: 2rpx solid #F3F4F5;
+}
+.draw_operation {
+    padding: 32rpx 24rpx 48rpx;
+    font-size: 28rpx;
+    color: #6E7C89;
+}
+.draw_operation .title_tips {
+    color: #314558;
+}
+.draw_operation .input_box {
+    display: flex;
+    align-items: center;
+    padding: 32rpx 0;
+    border-bottom: 2rpx solid #F3F4F5;
+}
+.input_box text {
+    color: #253A4E;
+    font-size: 48rpx;
+    font-weight: bold;
+}
+.input_box .draw_input {
+    margin-left: 4rpx;
+    height: 76rpx;
+    font-size: 60rpx;
+    color: #314558;
+}

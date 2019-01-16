@@ -1,0 +1,102 @@
+page {
+    background: #F7F9FB;
+}
+.content_header {
+    width: 750rpx;
+    height: 78rpx;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    color: #556675;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #FFFFFF;
+}
+.content_header .tab {
+    height: 78rpx;
+    line-height: 78rpx;
+    box-sizing: border-box;
+}
+.content_header .tab.active {
+    color: #F35D51;
+    border-bottom: 4rpx solid #F35D51;
+    font-weight: 500;
+}
+.content_box {
+    padding: 0 24rpx;
+}
+.content_box .order_item {
+    margin-top: 24rpx;
+    width: 702rpx;
+    background: #FFFFFF;
+    border-radius: 8rpx;
+    box-shadow:0px 6px 16px 0px rgba(13,37,59,0.04);
+    font-size: 26rpx;
+    color: #253A4E;
+}
+.order_item .order_no {
+    padding: 24rpx;
+    color: #9EA8B1;
+    border-bottom: 2rpx solid #F3F4F5;
+    display: flex;
+    justify-content: space-between;
+}
+.order_no .status {
+    color: #F35D51;
+}
+.good_info {
+    display: flex;
+    align-items: center;
+    padding: 24rpx;
+    font-size: 26rpx;
+    color: #253A4E;
+    border-bottom: 2rpx solid #F3F4F5;
+}
+.good_info image {
+    width: 192rpx;
+    height: 192rpx;
+    display: block;
+    flex-shrink: 0;
+}
+.good_info .info_detail {
+    flex-grow: 1;
+    margin-left: 24rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 192rpx;
+}
+.info_detail .title {
+    font-size: 28rpx;
+    overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+}
+.info_detail .skus {
+    margin-top: 16rpx;
+    color: #9EA8B1;
+    overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
+}
+.info_detail .price {
+    display: flex;
+    justify-content: space-between;
+}
+.price view:last-child {
+    color: #9EA8B1;
+}
+
+.order_item .order_bottom {
+    padding: 24rpx;
+    display: flex;
+    justify-content: space-between;
+    font-size: 28rpx;
+}
+.order_bottom text {
+    color: #F35D51;
+}

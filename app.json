@@ -30,7 +30,10 @@
 		"pages/distribution/joinDistribution/joinDistribution",
 		"pages/distribution/distributionCenter/distributionCenter",
 		"pages/distribution/distributionRule/distributionRule",
-		"pages/distribution/myCustomer/myCustomer"
+		"pages/distribution/myCustomer/myCustomer",
+		"pages/distribution/myPromotion/myPromotion",
+		"pages/distribution/myOrders/myOrders",
+		"pages/distribution/applyWithdraw/applyWithdraw"
 	],
 	"window": {
 		"backgroundTextStyle": "light",
