@@ -13,7 +13,8 @@
 				<!-- 头部 -->
 				<view class='group_box_head'>
 					<view wx:if="{{rank == 2}}" class='group_box_head_time mark}}'><text>{{item.groupon.expire_at}}</text>结束</view>
-					<view wx:else class='group_box_head_time mark}}'>{{item.created_at }}</view>
+					<view wx:elif="{{rank == 3}}" class='group_box_head_time mark}}'>{{item.created_at}}购买</view>
+					<view wx:else class='group_box_head_time mark}}'>{{item.groupon.expire_at}}失效</view>
 					<view class='{{rank == 2 ? "pending group_box_head_text" : "group_box_head_text"}}'>{{rank == 2 ? '进行中' : (rank == 3 ? '已成团' : '未成团')}}</view>
 				</view>
 				<!-- 详情 -->
