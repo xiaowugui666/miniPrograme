@@ -26,7 +26,7 @@
 	<view class='reason'>
 		<label>退货备注：</label> 
 		<!-- <textarea></textarea> -->
-		<input placeholder="选填" maxlength='500' bindconfirm='remark' value='{{value}}' placeholder-style="color: #9EA8B1;" />
+		<input placeholder="选填" maxlength='500' bindblur='remark' value='{{value}}' cursor-spacing="100rpx" placeholder-style="color: #9EA8B1;" />
 	</view>
 </view>
 <view class="tips">
