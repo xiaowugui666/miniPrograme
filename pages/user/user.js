@@ -67,11 +67,6 @@ Page({
 			})
 		}
 	},
-	goAddress:function(){
-		wx.navigateTo({
-			url: '/pages/address/address'
-		})
-	},
 	toOrder:function(e){
 		wx.navigateTo({
 			url: '/pages/orders/orders?curTab=' + e.currentTarget.dataset.curtab
