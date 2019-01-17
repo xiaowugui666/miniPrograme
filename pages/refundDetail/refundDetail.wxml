@@ -2,8 +2,8 @@
 <view class='container'>
     <view class='top'>
         <view class='title'>退货进度</view>
-        <view class='desc'>{{data.description}}</view>
-        <view class='time'>{{data.created_at}}</view>
+        <view class='desc'>{{data.status == 4 ? '取消退货' : data.description}}</view>
+        <view class='time' wx:if="{{data.status != 4}}">{{data.created_at}}</view>
     </view>
     <view class="order_info">
         <view class='orderID'>订单编号: {{data.no}}</view>
