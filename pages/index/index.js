@@ -222,7 +222,7 @@ Page({
 							let tempArr = that.data.tabSwiperArr;
 							tempArr.map(item => {
 								if (item.type === 2) {
-									item.data = item.data.concat(data.data)									
+									item.data = item.data.concat(res.data)									
 								}
 								return item
 							});

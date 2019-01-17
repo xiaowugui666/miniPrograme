@@ -94,6 +94,10 @@ swiper{
 	text-align: center;
 	color: #FABEB9;
 }
+.price_info .group_price {
+	max-width: 380rpx;
+	overflow: hidden;
+}
 .price_info .group_price text {
 	font-size: 48rpx;
 }
@@ -441,10 +445,11 @@ swiper{
 	line-height: 80rpx;
 }
 .detail_bottom .group_button {
-  display: flex;
+	display: flex;
+	flex-direction: column;
   justify-content: center;
-  align-items: center;
-  font-size: 24rpx;
+	font-size: 22rpx;
+	line-height: 26rpx !important;
 }
 .group_button .group_button_price {
   font-size: 36rpx;
