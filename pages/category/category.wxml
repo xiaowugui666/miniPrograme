@@ -65,6 +65,6 @@
 	<view class="empty">
 		<image src="/imgs/img_nogood.png" />
 		<view class="copywrite lite">宝贝还未上架~</view>
-		<view class="copywrite">店家正在精心准备，尽请期待~</view>
+		<view class="copywrite">点击右上方图标切换分类试试~</view>
 	</view>
 </block>
