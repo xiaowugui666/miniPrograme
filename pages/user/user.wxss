@@ -2,19 +2,27 @@
 page{
   background: #F7F9FB;
 }
+.user_box {
+  overflow: hidden;
+  position: relative;
+}
 .userinfo-bg{
   display: block;
   width: 750rpx;
-  height: 330rpx;
+  height: 354rpx;
   overflow: hidden;
-  margin-top: 16rpx;
 }
 .userinfo-bg-avatar{
   width: 750rpx;
-  height: 330rpx;
+  height: 354rpx;
+  background: #FFFFFF;
+  overflow: hidden;
+  display: block;
 }
 .container {
-  margin-top: -312rpx;
+  position: absolute;
+  left: 24rpx;
+  top: 24rpx;
   width:702rpx;
   height: 330rpx;
   display: flex;

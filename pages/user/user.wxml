@@ -1,13 +1,13 @@
 <!-- 如果没有用户信息 -->
-<view wx:if='{{!hasUserInfo}}'>
+<view wx:if='{{!hasUserInfo}}' class="user_box">
 	<view class="userinfo-bg">
-		<image class="userinfo-bg-avatar" src='/imgs/me_background_off.png'></image>
+		<image class="userinfo-bg-avatar" src='/imgs/me_background_off.png' />
 	</view>
 	<view class="container">
 		<view class="userinfo">
 			<block>
 				<button open-type="getUserInfo" bindgetuserinfo="getInfo" hover-class='none'>
-					<image class="userinfo-avatar"  src='/imgs/me_head0.png'></image>
+					<image class="userinfo-avatar"  src='/imgs/me_head0.png' />
 					<view class="userinfo-right">
 						<label>点击头像获取信息</label> 
 					</view>
@@ -19,7 +19,7 @@
 <!-- 如果有用户信息 -->
 <view wx:else='{{!!hasUserInfo}}'>
 	<view class="userinfo-bg">
-		<image class="userinfo-bg-avatar" src='/imgs/me_background_on.png'></image>
+		<image class="userinfo-bg-avatar" src='/imgs/me_background_on.png' />
 	</view>
 	<view class="container">
 		<view class="userinfo">
