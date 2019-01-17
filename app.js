@@ -4,7 +4,18 @@ App({
 	},
 	onLaunch: function () {
 		var that=this
-		this.login()
+		this.login().then(() => {
+			wx.request({
+				url: that.globalData.webHttp + '/mpa/distributor/info',
+				method: 'GET',
+				header: {
+					'Api-Ext': that.globalData.apiExt,
+				},
+				success: function (response) {
+					console.log(response)
+				}
+			})
+		})
 		this.globalData.apiExt = wx.getExtConfigSync().data
 	},
 	login:function(){
@@ -80,6 +91,7 @@ App({
 		login:false,
 		timeStamp:'',
 		http:'https://retail-mall-develop.51zan.com',
+		webHttp: 'https://retail-develop.51zan.com',
 		image: 'https://image.yiqixuan.com/',
 		options: '',
 		sceneID: 0
