@@ -30,6 +30,15 @@ Page({
 				userId: app.globalData.userId
 			})
 		}
+		if (app.globalData.distribution.status == 1) {
+			this.setData({
+				isOpenDistribution: true
+			})
+		} else {
+			this.setData({
+				isOpenDistribution: false
+			})
+		}
 		if (app.globalData.userId){
 			wx.request({
 				url: app.globalData.http + '/mpa/order/status/count',
@@ -65,14 +74,6 @@ Page({
 						messageNum: datas
 					})
 				}
-			})
-		}
-	},
-	onLoad: function (e) {
-		console.log(app.globalData.distribution)
-		if (app.globalData.distribution.status == 1) {
-			this.setData({
-				isOpenDistribution: true
 			})
 		}
 	},

@@ -95,5 +95,12 @@
 			</view>
 			<image class='icon' src='{{image}}right.png?imageslim'></image>
 		</navigator>
+		<navigator url='/pages/distribution/distributionCenter/distributionCenter' class='my_other_nav' hover-class="none" wx:if="{{isOpenDistribution}}">
+			<view class='my_other_text'>
+				<image src='/imgs/icon_bag.png'></image>
+				<view>分销中心</view>
+			</view>
+			<image class='icon' src='{{image}}right.png?imageslim'></image>
+		</navigator>
 	</view>
 </view>
