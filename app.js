@@ -1,21 +1,23 @@
 App({
 	onShow(options) {
-		this.globalData.options = options
+		let that = this
+		that.globalData.options = options
+		wx.request({
+			url: that.globalData.webHttp + '/mpa/distributor/info',
+			method: 'GET',
+			header: {
+				'Api-Ext': that.globalData.apiExt,
+			},
+			success: function (response) {
+				if (response.statusCode >=200 && response.statusCode < 300) {
+					that.globalData.distribution = response.data
+				}
+			}
+		})
 	},
 	onLaunch: function () {
 		var that=this
-		this.login().then(() => {
-			wx.request({
-				url: that.globalData.webHttp + '/mpa/distributor/info',
-				method: 'GET',
-				header: {
-					'Api-Ext': that.globalData.apiExt,
-				},
-				success: function (response) {
-					console.log(response)
-				}
-			})
-		})
+		that.login()
 		this.globalData.apiExt = wx.getExtConfigSync().data
 	},
 	login:function(){
@@ -94,6 +96,7 @@ App({
 		webHttp: 'https://retail-develop.51zan.com',
 		image: 'https://image.yiqixuan.com/',
 		options: '',
-		sceneID: 0
+		sceneID: 0,
+		distribution: {}
 	}
 })

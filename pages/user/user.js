@@ -12,7 +12,8 @@ Page({
 		count4:'',
 		apiExt:'',
 		messageNum:'',
-		image: 'http://image.yiqixuan.com/'
+		image: 'http://image.yiqixuan.com/',
+		isOpenDistribution: false,
 	},
 	onShow: function () {
 		var that=this;
@@ -64,6 +65,14 @@ Page({
 						messageNum: datas
 					})
 				}
+			})
+		}
+	},
+	onLoad: function (e) {
+		console.log(app.globalData.distribution)
+		if (app.globalData.distribution.status == 1) {
+			this.setData({
+				isOpenDistribution: true
 			})
 		}
 	},
