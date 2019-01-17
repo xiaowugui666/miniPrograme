@@ -452,9 +452,6 @@ Page({
 											totalPrice += item.price * item.count
 										}
 									})
-									console.log(nowArr1)
-									console.log(nowArr2)
-									console.log(totalPrice)
 									that.setData({
 										datalist: nowArr1,
 										totalPrice: totalPrice,
