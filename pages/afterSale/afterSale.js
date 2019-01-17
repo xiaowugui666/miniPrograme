@@ -6,7 +6,7 @@ Page({
 	 */
 	data: {
 		isShow:true,
-		reasonID:5,
+		reasonID:6,
 		saleArr:[],
 		// apiKey:'',
 		// apiSecret:'',

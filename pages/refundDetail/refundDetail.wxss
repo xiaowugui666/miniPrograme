@@ -50,6 +50,7 @@ page{
   height: 192rpx;
   width:192rpx; 
   margin-right: 24rpx;
+  flex-shrink: 0;
 }
 .desc label:nth-child(1){
   font-family: PingFangSC-Regular;

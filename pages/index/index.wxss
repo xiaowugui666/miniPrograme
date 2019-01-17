@@ -340,10 +340,15 @@ page {
 .swiper_box_item .price .price_text {
   font-size: 24rpx;
   color: #9EA8B1;
+  display: flex;
+  align-items: flex-end;
 }
 .price_text .display_price {
   font-size: 32rpx;
   color: #F35D51;
+  display: inline-block;
+  max-width: 160rpx;
+  overflow: hidden;
 }
 .price_text .display_price text {
   font-size: 24rpx;
