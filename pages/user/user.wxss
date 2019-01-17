@@ -1,28 +1,26 @@
 /**用户信息**/
 page{
-  background: #F9F9F9;
-  font-family: PingFangSC-Semibold;
-  padding: 0 15rpx;
-  box-sizing: border-box;
+  background: #F7F9FB;
 }
 .userinfo-bg{
   display: block;
-  width:720rpx;
-  height: 312rpx;
+  width: 750rpx;
+  height: 330rpx;
   overflow: hidden;
   margin-top: 16rpx;
 }
 .userinfo-bg-avatar{
-  width: 100%;
-  height: 100%;
+  width: 750rpx;
+  height: 330rpx;
 }
 .container {
   margin-top: -312rpx;
-  width:720rpx;
-  height: 312rpx;
+  width:702rpx;
+  height: 330rpx;
   display: flex;
-  justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  padding-left: 104rpx;
 }
 .userinfo {
   display: flex;
@@ -31,6 +29,8 @@ page{
 }
 .userinfo-right{
   margin-left: 25rpx;
+  font-family:PingFangSC-Medium;
+  font-weight:500;
 }
 .userinfo-avatar {
   width: 156rpx;
@@ -69,18 +69,22 @@ page{
 
 
 /**订单**/
+.orderinfo_box {
+  padding: 0 24rpx;
+}
 .orderinfo {
-  width: 720rpx;
+  width: 702rpx;
   overflow: hidden;
-  margin-top: 32rpx;
+  margin-top: 24rpx;
   border-radius: 8rpx;
+  box-shadow:0rpx 6rpx 16rpx 0rpx rgba(13,37,59,0.04);
 }
 .myorder {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding:0 20rpx;
-  border-bottom:1px solid #EBEBEB;
+  border-bottom:2rpx solid #F3F4F5;
   line-height: 82rpx;
   box-sizing: border-box;
   background: #fff;
@@ -92,7 +96,7 @@ page{
   align-items: center;
 }
 .orderList{
-  width: 720rpx;
+  width: 702rpx;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -175,11 +179,16 @@ page{
 
 
 /* 其他信息 */
+.my_other_box {
+  padding: 0 24rpx;
+}
 .my_other{
-  width: 720rpx;
-  background: #fff;
-  margin-top: 32rpx;
+  width: 702rpx;
+  margin-top: 24rpx;
   border-radius: 8rpx;
+  background: #fff;
+  overflow: hidden;
+  box-shadow:0rpx 6rpx 16rpx 0rpx rgba(13,37,59,0.04);
 }
 .my_other_nav{
   box-sizing: border-box;
@@ -190,7 +199,7 @@ page{
   justify-content: space-between;
   align-items: center;
   display: flex;
-  border-bottom: 1rpx solid  #EBEBEB; 
+  border-bottom: 2rpx solid  #F3F4F5; 
   background-color: #fff;
   border-top: 0;
   border-left: 0;
