@@ -379,7 +379,7 @@ Page({
 			})
 		}
 	  },
-	  touchEnd: function (e) {
+	touchEnd: function (e) {
 		var index = this.data.index;
 		var btnwidth = this.data.btnwidth;
 		var touchEndX = e.changedTouches[0].pageX;
@@ -414,7 +414,7 @@ Page({
 				datalist: datalist
 			})
 		}
-	  },
+	},
 	del: function (e) {
 		var id = e.currentTarget.dataset.id,
 			index = e.currentTarget.dataset.index,
@@ -439,11 +439,22 @@ Page({
 							},
 							success(res) {
 								if (res.statusCode >= 200 && res.statusCode < 300) {
+									let totalPrice = 0
 									nowArr1.splice(index, 1)
 									nowArr2.splice(index, 1)
+									nowArr1.forEach(item => {
+										if (item.isSelect) {
+											totalPrice += item.price * item.count
+										}
+									})
+									nowArr2.forEach(item => {
+										if (item.isSelect) {
+											totalPrice += item.price * item.count
+										}
+									})
 									that.setData({
 										datalist: nowArr1,
-										totalPrice: 0.00,
+										totalPrice: totalPrice,
 									})
 									wx.setStorage({
 										key: 'good',
