@@ -356,7 +356,8 @@ Page({
 		var touchEndY = e.changedTouches[0].pageY;
 		var tmX = touchEndX - this.data.touchStartX;
 		var tmY = touchEndY - this.data.touchStartY;
-		var datalist = this.data.datalist;
+		var isLocalShoppingCar = this.data.datalist.length == 0 ? true : false;
+		var datalist = isLocalShoppingCar ? this.data.locallist : this.data.datalist;
 		var item = datalist[index];
 		if (Math.abs(tmX) > Math.abs(tmY)) {
 			if (tmX < 0) {
@@ -374,9 +375,15 @@ Page({
 					item.transrpx = 0;
 					item.isdelete = false;
 			}
-			this.setData({
-				datalist: datalist
-			})
+			if (isLocalShoppingCar) {
+				this.setData({
+					locallist: datalist
+				})
+			} else {
+				this.setData({
+					datalist: datalist
+				})
+			}
 		}
 	  },
 	touchEnd: function (e) {
@@ -386,7 +393,8 @@ Page({
 		var touchEndY = e.changedTouches[0].pageY;
 		var tmX = touchEndX - this.data.touchStartX;
 		var tmY = touchEndY - this.data.touchStartY;
-		var datalist = this.data.datalist;
+		var isLocalShoppingCar = this.data.datalist.length == 0 ? true : false;
+		var datalist = isLocalShoppingCar ? this.data.locallist : this.data.datalist;
 		var item = datalist[index];
 		if (Math.abs(tmX) > Math.abs(tmY)) {
 			if (tmX < 0) {
@@ -410,9 +418,15 @@ Page({
 				item.transrpx = 0;
 				item.isdelete = false;
 			}
-			this.setData({
-				datalist: datalist
-			})
+			if (isLocalShoppingCar) {
+				this.setData({
+					locallist: datalist
+				})
+			} else {
+				this.setData({
+					datalist: datalist
+				})
+			}
 		}
 	},
 	del: function (e) {
