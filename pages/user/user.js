@@ -14,6 +14,8 @@ Page({
 		messageNum:'',
 		image: 'http://image.yiqixuan.com/',
 		isOpenDistribution: false,
+		distributionInfo: {},
+		isDistributor: false
 	},
 	onShow: function () {
 		var that=this;
@@ -94,22 +96,20 @@ Page({
 			},
 			success: function (response) {
 				if (response.statusCode === 200) {
+					let isDistributor = false
+					if (response.data.id) {
+						isDistributor = true
+					}
+					app.globalData.distributorInfo = response.data
 					that.setData({
-						dataList: response.data
-					})
-					wx.hideLoading()
-				} else {
-					wx.showToast({
-						title: response.data.meta.message,
-						icon: 'none'
+						distributionInfo: response.data,
+						isDistributor: isDistributor
 					})
 				}
+				wx.hideLoading()
 			},
 			fail: function (response) {
-				wx.showToast({
-					title: response.data.meta.message,
-					icon: 'none'
-				})
+				wx.hideLoading()
 			}
 		})
 	},

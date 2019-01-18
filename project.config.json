@@ -33,19 +33,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
-					"name": "分销规则",
-					"pathName": "pages/distribution/distributionRule/distributionRule",
-					"query": "",
-					"scene": "1007"
-				},
-				{
-					"id": -1,
-					"name": "分销中心",
-					"pathName": "pages/distribution/distributionCenter/distributionCenter",
+					"name": "申请加入",
+					"pathName": "pages/distribution/joinDistribution/joinDistribution",
 					"query": ""
 				}
 			]

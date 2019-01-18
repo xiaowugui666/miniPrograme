@@ -1,11 +1,14 @@
 // pages/distribution/joinDistribution/joinDistribution.js
+const app = getApp()
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		modalVisible: false
+		modalVisible: false,
+		userId: false,
+		hasUserInfo: false
 	},
 	handleClick: function () {
 		this.setData({
@@ -23,7 +26,20 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		var that=this;
+		var uerinfo = wx.getStorageSync("huzan_avatarUrl")
+		if (uerinfo) {
+			that.setData({
+				userInfo: uerinfo,
+				hasUserInfo: true,
+				userId: app.globalData.userId
+			})
+		} else {
+			that.setData({
+				hasUserInfo: false,
+				userId: app.globalData.userId
+			})
+		}
 	},
 
 	/**

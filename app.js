@@ -97,6 +97,7 @@ App({
 		image: 'https://image.yiqixuan.com/',
 		options: '',
 		sceneID: 0,
-		distribution: {}
+		distribution: {},
+		distributorInfo: {}
 	}
 })

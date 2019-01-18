@@ -24,6 +24,7 @@
 .bottom .button {
     width: 702rpx;
     height: 80rpx;
+    padding: 0;
     text-align: center;
     line-height: 80rpx;
     background:linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
