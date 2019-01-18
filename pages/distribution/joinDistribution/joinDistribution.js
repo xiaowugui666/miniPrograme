@@ -89,5 +89,6 @@ Page({
 	 */
 	onShareAppMessage: function () {
 
-	}
+	},
+	getPhoneNumber: function (e) {}
 })

@@ -3,7 +3,8 @@
     <view class="content_p">在制定销售计划书的过程中，一定要注意过对销售市场进行分析，再拟定营销思路，确定销售目标等，这样才能制定出比较完善的工作计划书。以下资料为销售计划书模板，仅供参考。 一、市场分析。 年度销售计划制定的依据，便是过去一年市场形势及市场现状的分析，采用的工具是目前企业经常使用的SWOT分析法，即企业的优劣势分析以及竞争威胁和存在的机会，通过SWOT分析，从中了解市场竞争的格局及态势，并结合企业的缺陷和机会，整合和优化资源配置，使其利用最大化。比如，通过市场分析，清晰地知道市场现状和未来趋势：产品（档次）向上走，渠道向下移（通路精耕和深度分销），寡头竞争初露端倪，营销组合策略将成为下一轮竞争的热点等等。 二、营销思路。 营销思路是根据市场分析而做出的指导全年销售计划的“精神”纲领，是营销工作的方向和“灵魂”，也是销售部需要经常灌输和贯彻的营销操作理念。针对这一点，制定具体的营销思路，其中涵盖了如下几方面的内容： 1、树立全员营销观念，真正体现“营销生活化，生活营销化”。 2、实施深度分销，树立决战在终端的思想，有计划、有重点地指导经销商直接运作末端市场。 3、综合利用产品、价格、通路、促销、 传播、服务等营销组合策略，形成强大的营销合力。</view>
 </view>
 <view class="bottom">
-    <button class="button" bindtap="handleClick">申请加入</button>
+    <button wx:if="{{!userId}}" class="button" open-type="getPhoneNumber">申请加入</button>
+    <view wx:else class="button" bindtap="handleClick">申请加入</view>
 </view>
 <view class="mask" wx:if="{{modalVisible}}" catchtouchmove="handleTouchmove" catchtap="handleCloseModal"></view>
 <view class="modal_content" wx:if="{{modalVisible}}" >
