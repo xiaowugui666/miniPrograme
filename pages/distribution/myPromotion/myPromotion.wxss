@@ -82,3 +82,17 @@ page {
     border-radius: 4rpx;
     background:linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
 }
+
+.container .empty_car {
+    font-size: 32rpx;
+    color: #253A4E;
+    margin-top:66rpx;
+    text-align: center;
+}
+.container .empty_copy {
+    display: block;
+    font-size: 26rpx;
+    color: #9EA8B1;
+    text-align: center;
+    margin-top: 16rpx;
+}

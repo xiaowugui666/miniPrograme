@@ -1,12 +1,12 @@
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
 
-<view class="content">
+<view class="content" wx:if="{{dataList.legnth > 0}}">
     <view class="content_header">
-        <view class="tab {{currentTab === 0 ? 'active' : ''}}" bindtap="handleTap" data-type="{{0}}">待结算(5)</view>
-        <view class="tab {{currentTab === 1 ? 'active' : ''}}" bindtap="handleTap" data-type="{{1}}">已结算(5)</view>
+        <view class="tab {{currentTab === 1 ? 'active' : ''}}" bindtap="handleTap" data-type="{{1}}">待结算(5)</view>
+        <view class="tab {{currentTab === 2 ? 'active' : ''}}" bindtap="handleTap" data-type="{{2}}">已结算(5)</view>
     </view>
     <view class="content_box">
-        <view class="order_item">
+        <view class="order_item" wx:for="{{dataList}}" wx:key="index">
             <view class="order_no">
                 <text>订单号 : 23445567788554760098</text>
                 <text class="status">待发货</text>
@@ -30,4 +30,8 @@
             </view>
         </view>
     </view>
+</view>
+<view class='container' wx:else>
+    <image src='/imgs/no_data_1.png'></image>
+    <view class="empty_car">亲爱的，你暂时没有推广订单哦~</view>
 </view>

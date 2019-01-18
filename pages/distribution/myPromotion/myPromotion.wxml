@@ -1,6 +1,6 @@
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
 
-<view class="promotion_item">
+<view class="promotion_item" wx:if="{{dataList.length > 0}}">
     <view class="pro_time">最近推广：{{'2018-12-14 17:29:37'}}</view>
     <view class="good_info">
         <image src="/imgs/rule1.png" />
@@ -19,4 +19,8 @@
         <view class="prom_data"><text>浏览量：{{36}}</text><text>付款笔数：{{54}}</text></view>
         <view class="pro_button">再次推广</view>
     </view>
+</view>
+<view class='container' wx:else>
+    <image src='/imgs/no_data_1.png'></image>
+    <view class="empty_car">亲爱的，你暂时没有推广哦~</view>
 </view>

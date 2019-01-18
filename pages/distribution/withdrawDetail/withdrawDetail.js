@@ -1,18 +1,51 @@
 // pages/distribution/withdrawDetail/withdrawDetail.js
+const app = getApp()
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-
+		dataList: []
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		let that = this
+		wx.showLoading({
+			title: '加载中'
+		})
+		wx.request({
+			url: app.globalData.webHttp + '/mpa/distributor/withdrawals',
+			method: 'GET',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+			},
+			success: function (response) {
+				if (response.statusCode === 200) {
+					that.setData({
+						dataList: response.data
+					})
+					wx.hideLoading()
+				} else {
+					wx.showToast({
+						title: response.data.meta.message,
+						icon: 'none'
+					})
+				}
+			},
+			fail: function (response) {
+				wx.showToast({
+					title: response.data.meta.message,
+					icon: 'none'
+				})
+			}
+		})
 	},
 
 	/**

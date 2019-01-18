@@ -1,8 +1,8 @@
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
 
-<view class="content">
-    <view class="withdraw_items">
-        <navigator class="item" hover-class="none" url="/pages/distribution/withdrawParticu/withdrawParticu">
+<view class="content" wx:if="{{dataList.length > 0}}">
+    <view class="withdraw_items" wx:for="{{dataList}}" wx:key="index">
+        <navigator class="item" hover-class="none" url="/pages/distribution/withdrawParticu/withdrawParticu?id={{item.id}}">
             <view class="item_left">
                 <view>佣金提现-到微信零钱</view>
                 <view class="time">2018-12-24 09:36</view>
@@ -16,4 +16,8 @@
             </view>
         </navigator>
     </view>
+</view>
+<view class='container' wx:else>
+    <image src='/imgs/no_data_1.png'></image>
+    <view class="empty_car">亲爱的，你暂时没有提现信息哦~</view>
 </view>

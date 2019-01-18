@@ -6,7 +6,7 @@ Page({
 	 */
 	data: {
 		amount: 5564,
-		inputValue: 0,
+		inputValue: '',
 		disabled: true
 	},
 	handleInput: function (e) {
@@ -20,6 +20,17 @@ Page({
 		}
 		this.setData({
 			inputValue: value,
+			disabled: buttonDisable
+		})
+	},
+	handleDrawAll: function (e) {
+		let amount = this.data.amount, buttonDisable = true
+		if (amount / 100 >= 50) {
+			buttonDisable = false
+		}
+		amount = parseFloat(amount / 100).toString().match(/^\d+(?:\.\d{0,2})?/)
+		this.setData({
+			inputValue: amount,
 			disabled: buttonDisable
 		})
 	},

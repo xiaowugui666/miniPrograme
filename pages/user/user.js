@@ -34,6 +34,7 @@ Page({
 			this.setData({
 				isOpenDistribution: true
 			})
+			that.getDistributionInfo()
 		} else {
 			this.setData({
 				isOpenDistribution: false
@@ -76,6 +77,41 @@ Page({
 				}
 			})
 		}
+	},
+	getDistributionInfo: function () {
+		let that = this
+		wx.showLoading({
+			title: '加载中'
+		})
+		wx.request({
+			url: app.globalData.webHttp + '/mpa/distributor/distributors/me',
+			method: 'GET',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+			},
+			success: function (response) {
+				if (response.statusCode === 200) {
+					that.setData({
+						dataList: response.data
+					})
+					wx.hideLoading()
+				} else {
+					wx.showToast({
+						title: response.data.meta.message,
+						icon: 'none'
+					})
+				}
+			},
+			fail: function (response) {
+				wx.showToast({
+					title: response.data.meta.message,
+					icon: 'none'
+				})
+			}
+		})
 	},
 	toOrder:function(e){
 		wx.navigateTo({

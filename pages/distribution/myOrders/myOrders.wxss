@@ -24,6 +24,7 @@ page {
 }
 .content_box {
     padding: 0 24rpx;
+    overflow: hidden;
 }
 .content_box .order_item {
     margin-top: 24rpx;
@@ -99,4 +100,18 @@ page {
 }
 .order_bottom text {
     color: #F35D51;
+}
+
+.container .empty_car {
+    font-size: 32rpx;
+    color: #253A4E;
+    margin-top:66rpx;
+    text-align: center;
+}
+.container .empty_copy {
+    display: block;
+    font-size: 26rpx;
+    color: #9EA8B1;
+    text-align: center;
+    margin-top: 16rpx;
 }

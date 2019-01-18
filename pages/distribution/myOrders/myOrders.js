@@ -1,24 +1,64 @@
 // pages/distribution/myOrders/myOrders.js
+const app = getApp()
+
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		currentTab: 0
+		currentTab: 1
 	},
 	handleTap: function (e) {
 		this.setData({
 			currentTab: e.currentTarget.dataset.type
 		})
+		this.getData()
 	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		this.getData()
 	},
-
+	getData: function () {
+		let that = this
+		wx.showLoading({
+			title: '加载中'
+		})
+		wx.request({
+			url: app.globalData.webHttp + '/mpa/distributor/orders',
+			method: 'GET',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+			},
+			data: {
+				commission_status: that.data.currentTab
+			},
+			success: function (response) {
+				if (response.statusCode === 200) {
+					that.setData({
+						dataList: response.data
+					})
+					wx.hideLoading()
+				} else {
+					wx.showToast({
+						title: response.data.meta.message,
+						icon: 'none'
+					})
+				}
+			},
+			fail: function (response) {
+				wx.showToast({
+					title: response.data.meta.message,
+					icon: 'none'
+				})
+			}
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
