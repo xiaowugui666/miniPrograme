@@ -488,13 +488,19 @@ Page({
 							}
 						})
 					} else {
+						let totalPrice = 0
 						nowArr2.splice(index, 1)
+						nowArr2.forEach(item => {
+							if (item.isSelect) {
+								totalPrice += item.price * item.count
+							}
+						})
 						wx.setStorage({
 							key: 'good',
 							data: nowArr2,
 						})
 						that.setData({
-							totalPrice: 0.00,
+							totalPrice: totalPrice,
 							locallist: nowArr2
 						})
 						if (nowArr2.length == 0) {
@@ -532,7 +538,7 @@ Page({
 				'Api-Ext': app.globalData.apiExt
 			},
 			success(res) {
-				if (res.data != "") {
+				if (res.data != []) {
 					var list = []
 					for (var z = 0; z < res.data.length; z++) {
 						res.data[z].isSelect = false;
@@ -671,6 +677,12 @@ Page({
 	onShow: function (options) {
 		let that = this;
 		var goodlist = wx.getStorageSync('good')
+		goodlist.forEach(item => {
+			item.isSelect = false
+		})
+		this.setData({
+			selectAll: false
+		})
 		if (app.globalData.userId) {
 			wx.showLoading({
 				title: '加载中',
@@ -778,7 +790,7 @@ Page({
  * 页面上拉触底事件的处理函数
  */
 	onReachBottom: function () {
-		if (app.globalData.user_info.id) {
+		if (app.globalData.user_info.user_id && this.data.datalist.length) {
 			this.getData()
 		}
 	}
