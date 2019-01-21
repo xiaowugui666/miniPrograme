@@ -92,10 +92,8 @@ input {
 .item_box .box_header .user_info text:first-child {
   color: #333333;
   font-size: 28rpx;
-  font-family: PingFangSC-Regular;
 }
 .user_info  text:nth-child(2){
-  font-family: PingFangSC-Regular;
   font-size: 24rpx;
   color: #9CA2B0;
 }
@@ -271,7 +269,6 @@ input {
   position: relative;
 }
 .comment{
-  font-family: PingFangSC-Regular;
   font-size: 28rpx;
   color: #3F3F3F;
   padding: 20rpx 14rpx;
@@ -309,7 +306,6 @@ input {
   word-wrap: break-word;
 }
 .user{
-  font-family: PingFangSC-Regular;
   font-size: 28rpx;
   color: #000000;
   /* line-height: 44rpx; */
@@ -321,7 +317,6 @@ input {
 
 
 .store{
-  font-family: PingFangSC-Regular;
   font-size: 28rpx;
   color: #002222;
 }
@@ -336,7 +331,6 @@ input {
 	font-size: 22rpx;
 	line-height: 140rpx;
 	color: #999999;
-	font-family: PingFangSC-Regular;
 	 position: relative;
   bottom: 0 
 }

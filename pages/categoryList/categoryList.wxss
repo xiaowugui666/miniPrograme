@@ -2,7 +2,6 @@
 /* search  */
 page{
 	height: 100%;
-	font-family: PingFangSC-Regular;
   background: #F6F7F7;
 }
 .search_container{
@@ -20,7 +19,6 @@ page{
 	height: 56rpx;
 	margin: 0 auto;
 	border-radius: 56rpx;
-	font-family: PingFangSC-Regular;
 	color: #333333;
 	letter-spacing: 1rpx;
 }
@@ -140,7 +138,6 @@ page{
 .item_box .item_text{
 	display: block;
 	font-size: 24rpx;
-	font-family: PingFangSC-Regular;
 	padding: 0 14rpx 0 18rpx;
 	margin-top: 14rpx;
 	color: #333333;
@@ -162,20 +159,17 @@ page{
 }
 .item_text_view text:nth-child(1){
 	font-size: 22rpx;
-	font-family: PingFangSC-Regular;
 	color: #EA2534;
 	line-height: 32rpx;
 }
 .item_text_view text:nth-child(2){
 	font-size: 26rpx;
-	font-family: PingFangSC-Regular;
 	color: #EA2534;
 	line-height: 32rpx;
 	margin-right: 18rpx;
 }
 .item_text_view text:nth-child(3){
 	font-size: 22rpx;
-	font-family: PingFangSC-Regular;
 	color: #999999;
 	line-height: 32rpx;
 	position: absolute;

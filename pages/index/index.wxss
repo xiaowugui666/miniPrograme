@@ -2,7 +2,6 @@
 page {
   background: #fff;
   min-height: 100%;
-  font-family:PingFangSC-Regular;
 }
 
 .loading {

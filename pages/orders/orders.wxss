@@ -1,7 +1,6 @@
 page{
   height:100%;
   background: #F9F9F9;
-  font-family: PingFangSC-Regular;
 }
 .swiper-tab{  
   width: 100%;  

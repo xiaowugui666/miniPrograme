@@ -122,7 +122,6 @@ view.carInfo{
 }
 
 .size{
-  font-family: PingFangSC-Regular;
   font-size: 24rpx;
   color: #999999;
   margin:32rpx 0;

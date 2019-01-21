@@ -105,7 +105,6 @@ page{
   width: 486rpx;
 }
 .desc>label:nth-child(1){
-  font-family: PingFangSC-Regular;
   font-size: 28rpx;
   color: #253A4E;
   line-height: 36rpx;

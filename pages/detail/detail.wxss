@@ -665,7 +665,6 @@ swiper{
   border: 1rpx solid #9B9B9B;
   border-radius: 26rpx;
   text-align: center;
-  font-family: PingFangSC-Regular;
   font-size: 24rpx;
   color: #999999;
   line-height: 50rpx;

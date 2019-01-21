@@ -39,7 +39,6 @@ page{
 	display: block;
 	font-size: 24rpx;
 	padding: 0 14rpx 0 18rpx;
-	font-family: PingFangSC-Regular;
 	margin-top: 14rpx;
 	color: #333333;
 	line-height: 36rpx;
@@ -60,20 +59,17 @@ page{
 }
 .item_text_view text:nth-child(1){
 	font-size: 22rpx;
-	font-family: PingFangSC-Regular;
 	color: #EA2534;
 	line-height: 32rpx;
 }
 .item_text_view text:nth-child(2){
 	font-size: 26rpx;
-	font-family: PingFangSC-Regular;
 	color: #EA2534;
 	line-height: 32rpx;
 	margin-right: 18rpx;
 }
 .item_text_view text:nth-child(3){
 	font-size: 22rpx;
-	font-family: PingFangSC-Regular;
 	color: #999999;
 	line-height: 32rpx;
 	position: absolute;
@@ -90,7 +86,6 @@ page{
 	position: relative;
 	line-height: 80rpx;
 	color: #999999;
-	font-family: PingFangSC-Regular;
 }
 .bottom_text::before{
 		content: "";
