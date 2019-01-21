@@ -13,10 +13,26 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		this.setData({
-			distributorInfo: app.globalData.distributorInfo
+		let that = this
+		wx.request({
+			url: app.globalData.webHttp + '/mpa/distributor/distributors/me',
+			method: 'GET',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+			},
+			success: function (response) {
+				if (response.statusCode === 200) {
+					app.globalData.distributorInfo = response.data
+					console.log(response.data)
+					that.setData({
+						distributorInfo: response.data
+					})
+				}
+			},
 		})
-		console.log(this.data.distributorInfo)
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成

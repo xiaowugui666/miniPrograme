@@ -156,13 +156,13 @@ Page({
 					wx.showToast({
 						title: '申请成功！',
 						icon: 'success',
-						duration: 1000
+						duration: 1500
 					})
 					setTimeout(() => {
 						wx.redirectTo({
 							url: '/pages/distribution/distributionCenter/distributionCenter'
 						})
-					}, 1000);
+					}, 2000);
 				}
 				wx.hideLoading()
 			}).catch((err) => {
