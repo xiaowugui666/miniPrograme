@@ -8,11 +8,35 @@ Page({
 	data: {
 		modalVisible: false,
 		userId: false,
-		hasUserInfo: false
+		hasUserInfo: false,
+		tips: '亲爱的，你还不符合申请资格哦~'
 	},
 	handleClick: function () {
-		this.setData({
-			modalVisible: true
+		this.appliForMember().then((res) => {
+			if (res.statusCode === 400) {
+				this.setData({
+					modalVisible: true,
+					tips: res.data.meta.message
+				})
+			} else if (res.statusCode === 200) {
+				app.globalData.distributorInfo = res.data
+				wx.showToast({
+					title: '申请成功！',
+					icon: 'success',
+					duration: 1000
+				})
+				setTimeout(() => {
+					wx.redirectTo({
+						url: '/pages/distribution/distributionCenter/distributionCenter'
+					})
+				}, 1000);
+			}
+			wx.hideLoading()
+		}).catch((err) => {
+			wx.showToast({
+				title: err.data.meta.message,
+				icon: 'none'
+			})
 		})
 	},
 	handleCloseModal: function () {
@@ -41,7 +65,36 @@ Page({
 			})
 		}
 	},
-
+	appliForMember: function () {
+		return new Promise((resolve, reject) => {
+			wx.showLoading({
+				title: '加载中',
+			})
+			wx.request({
+				url: app.globalData.webHttp + '/mpa/distributor/distributors',
+				method: 'POST',
+				header: {
+					"Api-Key": app.globalData.apiKey,
+					"Api-Secret": app.globalData.apiSecret,
+					'Api-Ext': app.globalData.apiExt
+				},
+				success: function (res) {
+					if (res.statusCode === 200 || res.statusCode === 400) {
+						resolve(res)
+					} else {
+						reject(res)
+					}
+				},
+				fail: function (res) {
+					wx.showToast({
+						title: res.data.meta.message,
+						icon: 'none'
+					})
+					reject()
+				}
+			})
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
@@ -90,5 +143,34 @@ Page({
 	onShareAppMessage: function () {
 
 	},
-	getPhoneNumber: function (e) {}
+	getPhoneNumber: function (e) {
+		app.publicAuth(e, this).then(() => {
+			this.appliForMember().then((res) => {
+				if (res.statusCode === 400) {
+					this.setData({
+						modalVisible: true,
+						tips: res.data.meta.message
+					})
+				} else if (res.statusCode === 200) {
+					app.globalData.distributorInfo = res.data
+					wx.showToast({
+						title: '申请成功！',
+						icon: 'success',
+						duration: 1000
+					})
+					setTimeout(() => {
+						wx.redirectTo({
+							url: '/pages/distribution/distributionCenter/distributionCenter'
+						})
+					}, 1000);
+				}
+				wx.hideLoading()
+			}).catch((err) => {
+				wx.showToast({
+					title: err.data.meta.message,
+					icon: 'none'
+				})
+			})
+		})
+	}
 })

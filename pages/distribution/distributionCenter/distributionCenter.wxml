@@ -1,23 +1,23 @@
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
 <view class="content_header content_margintop">
     <view class="user_info">
-        <image src="/imgs/me_head0.png" />
+        <image src="{{distributorInfo.user_wechat.avatar_url}}" />
         <view class="info_detail">
-            <view>Hugee</view>
-            <view class="info_time">加入时间: 2018-12-14</view>
+            <view>{{distributorInfo.user_wechat.nick_name}}</view>
+            <view class="info_time">加入时间: {{distributorInfo.created_at}}</view>
         </view>
     </view>
     <view class="commission">
         <view class="total_commission commission_box">
-            <view class="price">￥<text>{{filters.humpPrice(80000)[0]}}</text><text>.{{filters.humpPrice(80000)[1]}}</text></view>
+            <view class="price">￥<text>{{filters.humpPrice(distributionRule.total_commission_amount)[0]}}</text><text>.{{filters.humpPrice(distribution.total_commission_amount)[1]}}</text></view>
             <view class="price_tips">累计佣金</view>
         </view>
         <view class="pending_commission commission_box">
-            <view class="price">￥<text>{{filters.humpPrice(10000)[0]}}</text><text>.{{filters.humpPrice(80000)[1]}}</text></view>
+            <view class="price">￥<text>{{filters.humpPrice(distributorInfo.un_settlement_amount)[0]}}</text><text>.{{filters.humpPrice(distributorInfo.un_settlement_amount)[1]}}</text></view>
             <view class="price_tips">待结算佣金</view>
         </view>
         <view class="avail_commission commission_box">
-            <view class="price">￥<text>{{filters.humpPrice(100000)[0]}}</text><text>.{{filters.humpPrice(80000)[1]}}</text></view>
+            <view class="price">￥<text>{{filters.humpPrice(distributorInfo.withdrawals_amount)[0]}}</text><text>.{{filters.humpPrice(distributorInfo.withdrawals_amount)[1]}}</text></view>
             <view class="price_tips">可提现金额</view>
         </view>
     </view>

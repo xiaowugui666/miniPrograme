@@ -33,10 +33,14 @@ Page({
 			})
 		}
 		if (app.globalData.distribution.status == 1) {
+			let isDistributor = false
+			if (app.globalData.distributorInfo.id) {
+				isDistributor = true
+			}
 			this.setData({
+				isDistributor: isDistributor,
 				isOpenDistribution: true
 			})
-			that.getDistributionInfo()
 		} else {
 			this.setData({
 				isOpenDistribution: false
@@ -79,39 +83,6 @@ Page({
 				}
 			})
 		}
-	},
-	getDistributionInfo: function () {
-		let that = this
-		wx.showLoading({
-			title: '加载中'
-		})
-		wx.request({
-			url: app.globalData.webHttp + '/mpa/distributor/distributors/me',
-			method: 'GET',
-			dataType: 'json',
-			header: {
-				"Api-Key": app.globalData.apiKey,
-				"Api-Secret": app.globalData.apiSecret,
-				'Api-Ext': app.globalData.apiExt
-			},
-			success: function (response) {
-				if (response.statusCode === 200) {
-					let isDistributor = false
-					if (response.data.id) {
-						isDistributor = true
-					}
-					app.globalData.distributorInfo = response.data
-					that.setData({
-						distributionInfo: response.data,
-						isDistributor: isDistributor
-					})
-				}
-				wx.hideLoading()
-			},
-			fail: function (response) {
-				wx.hideLoading()
-			}
-		})
 	},
 	toOrder:function(e){
 		wx.navigateTo({

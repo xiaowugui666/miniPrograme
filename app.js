@@ -2,6 +2,28 @@ App({
 	onShow(options) {
 		let that = this
 		that.globalData.options = options
+	},
+	onLaunch: function () {
+		var that=this
+		that.login().then(() => {
+			wx.request({
+				url: that.globalData.webHttp + '/mpa/distributor/distributors/me',
+				method: 'GET',
+				dataType: 'json',
+				header: {
+					"Api-Key": that.globalData.apiKey,
+					"Api-Secret": that.globalData.apiSecret,
+					'Api-Ext': that.globalData.apiExt
+				},
+				success: function (response) {
+					if (response.statusCode === 200) {
+						that.globalData.distributorInfo = response.data
+					}
+				},
+			})
+		})
+		this.globalData.apiExt = wx.getExtConfigSync().data
+
 		wx.request({
 			url: that.globalData.webHttp + '/mpa/distributor/info',
 			method: 'GET',
@@ -15,12 +37,7 @@ App({
 			}
 		})
 	},
-	onLaunch: function () {
-		var that=this
-		that.login()
-		this.globalData.apiExt = wx.getExtConfigSync().data
-	},
-	login:function(){
+	login: function () {
 		let that = this
 		return new Promise((resolve,reject) => {
 			if (!that.globalData.userId || !that.globalData.userInfo) {
@@ -72,6 +89,97 @@ App({
 				resolve()
 			}
 		}) 
+	},
+	publicAuth: function (e, env) {
+		var that = env, _this = this
+		return new Promise((resolve, reject) => {
+			if (e.detail.encryptedData && e.detail.iv) {
+				wx.showLoading({
+					title: '加载中',
+					icon: 'none',
+					mask: true
+				})
+				wx.login({
+					success(code) {
+						wx.request({
+							url: _this.globalData.http + '/mpa/wechat/auth',
+							method: 'POST',
+							header: {
+								'Api-Ext': _this.globalData.apiExt
+							},
+							data: {
+								code: code.code
+							},
+							success: function (res) {
+								var codes = res.statusCode.toString()
+								if (codes >= 200 && codes < 300) {
+									//保存响应头信息
+									if (res.header["api-key"] && res.header["api-secret"]) {
+										var apiKey = res.header["api-key"],
+											apiSecret = res.header["api-secret"];
+									} else if (res.header["Api-Key"] && res.header["Api-Secret"]) {
+										var apiKey = res.header["Api-Key"],
+											apiSecret = res.header["Api-Secret"];
+									}
+									_this.globalData.apiKey = apiKey
+									_this.globalData.apiSecret = apiSecret
+									wx.request({
+										url: _this.globalData.http + '/mpa/user/login',
+										method: 'post',
+										data: {
+											encrypted: e.detail.encryptedData,
+											iv: e.detail.iv
+										},
+										dataType: 'json',
+										header: {
+											"Api-Key": _this.globalData.apiKey,
+											"Api-Secret": _this.globalData.apiSecret,
+											'Api-Ext': _this.globalData.apiExt
+										},
+										success: function (data) {
+											wx.hideLoading();
+											var datas = data.statusCode.toString()
+											if (datas >= 200 && datas < 300) {
+												if (data.header["api-key"] && data.header["api-secret"]) {
+													var apiKey = data.header["api-key"],
+														apiSecret = data.header["api-secret"];
+												} else if (data.header["Api-Key"] && data.header["Api-Secret"]) {
+													var apiKey = data.header["Api-Key"],
+														apiSecret = data.header["Api-Secret"];
+												}
+												_this.globalData.apiKey = apiKey
+												_this.globalData.apiSecret = apiSecret
+												_this.globalData.userId = true
+												that.setData({
+													userId: true
+												})
+												resolve()
+											} else {
+												var tip = data.data.message.toString()
+												wx.showToast({
+													title: tip,
+													icon: 'none',
+													duration: 2000
+												})
+												reject()
+											}
+										}
+									})
+								} else {
+									var tip = res.data.message.toString()
+									wx.showToast({
+										title: tip,
+										icon: 'none',
+										duration: 2000
+									})
+									reject()
+								}
+							}
+						})
+					}
+				})
+			}
+		})
 	},
 	onHide () {
 		this.globalData.sceneID = 0
