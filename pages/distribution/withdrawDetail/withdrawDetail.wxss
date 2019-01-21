@@ -59,3 +59,9 @@ page {
     text-align: center;
     margin-top: 16rpx;
 }
+.pending {
+    color: #FFAA16;
+}
+.fail {
+    color: #F35D51;
+}

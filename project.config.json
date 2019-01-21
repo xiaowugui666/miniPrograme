@@ -33,13 +33,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
-					"name": "申请加入",
-					"pathName": "pages/distribution/joinDistribution/joinDistribution",
-					"query": ""
+					"name": "提现明细",
+					"pathName": "pages/distribution/withdrawDetail/withdrawDetail",
+					"query": "",
+					"scene": "1007"
 				}
 			]
 		}

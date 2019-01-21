@@ -1,7 +1,7 @@
 var filters = {
-  toFix: function (value) {
-    return parseFloat(value).toFixed(2)//此处2为保留两位小数
-  },
+	toFix: function (value) {
+		return parseFloat(value).toFixed(2)//此处2为保留两位小数
+	},
 	ptf: function (price) {
 		var num = parseInt(price)
 		if (!isNaN(num)) {
@@ -9,71 +9,91 @@ var filters = {
 		} else {
 			return '0.00'
 		}
-  },
-  humpPrice: function (value) {
-    var arr = [],price = '';
-    if (!isNaN(value)) {
+	},
+	humpPrice: function (value) {
+		var arr = [],price = '';
+		if (!isNaN(value)) {
 			price =  parseFloat(value/100).toFixed(2)
 		} else {
 			price = '0.00'
-    }
-    arr = price.split('.')
-    return arr
-  },
-  getTime: function (value){
-    var reg = getRegExp('/-/')
-    var timestamp = value.replace(reg, '/')
-    timestamp = new Date(timestamp).getTime()
-    // var nowTime = new Date().getTime()
-    var disTime = nowTime - timestamp;
-    if (disTime < 60 * 60 * 1000) {
-      var time = Math.floor(disTime / 60 / 1000)
-      time = time + '分钟前'
-    } else if (disTime < 24 * 60 * 60 * 1000) {
-      var time = Math.floor(disTime / 60 / 1000 / 60)
-      time = time + '小时前'
-    } else if (disTime < 2 * 24 * 60 * 60 * 1000) {
-      var time = '昨天' + str.substring(11)
-    } else {
-      var time = str
-    }
-    return time
-  },
-  trim: function (value) {
-    var reg = getRegExp('^\s*|\s*$/g')
-    return value.replace(reg, '') //去除2端的空格
-  },
-  statu: function (statu) {
-    var string = ''
-    switch (statu){
-      case 200: 
-        string = '待付款'
-        break
-      case 205: 
-        string = '待发货'
-        break
-      case 207: 
-        string = '已取消'
-        break
-      case 255: 
-        string = '待成团'
-        break
-      case 400: 
-        string = '待收货'
-        break
-      case 405: 
-        string = '已完成'
-        break
-      default:
-    }
-    return string
-  }
+		}
+		arr = price.split('.')
+		return arr
+	},
+	getTime: function (value){
+		var reg = getRegExp('/-/')
+		var timestamp = value.replace(reg, '/')
+		timestamp = new Date(timestamp).getTime()
+		// var nowTime = new Date().getTime()
+		var disTime = nowTime - timestamp;
+		if (disTime < 60 * 60 * 1000) {
+			var time = Math.floor(disTime / 60 / 1000)
+			time = time + '分钟前'
+		} else if (disTime < 24 * 60 * 60 * 1000) {
+			var time = Math.floor(disTime / 60 / 1000 / 60)
+			time = time + '小时前'
+		} else if (disTime < 2 * 24 * 60 * 60 * 1000) {
+			var time = '昨天' + str.substring(11)
+		} else {
+			var time = str
+		}
+		return time
+	},
+	trim: function (value) {
+		var reg = getRegExp('^\s*|\s*$/g')
+		return value.replace(reg, '') //去除2端的空格
+	},
+	statu: function (statu) {
+		var string = ''
+		switch (statu){
+			case 200: 
+				string = '待付款'
+				break
+			case 205: 
+				string = '待发货'
+				break
+			case 207: 
+				string = '已取消'
+				break
+			case 255: 
+				string = '待成团'
+				break
+			case 400: 
+				string = '待收货'
+				break
+			case 405: 
+				string = '已完成'
+				break
+			default:
+		}
+		return string
+	},
+	drawStatu: function (statu) {
+		var string = ''
+		switch (statu){
+			case 1: 
+				string = '待审核'
+				break
+			case 2: 
+				string = '已审核'
+				break
+			case 3: 
+				string = '已打款'
+				break
+			case 4: 
+				string = '打款失败'
+				break
+			default:
+		}
+		return string
+	}
 }
 module.exports = {
-  toFix: filters.toFix,
-  getTime: filters.getTime,
-  trim:filters.trim,
-  ptf: filters.ptf,
-  statu: filters.statu,
-  humpPrice: filters.humpPrice
+	toFix: filters.toFix,
+	getTime: filters.getTime,
+	trim:filters.trim,
+	ptf: filters.ptf,
+	statu: filters.statu,
+	humpPrice: filters.humpPrice,
+	drawStatu: filters.drawStatu
 }

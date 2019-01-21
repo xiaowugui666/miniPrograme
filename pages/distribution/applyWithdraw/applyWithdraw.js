@@ -1,11 +1,12 @@
 // pages/distribution/applyWithdraw/applyWithdraw.js
+const app = getApp()
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		amount: 5564,
+		amount: 0,
 		inputValue: '',
 		disabled: true
 	},
@@ -13,7 +14,7 @@ Page({
 		let value = e.detail.value, regExp = /^[0-9]+(.[0-9]{0,2})?$/, buttonDisable = true, amount = this.data.amount
 		if (!regExp.test(value) && value) {
 			value = parseFloat(value).toString().match(/^\d+(?:\.\d{0,2})?/)
-			return parseFloat(value).toString().match(/^\d+(?:\.\d{0,2})?/) || ''
+			return value || ''
 		}
 		if (value <= (amount / 100) && value >= 50) {
 			buttonDisable = false
@@ -34,11 +35,53 @@ Page({
 			disabled: buttonDisable
 		})
 	},
+	handleDraw: function () {
+		let disabled = this.data.disabled, value = this.data.inputValue * 100, that = this
+		if (!disabled) {
+			wx.showLoading({
+				title: '加载中'
+			})
+			wx.request({
+				url: app.globalData.webHttp + '/mpa/distributor/withdrawals',
+				method: 'POST',
+				dataType: 'json',
+				header: {
+					"Api-Key": app.globalData.apiKey,
+					"Api-Secret": app.globalData.apiSecret,
+					'Api-Ext': app.globalData.apiExt
+				},
+				data: {
+					amount: value
+				},
+				success: function (response) {
+					if (response.statusCode === 200) {
+						wx.navigateTo({
+							url: '/pages/distribution/applySuccess/applySuccess'
+						})
+						wx.hideLoading()
+					} else {
+						wx.showToast({
+							title: response.data.meta.message,
+							icon: 'none'
+						})
+					}
+				},
+				fail: function (response) {
+					wx.showToast({
+						title: response.data.meta.message,
+						icon: 'none'
+					})
+				}
+			})
+		}
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		this.setData({
+			amount: app.globalData.distributorInfo.commission_amount
+		})
 	},
 
 	/**
@@ -52,7 +95,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		this.setData({inputValue: ''})
 	},
 
 	/**

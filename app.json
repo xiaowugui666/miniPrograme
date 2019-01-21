@@ -35,7 +35,8 @@
 		"pages/distribution/myOrders/myOrders",
 		"pages/distribution/applyWithdraw/applyWithdraw",
 		"pages/distribution/withdrawDetail/withdrawDetail",
-		"pages/distribution/withdrawParticu/withdrawParticu"
+		"pages/distribution/withdrawParticu/withdrawParticu",
+		"pages/distribution/applySuccess/applySuccess"
 	],
 	"window": {
 		"backgroundTextStyle": "light",

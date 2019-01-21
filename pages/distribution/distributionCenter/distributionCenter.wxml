@@ -17,7 +17,7 @@
             <view class="price_tips">待结算佣金</view>
         </view>
         <view class="avail_commission commission_box">
-            <view class="price">￥<text>{{filters.humpPrice(distributorInfo.withdrawals_amount)[0]}}</text><text>.{{filters.humpPrice(distributorInfo.withdrawals_amount)[1]}}</text></view>
+            <view class="price">￥<text>{{filters.humpPrice(distributorInfo.commission_amount)[0]}}</text><text>.{{filters.humpPrice(distributorInfo.commission_amount)[1]}}</text></view>
             <view class="price_tips">可提现金额</view>
         </view>
     </view>

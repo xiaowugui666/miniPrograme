@@ -8,13 +8,13 @@
                 <text>￥</text>
                 <input class="draw_input" type="digit" bindinput="handleInput" value="{{inputValue}}"/>
             </view>
-            <view class="content_tips orange" wx:if="{{(amount / 100) < inputValue && inputValue > 50}}">输入金额超过可用余额</view>
+            <view class="content_tips orange" wx:if="{{(amount / 100) < inputValue}}">输入金额超过可用余额</view>
             <view class="content_tips orange" wx:elif="{{inputValue < 50 && inputValue}}">输入金额不可低于50元</view>
             <view class="content_tips" wx:else>
                 <text>可提现金额 ¥ {{filters.ptf(amount)}}，</text>
                 <text class="orange" bindtap="handleDrawAll">全部提现</text>
             </view>
-            <view class="applic_draw {{disabled ? 'disabled' : ''}}">申请提现</view>
+            <view class="applic_draw {{disabled ? 'disabled' : ''}}" bindtap="handleDraw">申请提现</view>
         </view>
         <view class="draw_bottom">
             <view>提现说明：</view>

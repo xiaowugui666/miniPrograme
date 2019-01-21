@@ -1,0 +1,36 @@
+.content {
+    border-top: 24rpx solid #F7F9FB;
+    padding: 128rpx 24rpx 0 24rpx;
+    font-size: 28rpx;
+    color: #6E7C89;
+    line-height: 44rpx;
+}
+.content image {
+    width: 160rpx;
+    height: 160rpx;
+    margin: 0 auto;
+    display: block;
+}
+.content view {
+    text-align: center;
+}
+.content view text {
+    color: #253A4E;
+}
+.content .success_tips {
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #253A4E;
+    margin: 32rpx 0;
+}
+.finish_button {
+    width: 702rpx;
+    height: 80rpx;
+    background:linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+    border-radius:8rpx;
+    text-align: center;
+    line-height: 80rpx;
+    color: #FFFFFF;
+    margin-top: 112rpx;
+    font-size: 32rpx;
+}

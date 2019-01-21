@@ -520,9 +520,6 @@ Page({
 		var that = this
 		var pages = this.data.page;
 		pages = pages + 1
-		this.setData({
-			page: pages
-		})
 		wx.showLoading({
 			title: '加载中',
 		})
@@ -538,7 +535,7 @@ Page({
 				'Api-Ext': app.globalData.apiExt
 			},
 			success(res) {
-				if (res.data != []) {
+				if (res.data.length > 0) {
 					var list = []
 					for (var z = 0; z < res.data.length; z++) {
 						res.data[z].isSelect = false;
@@ -548,6 +545,12 @@ Page({
 					var datalists = that.data.datalist.concat(list)
 					that.setData({
 						datalist: datalists,
+						page: pages
+					})
+				} else {
+					pages = pages - 1
+					that.setData({
+						page: pages
 					})
 				}
 				wx.hideLoading();

@@ -1,38 +1,24 @@
-// pages/distribution/distributionCenter/distributionCenter.js
-const app = getApp()
+// pages/distribution/applySuccess/applySuccess.js
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		distributorInfo: {}
-	},
 
+	},
+	handleClick: function () {
+		wx.redirectTo({
+			delta: 1
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		let that = this
-		wx.request({
-			url: app.globalData.webHttp + '/mpa/distributor/distributors/me',
-			method: 'GET',
-			dataType: 'json',
-			header: {
-				"Api-Key": app.globalData.apiKey,
-				"Api-Secret": app.globalData.apiSecret,
-				'Api-Ext': app.globalData.apiExt
-			},
-			success: function (response) {
-				if (response.statusCode === 200) {
-					app.globalData.distributorInfo = response.data
-					that.setData({
-						distributorInfo: response.data
-					})
-				}
-			},
-		})
+
 	},
+
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
