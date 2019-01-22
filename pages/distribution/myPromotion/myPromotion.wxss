@@ -3,6 +3,9 @@ page {
     padding: 0 24rpx;
     box-sizing: border-box;
 }
+.content {
+    overflow: hidden;
+}
 .promotion_item {
     width: 702rpx;
     margin-top: 24rpx;
@@ -46,15 +49,6 @@ page {
 	-webkit-box-orient:vertical;
 	-webkit-line-clamp:2;
 }
-.info_detail .skus {
-    margin-top: 16rpx;
-    color: #9EA8B1;
-    overflow: hidden;
-	text-overflow:ellipsis;
-	display:-webkit-box;
-	-webkit-box-orient:vertical;
-	-webkit-line-clamp:1;
-}
 .info_detail .price {
     display: flex;
     justify-content: space-between;
@@ -81,6 +75,12 @@ page {
     color: #FFFFFF;
     border-radius: 4rpx;
     background:linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+    padding: 0;
+    margin: 0;
+    font-size: 26rpx;
+}
+.pro_button::after {
+    border: none;
 }
 
 .container .empty_car {

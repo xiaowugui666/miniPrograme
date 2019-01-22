@@ -59,6 +59,9 @@
 			clickGroupId: '',
 			formId: '',
 			group_id: '',
+			isDistributionGood: false,
+			commissionUserId: false,
+			isDistributor: false
 		},
 		// 滑动商品图片
 		changeCurrent: function(e) {
@@ -284,6 +287,9 @@
 								good.goods_sku_id = that.data.good.id;
 								good.name = that.data.name;
 								good.sku_description = 0;
+								if (that.data.isDistributionGood) {
+									good.commissionUserId = that.data.commissionUserId;
+								}
 								if (flag == false) {
 									gloGood.push(good)
 								}
@@ -649,6 +655,12 @@
 					} else if (that.data.chooseSpec.length == 3) {
 						good.sku_description = good.spec_b + ':' + good.property_b + ',' + good.spec_a + ':' + good.property_a + ',' + good.spec_c + ':' + good.property_c
 					}
+
+					// 分销员信息
+					if (that.data.isDistributionGood) {
+						good.commissionUserId = that.data.commissionUserId;
+					}
+
 					app.globalData.good = []
 					app.globalData.good.push(good)
 					that.setData({
@@ -796,12 +808,30 @@
 
 		//定义分享转发
 		onShareAppMessage: function(res) {
-			if (res.from === "button") {}
+			const { activity_type, id } = this.data.goods
+			const { user_id } = app.globalData.distributorInfo
+			let commissionUserId = (activity_type != 1 && activity_type != 2) ? user_id : false
+			let path = "/pages/detail/detail?id=" + this.data.goods.id
+			if (commissionUserId) {
+				path = `${path}&commissionUserId=${commissionUserId}`
+				wx.request({
+					url: app.globalData.webHttp + '/mpa/distributor/promotes',
+					method: 'POST',
+					dataType: 'json',
+					data: {
+						goods_id: id
+					},
+					header: {
+						"Api-Key": app.globalData.apiKey,
+						"Api-Secret": app.globalData.apiSecret,
+						'Api-Ext': app.globalData.apiExt
+					},
+				})
+			}
 			return {
 				title: this.data.goods.description ? this.data.goods.description : this.data.goods.name,
-				path: "/pages/detail/detail?id=" + this.data.goods.id,
+				path: path,
 				imageUrl: this.data.image + this.data.imgs[0].icon_url,
-				success(res) {}
 			}
 		},
 
@@ -858,10 +888,39 @@
 			} else if (options.scene_id) {
 				app.globalData.sceneID = options.scene_id
 			}
-			app.login().then(() => {
+			app.withDistributVerifi().then(() => {
 				this.setData({
 					userId: app.globalData.userId
 				})
+
+				// 当前用户为分销员，且当前页面不为分销分享页
+				if (app.globalData.distributorInfo.id && !options.hasOwnProperty('commissionUserId')) {
+					that.setData({
+						isDistributor: true
+					})
+				}
+
+				// 若为分销进入商品，上报访问次数
+				if (options.hasOwnProperty('commissionUserId')) {
+					that.setData({
+						isDistributionGood: true,
+						commissionUserId: options.commissionUserId
+					})
+					wx.request({
+						url: app.globalData.webHttp + '/mpa/distributor/view',
+						method: 'POST',
+						header: {
+							"Api-Key": app.globalData.apiKey,
+							"Api-Secret": app.globalData.apiSecret,
+							"Api-Ext": app.globalData.apiExt
+						},
+						data: {
+							commission_user_id: options.commissionUserId,
+							goods_id: options.id
+						},
+					})
+				}
+
 				//获取商品规格
 				wx.request({
 					url: app.globalData.http + '/mpa/goods/' + options.id + '/specs',

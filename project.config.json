@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
@@ -41,6 +41,12 @@
 					"pathName": "pages/distribution/withdrawDetail/withdrawDetail",
 					"query": "",
 					"scene": "1007"
+				},
+				{
+					"id": 1,
+					"name": "分享进入商品",
+					"pathName": "pages/detail/detail",
+					"query": "id=60&commissionUserId=13"
 				}
 			]
 		}

@@ -25,7 +25,8 @@ Page({
 			fromCart: false,
 			// apiSecret:'',
 			// apiKey:'',
-			disabled:false
+			disabled:false,
+			commissionUserId: false
 	},
 
 	// 减少数量
@@ -129,6 +130,12 @@ Page({
 			sku_id[[data[i].goods_sku_id]]=data[i].count
 			sku_idss.push(data[i].goods_sku_id)
 			cart_item_ids.push(data[i].id)
+			
+			if (data[i].hasOwnProperty('commissionUserId')) {
+				that.setData({
+					commissionUserId: data[i].commissionUserId
+				})
+			}
 		}
 		// for(var j=0;j<local.length;j++){
 		//   sum += parseFloat(local[j].price) * parseFloat(local[j].count)
@@ -298,19 +305,23 @@ Page({
 			}
 		}
 		let sceneID = app.globalData.sceneID;
+		let params = {
+			goods: goodsObj,
+			address_id:that.data.address.id,
+			remarks:'',
+			cart_item_ids: that.data.cart_item_ids,
+			form_id: e.detail.formId,
+			scene: sceneID ? sceneID : ''
+		}
+		if (that.data.commissionUserId) {
+			params.commission_user_id = that.data.commissionUserId
+		}
 		// 直接支付生成订单
 		wx.request({
 			url: app.globalData.http +'/mpa/order',
 			method: "post",
 			dataType: 'json',
-			data: {
-				goods: goodsObj,
-				address_id:that.data.address.id,
-				remarks:'',
-				cart_item_ids: that.data.cart_item_ids,
-				form_id: e.detail.formId,
-				scene: sceneID ? sceneID : ''
-			},
+			data: params,
 			header: {
 				"Api-Key": app.globalData.apiKey,
 				"Api-Secret": app.globalData.apiSecret,

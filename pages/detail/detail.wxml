@@ -41,7 +41,11 @@
 	<view class='detail_description'>
 		<view class='name_share'>
 			<view class='des_name'>{{goods.name}}</view>
-			<button open-type='share'>
+			<button open-type='share' class="promotion_button" wx:if="{{isDistributor}}">
+				<image src='../../imgs/icon_tuiguang@3x.png'></image>
+				<view>分享</view>
+			</button>
+			<button open-type='share' wx:else>
 				<image src='../../imgs/icon_share.png'></image>
 				<view>分享</view>
 			</button>
@@ -123,7 +127,7 @@
   <!-- 下架提示 -->
   <view wx:if="{{status==2}}" class='soldTips'>该商品已下架！去别处看看吧~</view>
     <form bindsubmit='submit' report-submit='true'>
-    	<view class='detail_bottom'>
+    	<view class='detail_bottom' wx:if="{{!isDistributionGood}}">
         	<view class='detail_cart' bindtap='goCart'>
 				<image src='/imgs/icon_detail_buy.png'></image>
 				<text>购物车</text>
@@ -159,6 +163,11 @@
 				<button disabled='{{status==2}}' wx:elif="{{!userId}}" class='buy {{status==2?"disBuy":""}}'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即购买 </button>
 				<button disabled='{{status==2}}' wx:else class='buy {{status==2?"disBuy":""}}' bindtap='submit' data-flag='2'>立即购买</button>
 		    </view>
+		</view>
+		<view class="detail_bottom" wx:else>
+			<button disabled='{{status==2}}' wx:if="{{!hasUserInfo}}" class='from_distributor_buy {{status==2?"disBuy":""}}'  open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即购买 </button>
+			<button disabled='{{status==2}}' wx:elif="{{!userId}}" class='from_distributor_buy {{status==2?"disBuy":""}}'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即购买 </button>
+			<button disabled='{{status==2}}' wx:else class='from_distributor_buy {{status==2?"disBuy":""}}' bindtap='submit' data-flag='2'>立即购买</button>
 		</view>
     </form>
 

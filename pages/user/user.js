@@ -11,7 +11,7 @@ Page({
 		userId:'',
 		count4:'',
 		apiExt:'',
-		messageNum:'',
+		// messageNum:'',
 		image: 'http://image.yiqixuan.com/',
 		isOpenDistribution: false,
 		distributionInfo: {},
@@ -66,22 +66,25 @@ Page({
 					})
 				}
 			})
-			wx.request({
-				url: app.globalData.http + '/mpa/comment/unread/count',
-				method: 'GET',
-				dataType: 'json',
-				header: {
-					"Api-Key": app.globalData.apiKey,
-					"Api-Secret": app.globalData.apiSecret,
-					'Api-Ext': app.globalData.apiExt
-				},
-				success: function (data) {
-					var datas = data.data
-					that.setData({
-						messageNum: datas
-					})
-				}
-			})
+			
+			// 动态模块消息中心未读消息数，动态模块已被隐藏
+
+			// wx.request({
+			// 	url: app.globalData.http + '/mpa/comment/unread/count',
+			// 	method: 'GET',
+			// 	dataType: 'json',
+			// 	header: {
+			// 		"Api-Key": app.globalData.apiKey,
+			// 		"Api-Secret": app.globalData.apiSecret,
+			// 		'Api-Ext': app.globalData.apiExt
+			// 	},
+			// 	success: function (data) {
+			// 		var datas = data.data
+			// 		that.setData({
+			// 			messageNum: datas
+			// 		})
+			// 	}
+			// })
 		}
 	},
 	toOrder:function(e){

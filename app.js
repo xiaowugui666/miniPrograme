@@ -5,23 +5,7 @@ App({
 	},
 	onLaunch: function () {
 		var that=this
-		that.login().then(() => {
-			wx.request({
-				url: that.globalData.webHttp + '/mpa/distributor/distributors/me',
-				method: 'GET',
-				dataType: 'json',
-				header: {
-					"Api-Key": that.globalData.apiKey,
-					"Api-Secret": that.globalData.apiSecret,
-					'Api-Ext': that.globalData.apiExt
-				},
-				success: function (response) {
-					if (response.statusCode === 200) {
-						that.globalData.distributorInfo = response.data
-					}
-				},
-			})
-		})
+		this.withDistributVerifi()
 		this.globalData.apiExt = wx.getExtConfigSync().data
 
 		wx.request({
@@ -35,6 +19,32 @@ App({
 					that.globalData.distribution = response.data
 				}
 			}
+		})
+	},
+	withDistributVerifi: function () {
+		let that = this
+		return new Promise((resolve, reject) => {
+			that.login().then(() => {
+				wx.request({
+					url: that.globalData.webHttp + '/mpa/distributor/distributors/me',
+					method: 'GET',
+					dataType: 'json',
+					header: {
+						"Api-Key": that.globalData.apiKey,
+						"Api-Secret": that.globalData.apiSecret,
+						'Api-Ext': that.globalData.apiExt
+					},
+					success: function (response) {
+						if (response.statusCode === 200) {
+							that.globalData.distributorInfo = response.data
+						}
+						resolve()
+					},
+					fail: function (response) {
+						reject(response)
+					}
+				})
+			})
 		})
 	},
 	login: function () {

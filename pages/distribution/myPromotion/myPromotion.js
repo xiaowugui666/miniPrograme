@@ -7,9 +7,14 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		dataList: []
+		dataList: [],
+		image: 'http://image.yiqixuan.com/',
 	},
-
+	handlePromotion: function (e) {
+		wx.navigateTo({
+			url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id,
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -92,9 +97,43 @@ Page({
 	},
 
 	/**
-	 * 用户点击右上角分享
+	 * 定义分享转发
 	 */
-	onShareAppMessage: function () {
-
-	}
+	onShareAppMessage: function(res) {
+		const { from } = res
+		if (from === 'menu') {
+			return {}
+		} else {
+			const index = res.target.dataset.index,
+				currentData = this.data.dataList[index],
+				{ id } = currentData.goods,
+				{ user_id } = currentData,
+				commissionUserId = user_id;
+			let	path = "/pages/detail/detail?id=" + currentData.goods.id
+			path = `${path}&commissionUserId=${commissionUserId}`
+			wx.request({
+				url: app.globalData.webHttp + '/mpa/distributor/promotes',
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					goods_id: id
+				},
+				header: {
+					"Api-Key": app.globalData.apiKey,
+					"Api-Secret": app.globalData.apiSecret,
+					'Api-Ext': app.globalData.apiExt
+				},
+				success: function (response) {
+					if (response.statusCode === 200) {
+						console.log(response)
+					}
+				},
+			})
+			return {
+				title: currentData.goods.description ? currentData.goods.description : currentData.goods.name,
+				path: path,
+				imageUrl: this.data.image + currentData.goods.cover_url,
+			}
+		}
+	},
 })

@@ -26,21 +26,21 @@
     <navigator class="body_box" hover-class="none" url="/pages/distribution/myCustomer/myCustomer">
         <view>我的客户</view>
         <view class="body_counts">
-            <text>500</text>
+            <text>{{distributorInfo.customer_count}}</text>
             <image src="/imgs/icon_arrow.png" />
         </view>
     </navigator>
     <navigator class="body_box" hover-class="none" url="/pages/distribution/myPromotion/myPromotion">
         <view>我的推广</view>
         <view class="body_counts">
-            <text>500</text>
+            <text>{{distributorInfo.promote_count}}</text>
             <image src="/imgs/icon_arrow.png" />
         </view>
     </navigator>
     <navigator class="body_box" hover-class="none" url="/pages/distribution/myOrders/myOrders">
         <view>我的订单</view>
         <view class="body_counts">
-            <text>500</text>
+            <text>{{distributorInfo.order_count}}</text>
             <image src="/imgs/icon_arrow.png" />
         </view>
     </navigator>

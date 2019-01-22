@@ -182,7 +182,9 @@ page{
   padding: 0;
   margin: 0;
   vertical-align: middle;
-  position: static;
+}
+.bind_mobile button::after {
+  border: none;
 }
 
 

@@ -9,7 +9,8 @@ Page({
 		modalVisible: false,
 		userId: false,
 		hasUserInfo: false,
-		tips: '亲爱的，你还不符合申请资格哦~'
+		tips: '亲爱的，你还不符合申请资格哦~',
+		distributionPlan: ''
 	},
 	handleClick: function () {
 		this.appliForMember().then((res) => {
@@ -51,6 +52,9 @@ Page({
 	 */
 	onLoad: function (options) {
 		var that=this;
+		that.setData({
+			distributionPlan: app.globalData.distribution.recruitment_plan
+		})
 		var uerinfo = wx.getStorageSync("huzan_avatarUrl")
 		if (uerinfo) {
 			that.setData({
