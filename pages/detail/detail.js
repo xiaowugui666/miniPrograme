@@ -893,13 +893,6 @@
 					userId: app.globalData.userId
 				})
 
-				// 当前用户为分销员，且当前页面不为分销分享页
-				if (app.globalData.distributorInfo.id && !options.hasOwnProperty('commissionUserId')) {
-					that.setData({
-						isDistributor: true
-					})
-				}
-
 				// 若为分销进入商品，上报访问次数
 				if (options.hasOwnProperty('commissionUserId')) {
 					that.setData({
@@ -1002,7 +995,13 @@
 								})
 							}
 
-
+							// 当前用户为分销员，且当前页面不为分销分享页、商品未参加营销活动
+							const { activity_type } = res.data
+							if (app.globalData.distributorInfo.id && !options.hasOwnProperty('commissionUserId') && activity_type != 1 && activity_type != 2 && app.globalData.distribution.status == 1) {
+								that.setData({
+									isDistributor: true
+								})
+							}
 							// 如果为拼团详情，请求商品拼团信息详情
 							if (res.data.activity_type == 1) {
 								wx.request({

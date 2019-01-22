@@ -43,7 +43,7 @@
 			<view class='des_name'>{{goods.name}}</view>
 			<button open-type='share' class="promotion_button" wx:if="{{isDistributor}}">
 				<image src='../../imgs/icon_tuiguang@3x.png'></image>
-				<view>分享</view>
+				<view>推广</view>
 			</button>
 			<button open-type='share' wx:else>
 				<image src='../../imgs/icon_share.png'></image>
