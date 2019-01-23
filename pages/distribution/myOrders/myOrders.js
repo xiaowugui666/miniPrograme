@@ -63,12 +63,12 @@ Page({
 						let newArr = tempArr.concat(response.data)
 						that.setData({
 							dataList: newArr,
-							[currentCountName]: response.header.Data_count
+							[currentCountName]: response.header.Data_count || response.header.data_count
 						})
 					} else {
 						that.setData({
 							dataList: response.data,
-							[currentCountName]: response.header.Data_count
+							[currentCountName]: response.header.Data_count || response.header.data_count
 						})
 					}
 					wx.hideLoading()
@@ -101,7 +101,7 @@ Page({
 			success: function (response) {
 				if (response.statusCode === 200) {
 					that.setData({
-						[anotherCountName]: response.header.Data_count
+						[anotherCountName]: response.header.Data_count || response.header.data_count
 					})
 				}
 			},
