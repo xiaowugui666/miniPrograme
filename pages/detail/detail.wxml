@@ -19,9 +19,10 @@
     <view class="goods_info {{goods.activity_type == 1 ? 'group_info' : 'normal_info'}}">
 		<view class='price_info'>
 			<view class="price {{goods.activity_type == 1 ? 'group_price' : ''}}"><text>￥</text>{{filters.ptf(goods.activity_type == 1 ? groupInfo.price_low : goods.price)}}</view>
-			<view class='info'>
+			<view class='info {{isDistributor ? "distribution_info" : ""}}'>
 				<view class='info_number' wx:if="{{goods.activity_type == 1}}">{{groupInfo.min_join_count}}人拼团</view>
 				<view class='info_origin_price'>￥{{filters.ptf(goods.activity_type == 1 ? groupInfo.origin_price_low : (goods.display_price ? goods.display_price : goods.price_high))}}</view>
+				<view class="commission_price" wx:if="{{isDistributor}}">佣金<text>￥</text>{{filters.ptf(commissionAmount)}}</view>
 			</view>
 		</view>
 		<view class='count_down' wx:if="{{goods.activity_type == 1}}">

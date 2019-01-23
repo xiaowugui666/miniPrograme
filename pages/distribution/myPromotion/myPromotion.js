@@ -9,6 +9,7 @@ Page({
 	data: {
 		dataList: [],
 		image: 'http://image.yiqixuan.com/',
+		page: 0
 	},
 	handlePromotion: function (e) {
 		wx.navigateTo({
@@ -19,7 +20,10 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		let that = this
+		this.getData()
+	},
+	getData: function (params) {
+		let that = this, currentPage = this.data.page
 		wx.showLoading({
 			title: '加载中'
 		})
@@ -32,11 +36,28 @@ Page({
 				"Api-Secret": app.globalData.apiSecret,
 				'Api-Ext': app.globalData.apiExt
 			},
+			data: {
+				page: currentPage
+			},
 			success: function (response) {
 				if (response.statusCode === 200) {
-					that.setData({
-						dataList: response.data
-					})
+					if (response.data.length === 0 && params === 'isConcat') {
+						let newPage = that.data.page
+						newPage--
+						that.setData({
+							page: newPage
+						})
+					} else if (params === 'isConcat') {
+						let tempArr = that.data.dataList
+						let newArr = tempArr.concat(response.data)
+						that.setData({
+							dataList: newArr
+						})
+					} else {
+						that.setData({
+							dataList: response.data
+						})
+					}
 					wx.hideLoading()
 				} else {
 					wx.showToast({
@@ -53,7 +74,6 @@ Page({
 			}
 		})
 	},
-
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
@@ -93,7 +113,12 @@ Page({
 	 * 页面上拉触底事件的处理函数
 	 */
 	onReachBottom: function () {
-
+		let newPage = this.data.page
+		newPage++
+		this.setData({
+			page: newPage
+		})
+		this.getData('isConcat')
 	},
 
 	/**

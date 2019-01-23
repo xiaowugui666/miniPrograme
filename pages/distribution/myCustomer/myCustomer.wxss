@@ -1,6 +1,9 @@
 page {
     background: #F7F9FB;
 }
+.content {
+    padding-bottom: 24rpx;
+}
 .cus_item {
     margin-top: 24rpx;
     background: #FFFFFF;
@@ -13,6 +16,15 @@ page {
     font-size: 28rpx;
     color: #253A4E;
     border-bottom: 2rpx solid #F3F4F5;
+}
+.user_info .is_distributor {
+    display: inline-block;
+    padding: 4rpx;
+    background: #F35D51;
+    font-size: 24rpx;
+    color: #FFFFFF;
+    margin-right: 8rpx;
+    border-radius: 4rpx;
 }
 .user_info .info_time {
     font-size: 26rpx;

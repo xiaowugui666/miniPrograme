@@ -566,9 +566,11 @@ Page({
 	onShow: function (options) {
 		let that = this;
 		var goodlist = wx.getStorageSync('good')
-		goodlist.forEach(item => {
-			item.isSelect = false
-		})
+		if (goodlist && goodlist.length > 0) {
+			goodlist.forEach(item => {
+				item.isSelect = false
+			})
+		}
 		this.setData({
 			selectAll: false
 		})

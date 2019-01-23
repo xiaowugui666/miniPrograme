@@ -1,37 +1,38 @@
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
 
-<view class="content" wx:if="{{dataList.legnth > 0}}">
+<view class="content">
     <view class="content_header">
-        <view class="tab {{currentTab === 1 ? 'active' : ''}}" bindtap="handleTap" data-type="{{1}}">待结算(5)</view>
-        <view class="tab {{currentTab === 2 ? 'active' : ''}}" bindtap="handleTap" data-type="{{2}}">已结算(5)</view>
+        <view class="tab {{currentTab === 1 ? 'active' : ''}}" bindtap="handleTap" data-type="{{1}}">待结算({{pendingCount}})</view>
+        <view class="tab {{currentTab === 2 ? 'active' : ''}}" bindtap="handleTap" data-type="{{2}}">已结算({{settledCount}})</view>
     </view>
-    <view class="content_box">
+    <view class="content_box" wx:if="{{dataList.length > 0}}">
         <view class="order_item" wx:for="{{dataList}}" wx:key="index">
-            <view class="order_no">
-                <text>订单号 : 23445567788554760098</text>
-                <text class="status">待发货</text>
-            </view>
-            <view class="good_info">
-                <image src="/imgs/rule1.png" />
+            <view class="order_no">订单号 : {{item.order_no}}</view>
+            <view class="good_info" wx:for="{{item.order.items}}" wx:for-index="ind" wx:for-item="ite" wx:key="ind">
+                <image src="{{image}}{{ite.cover_url}}" />
                 <view class="info_detail">
                     <view class="descri">
-                        <view class="title">米白色宽松深V领雪纺复古衬衫</view>
-                        <view class="skus">现货; xs</view>
+                        <view class="title">{{ite.name}}</view>
+                        <view class="skus">{{ite.sku_description}}</view>
                     </view>
                     <view class="price">
-                        <view>￥{{filters.ptf(22545)}}</view>
+                        <view>￥{{filters.ptf(ite.price)}}</view>
                         <view>x1</view>
                     </view>
                 </view>
             </view>
             <view class="order_bottom">
-                <view>买家昵称 : {{'故里苏'}}</view>
-                <view>佣金：<text>￥{{filters.ptf(85645)}}</text></view>
+                <view class="user_name">买家昵称 : {{item.user_wechat.nick_name}}</view>
+                <view class="commision_info">
+                    <view>预期佣金：<text>￥{{filters.ptf(item.commission_amount)}}</text></view>
+                    <text class="status">{{filters.statu(item.order.status)}}</text>
+                </view>
             </view>
         </view>
     </view>
+    <view class='container' wx:else>
+        <image src='/imgs/no_data_1.png'></image>
+        <view class="empty_car">亲爱的，你暂时没有此类订单哦~</view>
+    </view>
 </view>
-<view class='container' wx:else>
-    <image src='/imgs/no_data_1.png'></image>
-    <view class="empty_car">亲爱的，你暂时没有推广订单哦~</view>
-</view>
+

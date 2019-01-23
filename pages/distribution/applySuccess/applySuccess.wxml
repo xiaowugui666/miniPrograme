@@ -3,7 +3,7 @@
 <view class="content">
     <image src="/imgs/icon_success@2x.png" />
     <view class="success_tips">申请提现成功</view>
-    <view>申请提现金额<text>￥{{filters.ptf(10000)}}</text></view>
+    <view>申请提现金额<text>￥{{filters.ptf(amount)}}</text></view>
     <view>即将到账微信零钱</view>
     <view class="finish_button" bindtap="handleClick">完成</view>
 </view>

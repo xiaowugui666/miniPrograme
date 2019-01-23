@@ -1,6 +1,9 @@
 page {
     background: #F7F9FB;
 }
+.content {
+    padding-bottom: 24rpx;
+}
 .content_header {
     width: 750rpx;
     height: 78rpx;
@@ -23,32 +26,26 @@ page {
     font-weight: 500;
 }
 .content_box {
-    padding: 0 24rpx;
     overflow: hidden;
 }
 .content_box .order_item {
     margin-top: 24rpx;
-    width: 702rpx;
+    width: 750rpx;
+    padding: 0 24rpx;
+    box-sizing: border-box;
     background: #FFFFFF;
-    border-radius: 8rpx;
-    box-shadow:0px 6px 16px 0px rgba(13,37,59,0.04);
     font-size: 26rpx;
     color: #253A4E;
 }
 .order_item .order_no {
-    padding: 24rpx;
+    padding: 24rpx 0;
     color: #9EA8B1;
     border-bottom: 2rpx solid #F3F4F5;
-    display: flex;
-    justify-content: space-between;
-}
-.order_no .status {
-    color: #F35D51;
 }
 .good_info {
     display: flex;
     align-items: center;
-    padding: 24rpx;
+    padding: 24rpx 0;
     font-size: 26rpx;
     color: #253A4E;
     border-bottom: 2rpx solid #F3F4F5;
@@ -93,13 +90,23 @@ page {
 }
 
 .order_item .order_bottom {
-    padding: 24rpx;
-    display: flex;
-    justify-content: space-between;
+    padding: 24rpx 0;
     font-size: 28rpx;
+}
+.order_bottom .user_name {
+    overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
 }
 .order_bottom text {
     color: #F35D51;
+}
+.order_bottom .commision_info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24rpx;
 }
 
 .container .empty_car {

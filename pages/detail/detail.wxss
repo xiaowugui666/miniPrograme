@@ -83,6 +83,20 @@ swiper{
 	margin: 0 24rpx;
 	color: #FFFFFF;
 }
+.price_info .distribution_info {
+	display: flex;
+}
+.price_info .commission_price {
+	margin-left: 12rpx;
+	border-radius: 8rpx;
+	padding: 4rpx 16rpx;
+	background: rgba(255,170,22,0.2);
+	color: #FFAA16;
+	font-size: 24rpx;
+}
+.commission_price text {
+	font-size: 16rpx;
+}
 .info_number {
 	text-align: center;
 	margin-bottom: 2rpx;

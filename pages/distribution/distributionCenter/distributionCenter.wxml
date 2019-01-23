@@ -33,7 +33,7 @@
     <navigator class="body_box" hover-class="none" url="/pages/distribution/myPromotion/myPromotion">
         <view>我的推广</view>
         <view class="body_counts">
-            <text>{{distributorInfo.promote_count}}</text>
+            <text>{{distributorInfo.promote_goods_count}}</text>
             <image src="/imgs/icon_arrow.png" />
         </view>
     </navigator>

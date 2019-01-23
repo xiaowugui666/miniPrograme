@@ -56,7 +56,7 @@ Page({
 				success: function (response) {
 					if (response.statusCode === 200) {
 						wx.navigateTo({
-							url: '/pages/distribution/applySuccess/applySuccess'
+							url: '/pages/distribution/applySuccess/applySuccess?value=' + value
 						})
 						wx.hideLoading()
 					} else {

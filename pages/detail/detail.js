@@ -61,7 +61,8 @@
 			group_id: '',
 			isDistributionGood: false,
 			commissionUserId: false,
-			isDistributor: false
+			isDistributor: false,
+			commissionAmount: 0
 		},
 		// 滑动商品图片
 		changeCurrent: function(e) {
@@ -1000,6 +1001,22 @@
 							if (app.globalData.distributorInfo.id && !options.hasOwnProperty('commissionUserId') && activity_type != 1 && activity_type != 2 && app.globalData.distribution.status == 1) {
 								that.setData({
 									isDistributor: true
+								})
+								wx.request({
+									url: app.globalData.webHttp + '/mpa/distributor/goods/' + options.id,
+									method: 'GET',
+									header: {
+										"Api-Key": app.globalData.apiKey,
+										"Api-Secret": app.globalData.apiSecret,
+										"Api-Ext": app.globalData.apiExt
+									},
+									success: function (response) {
+										if (response.statusCode === 200) {
+											that.setData({
+												commissionAmount: response.data.commission_amount
+											})
+										}
+									}
 								})
 							}
 							// 如果为拼团详情，请求商品拼团信息详情

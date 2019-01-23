@@ -5,13 +5,14 @@ page {
 }
 .content {
     overflow: hidden;
+    padding-bottom: 24rpx;
 }
 .promotion_item {
     width: 702rpx;
     margin-top: 24rpx;
     background: #FFFFFF;
     border-radius: 8rpx;
-    box-shadow:0px 6px 16px 0px rgba(13,37,59,0.04);
+    box-shadow:0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
 }
 .promotion_item .pro_time {
     padding: 24rpx;

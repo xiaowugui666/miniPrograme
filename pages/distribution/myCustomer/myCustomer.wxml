@@ -1,25 +1,28 @@
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
 
-<view class="cus_item" wx:if="{{dataList.length > 0}}">
-    <view class="user_info">
-        <image src="/imgs/me_head0.png" />
-        <view>
-            <view>长安有故</view>
-            <view class="info_time">绑定时间 : 2018-12-12</view>
+<view class="content">
+    <block wx:if="{{dataList.length > 0}}">
+        <view class="cus_item" wx:for="{{dataList}}" wx:key="index">
+            <view class="user_info">
+                <image src="{{item.customer_wechat.avatar_url}}" />
+                <view>
+                    <view><text class="is_distributor" wx:if="{{item.is_distributor}}">分销员</text>{{item.customer_wechat.nick_name}}</view>
+                    <view class="info_time">绑定时间 : {{item.created_at}}</view>
+                </view>
+            </view>
+            <view class="user_transtion">
+                <view class="transtion_box">
+                    <view><text >付款订单：</text><text class="tran_black">{{item.order_paid_count}} 笔</text></view>
+                    <view><text >交易金额：</text><text class="tran_black">￥{{filters.ptf(item.order_amount)}}</text></view>
+                </view>
+                <view class="transtion_box">
+                    <view><text >所得佣金：</text><text class="tran_black">￥{{filters.ptf(item.commission_amount)}}</text></view>
+                </view>
+            </view>
         </view>
+    </block>
+    <view class='container' wx:else>
+        <image src='/imgs/no_data_1.png'></image>
+        <view class="empty_car">亲爱的，你暂时没有客户哦~</view>
     </view>
-    <view class="user_transtion">
-        <view class="transtion_box">
-            <view><text >付款订单：</text><text class="tran_black">{{60}} 笔</text></view>
-            <view><text >交易金额：</text><text class="tran_black">￥{{filters.ptf(887700)}}</text></view>
-        </view>
-        <view class="transtion_box">
-            <view><text >完成订单：</text><text class="tran_black">{{60}} 笔</text></view>
-            <view><text >所得佣金：</text><text class="tran_black">￥{{filters.ptf(887700)}}</text></view>
-        </view>
-    </view>
-</view>
-<view class='container' wx:else>
-    <image src='/imgs/no_data_1.png'></image>
-    <view class="empty_car">亲爱的，你暂时没有客户哦~</view>
 </view>

@@ -7,7 +7,12 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		currentTab: 1
+		currentTab: 1,
+		dataList: [],
+		image: 'http://image.yiqixuan.com/',
+		pendingCount: 0,
+		settledCount: 0,
+		page: 0
 	},
 	handleTap: function (e) {
 		this.setData({
@@ -21,8 +26,14 @@ Page({
 	onLoad: function (options) {
 		this.getData()
 	},
-	getData: function () {
-		let that = this
+	getData: function (params) {
+		let that = this, currentTab = that.data.currentTab, anotherTab = 1, currentCountName = 'pendingCount', anotherCountName = 'settledCount',currentPage = this.data.page
+		if (currentTab === 1) {
+			anotherTab = 2
+		} else {
+			currentCountName = 'settledCount'
+			anotherCountName = 'pendingCount'
+		}
 		wx.showLoading({
 			title: '加载中'
 		})
@@ -36,13 +47,30 @@ Page({
 				'Api-Ext': app.globalData.apiExt
 			},
 			data: {
-				commission_status: that.data.currentTab
+				commission_status: currentTab,
+				page: currentPage
 			},
 			success: function (response) {
 				if (response.statusCode === 200) {
-					that.setData({
-						dataList: response.data
-					})
+					if (response.data.length === 0 && params === 'isConcat') {
+						let newPage = that.data.page
+						newPage--
+						that.setData({
+							page: newPage
+						})
+					} else if (params === 'isConcat') {
+						let tempArr = that.data.dataList
+						let newArr = tempArr.concat(response.data)
+						that.setData({
+							dataList: newArr,
+							[currentCountName]: response.header.Data_count
+						})
+					} else {
+						that.setData({
+							dataList: response.data,
+							[currentCountName]: response.header.Data_count
+						})
+					}
 					wx.hideLoading()
 				} else {
 					wx.showToast({
@@ -57,6 +85,26 @@ Page({
 					icon: 'none'
 				})
 			}
+		})
+		wx.request({
+			url: app.globalData.webHttp + '/mpa/distributor/orders',
+			method: 'GET',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+			},
+			data: {
+				commission_status: anotherTab
+			},
+			success: function (response) {
+				if (response.statusCode === 200) {
+					that.setData({
+						[anotherCountName]: response.header.Data_count
+					})
+				}
+			},
 		})
 	},
 	/**
@@ -98,7 +146,12 @@ Page({
 	 * 页面上拉触底事件的处理函数
 	 */
 	onReachBottom: function () {
-
+		let newPage = this.data.page
+		newPage++
+		this.setData({
+			page: newPage
+		})
+		this.getData('isConcat')
 	},
 
 	/**
