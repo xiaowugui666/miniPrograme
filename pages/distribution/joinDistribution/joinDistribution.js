@@ -75,7 +75,7 @@ Page({
 				title: '加载中',
 			})
 			wx.request({
-				url: app.globalData.webHttp + '/mpa/distributor/distributors',
+				url: app.globalData.http + '/mpa/distributor/distributors',
 				method: 'POST',
 				header: {
 					"Api-Key": app.globalData.apiKey,

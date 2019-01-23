@@ -28,7 +28,7 @@ Page({
 			title: '加载中'
 		})
 		wx.request({
-			url: app.globalData.webHttp + '/mpa/distributor/promotes',
+			url: app.globalData.http + '/mpa/distributor/promotes',
 			method: 'GET',
 			dataType: 'json',
 			header: {
@@ -137,7 +137,7 @@ Page({
 			let	path = "/pages/detail/detail?id=" + currentData.goods.id
 			path = `${path}&commissionUserId=${commissionUserId}`
 			wx.request({
-				url: app.globalData.webHttp + '/mpa/distributor/promotes',
+				url: app.globalData.http + '/mpa/distributor/promotes',
 				method: 'POST',
 				dataType: 'json',
 				data: {

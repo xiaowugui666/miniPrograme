@@ -28,7 +28,7 @@ Page({
 	onShow: function () {
 		let that = this
 		wx.request({
-			url: app.globalData.webHttp + '/mpa/distributor/distributors/me',
+			url: app.globalData.http + '/mpa/distributor/distributors/me',
 			method: 'GET',
 			dataType: 'json',
 			header: {

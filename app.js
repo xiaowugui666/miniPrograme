@@ -9,7 +9,7 @@ App({
 		this.globalData.apiExt = wx.getExtConfigSync().data
 
 		wx.request({
-			url: that.globalData.webHttp + '/mpa/distributor/info',
+			url: that.globalData.http + '/mpa/distributor/info',
 			method: 'GET',
 			header: {
 				'Api-Ext': that.globalData.apiExt,
@@ -26,7 +26,7 @@ App({
 		return new Promise((resolve, reject) => {
 			that.login().then(() => {
 				wx.request({
-					url: that.globalData.webHttp + '/mpa/distributor/distributors/me',
+					url: that.globalData.http + '/mpa/distributor/distributors/me',
 					method: 'GET',
 					dataType: 'json',
 					header: {
@@ -244,7 +244,6 @@ App({
 		login:false,
 		timeStamp:'',
 		http:'https://retail-mall-develop.51zan.com',
-		webHttp: 'https://retail-develop.51zan.com',
 		image: 'https://image.yiqixuan.com/',
 		options: '',
 		sceneID: 0,

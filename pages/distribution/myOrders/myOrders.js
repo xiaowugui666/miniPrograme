@@ -38,7 +38,7 @@ Page({
 			title: '加载中'
 		})
 		wx.request({
-			url: app.globalData.webHttp + '/mpa/distributor/orders',
+			url: app.globalData.http + '/mpa/distributor/orders',
 			method: 'GET',
 			dataType: 'json',
 			header: {
@@ -87,7 +87,7 @@ Page({
 			}
 		})
 		wx.request({
-			url: app.globalData.webHttp + '/mpa/distributor/orders',
+			url: app.globalData.http + '/mpa/distributor/orders',
 			method: 'GET',
 			dataType: 'json',
 			header: {

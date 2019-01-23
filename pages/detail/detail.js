@@ -816,7 +816,7 @@
 			if (commissionUserId) {
 				path = `${path}&commissionUserId=${commissionUserId}`
 				wx.request({
-					url: app.globalData.webHttp + '/mpa/distributor/promotes',
+					url: app.globalData.http + '/mpa/distributor/promotes',
 					method: 'POST',
 					dataType: 'json',
 					data: {
@@ -901,7 +901,7 @@
 						commissionUserId: options.commissionUserId
 					})
 					wx.request({
-						url: app.globalData.webHttp + '/mpa/distributor/view',
+						url: app.globalData.http + '/mpa/distributor/view',
 						method: 'POST',
 						header: {
 							"Api-Key": app.globalData.apiKey,
@@ -1003,7 +1003,7 @@
 									isDistributor: true
 								})
 								wx.request({
-									url: app.globalData.webHttp + '/mpa/distributor/goods/' + options.id,
+									url: app.globalData.http + '/mpa/distributor/goods/' + options.id,
 									method: 'GET',
 									header: {
 										"Api-Key": app.globalData.apiKey,

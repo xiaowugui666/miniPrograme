@@ -16,7 +16,10 @@ Page({
 			value = parseFloat(value).toString().match(/^\d+(?:\.\d{0,2})?/)
 			return value || ''
 		}
-		if (value <= (amount / 100) && value >= 50) {
+		// if (value <= (amount / 100) && value >= 50) {
+		// 	buttonDisable = false
+		// }
+		if (value <= (amount / 100)) {
 			buttonDisable = false
 		}
 		this.setData({
@@ -42,7 +45,7 @@ Page({
 				title: '加载中'
 			})
 			wx.request({
-				url: app.globalData.webHttp + '/mpa/distributor/withdrawals',
+				url: app.globalData.http + '/mpa/distributor/withdrawals',
 				method: 'POST',
 				dataType: 'json',
 				header: {

@@ -18,7 +18,7 @@ Page({
 			title: '加载中'
 		})
 		wx.request({
-			url: app.globalData.webHttp + '/mpa/distributor/withdrawals',
+			url: app.globalData.http + '/mpa/distributor/withdrawals',
 			method: 'GET',
 			dataType: 'json',
 			header: {

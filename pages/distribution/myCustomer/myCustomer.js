@@ -22,7 +22,7 @@ Page({
 			title: '加载中'
 		})
 		wx.request({
-			url: app.globalData.webHttp + '/mpa/distributor/customers',
+			url: app.globalData.http + '/mpa/distributor/customers',
 			method: 'GET',
 			dataType: 'json',
 			header: {
