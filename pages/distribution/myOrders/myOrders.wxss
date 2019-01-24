@@ -103,6 +103,9 @@ page {
 .order_bottom text {
     color: #F35D51;
 }
+.order_bottom .status.cancel {
+    color: #9EA8B1;
+}
 .order_bottom .commision_info {
     display: flex;
     justify-content: space-between;

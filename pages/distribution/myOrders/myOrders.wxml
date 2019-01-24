@@ -17,15 +17,15 @@
                     </view>
                     <view class="price">
                         <view>￥{{filters.ptf(ite.price)}}</view>
-                        <view>x1</view>
+                        <view>x{{ite.count}}</view>
                     </view>
                 </view>
             </view>
             <view class="order_bottom">
-                <view class="user_name">买家昵称 : {{item.user_wechat.nick_name}}</view>
+                <view class="user_name">买家昵称 : {{item.buyer_wechat.nick_name}}</view>
                 <view class="commision_info">
-                    <view>预期佣金：<text>￥{{filters.ptf(item.commission_amount)}}</text></view>
-                    <text class="status">{{filters.statu(item.order.status)}}</text>
+                    <view>{{currentTab === 1 ? '预期' : '实得'}}佣金：<text>￥{{filters.ptf(item.commission_amount)}}</text></view>
+                    <text class="status {{(item.commission_amount != item.expect_commission_amount) ? 'cancel': ''}}">{{(item.commission_amount != item.expect_commission_amount) ? '取消售后' : filters.statu(item.order.status)}}</text>
                 </view>
             </view>
         </view>
