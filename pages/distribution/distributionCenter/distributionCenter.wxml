@@ -9,7 +9,7 @@
     </view>
     <view class="commission">
         <view class="total_commission commission_box">
-            <view class="price">￥<text>{{filters.humpPrice(distributionRule.total_commission_amount)[0]}}</text><text>.{{filters.humpPrice(distribution.total_commission_amount)[1]}}</text></view>
+            <view class="price">￥<text>{{filters.humpPrice(distributorInfo.total_commission_amount)[0]}}</text><text>.{{filters.humpPrice(distributorInfo.total_commission_amount)[1]}}</text></view>
             <view class="price_tips">累计佣金</view>
         </view>
         <view class="pending_commission commission_box">

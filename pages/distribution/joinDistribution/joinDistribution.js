@@ -19,6 +19,7 @@ Page({
 					modalVisible: true,
 					tips: res.data.meta.message
 				})
+				wx.hideLoading()
 			} else if (res.statusCode === 200) {
 				app.globalData.distributorInfo = res.data
 				wx.showToast({
@@ -30,9 +31,8 @@ Page({
 					wx.redirectTo({
 						url: '/pages/distribution/distributionCenter/distributionCenter'
 					})
-				}, 1000);
+				}, 1200);
 			}
-			wx.hideLoading()
 		}).catch((err) => {
 			wx.showToast({
 				title: err.data.meta.message,

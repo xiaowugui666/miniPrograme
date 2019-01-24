@@ -68,8 +68,8 @@
 
 	<!-- 全选  -->
 	<view class='bottom'>
-		<view>
-			<view class='select {{selectAll?"cur":""}}' bindtap='selectAll'></view>
+		<view bindtap='selectAll'>
+			<view class='select {{selectAll?"cur":""}}'></view>
 			<view>全选</view>
 		</view>
 		<view>

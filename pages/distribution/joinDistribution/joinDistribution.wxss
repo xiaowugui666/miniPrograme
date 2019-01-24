@@ -11,6 +11,9 @@
     font-weight: 500;
     margin-bottom: 24rpx;
 }
+.content .content_p {
+    white-space: pre-wrap;
+}
 .bottom {
     position: fixed;
     width: 750rpx;
