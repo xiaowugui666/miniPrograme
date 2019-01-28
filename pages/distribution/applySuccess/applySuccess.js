@@ -9,7 +9,7 @@ Page({
 	},
 	handleClick: function () {
 		wx.redirectTo({
-			url: '/pages/distribution/applyWithdraw/applyWithdraw'
+			url: '/pages/distribution/withdrawDetail/withdrawDetail'
 		})
 	},
 	/**

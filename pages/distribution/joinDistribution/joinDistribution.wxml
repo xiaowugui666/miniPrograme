@@ -3,7 +3,8 @@
     <view class="content_p">{{distributionPlan}}</view>
 </view>
 <view class="bottom">
-    <button wx:if="{{!userId}}" class="button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">申请加入</button>
+    <button wx:if="{{!hasUserInfo}}" class="button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">申请加入</button>
+    <button wx:elif="{{!userId}}" class="button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">申请加入</button>
     <view wx:else class="button" bindtap="handleClick">申请加入</view>
 </view>
 <view class="mask" wx:if="{{modalVisible}}" catchtouchmove="handleTouchmove" catchtap="handleCloseModal"></view>

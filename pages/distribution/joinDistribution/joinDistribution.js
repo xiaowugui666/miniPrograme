@@ -56,6 +56,7 @@ Page({
 			distributionPlan: app.globalData.distribution.recruitment_plan
 		})
 		var uerinfo = wx.getStorageSync("huzan_avatarUrl")
+		console.log(uerinfo)
 		if (uerinfo) {
 			that.setData({
 				userInfo: uerinfo,
@@ -176,5 +177,8 @@ Page({
 				})
 			})
 		})
+	},
+	getUserInfo: function (e) {
+		app.publicGetUserInfo(e, this)
 	}
 })

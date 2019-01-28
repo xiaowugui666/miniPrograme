@@ -32,7 +32,7 @@
     </view>
     <view class='container' wx:else>
         <image src='/imgs/no_data_1.png'></image>
-        <view class="empty_car">亲爱的，你暂时没有此类订单哦~</view>
+        <view class="empty_car">亲爱的，你暂时没有订单哦~</view>
     </view>
 </view>
 
