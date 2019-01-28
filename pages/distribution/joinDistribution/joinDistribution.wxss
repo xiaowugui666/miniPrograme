@@ -3,6 +3,7 @@
     padding: 24rpx;
     color: #556675;
     font-size: 28rpx;
+    padding-bottom: 180rpx;
 }
 .content .content_title {
     font-size: 32rpx;
@@ -22,7 +23,8 @@
     height: 170rpx;
     box-sizing: border-box;
     padding: 24rpx;
-	box-shadow:0px -2rpx 0px 0px #E6E9EB;
+    box-shadow:0px -2rpx 0px 0px #E6E9EB;
+    background: #FFFFFF;
 }
 .bottom .button {
     width: 702rpx;

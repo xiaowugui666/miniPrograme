@@ -72,13 +72,13 @@ var filters = {
 		var string = ''
 		switch (statu){
 			case 1: 
-				string = '待审核'
+				string = '审核中'
 				break
 			case 2: 
 				string = '已审核'
 				break
 			case 3: 
-				string = '已打款'
+				string = '打款成功'
 				break
 			case 4: 
 				string = '打款失败'
