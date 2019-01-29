@@ -19,73 +19,75 @@ Page({
 	},
 	onShow: function () {
 		var that=this;
-		var uerinfo = wx.getStorageSync("huzan_avatarUrl")
-		if (uerinfo){
-			that.setData({
-				userInfo: uerinfo,
-				hasUserInfo: true,
-				userId: app.globalData.userId
-			})
-		}else{
-			that.setData({
-				hasUserInfo: false,
-				userId: app.globalData.userId
-			})
-		}
-		if (app.globalData.distribution.status == 1) {
-			let isDistributor = false
-			if (app.globalData.distributorInfo.id) {
-				isDistributor = true
+		app.withDistributVerifi().then(() => {
+			var uerinfo = wx.getStorageSync("huzan_avatarUrl")
+			if (uerinfo){
+				that.setData({
+					userInfo: uerinfo,
+					hasUserInfo: true,
+					userId: app.globalData.userId
+				})
+			}else{
+				that.setData({
+					hasUserInfo: false,
+					userId: app.globalData.userId
+				})
 			}
-			this.setData({
-				isDistributor: isDistributor,
-				isOpenDistribution: true
-			})
-		} else {
-			this.setData({
-				isOpenDistribution: false
-			})
-		}
-		if (app.globalData.userId){
-			wx.request({
-				url: app.globalData.http + '/mpa/order/status/count',
-				method: 'GET',
-				dataType: 'json',
-				header: {
-					"Api-Key": app.globalData.apiKey,
-					"Api-Secret": app.globalData.apiSecret,
-					'Api-Ext': app.globalData.apiExt
-				},
-				success: function (data) {
-					var datas = data.data
-					that.setData({
-						count1: datas[0].count,
-						count2: datas[1].count,
-						count3: datas[2].count,
-						count4: datas[3].count,
-					})
+			if (app.globalData.distribution.status == 1) {
+				let isDistributor = false
+				if (app.globalData.distributorInfo.id) {
+					isDistributor = true
 				}
-			})
-			
-			// 动态模块消息中心未读消息数，动态模块已被隐藏
-
-			// wx.request({
-			// 	url: app.globalData.http + '/mpa/comment/unread/count',
-			// 	method: 'GET',
-			// 	dataType: 'json',
-			// 	header: {
-			// 		"Api-Key": app.globalData.apiKey,
-			// 		"Api-Secret": app.globalData.apiSecret,
-			// 		'Api-Ext': app.globalData.apiExt
-			// 	},
-			// 	success: function (data) {
-			// 		var datas = data.data
-			// 		that.setData({
-			// 			messageNum: datas
-			// 		})
-			// 	}
-			// })
-		}
+				this.setData({
+					isDistributor: isDistributor,
+					isOpenDistribution: true
+				})
+			} else {
+				this.setData({
+					isOpenDistribution: false
+				})
+			}
+			if (app.globalData.userId){
+				wx.request({
+					url: app.globalData.http + '/mpa/order/status/count',
+					method: 'GET',
+					dataType: 'json',
+					header: {
+						"Api-Key": app.globalData.apiKey,
+						"Api-Secret": app.globalData.apiSecret,
+						'Api-Ext': app.globalData.apiExt
+					},
+					success: function (data) {
+						var datas = data.data
+						that.setData({
+							count1: datas[0].count,
+							count2: datas[1].count,
+							count3: datas[2].count,
+							count4: datas[3].count,
+						})
+					}
+				})
+				
+				// 动态模块消息中心未读消息数，动态模块已被隐藏
+	
+				// wx.request({
+				// 	url: app.globalData.http + '/mpa/comment/unread/count',
+				// 	method: 'GET',
+				// 	dataType: 'json',
+				// 	header: {
+				// 		"Api-Key": app.globalData.apiKey,
+				// 		"Api-Secret": app.globalData.apiSecret,
+				// 		'Api-Ext': app.globalData.apiExt
+				// 	},
+				// 	success: function (data) {
+				// 		var datas = data.data
+				// 		that.setData({
+				// 			messageNum: datas
+				// 		})
+				// 	}
+				// })
+			}
+		})
 	},
 	toOrder:function(e){
 		wx.navigateTo({

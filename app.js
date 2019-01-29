@@ -25,25 +25,29 @@ App({
 		let that = this
 		return new Promise((resolve, reject) => {
 			that.login().then(() => {
-				wx.request({
-					url: that.globalData.http + '/mpa/distributor/distributors/me',
-					method: 'GET',
-					dataType: 'json',
-					header: {
-						"Api-Key": that.globalData.apiKey,
-						"Api-Secret": that.globalData.apiSecret,
-						'Api-Ext': that.globalData.apiExt
-					},
-					success: function (response) {
-						if (response.statusCode === 200) {
-							that.globalData.distributorInfo = response.data
+				if (that.globalData.distributorInfo.id) {
+					resolve()
+				} else {
+					wx.request({
+						url: that.globalData.http + '/mpa/distributor/distributors/me',
+						method: 'GET',
+						dataType: 'json',
+						header: {
+							"Api-Key": that.globalData.apiKey,
+							"Api-Secret": that.globalData.apiSecret,
+							'Api-Ext': that.globalData.apiExt
+						},
+						success: function (response) {
+							if (response.statusCode === 200) {
+								that.globalData.distributorInfo = response.data
+							}
+							resolve()
+						},
+						fail: function (response) {
+							reject(response)
 						}
-						resolve()
-					},
-					fail: function (response) {
-						reject(response)
-					}
-				})
+					})
+				}
 			})
 		})
 	},
