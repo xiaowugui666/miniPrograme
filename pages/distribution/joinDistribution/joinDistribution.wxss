@@ -55,7 +55,7 @@
     top: 258rpx;
     left: 48rpx;
     width: 654rpx;
-    height: 520rpx;
+    height: 560rpx;
     background: #FFFFFF;
     border-radius: 8rpx;
     overflow: hidden;

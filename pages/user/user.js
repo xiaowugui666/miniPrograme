@@ -4,11 +4,10 @@ Page({
 	data: {
 		userInfo: {},
 		hasUserInfo: false,
-		userId:'',
+		userId: true,
 		count1:'',
 		count2:'',
 		count3:'',
-		userId:'',
 		count4:'',
 		apiExt:'',
 		// messageNum:'',
@@ -98,95 +97,6 @@ Page({
 		app.publicAuth(e, this)
 	},
 	getInfo:function(e){
-		var that=this;
-		if (e.detail.userInfo){
-			wx.login({
-				success(code) {
-					//获取用户信息，拿到userInfo
-					var userInfo = e.detail.userInfo;
-					//向后台发起请求，传code
-					wx.request({
-						url: app.globalData.http + '/mpa/wechat/auth',
-						method: 'POST',
-						header: {
-							'Api-Ext': app.globalData.apiExt
-						},
-						data: {
-							code: code.code
-						},
-						success: function (res) {
-							var code = res.statusCode.toString()
-							if (code == 500) {
-								wx.showToast({
-									title: '网络错误',
-									icon: 'none',
-									duration: 1000
-								})
-							} else if (code.indexOf('40') > -1) {
-								var tip = res.data.message.toString()
-								wx.showToast({
-									title: tip,
-									icon: 'none',
-									duration: 1000
-								})
-							}
-							else {
-								//保存响应头信息
-								if (res.header["api-key"] && res.header["api-secret"]) {
-									var apiKey = res.header["api-key"],
-										apiSecret = res.header["api-secret"];
-								} else if (res.header["Api-Key"] && res.header["Api-Secret"]) {
-									var apiKey = res.header["Api-Key"],
-										apiSecret = res.header["Api-Secret"];
-								}
-								//设置storage
-								//获取时间戳保存storage
-								// let timestamp = Date.parse(new Date());
-								app.globalData.apiKey = apiKey
-								app.globalData.apiSecret = apiSecret
-								that.setData({
-									userInfo: userInfo,
-									hasUserInfo: true
-								})
-								wx.setStorage({
-									key: 'huzan_avatarUrl',
-									data: userInfo,
-								})
-								wx.request({
-									url: app.globalData.http + '/mpa/wechat/' + res.data.id,
-									method: "PUT",
-									data: {
-										"nick_name": userInfo.nickName,
-										"avatar_url": userInfo.avatarUrl,
-										"gender": userInfo.gender,
-										"city": userInfo.city,
-										"province": userInfo.province,
-										"country": userInfo.country,
-										"language": userInfo.language
-									},
-									header: {
-										"Api-Key": app.globalData.apiKey,
-										"Api-Secret": app.globalData.apiSecret,
-										'Api-Ext': app.globalData.apiExt
-									},
-									complete(res) {
-									}
-								})
-								if (res.data.user_id) {
-									app.globalData.userId = true
-									// wx.setStorage({
-									//   key: 'userId',
-									//   data: true,
-									// })
-								}
-							}
-						}
-					})
-				},
-				fail: function (res) {
-					console.log(res)
-				}
-			})
-		}
+		app.publicGetUserInfo(e, this)
 	}
 })

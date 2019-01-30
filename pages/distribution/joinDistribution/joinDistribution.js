@@ -9,36 +9,11 @@ Page({
 		modalVisible: false,
 		userId: false,
 		hasUserInfo: false,
-		tips: '亲爱的，你还不符合申请资格哦~',
+		tips: '',
 		distributionPlan: ''
 	},
 	handleClick: function () {
-		this.appliForMember().then((res) => {
-			if (res.statusCode === 400) {
-				this.setData({
-					modalVisible: true,
-					tips: res.data.meta.message
-				})
-				wx.hideLoading()
-			} else if (res.statusCode === 200) {
-				app.globalData.distributorInfo = res.data
-				wx.showToast({
-					title: '申请成功！',
-					icon: 'success',
-					duration: 1000
-				})
-				setTimeout(() => {
-					wx.redirectTo({
-						url: '/pages/distribution/distributionCenter/distributionCenter'
-					})
-				}, 1200);
-			}
-		}).catch((err) => {
-			wx.showToast({
-				title: err.data.meta.message,
-				icon: 'none'
-			})
-		})
+		this.appliForMember()
 	},
 	handleCloseModal: function () {
 		this.setData({
@@ -56,7 +31,6 @@ Page({
 			distributionPlan: app.globalData.distribution.recruitment_plan
 		})
 		var uerinfo = wx.getStorageSync("huzan_avatarUrl")
-		console.log(uerinfo)
 		if (uerinfo) {
 			that.setData({
 				userInfo: uerinfo,
@@ -71,6 +45,7 @@ Page({
 		}
 	},
 	appliForMember: function () {
+		let that = this
 		return new Promise((resolve, reject) => {
 			wx.showLoading({
 				title: '加载中',
@@ -85,8 +60,31 @@ Page({
 				},
 				success: function (res) {
 					if (res.statusCode === 200 || res.statusCode === 400) {
+						if (res.statusCode === 400) {
+							that.setData({
+								modalVisible: true,
+								tips: res.data.meta.message
+							})
+							wx.hideLoading()
+						} else if (res.statusCode === 200) {
+							app.globalData.distributorInfo = res.data
+							wx.showToast({
+								title: '申请成功！',
+								icon: 'success',
+								duration: 1500
+							})
+							setTimeout(() => {
+								wx.redirectTo({
+									url: '/pages/distribution/distributionCenter/distributionCenter'
+								})
+							}, 2000);
+						}
 						resolve(res)
 					} else {
+						wx.showToast({
+							title: err.data.meta.message,
+							icon: 'none'
+						})
 						reject(res)
 					}
 				},
@@ -150,32 +148,7 @@ Page({
 	},
 	getPhoneNumber: function (e) {
 		app.publicAuth(e, this).then(() => {
-			this.appliForMember().then((res) => {
-				if (res.statusCode === 400) {
-					this.setData({
-						modalVisible: true,
-						tips: res.data.meta.message
-					})
-				} else if (res.statusCode === 200) {
-					app.globalData.distributorInfo = res.data
-					wx.showToast({
-						title: '申请成功！',
-						icon: 'success',
-						duration: 1500
-					})
-					setTimeout(() => {
-						wx.redirectTo({
-							url: '/pages/distribution/distributionCenter/distributionCenter'
-						})
-					}, 2000);
-				}
-				wx.hideLoading()
-			}).catch((err) => {
-				wx.showToast({
-					title: err.data.meta.message,
-					icon: 'none'
-				})
-			})
+			this.appliForMember()
 		})
 	},
 	getUserInfo: function (e) {

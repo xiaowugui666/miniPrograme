@@ -18,11 +18,15 @@
             <text class="copy_write">申请时间</text>
             <text>{{drawDetail.created_at}}</text>
         </view>
-        <view class="item_box" wx:if="{{drawDetail.status > 2}}">
+        <view class="item_box" wx:if="{{drawDetail.status == 3}}">
             <text class="copy_write">打款时间</text>
             <text>{{drawDetail.updated_at}}</text>
         </view>
-        <view class="item_box">
+        <view class="item_box" wx:elif="{{drawDetail.status == 4}}">
+            <text class="copy_write">原因描述</text>
+            <text>{{drawDetail.remark}}</text>
+        </view>
+        <view class="item_box" wx:if="{{drawDetail.status < 4}}">
             <text class="copy_write">提现单号</text>
             <text>{{drawDetail.withdraw_no}}</text>
         </view>

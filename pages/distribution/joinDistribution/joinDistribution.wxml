@@ -11,5 +11,6 @@
 <view class="modal_content" wx:if="{{modalVisible}}" >
     <image src="/imgs/icon_close1.png" class="close" catchtap="handleCloseModal" />
     <image src="/imgs/Group_5_Copy.png" class="modal_img" />
-    <view class="tips">{{tips}}</view>
+    <view class="tips">亲爱的，你还不符合申请资格哦~</view>
+    <view>({{tips}})</view>
 </view>
