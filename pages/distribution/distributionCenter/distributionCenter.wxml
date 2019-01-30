@@ -38,7 +38,7 @@
         </view>
     </navigator>
     <navigator class="body_box" hover-class="none" url="/pages/distribution/myOrders/myOrders">
-        <view>我的订单</view>
+        <view>分销订单</view>
         <view class="body_counts">
             <text>{{distributorInfo.order_count}}</text>
             <image src="/imgs/icon_arrow.png" />
@@ -47,7 +47,7 @@
 </view>
 <view class="content_bottom content_margintop">
     <navigator class="bottom_box body_box" hover-class="none" url="/pages/distribution/applyWithdraw/applyWithdraw">
-        <view>我要提现</view>
+        <view>佣金提现</view>
         <image src="/imgs/icon_arrow.png" />
     </navigator>
     <navigator class="bottom_box body_box" hover-class="none" url="/pages/distribution/distributionRule/distributionRule">

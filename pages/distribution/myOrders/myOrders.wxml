@@ -24,7 +24,7 @@
             <view class="order_bottom">
                 <view class="user_name">买家昵称 : {{item.buyer_wechat.nick_name}}</view>
                 <view class="commision_info">
-                    <view>{{currentTab === 1 ? '预期' : '实得'}}佣金：<text>￥{{filters.ptf(item.commission_amount)}}</text><text class="cancel" wx:if="{{item.commission_amount != item.expect_commission_amount}}">商品已退款</text></view>
+                    <view>{{currentTab === 1 ? '预期' : '实得'}}佣金：<text>￥{{filters.ptf(item.commission_amount)}}</text><text class="cancel" wx:if="{{item.commission_amount != item.expect_commission_amount}}">（商品已退款）</text></view>
                     <text class="status">{{filters.statu(item.order.status)}}</text>
                 </view>
             </view>

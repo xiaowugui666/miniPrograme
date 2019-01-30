@@ -37,6 +37,16 @@ page {
     border-radius: 50%;
     flex-shrink: 0;
     margin-right: 8rpx;
+    position: relative;
+}
+.user_info .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background:rgba(0,0,0,0.49);
+    width: 80rpx;
+    height: 80rpx;
 }
 .user_transtion {
     padding: 24rpx 0;

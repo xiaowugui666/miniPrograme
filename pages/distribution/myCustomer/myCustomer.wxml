@@ -4,7 +4,9 @@
     <block wx:if="{{dataList.length > 0}}">
         <view class="cus_item" wx:for="{{dataList}}" wx:key="index">
             <view class="user_info">
-                <image src="{{item.customer_wechat.avatar_url}}" />
+                <image src="{{item.customer_wechat.avatar_url}}">
+                    <view class="mask" wx:if="{{item.is_distributor}}"></view>
+                </image>
                 <view>
                     <view><text class="is_distributor" wx:if="{{item.is_distributor}}">分销员</text>{{item.customer_wechat.nick_name}}</view>
                     <view class="info_time">绑定时间 : {{item.created_at}}</view>
