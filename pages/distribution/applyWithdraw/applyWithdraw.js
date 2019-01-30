@@ -16,9 +16,9 @@ Page({
 			value = parseFloat(value).toString().match(/^\d+(?:\.\d{0,2})?/)
 			return value || ''
 		}
-		// if (value <= (amount / 100) && value >= 50) {
-		// 	buttonDisable = false
-		// }
+		if (value <= (amount / 100) && value >= 50) {
+			buttonDisable = false
+		}
 		if (value <= (amount / 100)) {
 			buttonDisable = false
 		}
@@ -29,9 +29,9 @@ Page({
 	},
 	handleDrawAll: function (e) {
 		let amount = this.data.amount, buttonDisable = true
-		// if (amount / 100 >= 50) {
-		// 	buttonDisable = false
-		// }
+		if (amount / 100 >= 50) {
+			buttonDisable = false
+		}
 		amount = parseFloat(amount / 100).toString().match(/^\d+(?:\.\d{0,2})?/)
 		this.setData({
 			inputValue: amount,
