@@ -35,13 +35,11 @@ view{
   margin-left: 20rpx;
 }
 .info view:first-child{
-  font-family: PingFangSC-Regular;
   font-size: 28rpx;
   color: #333333;
   line-height: 36rpx;
 }
 .info view:nth-child(2){
-  font-family: PingFangSC-Regular;
   font-size: 28rpx;
   color: #666666;
   line-height: 38rpx;
@@ -52,7 +50,6 @@ view{
   white-space: pre-wrap;
 }
 .info view:last-child{
-  font-family: PingFangSC-Regular;
   font-size: 24rpx;
   color: #999999;
   line-height:28rpx;
@@ -64,7 +61,6 @@ view{
   box-sizing: border-box;
   padding: 20rpx;
   float: left;
-  font-family: PingFangSC-Regular;
   font-size: 24rpx;
   color: #333333;
   line-height: 18px;

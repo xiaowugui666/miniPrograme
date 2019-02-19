@@ -1,0 +1,34 @@
+page {
+    background: #F7F9FB;
+}
+.content {
+    background: #FFFFFF;
+    margin-top: 24rpx;
+    padding-left: 24rpx;
+    font-size: 28rpx;
+    color: #253A4E;
+    line-height: 40rpx;
+}
+.content_header {
+    padding: 24rpx 24rpx 24rpx 0;
+    border-bottom: 2rpx solid #F3F4F5;
+    display: flex;
+    justify-content: space-between;
+}
+.content_header text:last-child {
+    font-weight: 600;
+    font-size: 32rpx;
+}
+.content_body {
+    padding: 24rpx 24rpx 24rpx 0;
+}
+.item_box {
+    display: flex;
+    justify-content: space-between;
+}
+.copy_write {
+    color: #6E7C89;
+}
+.item_box:not(:first-child) {
+    margin-top: 24rpx;
+}

@@ -1,0 +1,38 @@
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+
+<view class="content">
+    <view class="content_header">
+        <view class="tab {{currentTab === 1 ? 'active' : ''}}" bindtap="handleTap" data-type="{{1}}">待结算({{pendingCount}})</view>
+        <view class="tab {{currentTab === 2 ? 'active' : ''}}" bindtap="handleTap" data-type="{{2}}">已结算({{settledCount}})</view>
+    </view>
+    <view class="content_box" wx:if="{{dataList.length > 0}}">
+        <view class="order_item" wx:for="{{dataList}}" wx:key="index">
+            <view class="order_no">订单号 : {{item.order_no}}</view>
+            <view class="good_info" wx:for="{{item.order.items}}" wx:for-index="ind" wx:for-item="ite" wx:key="ind">
+                <image src="{{image}}{{ite.cover_url}}" />
+                <view class="info_detail">
+                    <view class="descri">
+                        <view class="title">{{ite.name}}</view>
+                        <view class="skus">{{ite.sku_description}}</view>
+                    </view>
+                    <view class="price">
+                        <view>￥{{filters.ptf(ite.price)}}</view>
+                        <view>x{{ite.count}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="order_bottom">
+                <view class="user_name">买家昵称 : {{item.buyer_wechat.nick_name}}</view>
+                <view class="commision_info">
+                    <view>{{currentTab === 1 ? '预期' : '实得'}}佣金：<text>￥{{filters.ptf(item.commission_amount)}}</text><text class="cancel" wx:if="{{item.commission_amount != item.expect_commission_amount}}">（商品已退款）</text></view>
+                    <text class="status">{{filters.statu(item.order.status)}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='container' wx:else>
+        <image src='/imgs/no_data_1.png'></image>
+        <view class="empty_car">亲爱的，你暂时没有订单哦~</view>
+    </view>
+</view>
+

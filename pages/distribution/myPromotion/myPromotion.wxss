@@ -1,0 +1,99 @@
+page {
+    background: #F7F9FB;
+    padding: 0 24rpx;
+    box-sizing: border-box;
+}
+.content {
+    overflow: hidden;
+    padding-bottom: 24rpx;
+}
+.promotion_item {
+    width: 702rpx;
+    margin-top: 24rpx;
+    background: #FFFFFF;
+    border-radius: 8rpx;
+    box-shadow:0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
+}
+.promotion_item .pro_time {
+    padding: 24rpx;
+    font-size: 26rpx;
+    color: #556675;
+    border-bottom: 2rpx solid #F3F4F5;
+}
+.good_info {
+    display: flex;
+    align-items: center;
+    padding: 24rpx;
+    font-size: 26rpx;
+    color: #253A4E;
+    border-bottom: 2rpx solid #F3F4F5;
+}
+.good_info image {
+    width: 192rpx;
+    height: 192rpx;
+    display: block;
+    flex-shrink: 0;
+}
+.good_info .info_detail {
+    flex-grow: 1;
+    margin-left: 24rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 192rpx;
+}
+.info_detail .title {
+    font-size: 26rpx;
+    overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+}
+.info_detail .price {
+    display: flex;
+    justify-content: space-between;
+}
+.price view text {
+    color: #F35D51;
+}
+.pro_bottom {
+    padding: 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 28rpx;
+    color: #253A4E;
+}
+.prom_data text:last-child {
+    margin-left: 40rpx;
+}
+.pro_button {
+    width: 152rpx;
+    height: 56rpx;
+    text-align: center;
+    line-height: 56rpx;
+    color: #FFFFFF;
+    border-radius: 4rpx;
+    background:linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+    padding: 0;
+    margin: 0;
+    font-size: 26rpx;
+}
+.pro_button::after {
+    border: none;
+}
+
+.container .empty_car {
+    font-size: 32rpx;
+    color: #253A4E;
+    margin-top:66rpx;
+    text-align: center;
+}
+.container .empty_copy {
+    display: block;
+    font-size: 26rpx;
+    color: #9EA8B1;
+    text-align: center;
+    margin-top: 16rpx;
+}

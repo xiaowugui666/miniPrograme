@@ -83,6 +83,20 @@ swiper{
 	margin: 0 24rpx;
 	color: #FFFFFF;
 }
+.price_info .distribution_info {
+	display: flex;
+}
+.price_info .commission_price {
+	margin-left: 12rpx;
+	border-radius: 8rpx;
+	padding: 4rpx 16rpx;
+	background: rgba(255,170,22,0.2);
+	color: #FFAA16;
+	font-size: 24rpx;
+}
+.commission_price text {
+	font-size: 16rpx;
+}
 .info_number {
 	text-align: center;
 	margin-bottom: 2rpx;
@@ -131,7 +145,7 @@ swiper{
   font-size: 26rpx;
   width: 100%;
   box-sizing: border-box;
-  padding: 24rpx 24rpx 128rpx;
+  padding: 24rpx 24rpx 140rpx;
   border-top: 24rpx solid #F7F9FB;
 }
 .description .description_detail {
@@ -298,13 +312,13 @@ swiper{
 .name_share{
 	display: flex;
 	justify-content: space-between;
+	padding-top: 16rpx;
+	align-items: center;
 }
 .detail_description .des_name {
 	width: 566rpx;
-	height: 88rpx;
 	color: #253A4E;
 	font-size: 32rpx;
-	margin-top: 16rpx;
 	margin-left: 24rpx;
 	overflow: hidden;
 	text-overflow:ellipsis;
@@ -323,11 +337,17 @@ swiper{
 	align-items: center;
 	line-height: normal;
 	margin: 0;
-	margin-top: 34rpx;
 	color: #9EA8B1;
 	padding: 0;
 	font-size: 26rpx;
 	border-radius:8rpx 0px 0px 8rpx;
+	flex-shrink: 0;
+}
+.name_share .promotion_button {
+	background:linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
+	box-shadow:0rpx 4rpx 8rpx 0rpx rgba(243,93,81,0.26);
+	border-radius:8rpx 0rpx 0rpx 8rpx;
+	color: #FFFFFF;
 }
 .name_share button::after{
 	border: none;
@@ -456,6 +476,20 @@ swiper{
 }
 .detail_bottom .disBuy{
   background: #B4B0B1
+}
+.detail_bottom .from_distributor_buy {
+	padding: 0;
+	margin: 0;
+	width: 702rpx;
+	height: 80rpx;
+	background:linear-gradient(90deg,#FFA271 0%,#F84E40 100%);
+	border-radius:8rpx;
+	line-height: 80rpx;
+	color: #FFFFFF;
+	font-size: 28rpx;
+}
+.detail_bottom .from_distributor_buy::after {
+	border: none;
 }
 .soldTips{
   position: fixed;
@@ -665,7 +699,6 @@ swiper{
   border: 1rpx solid #9B9B9B;
   border-radius: 26rpx;
   text-align: center;
-  font-family: PingFangSC-Regular;
   font-size: 24rpx;
   color: #999999;
   line-height: 50rpx;

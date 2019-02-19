@@ -82,7 +82,6 @@ input {
   line-height: 40rpx;
 }
 .box_content .content_text.title {
-  font-family: PingFangSC-Regular;
   font-size: 32rpx;
   -webkit-line-clamp: 1;
 }
@@ -222,7 +221,6 @@ input {
 	font-size: 22rpx;
 	line-height: 140rpx;
 	color: #999999;
-	font-family: PingFangSC-Regular;
 	 position: relative;
   bottom: 0 
 }

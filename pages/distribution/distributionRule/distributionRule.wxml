@@ -1,0 +1,4 @@
+<view class="content">
+    <view class="content_title">分销员招募计划</view>
+    <view class="content_p">{{distributionPlan}}</view>
+</view>

@@ -33,42 +33,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
-					"id": 0,
-					"name": "拼团分享详情页",
-					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
-					"query": "goodsid=21&groupid=79",
-					"scene": "1007"
-				},
-				{
-					"id": 4,
-					"name": "拼团",
-					"pathName": "pages/groupPurchase/groupList/groupList",
-					"query": "rank=2",
-					"scene": "1007"
-				},
-				{
 					"id": -1,
-					"name": "地址列表",
-					"pathName": "pages/address/address",
-					"query": "rank=2",
-					"scene": "1007"
-				},
-				{
-					"id": 3,
-					"name": "售后页",
-					"pathName": "pages/afterSale/afterSale",
-					"query": "id=192",
-					"scene": "1001"
-				},
-				{
-					"id": -1,
-					"name": "拼团规则",
-					"pathName": "pages/groupPurchase/collageRules/collageRules",
+					"name": "提现明细",
+					"pathName": "pages/distribution/withdrawDetail/withdrawDetail",
 					"query": "",
-					"scene": "1001"
+					"scene": "1007"
+				},
+				{
+					"id": 1,
+					"name": "分享进入商品",
+					"pathName": "pages/detail/detail",
+					"query": "id=60&commissionUserId=13"
 				}
 			]
 		}

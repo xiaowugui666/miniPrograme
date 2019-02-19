@@ -1,0 +1,15 @@
+.content {
+    border-top: 24rpx solid #F6F8FA;
+    padding: 24rpx;
+    color: rgba(0,0,0,0.79);
+    font-size: 28rpx;
+}
+.content .content_title {
+    font-size: 32rpx;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 24rpx;
+}
+.content .content_p {
+    white-space: pre-wrap;
+}

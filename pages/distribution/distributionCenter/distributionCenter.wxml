@@ -1,0 +1,57 @@
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+<view class="content_header content_margintop">
+    <view class="user_info">
+        <image src="{{distributorInfo.user_wechat.avatar_url}}" />
+        <view class="info_detail">
+            <view>{{distributorInfo.user_wechat.nick_name}}</view>
+            <view class="info_time">加入时间: {{distributorInfo.created_at}}</view>
+        </view>
+    </view>
+    <view class="commission">
+        <view class="total_commission commission_box">
+            <view class="price">￥<text>{{filters.humpPrice(distributorInfo.total_commission_amount)[0]}}</text><text>.{{filters.humpPrice(distributorInfo.total_commission_amount)[1]}}</text></view>
+            <view class="price_tips">累计佣金</view>
+        </view>
+        <view class="pending_commission commission_box">
+            <view class="price">￥<text>{{filters.humpPrice(distributorInfo.un_settlement_amount)[0]}}</text><text>.{{filters.humpPrice(distributorInfo.un_settlement_amount)[1]}}</text></view>
+            <view class="price_tips">待结算佣金</view>
+        </view>
+        <view class="avail_commission commission_box">
+            <view class="price">￥<text>{{filters.humpPrice(distributorInfo.commission_amount)[0]}}</text><text>.{{filters.humpPrice(distributorInfo.commission_amount)[1]}}</text></view>
+            <view class="price_tips">可提现金额</view>
+        </view>
+    </view>
+</view>
+<view class="content_body content_margintop">
+    <navigator class="body_box" hover-class="none" url="/pages/distribution/myCustomer/myCustomer">
+        <view>我的客户</view>
+        <view class="body_counts">
+            <text>{{distributorInfo.customer_count}}</text>
+            <image src="/imgs/icon_arrow.png" />
+        </view>
+    </navigator>
+    <navigator class="body_box" hover-class="none" url="/pages/distribution/myPromotion/myPromotion">
+        <view>我的推广</view>
+        <view class="body_counts">
+            <text>{{distributorInfo.promote_goods_count}}</text>
+            <image src="/imgs/icon_arrow.png" />
+        </view>
+    </navigator>
+    <navigator class="body_box" hover-class="none" url="/pages/distribution/myOrders/myOrders">
+        <view>分销订单</view>
+        <view class="body_counts">
+            <text>{{distributorInfo.order_count}}</text>
+            <image src="/imgs/icon_arrow.png" />
+        </view>
+    </navigator>
+</view>
+<view class="content_bottom content_margintop">
+    <navigator class="bottom_box body_box" hover-class="none" url="/pages/distribution/applyWithdraw/applyWithdraw">
+        <view>佣金提现</view>
+        <image src="/imgs/icon_arrow.png" />
+    </navigator>
+    <navigator class="bottom_box body_box" hover-class="none" url="/pages/distribution/distributionRule/distributionRule">
+        <view>分销规则</view>
+        <image src="/imgs/icon_arrow.png" />
+    </navigator>
+</view>

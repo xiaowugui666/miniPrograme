@@ -1,0 +1,67 @@
+page {
+    background: #F7F9FB;
+}
+.withdraw_items {
+    padding: 0 24rpx;
+    background: #FFFFFF;
+    margin-top: 24rpx;
+    font-size: 28rpx;
+    color: #253A4E;
+}
+.item {
+    padding: 24rpx 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item image {
+    width: 40rpx;
+    height: 40rpx;
+    flex-shrink: 0;
+    display: block;
+    margin-left: 16rpx;
+}
+.item_right {
+    display: flex;
+    align-items: center;
+}
+.item .time,.status {
+    margin-top: 8rpx;
+    font-size: 26rpx;
+}
+.time {
+    color: #9EA8B1;
+}
+.status {
+    color: #556675;
+}
+
+.container image {
+    width: 500rpx;
+    height:320rpx;
+    margin:0 auto;
+    display: block;
+    margin-top: 118rpx;
+}
+.carInfo  navigator{
+    height: 100%;
+}
+.container .empty_car {
+    font-size: 32rpx;
+    color: #253A4E;
+    margin-top:66rpx;
+    text-align: center;
+}
+.container .empty_copy {
+    display: block;
+    font-size: 26rpx;
+    color: #9EA8B1;
+    text-align: center;
+    margin-top: 16rpx;
+}
+.pending {
+    color: #FFAA16;
+}
+.fail {
+    color: #F35D51;
+}

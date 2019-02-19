@@ -1,6 +1,4 @@
 /**app.wxss**/
-@import './style/PingFangSC.wxss';
 page{
-	font-family: 'PingFang SC';
 	font-weight: 400;
 }

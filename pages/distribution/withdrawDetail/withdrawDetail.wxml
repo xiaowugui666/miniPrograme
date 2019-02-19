@@ -1,0 +1,23 @@
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+
+<view class="content" wx:if="{{dataList.length > 0}}">
+    <view class="withdraw_items" wx:for="{{dataList}}" wx:key="index">
+        <navigator class="item" hover-class="none" url="/pages/distribution/withdrawParticu/withdrawParticu?id={{item.id}}">
+            <view class="item_left">
+                <view>{{item.title}}</view>
+                <view class="time">{{item.created_at}}</view>
+            </view>
+            <view class="item_right">
+                <view>
+                    <view>{{filters.ptf(item.amount)}}</view>
+                    <view class="status {{item.status == 1 ? 'pending' : (item.status == 4 ? 'fail' : '')}}">{{filters.drawStatu(item.status)}}</view>
+                </view>
+                <image src="/imgs/icon_arrow.png" />
+            </view>
+        </navigator>
+    </view>
+</view>
+<view class='container' wx:else>
+    <image src='/imgs/no_data_1.png'></image>
+    <view class="empty_car">亲爱的，你暂时没有提现信息哦~</view>
+</view>

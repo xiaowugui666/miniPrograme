@@ -1,0 +1,128 @@
+page {
+    background: #F7F9FB;
+}
+.content {
+    padding-bottom: 24rpx;
+}
+.content_header {
+    width: 750rpx;
+    height: 78rpx;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    color: #556675;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: #FFFFFF;
+}
+.content_header .tab {
+    height: 78rpx;
+    line-height: 78rpx;
+    box-sizing: border-box;
+}
+.content_header .tab.active {
+    color: #F35D51;
+    border-bottom: 4rpx solid #F35D51;
+    font-weight: 500;
+}
+.content_box {
+    overflow: hidden;
+}
+.content_box .order_item {
+    margin-top: 24rpx;
+    width: 750rpx;
+    padding: 0 24rpx;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    font-size: 26rpx;
+    color: #253A4E;
+}
+.order_item .order_no {
+    padding: 24rpx 0;
+    color: #9EA8B1;
+    border-bottom: 2rpx solid #F3F4F5;
+}
+.good_info {
+    display: flex;
+    align-items: center;
+    padding: 24rpx 0;
+    font-size: 26rpx;
+    color: #253A4E;
+    border-bottom: 2rpx solid #F3F4F5;
+}
+.good_info image {
+    width: 192rpx;
+    height: 192rpx;
+    display: block;
+    flex-shrink: 0;
+}
+.good_info .info_detail {
+    flex-grow: 1;
+    margin-left: 24rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 192rpx;
+}
+.info_detail .title {
+    font-size: 28rpx;
+    overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+}
+.info_detail .skus {
+    margin-top: 16rpx;
+    color: #9EA8B1;
+    overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
+}
+.info_detail .price {
+    display: flex;
+    justify-content: space-between;
+}
+.price view:last-child {
+    color: #9EA8B1;
+}
+
+.order_item .order_bottom {
+    padding: 24rpx 0;
+    font-size: 28rpx;
+}
+.order_bottom .user_name {
+    overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
+}
+.order_bottom text {
+    color: #F35D51;
+}
+.order_bottom .cancel {
+    color: #9EA8B1;
+    margin-left: 6rpx;
+}
+.order_bottom .commision_info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24rpx;
+}
+
+.container .empty_car {
+    font-size: 32rpx;
+    color: #253A4E;
+    margin-top:66rpx;
+    text-align: center;
+}
+.container .empty_copy {
+    display: block;
+    font-size: 26rpx;
+    color: #9EA8B1;
+    text-align: center;
+    margin-top: 16rpx;
+}
