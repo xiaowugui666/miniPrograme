@@ -25,7 +25,6 @@
 		"pages/special/special",
 		"pages/recommend/recommend",
 		"pages/cart/cart",
-		"pages/categoryList/categoryList",
 		"pages/groupPurchase/groupSurePay/groupSurePay",
 		"pages/distribution/joinDistribution/joinDistribution",
 		"pages/distribution/distributionCenter/distributionCenter",
@@ -46,7 +45,7 @@
 	"tabBar": {
 		"color": "#999",
 		"selectedColor": "#fb5d5d",
-		"borderStyle": "#e3e3e3",
+		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [
 			{
