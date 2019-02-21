@@ -50,7 +50,7 @@
 	</view>
 	<view class="goods_list">
 		<view class="goods_item" wx:for="{{good}}" wx:key="index" data-id="{{item.id}}" catchtap="onDetail">
-			<image src="{{image}}{{item.cover_url}}" />
+			<image src="{{image}}{{item.cover_url}}?imageMogr2/thumbnail/340x340/format/jpg" />
 			<view class="goods_info">
 				<view class="title">{{item.name}}</view>
 				<view class="info">

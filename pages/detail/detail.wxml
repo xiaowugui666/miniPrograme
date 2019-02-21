@@ -8,7 +8,7 @@
 			<block wx:for='{{imgs}}' wx:key="{{index}}">
 				<swiper-item>
 					<view class='detail_imgs'>
-					<image src='{{image}}{{item.icon_url}}?imageslim' data-index='{{index}}' catchtap='viewImages'></image>
+					<image src='{{image}}{{item.icon_url}}?imageMogr2/format/jpg' data-index='{{index}}' catchtap='viewImages'></image>
 					</view>
 				</swiper-item>
 			</block>

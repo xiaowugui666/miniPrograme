@@ -3,7 +3,7 @@
 
 <view wx:if="{{showPage}}">
 	<view class="group_details_goods {{remainingTime<=0 ? 'details_goods_end' : ''}}" wx:if="{{goodsData.goods}}" data-id="{{goodsData.goods.id}}" bind:tap="goDetail">
-		<image class="goods_img" src="{{image+goodsData.goods.cover_url}}">
+		<image class="goods_img" src="{{image+goodsData.goods.cover_url}}?imageMogr2/format/jpg">
 			<view wx:if="{{remainingTime<=0}}" class="finished"></view>
 			<text wx:if="{{remainingTime<=0}}" class="finished_text">已结束</text>
 		</image>
@@ -53,7 +53,7 @@
 		</view>
 		<view class='store' wx:if='{{isSharePage}}'>
 			<view>
-				<image src="{{image}}{{description.logo_url}}"></image>
+				<image src="{{image}}{{description.logo_url}}?imageMogr2/format/jpg"></image>
 				<view>{{description.name}}</view>
 			</view>
 			<navigator open-type='switchTab' hover-class='none'  url="/pages/index/index">
@@ -132,7 +132,7 @@
 			<view class="more_group">- 更多拼团 -</view>
 			<block wx:for="{{groupGoodsList}}" wx:key="ind" wx:for-item="ite">
 				<view class="swiper_box" data-id='{{ite.goods.id}}' bindtap='goDetail'>
-					<image src='{{image}}{{ite.goods.cover_url}}' mode="aspectFill"/>
+					<image src='{{image}}{{ite.goods.cover_url}}?imageMogr2/thumbnail/310x310/format/jpg' mode="aspectFill"/>
 					<view class='swiper_box_item'>
 						<view class='title'>{{ite.goods.name}}</view>
 						<view class='info'>
