@@ -347,7 +347,7 @@ App({
 		login:false,
 		timeStamp:'',
 		http:'https://retail-mall-develop.51zan.com',
-		image: 'https://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		options: '',
 		sceneID: 0,
 		distribution: {},

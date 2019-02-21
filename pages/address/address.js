@@ -8,7 +8,8 @@ Page({
 		touchStartY: 0,
 		userId:true,
 		image: 'http://image.yiqixuan.com/',
-		fromSurePay: false
+		fromSurePay: false,
+		getSettingRefuse: false
 	},
 	onLoad:function(options){
 		let fromSurePay = false
@@ -58,102 +59,105 @@ Page({
 	address:function(){
 		var that=this
 		wx.getSetting({
-		success(res) {
-			if (!res.authSetting['scope.address']) {
-				wx.authorize({
-					scope: 'scope.address',
-					success() {
+			success(res) {
+				if (!res.authSetting['scope.address']) {
+					wx.authorize({
+						scope: 'scope.address',
+						success() {
+							wx.chooseAddress({
+								success: function (res) {
+									wx.request({
+									url: app.globalData.http +'/mpa/address',
+									method: 'post',
+									dataType: 'json',
+									data:{
+										name: res.userName,
+										mobile:res.telNumber,
+										post_code: res.postalCode,
+										province: res.provinceName,
+										city: res.cityName,
+										county: res.countyName,
+										detail: res.detailInfo
+									},
+									header: {
+										"Api-Key": app.globalData.apiKey,
+										"Api-Secret": app.globalData.apiSecret,
+										'Api-Ext': app.globalData.apiExt
+									},
+									success: function (data) {
+										var code = data.statusCode.toString()
+										if (code.indexOf('20') > -1) {
+										}else{
+											var tip =data.data.message.toString()
+											wx.showToast({
+												title: tip,
+												icon: 'none',
+												duration: 1000
+											})
+										}
+									} 
+									})
+								}
+							})
+						},
+						fail:function(res){
+							that.setData({
+								getSettingRefuse: true
+							})
+						}
+					})
+				}else{
 					wx.chooseAddress({
 						success: function (res) {
 							wx.request({
-							url: app.globalData.http +'/mpa/address',
-							method: 'post',
-							dataType: 'json',
-							data:{
+								url: app.globalData.http +'/mpa/address',
+								method: 'post',
+								dataType: 'json',
+								data: {
 								name: res.userName,
-								mobile:res.telNumber,
+								mobile: res.telNumber,
 								post_code: res.postalCode,
 								province: res.provinceName,
 								city: res.cityName,
 								county: res.countyName,
 								detail: res.detailInfo
-							},
-							header: {
+								},
+								header: {
 								"Api-Key": app.globalData.apiKey,
 								"Api-Secret": app.globalData.apiSecret,
 								'Api-Ext': app.globalData.apiExt
-							},
-							success: function (data) {
+								},
+								success: function (data) {       
 								var code = data.statusCode.toString()
 								if (code.indexOf('20') > -1) {
-								}else{
-									var tip =data.data.message.toString()
+								} else {
+									var tip = data.data.message.toString()
 									wx.showToast({
-										title: tip,
-										icon: 'none',
-										duration: 1000
+									title: tip,
+									icon: 'none',
+									duration: 1000
 									})
 								}
-							} 
+								}
 							})
-						}
-					})
-					},
-					fail:function(res){
-					wx.openSetting({
-						success: (res) => {}
-					})
-					}
-				})
-			}else{
-				wx.chooseAddress({
-					success: function (res) {
-					wx.request({
-						url: app.globalData.http +'/mpa/address',
-						method: 'post',
-						dataType: 'json',
-						data: {
-						name: res.userName,
-						mobile: res.telNumber,
-						post_code: res.postalCode,
-						province: res.provinceName,
-						city: res.cityName,
-						county: res.countyName,
-						detail: res.detailInfo
 						},
-						header: {
-						"Api-Key": app.globalData.apiKey,
-						"Api-Secret": app.globalData.apiSecret,
-						'Api-Ext': app.globalData.apiExt
-						},
-						success: function (data) {       
-						var code = data.statusCode.toString()
-						if (code.indexOf('20') > -1) {
-						} else {
-							var tip = data.data.message.toString()
-							wx.showToast({
-							title: tip,
-							icon: 'none',
-							duration: 1000
-							})
-						}
+						fail:function(res){
+							console.log(res)
 						}
 					})
-					},
-					fail:function(res){
-					console.log(res)
-					}
-				})
+				}
+			},
+			fail:function(res){
 			}
-		},
-		fail:function(res){
-			wx.openSetting({
-			success: (res) => {}
-			})
-		}
 		})
 	},
-
+	handleOpenSetting: function(e) {
+		if (e.detail.authSetting['scope.address']) {
+			this.setData({
+				getSettingRefuse: false
+			})
+		}
+	},
 	deleteAddr:function(event){
 		var that=this;
 		wx.showModal({

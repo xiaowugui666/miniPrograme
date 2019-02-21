@@ -15,7 +15,7 @@
 		<view class="carInfo">
 			<view class='contents'>
 				<view class='select {{item.isSelect?"cur":""}}' data-index="{{index}}" catchtap='selLocal'></view>
-				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageMogr2/format/jpg' data-id="{{item.goods_id}}" catchtap="handleDetail"></image>
+				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageView2/0/h/400' data-id="{{item.goods_id}}" catchtap="handleDetail"></image>
 				<view class='goodsInfo'>    
 					<view class='infoTitle' data-id="{{item.goods_id}}" catchtap="handleDetail">{{item.name}}</view>
 					<view class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}" data-id="{{item.goods_id}}" catchtap="handleDetail">{{item.sku_description}}</view>
@@ -47,7 +47,7 @@
 		<view class="carInfo">
 			<view class='contents clearfix'>
 				<view class='select {{item.isSelect?"cur":""}}' data-index="{{index}}" data-id="{{item.id}}" catchtap='selSession'></view>
-				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageMogr2/format/jpg' data-id="{{item.goods_id}}" catchtap="handleDetail"></image>
+				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageView2/0/h/400' data-id="{{item.goods_id}}" catchtap="handleDetail"></image>
 				<view class='goodsInfo'>    
 					<view class='infoTitle' data-id="{{item.goods_id}}" catchtap="handleDetail">{{item.name}}</view>
 					<view class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}" data-id="{{item.goods_id}}" catchtap="handleDetail">{{item.sku_description}}</view>
@@ -80,7 +80,7 @@
 	</view>
 </view>
 <view class='container' wx:if="{{!session && !local}}">
-	<image src='/imgs/no_data_2.png?imageMogr2/format/jpg'></image>
+	<image src='/imgs/no_data_2.png?imageView2/0/w/600/h/600'></image>
 	<view class="empty_car">购物车竟然是空的</view>
 	<view class="empty_copy">现在就去买点什么犒劳自己吧~</view>
 </view>

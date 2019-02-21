@@ -4,7 +4,7 @@ const app=getApp();
 Page({
 	data: {
 		//分类
-		image: 'https://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		categoryList:[],
 		description: {},
 		newCate:'',

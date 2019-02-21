@@ -20,7 +20,7 @@
 				<!-- 详情 -->
 				<view class='group_box_body'>
 					<view class='group_box_body_image'>
-						<image src='{{image + item.goods.cover_url}}?imageMogr2/format/jpg'></image>      
+						<image src='{{image + item.goods.cover_url}}?imageView2/0/h/400'></image>      
 					</view>
 					<view class='group_box_body_content'>
 						<view class='group_body_detail'>
@@ -47,7 +47,7 @@
 		</view>
 	</block>
 	<view class='container' wx:else>
-		<image src='/imgs/no_data_1.png?imageMogr2/format/jpg'></image>
+		<image src='/imgs/no_data_1.png?imageView2/0/w/600/h/600'></image>
 		<view class="empty_car">暂无此类订单</view>
 	</view>
 </view>
