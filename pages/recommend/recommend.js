@@ -8,7 +8,7 @@ Page({
    */
   data: {
 		produList: [],
-    image: 'http://image.yiqixuan.com/'
+    image: 'https://image.51zan.com/'
   },
 	//跳转商品详情
 	goDetail(e){

@@ -10,7 +10,7 @@ Page({
     show: true,
     expire_at: '00 时 00 分 00 秒',
     // apiKey:'',
-    image: 'http://image.yiqixuan.com/',
+    image: 'https://image.51zan.com/',
     contactShow: false,
     pageVisible: true
   },

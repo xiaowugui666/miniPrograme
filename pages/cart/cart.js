@@ -9,7 +9,7 @@ Page({
 	data: {
 		isshow: 1,
 		selectAll: false,
-		image: 'http://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		totalPrice: 0.00,
 		page: 0,
 		//远程购物车

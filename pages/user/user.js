@@ -11,7 +11,7 @@ Page({
 		count4:'',
 		apiExt:'',
 		// messageNum:'',
-		image: 'http://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		isOpenDistribution: false,
 		distributionInfo: {},
 		isDistributor: false

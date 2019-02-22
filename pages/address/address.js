@@ -7,7 +7,7 @@ Page({
 		touchStartX: 0,
 		touchStartY: 0,
 		userId:true,
-		image: 'http://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		fromSurePay: false,
 		getSettingRefuse: false
 	},

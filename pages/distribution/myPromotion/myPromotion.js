@@ -8,7 +8,7 @@ Page({
 	 */
 	data: {
 		dataList: [],
-		image: 'http://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		page: 0
 	},
 	handlePromotion: function (e) {

@@ -19,7 +19,7 @@
 <!-- 如果有用户信息 -->
 <view wx:else='{{!!hasUserInfo}}'>
 	<view class="userinfo-bg">
-		<image class="userinfo-bg-avatar" src='/imgs/me_background_on.png?imageView2/0/h/780' />
+		<image class="userinfo-bg-avatar" src='/imgs/me_background_on.png?imageView2/0/w/780/h/780' />
 	</view>
 	<view class="container">
 		<view class="userinfo">

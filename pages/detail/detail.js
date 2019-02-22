@@ -14,7 +14,7 @@
 			groupInfo: {}, // 拼团商品详情
 			groupMembers: [], // 拼团列表信息
 			timeStampArr: [],
-			image: 'http://image.yiqixuan.com/',
+			image: 'https://image.51zan.com/',
 			//使用data数据控制类名
 			chooseModal: false,
 			//动态控制“-”号类名

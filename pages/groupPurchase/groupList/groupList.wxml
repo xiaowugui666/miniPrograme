@@ -20,7 +20,7 @@
 				<!-- 详情 -->
 				<view class='group_box_body'>
 					<view class='group_box_body_image'>
-						<image src='{{image + item.goods.cover_url}}?imageView2/0/h/400'></image>      
+						<image src='{{image + item.goods.cover_url}}?imageView2/0/w/400/h/400'></image>      
 					</view>
 					<view class='group_box_body_content'>
 						<view class='group_body_detail'>

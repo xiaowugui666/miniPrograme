@@ -9,7 +9,7 @@
         <view class="order_item" wx:for="{{dataList}}" wx:key="index">
             <view class="order_no">订单号 : {{item.order_no}}</view>
             <view class="good_info" wx:for="{{item.order.items}}" wx:for-index="ind" wx:for-item="ite" wx:key="ind">
-                <image src="{{image}}{{ite.cover_url}}" />
+                <image src="{{image}}{{ite.cover_url}}?imageView2/0/w/200/h/200" />
                 <view class="info_detail">
                     <view class="descri">
                         <view class="title">{{ite.name}}</view>
