@@ -47,7 +47,7 @@
 		</view>
 	</block>
 	<view class='container' wx:else>
-		<image src='/imgs/no_data_1.png?imageView2/0/w/600/h/600'></image>
+		<image src='/imgs/no_data_1.png'></image>
 		<view class="empty_car">暂无此类订单</view>
 	</view>
 </view>
