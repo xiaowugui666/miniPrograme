@@ -7,7 +7,7 @@ Page({
    */
   data: {
 		produList: [],
-    image: 'http://image.yiqixuan.com/',
+    image: 'https://image.51zan.com/',
 		//排序方式
 		rank: 0,
 		//flag控制上下箭头类名

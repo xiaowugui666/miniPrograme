@@ -1,5 +1,5 @@
 {
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "#F6F7F7",
+  "backgroundTextStyle": "dark",
 	"navigationBarTitleText": "超值拼团"
 }

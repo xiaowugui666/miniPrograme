@@ -4,7 +4,7 @@
         <view class="promotion_item" wx:for="{{dataList}}" wx:key="index">
             <view class="pro_time">最近推广：{{item.promoted_at}}</view>
             <view class="good_info">
-                <image src="{{image}}{{item.goods.cover_url}}" />
+                <image src="{{image}}{{item.goods.cover_url}}?imageView2/0/w/200/h/200" />
                 <view class="info_detail">
                     <view class="descri">
                         <view class="title">{{item.goods.name}}</view>

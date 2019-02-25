@@ -6,7 +6,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		image: 'https://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		type: 1,
 		messages: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 		comments: [1],

@@ -18,7 +18,7 @@ Page({
 		totalMoney: '0.00',
 		totalOrder: '0.00',
 		sku_ids: {},
-		image: 'http://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		sku_idd: [],
 		local: [],
 		cart_item_ids: [],

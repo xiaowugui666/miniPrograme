@@ -9,7 +9,7 @@ Page({
     currentTab: 0,
     index:0,
     allOrder:[],
-    image: 'http://image.yiqixuan.com/',
+    image: 'https://image.51zan.com/',
     // apiSecret:'',
     // apiKey:'',
     disabled:false,

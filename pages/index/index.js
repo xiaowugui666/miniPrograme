@@ -4,7 +4,7 @@ const app=getApp();
 Page({
 	data: {
 		//分类
-		image: 'https://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		categoryList:[],
 		description: {},
 		newCate:'',
@@ -16,7 +16,7 @@ Page({
 		keyword:'',
 		winWidth:'',
 		good:[],
-		currentPage: 0
+		currentPage: 0,
 	},
 	// 页面加载
 	onLoad: function (options) {
@@ -32,6 +32,7 @@ Page({
 	onPullDownRefresh: function () {
 		this.setData({
 			tabSwiperArr: [],
+			good: [],
 			currentPage: 0,
 			currentTab: 0
 		})
@@ -100,10 +101,10 @@ Page({
 				})
 			}
 		})
-		this.getNormalData()
 		this.getGroupData()
 			.then(() => this.getRecommendData())
 			.then(() => this.getSpecialData())
+			.then(() => this.getNormalData())
 	},
 	// 获取商品列表
 	getNormalData: function (params) {

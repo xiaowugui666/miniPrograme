@@ -8,7 +8,7 @@ Page({
   data: {
     data:[],
     name:'',
-    image:'http://image.yiqixuan.com/',
+    image:'https://image.51zan.com/',
     logo_url:''
   },
   // 跳转动态详情

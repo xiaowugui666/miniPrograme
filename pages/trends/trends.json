@@ -1,6 +1,6 @@
 {
     "enablePullDownRefresh": true,
     "navigationBarTitleText": "动态",
-    "backgroundTextStyle": "white",
+    "backgroundTextStyle": "light",
     "backgroundColor": "#fff"
 }
