@@ -11,7 +11,7 @@ Page({
 		// apiKey:'',
 		// apiSecret:'',
 		orderId:'',
-		image: 'http://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		info:'',
 		reasonText:'其它',
 		reason:[

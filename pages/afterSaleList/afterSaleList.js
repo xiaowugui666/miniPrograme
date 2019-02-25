@@ -9,7 +9,7 @@ Page({
     status: 500,
     rank:1,
     data: [],
-    image: 'http://image.yiqixuan.com/'
+    image: 'https://image.51zan.com/'
   },
   // 选择不同类型订单
   bindRank (e) {

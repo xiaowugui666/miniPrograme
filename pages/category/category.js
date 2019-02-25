@@ -6,7 +6,7 @@ Page({
 	 */
 	data: {
 		select:  '',
-		image: 'http://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		good: [],
 		category: [],
 		rank: 0,

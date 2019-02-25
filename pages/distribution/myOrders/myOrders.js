@@ -9,7 +9,7 @@ Page({
 	data: {
 		currentTab: 1,
 		dataList: [],
-		image: 'http://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		pendingCount: 0,
 		settledCount: 0,
 		page: 0

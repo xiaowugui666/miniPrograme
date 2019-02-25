@@ -6,7 +6,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		image: 'http://image.yiqixuan.com/',
+		image: 'https://image.51zan.com/',
 		data:'',
 		id:'',
 		reason:[

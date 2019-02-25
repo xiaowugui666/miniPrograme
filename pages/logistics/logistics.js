@@ -6,7 +6,7 @@ Page({
 	 */
 	data: {
 			list:[],
-			image: 'http://image.yiqixuan.com/'
+			image: 'https://image.51zan.com/'
 	},
 
 	/**

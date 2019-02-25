@@ -11,13 +11,13 @@
 	</view>
 
 	<!--banner  -->
-	 <image class='index_banner' wx:if="{{description.banner}}" mode='aspectFill' src='{{image}}{{description.banner}}?imageslim'></image>
+	 <image class='index_banner' wx:if="{{description.banner}}" mode='aspectFill' src='{{image}}{{description.banner}}?imageView2/0/w/840/h/840'></image>
 	 <view class="banner_loading loading" wx:elif="{{!description.id}}"></view>
 	<!-- <view  class='index_classify' wx:if="{{categoryList.length>4}}"> -->
 	<view  class='index_classify' wx:if="{{categoryList.length > 0}}">
 		<scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
 			<view data-idx="{{index}}" wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
-				<image src='{{image}}{{item.icon_url}}?imageView2/1/w/104/h/104/imageslim'></image>
+				<image src='{{image}}{{item.icon_url}}?imageView2/0/w/408/h/408/imageslim'></image>
 				<text>{{item.name}}</text>
 			</view>
 		</scroll-view>
@@ -71,7 +71,7 @@
 						<block wx:for="{{item.data}}" wx:key="ind" wx:for-item="ite">
 							<view class="swiper_box" data-id='{{item.type === 1 ? ite.goods_id : ite.id}}' bindtap='bindDetail'>
 								<block wx:if="{{item.type === 1}}">
-									<image src='{{image}}{{ite.goods.cover_url}}' mode="aspectFill"/>
+									<image src='{{image}}{{ite.goods.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
 									<view class='swiper_box_item'>
 										<view class='title'>{{ite.goods.name}}</view>
 										<view class='info'>
@@ -90,7 +90,7 @@
 									</view>
 								</block>
 								<block wx:else>
-									<image src='{{image}}{{ite.cover_url}}' mode="aspectFill"/>
+									<image src='{{image}}{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
 									<view class='swiper_box_item'>
 										<view>
 											<view class='title'>{{ite.name}}</view>
@@ -130,7 +130,7 @@
 		</view>
 		<view class="goods_recommend">
 			<view class="goods_item" wx:for="{{good}}" wx:key="index"  data-id="{{item.id}}" bindtap='bindDetail'>
-				<image src="{{image}}{{item.cover_url}}" />
+				<image src="{{image}}{{item.cover_url}}?imageView2/0/w/360/h/360" />
 				<view class="goods_info">
 					<view class="title">{{item.name}}</view>
 					<view class="info">

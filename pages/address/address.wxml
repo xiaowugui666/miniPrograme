@@ -25,6 +25,7 @@
 </view>
 <view class='address'>
   <button wx:if="{{!userId}}" class='address_btn'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">+ 新增收货地址</button>
-  <view  wx:else  class='address_btn' catchtap='address'>+ 新增收货地址</view>
+  <view  wx:elif="{{!getSettingRefuse}}"  class='address_btn' catchtap='address'>+ 新增收货地址</view>
+  <button  wx:else  class='address_btn'  open-type="openSetting" bindopensetting="handleOpenSetting">+ 新增收货地址</button>
 </view>
 
