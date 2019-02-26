@@ -351,6 +351,7 @@ App({
 		options: '',
 		sceneID: 0,
 		distribution: {},
-		distributorInfo: {}
+		distributorInfo: {},
+		skinStyle: 'blue'
 	}
 })

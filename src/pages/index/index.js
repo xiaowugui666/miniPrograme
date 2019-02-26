@@ -17,6 +17,7 @@ Page({
 		winWidth:'',
 		good:[],
 		currentPage: 0,
+		skinStyle: app.globalData.skinStyle
 	},
 	// 页面加载
 	onLoad: function (options) {
@@ -26,6 +27,7 @@ Page({
 			} else if (options.scene_id) {
 				app.globalData.sceneID = options.scene_id
 			}
+			console.log(this.data.skinStyle)
 			this.getData()
 	},
 	//下拉刷新

@@ -2,13 +2,12 @@ const gulp = require('gulp');
 const less = require('gulp-less');
 const cssnano = require('gulp-cssnano');
 const rename = require('gulp-rename');
-const autoprefixer = require('gulp-autoprefixer');
 const clean = require('gulp-clean');
 const pump = require('pump');
 gulp.task('less', function () {
     gulp.src([ 'src/pages/**/**.less'], {base: 'src'})
         .pipe(less())
-        .pipe(cssnano())
+        .pipe(cssnano({autoprefixer: false}))
         .pipe(rename(function(path){
             path.extname = '.wxss';
         }))

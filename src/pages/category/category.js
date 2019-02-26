@@ -13,11 +13,12 @@ Page({
 		flag: 0,
 		page: 0,
 		categoryId: '',
-		drawerShow: false,
-		animationShow: false,
+		drawerShow: true,
+		animationShow: true,
 		isAll: true,
 		leftTapArray: [],
-		order_by: 'created_at desc'
+		order_by: 'created_at desc',
+		skinStyle: app.globalData.skinStyle
 	},
 	onTouchMove () {},
 	onDetail (e) {

@@ -1,10 +1,10 @@
 /* pages/category/category.wxss */
-@-webkit-keyframes animationIn
+@keyframes animationIn
 {
   from {right: -392rpx;}
   to {right: 0;}
 }
-@-webkit-keyframes animationOut
+@keyframes animationOut
 {
   from {right: 0;}
   to {right: -392rpx;}
@@ -43,8 +43,142 @@ page{
 	display: flex;
 	flex-direction: column;
 }
+.blue {
+	.container_search {
+		icon {
+			width: 43rpx;
+			height: 43rpx;
+			left: 32rpx;
+			top: 18rpx;
+		}
+		image {
+			margin: 0 auto;
+		}
+	}
+	.container_search_navi {
+		width: 622rpx;
+		font-size: 28rpx;
+	}
+	.search_family {
+		color: #9EA8B1;
+		justify-content: center;
+		.selected {
+			color: #253A4E;
+			border-bottom: 4rpx solid #253A4E;
+			line-height: 76rpx;
+		}
+		&>view {
+			height: 72rpx;
+			width: 56rpx;
+			line-height: 72rpx;
+			text-align: center;
+			&:not(:first-child) {
+				margin-left: 80rpx;
+			}
+			&:last-child {
+				width: 80rpx;
+			}
+		}
+		.arrows {
+			margin-left: 4rpx;
+		}
+		.arrows .up{
+			border-bottom: 8rpx solid #253A4E;
+		}
+		.arrows .down{
+			border-top: 8rpx solid #253A4E;
+		}
+	}
+	.goods_list {
+		padding: 32rpx 32rpx 0;
+		background: #FFFFFF;
+		.goods_item {
+			margin-bottom: 40rpx;
+			width: 328rpx;
+			height: 468rpx;
+			.goods_info {
+				padding-top: 16rpx;
+				.title {
+					color: #0D1A26;
+				}
+				.info {
+					.price {
+						color: #0D1A26;
+						font-size: 26rpx;
+					}
+				}
+			}
+			image {
+				width: 328rpx;
+				height: 328rpx;
+			}
+		}
+	}
+}
+.default {
+	.container_search {
+		padding: 0 24rpx;
+		icon {
+			width: 46rpx;
+			height: 44rpx;
+			left: 28rpx;
+  		top: 20rpx;			
+		}
+	}
+	.container_search_navi {
+		width: 614rpx;
+		font-size: 32rpx;
+	}
+	.search_family {
+		color: #556675;
+		.selected {
+			color: #F15043;
+		}
+		&>view {
+			height: 72rpx;
+			width: 33%;
+			line-height: 72rpx;
+			text-align: center;
+		}
+		.arrows {
+			margin-left: 8rpx;
+		}
+		.arrows .up{
+			border-bottom: 8rpx solid #F15043;
+		}
+		.arrows .down{
+			border-top: 8rpx solid #F15043;
+		}
+	}
+	.goods_list {
+		padding: 24rpx 24rpx 0;
+		background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 516rpx);
+		.goods_item {
+			box-shadow: 0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
+			margin-bottom: 24rpx;
+			width: 340rpx;
+			height: 516rpx;
+			border-radius: 8rpx;
+			.goods_info {
+				padding: 16rpx 24rpx 22rpx;
+				.title {
+  				color: #253A4E;
+				}
+				.info {
+					.price {
+						color: #F35D51;
+  					font-size: 32rpx;
+					}
+				}
+			}
+			image {
+				width: 340rpx;
+				height: 340rpx;
+			}
+		}
+	}
+}
 .container_search {
-	padding: 0 24rpx;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -55,19 +189,13 @@ page{
   padding-left: 80rpx;
   position: relative;
   background: rgba(247,249,251,1);
-  font-size: 32rpx;
   line-height: 80rpx;
-  width: 614rpx;
   height: 80rpx;
 	color:rgba(158,168,177,1);
 }
 .container_search icon {
   display: block;
-  width: 46rpx;
-  height: 44rpx;
   position: absolute;
-  top: 20rpx;
-  left: 28rpx;
 }
 .container_search image {
 	width: 64rpx;
@@ -78,7 +206,6 @@ page{
 .search_family{
 	width: 750rpx;
 	font-size: 28rpx;
-	color: #556675;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
@@ -86,15 +213,6 @@ page{
 	height: 72rpx;
   background: #FFFFFF;
   border-bottom: 2rpx solid #E6E9EB;  
-}
-.search_family>view {
-	height: 72rpx;
-	width: 33%;
-	line-height: 72rpx;
-	text-align: center;
-}
-.selected{
-	color: #F15043;
 }
 .family_arrow{
 	display: flex;
@@ -105,7 +223,6 @@ page{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin-left: 8rpx;
 }
 .arrows .arrow_up{
 	display: inline-block;  
@@ -124,40 +241,24 @@ page{
   content: "";  
   margin-top: 6rpx;
 }
-.arrows .up{
-	border-bottom: 8rpx solid #F15043;
-}
-.arrows .down{
-	border-top: 8rpx solid #F15043;
-}
 
 .goods_list {
 	display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 24rpx 24rpx 0;
-	background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 516rpx);
 }
 .goods_list .goods_item {
-  width: 340rpx;
-  height: 516rpx;
-  border-radius: 8rpx;
   background: #fff;
-  box-shadow: 0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
-  margin-bottom: 24rpx;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 .goods_item image {
-  width: 340rpx;
-  height: 340rpx;
   border-radius: 0;
   display: block;
   flex-shrink: 0;
 }
 .goods_item .goods_info {
-  padding: 16rpx 24rpx 22rpx;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -166,7 +267,6 @@ page{
 .goods_info .title {
   height: 80rpx;
   font-size: 28rpx;
-  color: #253A4E;
   overflow: hidden;
   text-overflow:ellipsis;
   display:-webkit-box;
@@ -180,10 +280,6 @@ page{
   justify-content: space-between;
   align-items: center;
   color: #9EA8B1;
-}
-.goods_info .info .price {
-  color: #F35D51;
-  font-size: 32rpx;
 }
 .info .price text {
   font-size: 24rpx;

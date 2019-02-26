@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
-<view class="index_container">
+<view class="index_container {{skinStyle}}">
 
 	<!--search button  -->
 	<view class='container_search'>
@@ -29,7 +29,7 @@
 		</view>
 	</view>
 
-	<view class='index_current' wx:if="{{newCate.length>1}}">
+	<view class='index_current' wx:if="{{newCate.length>1 && skinStyle === 'default'}}">
 		<view wx:key='index' wx:for="{{newCate}}" class='{{current===index?"cur":""}}'></view>
 	</view>   
 	<!--contact  -->
