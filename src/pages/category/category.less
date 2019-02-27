@@ -44,6 +44,32 @@ page{
 	flex-direction: column;
 }
 .blue {
+	flex-grow: 1;
+	background: #FFFFFF;
+	.selected {
+		color: #253A4E;
+	}
+	.drawer {
+		color: #556675;
+		padding-top: 32rpx;
+		.category_all,.category_item {
+			margin-bottom: 16rpx;
+			overflow: hidden;
+		}
+		.category_box {
+			background: #F7F9FB;
+			padding: 16rpx 32rpx;
+		}
+		.se_category {
+			padding: 16rpx 0 16rpx 64rpx;
+			&:nth-child(2) {
+				margin-top: 16rpx;
+			}
+		}
+		.se_category.se_category_selected {
+			color: #253A4E;
+		}
+	}
 	.container_search {
 		icon {
 			width: 43rpx;
@@ -116,6 +142,43 @@ page{
 	}
 }
 .default {
+	flex-grow: 1;
+	background: #FFFFFF;
+	.selected {
+		color: #F15043;
+	}
+	.drawer {
+		padding-left: 24rpx;
+		color: #253A4E;
+		.drawer_icon {
+			padding: 24rpx 0;
+			border-bottom: 2rpx solid #F3F4F5;
+			box-sizing: border-box;
+		}
+		.drawer_icon image {
+			width: 48rpx;
+			height: 48rpx;
+		}
+		.category_all,.category_item {
+			padding: 16rpx 24rpx 16rpx 0;
+			border-bottom: 2rpx solid #F3F4F5;
+		}
+		.category_box {
+  		height: 64rpx;
+		}
+		.se_category {
+			height: 64rpx;
+			background: #F7F9FB;
+			border-radius: 8rpx;
+			margin-top: 16rpx;
+			padding-left: 16rpx;
+			line-height: 64rpx;
+		}
+		.se_category.se_category_selected {
+			background: rgba(241,80,67,0.05);
+			color: #F35D51;
+		}
+	}
 	.container_search {
 		padding: 0 24rpx;
 		icon {
@@ -131,9 +194,6 @@ page{
 	}
 	.search_family {
 		color: #556675;
-		.selected {
-			color: #F15043;
-		}
 		&>view {
 			height: 72rpx;
 			width: 33%;
@@ -301,33 +361,17 @@ page{
 	right: -392rpx;
 	z-index: 100;
 	overflow: scroll;
-  padding-left: 24rpx;
 	font-size: 28rpx;
-  color: #253A4E;
   animation: animationOut 0.4s;  
 }
 .drawer.drawer_show {
   right: 0;
   animation: animationIn 0.4s;
 }
-.drawer_icon {
-	padding: 24rpx 0;
-	border-bottom: 2rpx solid #F3F4F5;
-	box-sizing: border-box;
-}
-.drawer_icon image {
-	width: 48rpx;
-	height: 48rpx;
-}
-.category_all,.category_item {
-  padding: 16rpx 24rpx 16rpx 0;
-  border-bottom: 2rpx solid #F3F4F5;
-}
 .category_box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64rpx;
 }
 image.arrow_right {
   width: 36rpx;
@@ -335,16 +379,6 @@ image.arrow_right {
   display: block;
 }
 .se_category {
-  height: 64rpx;
-  background: #F7F9FB;
-  border-radius: 8rpx;
-  margin-top: 16rpx;
-  padding-left: 16rpx;
-  line-height: 64rpx;
   color: #556675;
   font-size: 26rpx;
-}
-.se_category.se_category_selected {
-  background: rgba(241,80,67,0.05);
-  color: #F35D51;
 }

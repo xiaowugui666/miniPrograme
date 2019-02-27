@@ -2,7 +2,7 @@
 <view class="{{skinStyle}}">
 	<view class="mask" wx:if="{{drawerShow}}" catchtap="onCloseModal" catchtouchmove='onTouchMove'>
 	<scroll-view scroll-y class="drawer {{animationShow ? 'drawer_show' : ''}}" wx:if="{{drawerShow}}">
-		<view class="drawer_icon" catchtap="onCloseModal">
+		<view class="drawer_icon" catchtap="onCloseModal" wx:if="{{skinStyle === 'default'}}">
 			<image src="/imgs/icon_sorts.png" />
 		</view>
 		<view class="category_all">
