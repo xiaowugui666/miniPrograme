@@ -1,60 +1,26 @@
 <!--index.wxml-->
+<import src="../../template/index.wxml" />
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 <view class="index_container {{skinStyle}}">
 
 	<!--search button  -->
-	<view class='container_search'>
-		<navigator class='container_search_navi' wx:if="{{description.id}}" url="/pages/search/search">{{description.search_default_text ? description.search_default_text: '大量好物等你发现'}}
-			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
-		</navigator>
-		<view class="search_loading loading" wx:else></view>
-	</view>
+	<template is="{{'banner'}}" data="{{description}}"></template>
 
 	<!--banner  -->
-	 <image class='index_banner' wx:if="{{description.banner}}" mode='aspectFill' src='{{image}}{{description.banner}}?imageView2/0/w/840/h/840'></image>
-	 <view class="banner_loading loading" wx:elif="{{!description.id}}"></view>
-	<!-- <view  class='index_classify' wx:if="{{categoryList.length>4}}"> -->
-	<view  class='index_classify' wx:if="{{categoryList.length > 0}}">
-		<scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
-			<view data-idx="{{index}}" wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
-				<image src='{{image}}{{item.icon_url}}?imageView2/0/w/408/h/408/imageslim'></image>
-				<text>{{item.name}}</text>
-			</view>
-		</scroll-view>
-	</view>
-	<view wx:else class='classify_loading'>
-		<view wx:for="{{[1,1,1,1,1]}}" class='loading_items' wx:key="{{index}}">
-			<view class='loading_item_img loading'></view>
-			<view class='loading_item_text loading'></view>
-		</view>
-	</view>
+	<template is="{{'search'}}" data="{{description}}"></template>
 
-	<view class='index_current' wx:if="{{newCate.length>1 && skinStyle === 'default'}}">
-		<view wx:key='index' wx:for="{{newCate}}" class='{{current===index?"cur":""}}'></view>
-	</view>   
+	<!-- <view  class='index_classify' wx:if="{{categoryList.length>4}}"> -->
+	<template is="{{'category'}}" data="{{category}}"></template>
+
 	<!--contact  -->
-	<view class="index_contact" wx:if="{{description.id}}">
-		<view class='index_contact_box'>
-			<button bindtap="phoneCall">
-				<image wx:if='{{description.logo_url}}' src='{{image}}{{description.logo_url}}?imageslim'></image>
-				<image class="wechat" src="/imgs/icon_home_contact.png" />
-			</button>
-			<view class='desc'>
-				<text class='contact_h4'>您的专属客服，24小时不打烊~</text>
-				<text class='contact_p'>{{'<<< 我是店主，可以随时咨询我哦！'}}</text> 
-			</view>
-		</view>
-	</view>
-	<view class='index_contact' wx:else>
-		<view class='index_contact_box'>
-			<view class="loading contact_loading_img"></view>
-			<view class='desc'>
-				<view class="loading contact_loading_text"></view>
-				<view class="loading contact_loading_text"></view>
-			</view>
-		</view>
-	</view>
+	<template is="{{'contact'}}" data="{{description}}"></template>
+
+	<template is="singleLine"></template>
+
+	<template is="paragraph"></template>
+	
 	<!-- 营销活动tab列，若无营销活动，则显示商品列表 -->
+	<!-- <template is="doubleColumn" data="{{good}}"></template> -->
 	<block wx:if="{{tabSwiperArr.length > 0 }}">
 		<view class="marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" id="marketing-tab">
 			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
@@ -63,57 +29,52 @@
 			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
 		</view>
 		<view class="content">
-		<!-- <view class="content" style="height: {{swiperHeight}}rpx;"> -->
-			<!-- <swiper indicator-dots="{{false}}" autoplay="{{false}}" duration="{{500}}" current="{{currentTab}}" bindchange='onChangeSwiperItem'> -->
-				<block wx:for="{{tabSwiperArr}}" wx:key="index">
-					<!-- <swiper-item> -->
-					<view wx:if="{{currentTab === index}}" class="content_box">
-						<block wx:for="{{item.data}}" wx:key="ind" wx:for-item="ite">
-							<view class="swiper_box" data-id='{{item.type === 1 ? ite.goods_id : ite.id}}' bindtap='bindDetail'>
-								<block wx:if="{{item.type === 1}}">
-									<image src='{{image}}{{ite.goods.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
-									<view class='swiper_box_item'>
-										<view class='title'>{{ite.goods.name}}</view>
-										<view class='info'>
-											<text>拼团中 | </text>
-											<text>已团</text>
+			<block wx:for="{{tabSwiperArr}}" wx:key="index">
+				<view wx:if="{{currentTab === index}}" class="content_box">
+					<block wx:for="{{item.data}}" wx:key="ind" wx:for-item="ite">
+						<view class="swiper_box" data-id='{{item.type === 1 ? ite.goods_id : ite.id}}' bindtap='bindDetail'>
+							<block wx:if="{{item.type === 1}}">
+								<image src='{{image}}{{ite.goods.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+								<view class='swiper_box_item'>
+									<view class='title'>{{ite.goods.name}}</view>
+									<view class='info'>
+										<text>拼团中 | </text>
+										<text>已团</text>
+										<text class='info_count'>{{ite.sales_count}}</text>
+										<text>件</text>
+									</view>
+									<view class="price">
+										<view class='price_text'>
+											<text class='display_price'><text>￥</text>{{filters.ptf(ite.price_low)}}</text>
+											<text class="original_price">￥{{filters.ptf(ite.origin_price_low)}}</text>
+										</view>
+										<view class='buy_button'>马上抢</view>
+									</view>
+								</view>
+							</block>
+							<block wx:else>
+								<image src='{{image}}{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+								<view class='swiper_box_item'>
+									<view>
+										<view class='title'>{{ite.name}}</view>
+										<view class='info' wx:if="{{item.type != 3}}">
+											<text>销量</text>
 											<text class='info_count'>{{ite.sales_count}}</text>
 											<text>件</text>
 										</view>
-										<view class="price">
-											<view class='price_text'>
-												<text class='display_price'><text>￥</text>{{filters.ptf(ite.price_low)}}</text>
-												<text class="original_price">￥{{filters.ptf(ite.origin_price_low)}}</text>
-											</view>
-											<view class='buy_button'>马上抢</view>
+									</view>
+									<view class="price">
+										<view class='price_text'>
+											<text class='display_price'><text>￥</text>{{filters.ptf(ite.price)}}</text>
+											<text class="original_price" wx:if="{{item.type === 3}}">￥{{filters.ptf(ite.display_price)}}</text>
 										</view>
 									</view>
-								</block>
-								<block wx:else>
-									<image src='{{image}}{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
-									<view class='swiper_box_item'>
-										<view>
-											<view class='title'>{{ite.name}}</view>
-											<view class='info' wx:if="{{item.type != 3}}">
-												<text>销量</text>
-												<text class='info_count'>{{ite.sales_count}}</text>
-												<text>件</text>
-											</view>
-										</view>
-										<view class="price">
-											<view class='price_text'>
-												<text class='display_price'><text>￥</text>{{filters.ptf(ite.price)}}</text>
-												<text class="original_price" wx:if="{{item.type === 3}}">￥{{filters.ptf(ite.display_price)}}</text>
-											</view>
-										</view>
-									</view>
-								</block>
-							</view>
-						</block>
-					</view>
-					<!-- </swiper-item> -->
-				</block>
-			<!-- </swiper> -->
+								</view>
+							</block>
+						</view>
+					</block>
+				</view>
+			</block>
 		</view>
 	</block>
 	<block wx:elif="{{!good.length}}">
@@ -125,20 +86,6 @@
 		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
 	</block>
 	<block wx:else>
-		<view class="marketing_tabs single_market">
-			<view class="marketing_tab active_tab">宝贝推荐</view>
-		</view>
-		<view class="goods_recommend">
-			<view class="goods_item" wx:for="{{good}}" wx:key="index"  data-id="{{item.id}}" bindtap='bindDetail'>
-				<image src="{{image}}{{item.cover_url}}?imageView2/0/w/360/h/360" />
-				<view class="goods_info">
-					<view class="title">{{item.name}}</view>
-					<view class="info">
-						<text class="price"><text>￥</text>{{filters.ptf(item.price)}}</text>
-						<text>销量{{item.sales_count}}件</text>
-					</view>
-				</view>
-			</view>
-		</view>
+		<template is="doubleColumn" data="{{good}}"></template>
 	</block>
 </view>

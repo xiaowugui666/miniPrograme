@@ -32,6 +32,7 @@ gulp.task('pages', function() {
         'src/pages/**/**.js',
         'src/pages/**/**.wxml',
         'src/pages/**/**.json',
+        'src/template/**',
         'src/imgs/**',
         'src/utils/**',
         ], {base: 'src'}).pipe(gulp.dest('dist'))

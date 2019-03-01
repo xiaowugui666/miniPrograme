@@ -33,7 +33,6 @@ page {
 .blue {
   .container_search_navi {
     width: 750rpx;
-    margin-top: 20rpx;
   }
   .index_classify {
     margin-top: 40rpx;
@@ -60,6 +59,9 @@ page {
       }
     }
   }
+}
+.container_search {
+  padding: 24rpx;
 }
 .container_search_navi {
   box-sizing: border-box;
@@ -91,13 +93,11 @@ page {
   width: 750rpx;
   height: 352rpx;
   margin: 0 auto;
-  margin-top: 24rpx;
   border-radius: 0;
 }
 .banner_loading {
   height: 352rpx;
   width: 750rpx;
-  margin-top: 24rpx;
 }
 
 .index_classify {
@@ -135,6 +135,7 @@ page {
   display: flex;
   margin: 0 auto;
   margin-top: 32rpx;
+  margin-bottom: 24rpx;
   text-align: center;
   justify-content: center;
 }
@@ -153,7 +154,6 @@ page {
 .index_contact {
   height: 192rpx;
   width: 750rpx;
-  margin-top: 24rpx;
   background: rgba(247,249,251,1);
   padding: 24rpx;
   box-sizing: border-box;
@@ -462,4 +462,23 @@ page {
 }
 .info .price text {
   font-size: 24rpx;
+}
+
+.single_line {
+  padding: 24rpx;
+  font-size: 32rpx;
+  color: #253A4E;
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
+.paragraph {
+  padding: 24rpx;
+  color: #253A4E;
+  font-size: 28rpx;
+  line-height: 44rpx;
 }

@@ -5,11 +5,14 @@ Page({
 	data: {
 		//分类
 		image: 'https://image.51zan.com/',
-		categoryList:[],
+		category: {
+			categoryList:[],
+			newCate:'',
+			current:0,
+			skinStyle: 'default'
+		},
 		description: {},
-		newCate:'',
 		remain:"",
-		current:0,
 		tabSwiperArr: [],
 		currentTab: 0,
 		tabScrollTop: false,
@@ -17,7 +20,10 @@ Page({
 		winWidth:'',
 		good:[],
 		currentPage: 0,
-		skinStyle: app.globalData.skinStyle
+		skinStyle: app.globalData.skinStyle,
+		currentGroupPage: 0,
+		currentRecommendPage: 0,
+		currentSpecialPage:0
 	},
 	// 页面加载
 	onLoad: function (options) {
@@ -36,7 +42,10 @@ Page({
 			tabSwiperArr: [],
 			good: [],
 			currentPage: 0,
-			currentTab: 0
+			currentTab: 0,
+			currentGroupPage: 0,
+			currentRecommendPage: 0,
+			currentSpecialPage:0
 		})
 		this.getData()
 		wx.stopPullDownRefresh()
@@ -97,10 +106,15 @@ Page({
 					 cateArr.push(1)
 				}
 				that.setData({
-					categoryList: res.data,
-					newCate: cateArr,
+					category: {
+						...that.data.category,
+						categoryList: res.data,
+						newCate: cateArr,
+						skinStyle: that.data.skinStyle
+					},
 					remain: remain
 				})
+				console.log(that.data.category)
 			}
 		})
 		this.getGroupData()
@@ -153,7 +167,7 @@ Page({
 		})
 	},
 	getGroupData: function (params) {
-		let that = this, page = this.data.currentPage;
+		let that = this, page = this.data.currentGroupPage;
 		return new Promise((resolve, reject) => {
 			wx.request({
 				url: app.globalData.http + '/mpa/groupon_goods',
@@ -179,10 +193,10 @@ Page({
 								tabSwiperArr: tempArr
 							})
 						} else if (data.data && params === 'isConcat') {
-							let newPage = that.data.currentPage
+							let newPage = that.data.currentGroupPage
 							newPage--
 							that.setData({
-								currentPage: newPage
+								currentGroupPage: newPage
 							})
 						} else if (data.data && data.data.length > 0) {
 							let tempArr = []
@@ -207,7 +221,7 @@ Page({
 		})
 	},
 	getRecommendData: function (params) {
-		let that = this, page = this.data.currentPage;		
+		let that = this, page = this.data.currentRecommendPage;		
 		return new Promise((resolve, reject) => {
 			wx.request({
 				url: app.globalData.http + '/mpa/goods/recommend',
@@ -233,10 +247,10 @@ Page({
 								tabSwiperArr: tempArr
 							})
 						} else if (params === 'isConcat') {
-							let newPage = that.data.currentPage
+							let newPage = that.data.currentRecommendPage
 							newPage--
 							that.setData({
-								currentPage: newPage
+								currentRecommendPage: newPage
 							})
 						} else if (res.data.length > 0) {
 							let tempArr = that.data.tabSwiperArr, hasCurrentData = false
@@ -268,7 +282,7 @@ Page({
 		})
 	},
 	getSpecialData: function (params) {
-		let that = this, page = this.data.currentPage;		
+		let that = this, page = this.data.currentSpecialPage;		
 		return new Promise((resolve, reject) => {
 			wx.request({
 				url: app.globalData.http + '/mpa/goods/special',
@@ -285,7 +299,7 @@ Page({
 							let tempArr = that.data.tabSwiperArr;
 							tempArr.map(item => {
 								if (item.type === 3) {
-									item.data = item.data.concat(data.data)
+									item.data = item.data.concat(res.data)
 								}
 								return item
 							});
@@ -293,10 +307,10 @@ Page({
 								tabSwiperArr: tempArr
 							})
 						} else if (params === 'isConcat') {
-							let newPage = that.data.currentPage
+							let newPage = that.data.currentSpecialPage
 							newPage--
 							that.setData({
-								currentPage: newPage
+								currentSpecialPage: newPage
 							})
 						} else if (res.data.length > 0) {
 							let tempArr = that.data.tabSwiperArr, hasCurrentData = false
@@ -329,24 +343,31 @@ Page({
 	},
 	//一级分类滚动
 	scrollCategory:function(e){
+		var that = this
 		//宽度
 		var scrollWidth = parseInt(e.detail.scrollWidth)
 		//滚动的距离
 		var scrollLeft = parseInt(e.detail.scrollLeft)
 		//屏幕的宽度
-		var width = parseInt(this.data.winWidth)
+		var width = parseInt(that.data.winWidth)
 		//剩余的分类
-		var remain = parseInt(this.data.remain)
+		var remain = parseInt(that.data.remain)
 		var cur = Math.floor(scrollLeft / width)
 		var cateNum = Math.floor(scrollWidth / width)
 		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain-1) * width/5)-20) {
 			cur++
-			this.setData({
-				current: cur
+			that.setData({
+				category: {
+					...that.data.category,
+					current: cur
+				}
 			})
 		}else{
-			this.setData({
-				current: cur
+			that.setData({
+				category: {
+					...that.data.category,
+					current: cur
+				}
 			})
 		}
 	},
@@ -426,33 +447,43 @@ Page({
 		wx.showLoading({
 			title: '加载中',
 		})
-		let newPage = this.data.currentPage
-		newPage++
-		this.setData({
-			currentPage: newPage
-		})
 		let currentTab = this.data.currentTab, tabSwiperArr = this.data.tabSwiperArr;
-		if (currentTab == 0 && tabSwiperArr.length > 1) {
-			this.getGroupData('isConcat').then(() => wx.hideLoading())
-		} else if (currentTab == 0 && tabSwiperArr.length === 1) {
-			switch (tabSwiperArr[0].type) {
+		if (tabSwiperArr.length === 0) {
+			let newPage = this.data.currentPage
+			newPage++
+			this.setData({
+				currentPage: newPage
+			})
+			this.getNormalData('isConcat').then(() => wx.hideLoading())
+		} else {
+			let newPage
+			switch (tabSwiperArr[currentTab].type) {
 				case 1:
+					newPage = this.data.currentGroupPage
+					newPage++
+					this.setData({
+						currentGroupPage: newPage
+					})
 					this.getGroupData('isConcat').then(() => wx.hideLoading())
 					break
 				case 2:
+					newPage = this.data.currentRecommendPage
+					newPage++
+					this.setData({
+						currentRecommendPage: newPage
+					})
 					this.getRecommendData('isConcat').then(() => wx.hideLoading())
 					break
 				case 3:
+					newPage = this.data.currentSpecialPage
+					newPage++
+					this.setData({
+						currentSpecialPage: newPage
+					})
 					this.getSpecialData('isConcat').then(() => wx.hideLoading())
 					break
 				default:
 			}
-		} else if (currentTab == 0 && tabSwiperArr.length === 0) {
-			this.getNormalData('isConcat').then(() => wx.hideLoading())
-		} else if (currentTab == 1) {
-			this.getRecommendData('isConcat').then(() => wx.hideLoading())
-		} else if (currentTab == 2) {
-			this.getSpecialData('isConcat').then(() => wx.hideLoading())
 		}
 	}
 })
