@@ -15,9 +15,9 @@
 	<!--contact  -->
 	<template is="{{'contact'}}" data="{{description}}"></template>
 
-	<template is="singleLine"></template>
-
-	<template is="paragraph"></template>
+	<template is="singleLine" data="{{singleLineText}}"></template>
+	<template is="divide"></template>
+	<template is="paragraph" data="{{paragraphText}}"></template>
 	
 	<!-- 营销活动tab列，若无营销活动，则显示商品列表 -->
 	<!-- <template is="doubleColumn" data="{{good}}"></template> -->

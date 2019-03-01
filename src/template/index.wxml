@@ -17,7 +17,7 @@
 <template name="category">
     <view  class='index_classify' wx:if="{{category.categoryList.length > 0}}">
 		<scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
-			<view data-idx="{{index}}" wx:for='{{category.categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
+			<view data-idx="{{index}}" wx:for='{{category.categoryList}}' wx:key="{{index}}" bindtap='switchCate' class="scroll_viewer">
 				<image src='{{filters.imgUrl(item.icon_url)}}?imageView2/0/w/408/h/408/imageslim'></image>
 				<text>{{item.name}}</text>
 			</view>
@@ -80,9 +80,15 @@
 </template>
 
 <template name="singleLine">
-	<view class="single_line">海马毛蝙蝠袖竖织宽松套头毛衣百搭马卡龙</view>
+	<view class="single_line" wx:if="{{singleLineText}}">{{singleLineText}}</view>
+	<view class="single_line_loading loading" wx:else></view>
 </template>
 
 <template name="paragraph">
-	<view class="paragraph">机洗会导致填充棉膨胀，形成气囊浮出甩干桶之外， 造成衣物与洗衣剂的损伤， 干洗会导致填充棉变脆从衣缝里钻出，即跑毛。</view>
+	<view class="paragraph" wx:if="{{paragraphText}}">{{paragraphText}}</view>
+	<view class="paragraph_loading loading" wx:else></view>
+</template>
+
+<template name="divide">
+	<view class="divide"></view>
 </template>

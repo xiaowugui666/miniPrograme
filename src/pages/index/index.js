@@ -11,6 +11,8 @@ Page({
 			current:0,
 			skinStyle: 'default'
 		},
+		singleLineText: '海马毛蝙蝠袖竖织宽松套头毛衣百搭马卡龙',
+		paragraphText: '机洗会导致填充棉膨胀，形成气囊浮出甩干桶之外， 造成衣物与洗衣剂的损伤， 干洗会导致填充棉变脆从衣缝里钻出，即跑毛。',
 		description: {},
 		remain:"",
 		tabSwiperArr: [],
@@ -27,14 +29,13 @@ Page({
 	},
 	// 页面加载
 	onLoad: function (options) {
-			if (options.scene) {
-				var sceneId = decodeURIComponent(options.scene).split(',')[0]
-				app.globalData.sceneID = sceneId
-			} else if (options.scene_id) {
-				app.globalData.sceneID = options.scene_id
-			}
-			console.log(this.data.skinStyle)
-			this.getData()
+		if (options.scene) {
+			var sceneId = decodeURIComponent(options.scene).split(',')[0]
+			app.globalData.sceneID = sceneId
+		} else if (options.scene_id) {
+			app.globalData.sceneID = options.scene_id
+		}
+		this.getData()
 	},
 	//下拉刷新
 	onPullDownRefresh: function () {
@@ -114,7 +115,6 @@ Page({
 					},
 					remain: remain
 				})
-				console.log(that.data.category)
 			}
 		})
 		this.getGroupData()
@@ -352,9 +352,14 @@ Page({
 		var width = parseInt(that.data.winWidth)
 		//剩余的分类
 		var remain = parseInt(that.data.remain)
-		var cur = Math.floor(scrollLeft / width)
+		var cur = Math.floor((scrollLeft + 1) / width)
+		if (cur < 0) {
+			cur = 0
+		} else if (cur > Math.floor(scrollLeft / width)) {
+			cur = Math.floor(scrollLeft / width) - 1
+		}
 		var cateNum = Math.floor(scrollWidth / width)
-		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain-1) * width/5)-20) {
+		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain) * width/5)) {
 			cur++
 			that.setData({
 				category: {

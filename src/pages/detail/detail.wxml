@@ -5,13 +5,13 @@
     <view class='banner'>
         <swiper
         	autoplay='{{true}}'  interval='{{3500}}' duration='{{500}}' bindchange='changeCurrent' current='{{current}}' circular='{{true}}'>
-			<block wx:for='{{imgs}}' wx:key="{{index}}">
-				<swiper-item>
-					<view class='detail_imgs'>
-					<image src='{{image}}{{item.icon_url}}?imageView2/0/w/860/h/860' data-index='{{index}}' catchtap='viewImages'></image>
-					</view>
-				</swiper-item>
-			</block>
+					<block wx:for='{{imgs}}' wx:key="{{index}}">
+						<swiper-item>
+							<view class='detail_imgs'>
+							<image src='{{image}}{{item.icon_url}}?imageView2/0/w/860/h/860' data-index='{{index}}' catchtap='viewImages'></image>
+							</view>
+						</swiper-item>
+					</block>
         </swiper>
       	<image wx:if="{{status==2}}" src='{{image}}soldOut.png?imageslim'></image>
 		<view class='showIndex'>{{current + 1}}/{{imgs.length}} </view>
