@@ -86,7 +86,10 @@ var filters = {
 			default:
 		}
 		return string
-	}
+	},
+	imgUrl: function (value) {
+		return 'https://image.51zan.com/' + value
+	},
 }
 module.exports = {
 	toFix: filters.toFix,
@@ -95,5 +98,6 @@ module.exports = {
 	ptf: filters.ptf,
 	statu: filters.statu,
 	humpPrice: filters.humpPrice,
-	drawStatu: filters.drawStatu
+	drawStatu: filters.drawStatu,
+	imgUrl: filters.imgUrl,
 }

@@ -1,0 +1,88 @@
+<wxs module="filters" src="../utils/method.wxs"></wxs>
+
+<template name="search">
+    <view class='container_search'>
+		<navigator class='container_search_navi' wx:if="{{description.id}}" url="/pages/search/search">{{description.search_default_text ? description.search_default_text: '大量好物等你发现'}}
+			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
+		</navigator>
+		<view class="search_loading loading" wx:else></view>
+	</view>
+</template>
+
+<template name="banner">
+    <image class='index_banner' wx:if="{{description.banner}}" mode='aspectFill' src='{{filters.imgUrl(description.banner)}}?imageView2/0/w/840/h/840'></image>
+    <view class="banner_loading loading" wx:elif="{{!description.id}}"></view>
+</template>
+
+<template name="category">
+    <view  class='index_classify' wx:if="{{category.categoryList.length > 0}}">
+		<scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
+			<view data-idx="{{index}}" wx:for='{{category.categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
+				<image src='{{filters.imgUrl(item.icon_url)}}?imageView2/0/w/408/h/408/imageslim'></image>
+				<text>{{item.name}}</text>
+			</view>
+		</scroll-view>
+	</view>
+	<view wx:else class='classify_loading'>
+		<view wx:for="{{[1,1,1,1,1]}}" class='loading_items' wx:key="{{index}}">
+			<view class='loading_item_img loading'></view>
+			<view class='loading_item_text loading'></view>
+		</view>
+	</view>
+
+	<view class='index_current' wx:if="{{category.newCate.length>1}}">
+		<view wx:key='index' wx:for="{{category.newCate}}" class='{{category.current===index?"cur":""}}'></view>
+	</view>
+</template>
+
+<template name="contact">
+    <view class="index_contact" wx:if="{{description.id}}">
+		<view class='index_contact_box'>
+			<button bindtap="phoneCall">
+				<image wx:if='{{description.logo_url}}' src='{{filters.imgUrl(description.logo_url)}}?imageslim'></image>
+				<image class="wechat" src="/imgs/icon_home_contact.png" />
+			</button>
+			<view class='desc'>
+				<text class='contact_h4'>您的专属客服，24小时不打烊~</text>
+				<text class='contact_p'>{{'<<< 我是店主，可以随时咨询我哦！'}}</text> 
+			</view>
+		</view>
+	</view>
+	<view class='index_contact' wx:else>
+		<view class='index_contact_box'>
+			<view class="loading contact_loading_img"></view>
+			<view class='desc'>
+				<view class="loading contact_loading_text"></view>
+				<view class="loading contact_loading_text"></view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<template name="singleColumn"></template>
+
+<template name="doubleColumn">
+    <view class="marketing_tabs single_market">
+        <view class="marketing_tab active_tab">宝贝推荐</view>
+    </view>
+    <view class="goods_recommend">
+        <view class="goods_item" wx:for="{{good}}" wx:key="index"  data-id="{{item.id}}" bindtap='bindDetail'>
+            <image src="{{filters.imgUrl(item.cover_url)}}?imageView2/0/w/360/h/360" />
+            <view class="goods_info">
+                <view class="title">{{item.name}}</view>
+                <view class="info">
+                    <text class="price"><text>￥</text>{{filters.ptf(item.price)}}</text>
+                    <text>销量{{item.sales_count}}件</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+
+<template name="singleLine">
+	<view class="single_line">海马毛蝙蝠袖竖织宽松套头毛衣百搭马卡龙</view>
+</template>
+
+<template name="paragraph">
+	<view class="paragraph">机洗会导致填充棉膨胀，形成气囊浮出甩干桶之外， 造成衣物与洗衣剂的损伤， 干洗会导致填充棉变脆从衣缝里钻出，即跑毛。</view>
+</template>
