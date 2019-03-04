@@ -15,8 +15,10 @@ Page({
 		paragraphText: '机洗会导致填充棉膨胀，形成气囊浮出甩干桶之外， 造成衣物与洗衣剂的损伤， 干洗会导致填充棉变脆从衣缝里钻出，即跑毛。',
 		description: {},
 		remain:"",
-		tabSwiperArr: [],
-		currentTab: 0,
+		tabObject: {
+			tabSwiperArr: [],
+			currentTab: 0,
+		},
 		tabScrollTop: false,
 		keyword:'',
 		winWidth:'',
@@ -40,10 +42,12 @@ Page({
 	//下拉刷新
 	onPullDownRefresh: function () {
 		this.setData({
-			tabSwiperArr: [],
+			tabObject: {
+				currentTab: 0,
+				tabSwiperArr: [],
+			},
 			good: [],
 			currentPage: 0,
-			currentTab: 0,
 			currentGroupPage: 0,
 			currentRecommendPage: 0,
 			currentSpecialPage:0
@@ -182,7 +186,7 @@ Page({
 				success: function (data) {
 					if (data.statusCode >= 200 && data.statusCode < 300) {
 						if (data.data && data.data.length > 0 && params === 'isConcat') {
-							let tempArr = that.data.tabSwiperArr;
+							let tempArr = that.data.tabObject.tabSwiperArr;
 							tempArr.map(item => {
 								if (item.type === 1) {
 									item.data = item.data.concat(data.data)
@@ -190,7 +194,10 @@ Page({
 								return item
 							});
 							that.setData({
-								tabSwiperArr: tempArr
+								tabObject: {
+									...that.data.tabObject,
+									tabSwiperArr: tempArr
+								}
 							})
 						} else if (data.data && params === 'isConcat') {
 							let newPage = that.data.currentGroupPage
@@ -206,7 +213,10 @@ Page({
 								data: data.data
 							})
 							that.setData({
-								tabSwiperArr: tempArr
+								tabObject: {
+									...that.data.tabObject,
+									tabSwiperArr: tempArr
+								}
 							})
 						}
 						resolve()
@@ -236,7 +246,7 @@ Page({
 					var code = res.statusCode.toString()
 					if (code.indexOf('20')>-1) {
 						if (res.data.length > 0 && params === 'isConcat') {
-							let tempArr = that.data.tabSwiperArr;
+							let tempArr = that.data.tabObject.tabSwiperArr;
 							tempArr.map(item => {
 								if (item.type === 2) {
 									item.data = item.data.concat(res.data)									
@@ -244,7 +254,10 @@ Page({
 								return item
 							});
 							that.setData({
-								tabSwiperArr: tempArr
+								tabObject: {
+									...that.data.tabObject,
+									tabSwiperArr: tempArr
+								}
 							})
 						} else if (params === 'isConcat') {
 							let newPage = that.data.currentRecommendPage
@@ -253,7 +266,7 @@ Page({
 								currentRecommendPage: newPage
 							})
 						} else if (res.data.length > 0) {
-							let tempArr = that.data.tabSwiperArr, hasCurrentData = false
+							let tempArr = that.data.tabObject.tabSwiperArr, hasCurrentData = false
 							for (let i = 0, leng = tempArr.length; i < leng; i++) {
 								if (tempArr[i].type == 2) {
 									hasCurrentData = true
@@ -267,7 +280,10 @@ Page({
 								})
 							}
 							that.setData({
-								tabSwiperArr: tempArr,
+								tabObject: {
+									...that.data.tabObject,
+									tabSwiperArr: tempArr
+								}
 							})
 						}
 						resolve()
@@ -296,7 +312,7 @@ Page({
 				success(res) {
 					if (res.statusCode >= 200 && res.statusCode < 300) {
 						if (res.data.length >0 && params === 'isConcat') {
-							let tempArr = that.data.tabSwiperArr;
+							let tempArr = that.data.tabObject.tabSwiperArr;
 							tempArr.map(item => {
 								if (item.type === 3) {
 									item.data = item.data.concat(res.data)
@@ -304,7 +320,10 @@ Page({
 								return item
 							});
 							that.setData({
-								tabSwiperArr: tempArr
+								tabObject: {
+									...that.data.tabObject,
+									tabSwiperArr: tempArr
+								}
 							})
 						} else if (params === 'isConcat') {
 							let newPage = that.data.currentSpecialPage
@@ -313,7 +332,7 @@ Page({
 								currentSpecialPage: newPage
 							})
 						} else if (res.data.length > 0) {
-							let tempArr = that.data.tabSwiperArr, hasCurrentData = false
+							let tempArr = that.data.tabObject.tabSwiperArr, hasCurrentData = false
 							for (let i = 0, leng = tempArr.length; i < leng; i++) {
 								if (tempArr[i].type == 3) {
 									hasCurrentData = true
@@ -327,7 +346,10 @@ Page({
 								})
 							}
 							that.setData({
-								tabSwiperArr: tempArr,
+								tabObject: {
+									...that.data.tabObject,
+									tabSwiperArr: tempArr
+								}
 							})
 						}
 						resolve()
@@ -352,11 +374,9 @@ Page({
 		var width = parseInt(that.data.winWidth)
 		//剩余的分类
 		var remain = parseInt(that.data.remain)
-		var cur = Math.floor((scrollLeft + 1) / width)
+		var cur = Math.floor(scrollLeft / width)
 		if (cur < 0) {
 			cur = 0
-		} else if (cur > Math.floor(scrollLeft / width)) {
-			cur = Math.floor(scrollLeft / width) - 1
 		}
 		var cateNum = Math.floor(scrollWidth / width)
 		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain) * width/5)) {
@@ -379,14 +399,20 @@ Page({
 	// 切换tab
 	onChangeTab: function (e) {
 		this.setData({
-			currentTab: e.currentTarget.dataset.value,
+			tabObject: {
+				...this.data.tabObject,
+				currentTab: e.currentTarget.dataset.value,
+			},
 			currentPage: 0
 		})
 	},
 	onChangeSwiperItem: function (e) {
 		if (e.detail.source === 'touch') {
 			this.setData({
-				currentTab: e.detail.current
+				tabObject: {
+					...this.data.tabObject,
+					currentTab: e.detail.current
+				},
 			})
 		}
 	},
@@ -452,7 +478,7 @@ Page({
 		wx.showLoading({
 			title: '加载中',
 		})
-		let currentTab = this.data.currentTab, tabSwiperArr = this.data.tabSwiperArr;
+		let currentTab = this.data.tabObject.currentTab, tabSwiperArr = this.data.tabObject.tabSwiperArr;
 		if (tabSwiperArr.length === 0) {
 			let newPage = this.data.currentPage
 			newPage++

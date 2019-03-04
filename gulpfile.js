@@ -39,7 +39,7 @@ gulp.task('pages', function() {
 })
 gulp.task('auto', function () {
     gulp.watch(['src/app.wxss', 'src/pages/**/**.less'], ['less']);
-    gulp.watch(['src/imgs/*', 'src/pages/**/**/*', 'src/utils/**', 'src/*'], ['pages']);
+    gulp.watch(['src/imgs/*', 'src/pages/**/**/*', 'src/utils/**', 'src/template/**.wxml', 'src/*'], ['pages']);
 })
 gulp.task('clean', function(cb) {
     pump([
