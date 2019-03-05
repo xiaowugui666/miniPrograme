@@ -161,7 +161,7 @@
 		<view class='choose_price'>
 			<image src='{{image}}{{goodUrl}}'></image>
 			<view class='desc'>
-				<text>￥{{filters.toFix(goodPrice/100)}}</text>
+				<text>￥{{filters.ptf(goodPrice)}}</text>
 				<text wx:if='{{stockShown == 1}}'>库存：{{good.stock_count}}</text>
 				<view>请选择 <text  wx:for='{{spec}}' wx:key='{{index}}'>{{item.name}}</text></view>
 			</view>

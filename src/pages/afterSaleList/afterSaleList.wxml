@@ -28,13 +28,13 @@
           <view class='content_price'>
             <view>
               <text class='red'>拼团价</text>
-              <text class='red price'>￥{{filters.toFix(ite.order_items.price / 100)}}</text>
-              <text class='decora'>原价￥{{filters.toFix(item.order_amount / 100)}}</text>
+              <text class='red price'>￥{{filters.ptf(ite.order_items.price)}}</text>
+              <text class='decora'>原价￥{{filters.ptf(item.order_amount)}}</text>
             </view> 
           </view>
         </view>
       </view>
-      <view class='sale_amount'>退款金额￥{{filters.toFix(item.refund_amount / 100)}}</view>
+      <view class='sale_amount'>退款金额￥{{filters.ptf(item.refund_amount)}}</view>
     </view>
   </view>
 

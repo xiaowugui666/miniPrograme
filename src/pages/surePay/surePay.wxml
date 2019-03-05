@@ -31,7 +31,7 @@
                 <label>{{item.name}}</label>
                 <label>{{item.sku_description!=0?item.sku_description:''}}</label>
                 <view>
-                    <label><text>￥</text>{{filters.toFix(item.price/100)}}</label>
+                    <label><text>￥</text>{{filters.ptf(item.price)}}</label>
                     <label wx:if='{{fromCart}}'>x{{item.count}}</label>
                     <view class='count_control' wx:else>
                         <text class='minus {{minusStatu ? "disabled" : ""}}' bindtap='bindminus'>-</text>
@@ -45,21 +45,21 @@
     <view class='info'>
       <view>
         <label>商品总价</label> 
-        <label>￥{{filters.toFix(totalMoney/100)}}</label>
+        <label>￥{{filters.ptf(totalMoney)}}</label>
       </view>
       <view>
         <label>运费（快递）</label> 
-        <label>￥{{filters.toFix(carriage/100)}}</label>
+        <label>￥{{filters.ptf(carriage)}}</label>
       </view>
       <view>
         <label>订单总价</label>
-        <label class="large_size"><text>￥</text>{{filters.toFix(totalOrder/100)}}</label>
+        <label class="large_size"><text>￥</text>{{filters.ptf(totalOrder)}}</label>
       </view>
     </view>
 </view>
 <form bindsubmit='submit' report-submit='true'>
 <view class='confirmPay'>
-    <view>合计:<label><text>￥</text>{{filters.toFix(totalOrder/100)}}</label></view>
+    <view>合计:<label><text>￥</text>{{filters.ptf(totalOrder)}}</label></view>
     <button disabled='{{disabled}}' form-type='submit'>提交订单</button>
 </view>
 </form>

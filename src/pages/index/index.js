@@ -1,5 +1,47 @@
 //index.js
 //获取应用实例
+const data = [
+	{
+		name: 'banner',
+		wxTemplate: 'banner', // 轮播图模块
+		data: [
+			'asjhdgajhdghahg', // 图片相对上传地址路径数组
+		]
+	},
+	{
+		name: 'search',
+		wxTemplate: 'search', // 搜索模块
+		data: {
+			default_text: 'xxxx', // 搜索组件，默认搜索框文字
+		}
+	},
+	{
+		name: 'category',
+		wxTemplate: 'category', // 分类模块
+		data: [
+			{
+				name: '我是类目名称',
+				icon_url: 'xxxxxx', // 类目图片相对上传地址相对路径
+			}
+		]
+	},
+	{
+		name: 'contact',
+		wxTemplate: 'contact', // 小程序端联系店家模块组件
+		data: {
+			logo_url: 'xxxx',
+			name: '',
+			id: ''
+		}
+	},
+	{
+		name: 'singleLine',
+		wxTemplate: 'singleLine', // 单行文本
+		data: {
+			text: 'xxxx'
+		}
+	}
+]
 const app=getApp();
 Page({
 	data: {

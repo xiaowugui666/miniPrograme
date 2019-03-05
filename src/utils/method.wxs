@@ -90,6 +90,17 @@ var filters = {
 	imgUrl: function (value) {
 		return 'https://image.51zan.com/' + value
 	},
+	salesCount: function (value) {
+		var showCount = ''
+		if (value >= 1000 && value < 10000) {
+			showCount = Math.floor(value / 1000) + '千'
+		} else if (value >= 10000) {
+			showCount = Math.floor(value / 10000) + '万'
+		} else {
+			showCount = value
+		}
+		return showCount
+	}
 }
 module.exports = {
 	toFix: filters.toFix,
@@ -100,4 +111,5 @@ module.exports = {
 	humpPrice: filters.humpPrice,
 	drawStatu: filters.drawStatu,
 	imgUrl: filters.imgUrl,
+	salesCount: filters.salesCount,
 }

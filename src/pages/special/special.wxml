@@ -6,7 +6,7 @@
 			<image class='product' src='{{image}}{{item.cover_url}}?imageView2/1/w/344/h/344/imageslim'></image>
 			<text class='item_text'>{{item.name}}</text>
 			<view class='item_text_view special_price'>
-				<text>￥</text><text>{{filters.toFix(item.price/100)}}</text><text>￥{{filters.toFix(item.display_price/100)}}</text>
+				<text>￥</text><text>{{filters.ptf(item.price)}}</text><text>￥{{filters.ptf(item.display_price)}}</text>
 			</view>
 		</view>
 

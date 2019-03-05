@@ -8,7 +8,7 @@
 				<image src='{{image}}{{item.cover_url}}?imageView2/1/w/344/h/344/imageslim'></image>
 				<text class='item_text'>{{item.name}}</text>
 				<view class='item_text_view'>
-					<text>￥</text><text>{{filters.toFix(item.price/100)}}</text><text>销量{{item.sales_count}}件</text>
+					<text>￥</text><text>{{filters.ptf(item.price)}}</text><text>销量{{item.sales_count}}件</text>
 				</view>
 			</view>
 		<!-- </view> -->
