@@ -56,7 +56,7 @@
 					<view class="title">{{item.name}}</view>
 					<view class="info">
 						<text class="price"><text>￥</text>{{filters.ptf(item.price)}}</text>
-						<text>销量{{item.sales_count}}件</text>
+						<text>销量{{filters.salesCount(item.sales_count)}}件</text>
 					</view>
 				</view>
 			</view>

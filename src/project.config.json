@@ -46,7 +46,7 @@
 					"id": 1,
 					"name": "分享进入商品",
 					"pathName": "pages/detail/detail",
-					"query": "id=60&commissionUserId=13"
+					"query": "id=48"
 				}
 			]
 		}

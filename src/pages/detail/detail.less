@@ -8,22 +8,107 @@ image{
 	overflow-x: hidden;
   position: relative;
 }
-swiper{
-	width:750rpx;
-	height:750rpx;
+.blue {
+	swiper {
+		width: 702rpx;;
+		height: 702rpx;
+	}
+	.banner{
+		padding: 40rpx 24rpx 0;
+		position: relative;
+	}
+	.detail_imgs image{
+		width: 702rpx;
+		height: 702rpx;
+		display: block;
+	}
+	.normal_info .price {
+		color: #5184B0;
+		font-size: 48rpx;
+	}
+	.detail_description {
+		padding-left: 24rpx;
+		.name_share {
+			padding: 16rpx 24rpx 32rpx 0rpx;
+			border-bottom: 2rpx solid #F3F4F5;
+			button {
+				width: 128rpx;
+				border-radius:0rpx 10rpx 0px 10rpx;
+			}
+		}
+		.express_sales {
+			margin-top: 32rpx;
+		}
+		.detail_promise {
+			margin-top: 16rpx;
+			padding-bottom: 40rpx;
+		}
+	}
+	.blue_group_info {
+		width: 750rpx;
+		height: 68rpx;
+		position: fixed;
+		bottom: 128rpx;
+		background: rgba(235,244,247,1);
+		display: flex;
+		justify-content: space-between;
+		padding: 16rpx 32rpx;
+		box-sizing: border-box;
+		font-size: 26rpx;
+		color: #9EA8B1;
+		align-items: center;
+		text {
+			color: #5D92C0;
+		}
+	}
+	.description {
+		padding: 24rpx 24rpx 210rpx;
+	}
 }
-.banner{
-  width:750rpx;
-  height:750rpx;
-  position: relative;
-}
-.banner>image{
-  width: 190rpx;
-  height: 190rpx;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
+.default {
+	swiper{
+		width:750rpx;
+		height:750rpx;
+	}
+	.banner{
+		width:750rpx;
+		height:750rpx;
+		position: relative;
+		&>image {
+			width: 190rpx;
+			height: 190rpx;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+	}
+	.detail_imgs image{
+		width: 750rpx;
+		height: 750rpx;
+		display: block;
+	}
+	.normal_info .price {
+		color: #F35D51;
+		font-size: 48rpx;
+	}
+	.name_share {
+		padding-left: 24rpx;
+		button {
+			width: 136rpx;
+			border-radius:8rpx 0px 0px 8rpx;
+		}
+	}
+	.express_sales {
+		padding: 24rpx;
+	}
+	.detail_promise {
+		padding: 24rpx;
+		border-top: 2rpx solid #F3F4F5;
+	}
+	.description {
+		padding: 24rpx 24rpx 140rpx;
+	}
 }
 .banner .showIndex {
 	position: absolute;
@@ -66,10 +151,6 @@ swiper{
 	padding: 24rpx 24rpx 0;
 	font-size: 28rpx;
 	color: #9EA8B1;
-}
-.normal_info .price {
-	color: #F35D51;
-	font-size: 48rpx;
 }
 .normal_info .price text {
 	font-size: 32rpx;
@@ -145,7 +226,6 @@ swiper{
   font-size: 26rpx;
   width: 100%;
   box-sizing: border-box;
-  padding: 24rpx 24rpx 140rpx;
   border-top: 24rpx solid #F7F9FB;
 }
 .description .description_detail {
@@ -162,11 +242,6 @@ swiper{
 }
 .description p{
   font-size: 26rpx;
-}
-.detail_imgs image{
-	width: 750rpx;
-	height: 750rpx;
-	display: block;
 }
 
 /* 拼团或砍价  */
@@ -319,7 +394,6 @@ swiper{
 	width: 566rpx;
 	color: #253A4E;
 	font-size: 32rpx;
-	margin-left: 24rpx;
 	overflow: hidden;
 	text-overflow:ellipsis;
 	display:-webkit-box;
@@ -329,7 +403,6 @@ swiper{
 }
 .name_share button{
 	background: #F7F9FB;
-	width: 136rpx;
 	height: 52rpx;
 	display: flex;
 	align-items: center;
@@ -340,7 +413,6 @@ swiper{
 	color: #9EA8B1;
 	padding: 0;
 	font-size: 26rpx;
-	border-radius:8rpx 0px 0px 8rpx;
 	flex-shrink: 0;
 }
 .name_share .promotion_button {
@@ -359,7 +431,6 @@ swiper{
 	margin-right: 8rpx;
 }
 .express_sales {
-	padding: 24rpx;
 	font-size: 26rpx;
 	color: #9EA8B1;
 	overflow: hidden;
@@ -371,9 +442,7 @@ swiper{
 	margin-right: 128rpx;
 }
 .detail_promise{
-	padding: 24rpx;
 	color: #9EA8B1;
-	border-top: 1px solid #F3F4F5;    
 	font-size: 28rpx;
 }
 .detail_promise .promises{

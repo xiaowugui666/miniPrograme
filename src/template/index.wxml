@@ -129,8 +129,8 @@
 <template name="singleColumn">
 	<block wx:if="{{good.length > 0}}">
 		<view class="content">
-			<block wx:for="{{good}}" wx:key="index">
-				<view class="content_box">
+			<view class="content_box">
+				<block wx:for="{{good}}" wx:key="index">
 					<view class="swiper_box" data-id='{{item.id}}' bindtap='bindDetail'>
 						<image src='{{filters.imgUrl(item.cover_url)}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
 						<view class='swiper_box_item'>
@@ -150,8 +150,8 @@
 							</view>
 						</view>
 					</view>
-				</view>
-			</block>
+				</block>
+			</view>
 		</view>
 	</block>
 	<block wx:else>

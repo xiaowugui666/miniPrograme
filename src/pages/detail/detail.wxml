@@ -1,31 +1,39 @@
 <!--pages/detail/detail.wxml-->
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
-<view class='detail_container' wx:if='{{show==1}}'>
+<view class='detail_container {{skinStyle}}' wx:if='{{show==1}}'>
 	<!-- detail images  -->
     <view class='banner'>
         <swiper
-        	autoplay='{{true}}'  interval='{{3500}}' duration='{{500}}' bindchange='changeCurrent' current='{{current}}' circular='{{true}}'>
+					autoplay='{{true}}'
+					interval='{{3500}}'
+					duration='{{500}}'
+					bindchange='changeCurrent'
+					current='{{current}}'
+					indicator-dots='{{skinStyle === "blue" ? true : false}}'
+					indicator-color='#E6E9EB'
+					indicator-active-color='#5D92C0'
+					circular='{{true}}'>
 					<block wx:for='{{imgs}}' wx:key="{{index}}">
 						<swiper-item>
 							<view class='detail_imgs'>
-							<image src='{{image}}{{item.icon_url}}?imageView2/0/w/860/h/860' data-index='{{index}}' catchtap='viewImages'></image>
+							<image src='{{filters.imgUrl(item.icon_url)}}?imageView2/0/w/860/h/860' data-index='{{index}}' catchtap='viewImages'></image>
 							</view>
 						</swiper-item>
 					</block>
         </swiper>
       	<image wx:if="{{status==2}}" src='{{image}}soldOut.png?imageslim'></image>
-		<view class='showIndex'>{{current + 1}}/{{imgs.length}} </view>
+		<view class='showIndex' wx:if="{{skinStyle === 'default'}}">{{current + 1}}/{{imgs.length}} </view>
     </view>
-    <view class="goods_info {{goods.activity_type == 1 ? 'group_info' : 'normal_info'}}">
+    <view class="goods_info {{goods.activity_type == 1 && skinStyle === 'default' ? 'group_info' : 'normal_info'}}">
 		<view class='price_info'>
-			<view class="price {{goods.activity_type == 1 ? 'group_price' : ''}}"><text>￥</text>{{filters.ptf(goods.activity_type == 1 ? groupInfo.price_low : goods.price)}}</view>
+			<view class="price {{goods.activity_type == 1 && skinStyle === 'default' ? 'group_price' : ''}}"><text>￥</text>{{filters.ptf(goods.activity_type == 1 && skinStyle === 'default' ? groupInfo.price_low : goods.price)}}</view>
 			<view class='info {{isDistributor ? "distribution_info" : ""}}'>
-				<view class='info_number' wx:if="{{goods.activity_type == 1}}">{{groupInfo.min_join_count}}人拼团</view>
+				<view class='info_number' wx:if="{{goods.activity_type == 1 && skinStyle === 'default' }}">{{groupInfo.min_join_count}}人拼团</view>
 				<view class='info_origin_price'>￥{{filters.ptf(goods.activity_type == 1 ? groupInfo.origin_price_low : (goods.display_price ? goods.display_price : goods.price_high))}}</view>
 				<view class="commission_price" wx:if="{{isDistributor}}">佣金<text>￥</text>{{filters.ptf(commissionAmount)}}</view>
 			</view>
 		</view>
-		<view class='count_down' wx:if="{{goods.activity_type == 1}}">
+		<view class='count_down' wx:if="{{goods.activity_type == 1 && skinStyle === 'default' }}">
 			<view class="count_copywrite">距拼团结束仅剩</view>
 			<view class="count_time">
 				<text class='time'>{{timeStampArr[0]}}</text>
@@ -36,6 +44,10 @@
 				<text class='colon'>:</text>
 				<text class='time'>{{timeStampArr[3]}}</text>
 			</view>
+		</view>
+		<view wx:elif="{{goods.activity_type == 1 && skinStyle === 'blue'}}" class="blue_group_info">
+			<view>距离拼团结束还剩<text class="blue_color">{{timeStampArr[0]}}:{{timeStampArr[1]}}:{{timeStampArr[2]}}:{{timeStampArr[3]}}</text></view>
+			<view><text class="blue_color">{{groupInfo.min_join_count}}人</text>成团</view>
 		</view>
     </view>
 	<!-- description  -->
