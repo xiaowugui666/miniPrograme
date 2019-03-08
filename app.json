@@ -22,8 +22,6 @@
 		"pages/refundDetail/refundDetail",
 		"pages/logistics/logistics",
 		"pages/orderDetail/orderDetail",
-		"pages/special/special",
-		"pages/recommend/recommend",
 		"pages/cart/cart",
 		"pages/groupPurchase/groupSurePay/groupSurePay",
 		"pages/distribution/joinDistribution/joinDistribution",

@@ -342,8 +342,11 @@ Page({
 		//剩余的分类
 		var remain = parseInt(this.data.remain)
 		var cur = Math.floor(scrollLeft / width)
+		if (cur < 0) {
+			cur = 0
+		}
 		var cateNum = Math.floor(scrollWidth / width)
-		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain-1) * width/5)-20) {
+		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain-1) * width/5)) {
 			cur++
 			this.setData({
 				current: cur
