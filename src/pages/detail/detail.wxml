@@ -16,7 +16,7 @@
 					<block wx:for='{{imgs}}' wx:key="{{index}}">
 						<swiper-item>
 							<view class='detail_imgs'>
-							<image src='{{filters.imgUrl(item.icon_url)}}?imageView2/0/w/860/h/860' data-index='{{index}}' catchtap='viewImages'></image>
+							<image src='{{filters.imgUrl(item.icon_url)}}?imageView2/0/w/860/h/860' data-index='{{index}}' mode="aspectFit" catchtap='viewImages'></image>
 							</view>
 						</swiper-item>
 					</block>
@@ -92,7 +92,8 @@
 					<view class='user_operation'>
 						<view class='user_prompt'>
 							<text class='prompt_texts'><text>还差</text><text class='red'>{{item.remain_user_count}}人</text><text>拼成 </text></text>
-							<text class='rest_time'>| 剩余{{item.timeStampArr[0]}}:{{item.timeStampArr[1]}}:{{item.timeStampArr[2]}}</text>
+							<text class='rest_time' wx:if="{{skinStyle === 'default'}}">| 剩余{{item.timeStampArr[0]}}:{{item.timeStampArr[1]}}:{{item.timeStampArr[2]}}</text>
+							<text class="rest_time" wx:else>剩余{{item.timeStampArr[0]}}:{{item.timeStampArr[1]}}:{{item.timeStampArr[2]}}</text>
 						</view>
 						<form bindsubmit='submit' report-submit='true'>
 							<button class='prompt_button' wx:if='{{!hasUserInfo}}' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>来参团</button>

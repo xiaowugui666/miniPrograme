@@ -65,6 +65,7 @@ image{
 		font-size: 26rpx;
 		color: #9EA8B1;
 		align-items: center;
+		z-index: 200;
 		text {
 			color: #5D92C0;
 		}
@@ -92,6 +93,41 @@ image{
 		border-radius: 0;
 	}
 	.groups {
+		.group_show_more {
+			font-size: 24rpx;
+			padding: 32rpx;
+			color: #9EA8B1;
+		}
+		.header_users {
+			padding: 0 32rpx;
+			.user_item {
+				padding-bottom: 32rpx;
+				.user_info {
+					image {
+						width: 64rpx;
+						height: 64rpx;
+					}
+					text {
+						margin-left: 16rpx;
+					}
+				}
+				.user_operation {
+					.user_prompt {
+						margin-right: 32rpx;
+						display: flex;
+						flex-direction: column;
+						.prompt_texts {
+							color: #9EA8B1;
+						}
+					}
+					.promotion_button {
+						width: 168rpx;
+						height: 64rpx;
+						border: 2rpx solid #578BBA;
+					}
+				}
+			}
+		}
 		.play_rules {
 			padding: 32rpx;
 			color: #A2ACB4;
@@ -99,6 +135,46 @@ image{
 		}
 		.rules_step {
 			padding: 0 32rpx 32rpx;
+		}
+	}
+	.choose {
+		padding: 32rpx 32rpx 0;
+		.choose_price {
+			.desc {
+				&>text:first-child {
+					color: #5184B0;
+				}
+			}
+			image:last-child {
+				top: 32rpx;
+				right: 32rpx;
+			}
+		}
+		.choose_color {
+			padding-top: 32rpx;
+			view {
+				padding-bottom: 8rpx;
+				label {
+					&.active {
+						color: #5184B0;
+						border:2rpx solid #5D92C0;
+						background: #EBF4F7;
+					}
+				}
+			}
+		}
+		.count {
+			margin-bottom: 202rpx;
+		}
+		.confirm {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: 200;
+			height: 100rpx;
+			width: 750rpx;
+			background: #5D92C0;
+			line-height: 100rpx;
 		}
 	}
 }
@@ -175,6 +251,46 @@ image{
 		}
 	}
 	.groups {
+		.group_show_more {
+			font-size: 28rpx;
+			padding: 24rpx;
+			color: #556675;
+			border-bottom: 2rpx solid #F3F4F5;
+		}
+		.header_users {
+			padding: 0 20rpx;
+			.user_item {
+				padding: 24rpx 0;
+				&:not(:last-child) {
+					border-bottom: 1px solid #EBEBEB;
+				}
+				.user_info {
+					image {
+						width: 48rpx;
+						height: 48rpx;
+					}
+				}
+				.user_operation {
+					.user_prompt {
+						margin-right: 16rpx;
+						.prompt_texts {
+							color: #253A4E;
+							.red {
+								color: #F35D51;
+							}
+						}
+					}
+					.promotion_button {
+						width: 110rpx;
+						height: 48rpx;
+						background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+						color: #FFFFFF;
+						border-radius: 4rpx;
+						line-height: 48rpx;
+					}
+				}
+			}
+		}
 		.play_rules {
 			padding: 24rpx;
 			color: #556675;
@@ -184,6 +300,39 @@ image{
 	}
 	.rules_step {
 		padding: 20rpx;
+	}
+	.choose {
+		padding: 24rpx;
+		border-radius: 20rpx 20rpx 0 0;
+		.choose_price {
+			.desc {
+				&>text:first-child {
+					color: #F35D51;
+				}
+			}
+			image:last-child {
+				top: 24rpx;
+				right: 24rpx;
+			}
+		}
+		.choose_color {
+			padding-top: 24rpx;
+			view label {
+				border-radius: 8rpx;
+				&.active {
+					color: #F15043;
+					border:2rpx solid #F35D51;
+					background: rgba(243, 93, 81, 0.05);
+				}
+			}
+		}
+		.confirm {
+			width: 702rpx;
+			height: 80rpx;
+			line-height: 80rpx;
+			background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+			border-radius: 8rpx;
+		}
 	}
 }
 .banner .showIndex {
@@ -324,28 +473,15 @@ image{
 .groups .groups_header {
 	border-top:24rpx solid #F7F9FB;
 }
-.group_show_more {
-	font-size: 28rpx;
-	padding: 24rpx;
-	color: #556675;
-	border-bottom: 2rpx solid #F3F4F5;
-}
 .group_show_more .more {
   color: #999999;
   font-size: 26rpx;
-}
-.header_users {
-  padding: 0 20rpx;
 }
 .header_users .user_item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24rpx 0;
   font-size: 24rpx;
-}
-.header_users .user_item:not(:last-child) {
-  border-bottom: 1px solid #EBEBEB;
 }
 .user_item .user_info {
   display: flex;
@@ -357,8 +493,6 @@ image{
 }
 .user_item .user_info image {
   display: block;
-  width: 48rpx;
-  height: 48rpx;
   border-radius: 50%;
 }
 .user_item .user_info text {
@@ -375,30 +509,18 @@ image{
   display: flex;
   align-items: center;
 }
-.user_operation .user_prompt {
-  margin-right: 16rpx;
-}
-.user_prompt .prompt_texts {
-	color: #253A4E;
-}
-.user_prompt .prompt_texts .red {
-  color: #F35D51;
-}
 .user_prompt .rest_time {
 	color: #9EA8B1;
 	display: inline-block;
 	width: 166rpx;
 }
 .user_operation .prompt_button {
-  width: 110rpx;
-  height: 48rpx;
-  background-image: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
-  border-radius: 4rpx;
   font-size: 26rpx;
   padding: 0;
-  color: #FFFFFF;
   text-align: center;
-  line-height: 48rpx;
+}
+.user_operation .prompt_button::after {
+	border: none;
 }
 .groups .groups_bottom {
   border-top: 24rpx solid #F7F9FB;
@@ -643,8 +765,6 @@ image{
 	box-sizing: border-box;
 	bottom: 0;
 	background: #FFFFFF;
-	padding: 24rpx;
-	border-radius: 20rpx 20rpx 0 0;
 }
 .choose_price{
 	margin-bottom: 40rpx;
@@ -668,7 +788,6 @@ image{
   margin-right: 10rpx;
 }
 .choose_price .desc>text:first-child{
-	color: #F35D51;
 	font-size: 36rpx;
   margin-bottom: 16rpx;
 }
@@ -680,8 +799,6 @@ image{
 }
 .choose_price image:last-child{
 	position: absolute;
-	top: 24rpx;
-	right: 24rpx;
 	width: 40rpx;
 	height: 40rpx;
 }
@@ -699,7 +816,6 @@ image{
 }
 .choose_color {
 	border-bottom: 2rpx solid #F3F4F5;
-	padding-top: 24rpx;
 }
 .choose_color view{
 	display: flex;
@@ -713,7 +829,6 @@ image{
 	padding: 14rpx 24rpx;
   line-height: 36rpx;
 	background: #F7F9FB;
-  border-radius: 8rpx;
 	margin-right: 24rpx;
 	margin-bottom: 24rpx;
 	font-size: 26rpx;
@@ -722,10 +837,7 @@ image{
 
 /* active style  */
 .choose view label.active{
-	background: rgba(243, 93, 81, 0.05);
 	padding: 12rpx 22rpx;
-	color: #F15043;
-	border:2rpx solid #F35D51;
 }
 
 /* count  */
@@ -778,15 +890,10 @@ image{
 
 /* confirm  */
 .confirm{
-	width: 702rpx;
-	height: 80rpx;
 	text-align: center;
-	line-height: 80rpx;
-	background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
 	color: #FFFFFF;
 	font-size: 32rpx;
 	padding: 0;
-	border-radius: 8rpx;
 }
 
 .store{

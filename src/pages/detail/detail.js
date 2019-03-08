@@ -16,7 +16,7 @@ Page({
 		timeStampArr: [],
 		image: 'https://image.51zan.com/',
 		//使用data数据控制类名
-		chooseModal: true,
+		chooseModal: false,
 		//动态控制“-”号类名
 		minusStatus: "disabled",
 		minusStatuss: "normal",
@@ -877,12 +877,14 @@ Page({
 		}
 	},
 	onHide: function () {
-		console.log(1111)
-		console.log(this.data.groupMembers)
+		this.setData({
+			groupMembers: []
+		})
 	},
 	onUnload: function () {
-		console.log(2222)
-		console.log(this.data.groupMembers)
+		this.setData({
+			groupMembers: []
+		})
 	},
 	onLoad: function(options) {
 		let that = this;
@@ -1039,7 +1041,6 @@ Page({
 										groupInfo: res.data
 									})
 									countDown(that, res.data.count_down, that.data.timeStampArr, options.id)
-									console.log(that.data.timeStampArr)
 								}
 							})
 
