@@ -17,6 +17,9 @@ Page({
 		winWidth:'',
 		good:[],
 		currentPage: 0,
+		currentGroupPage: 0,
+		currentRecommendPage: 0,
+		currentSpecialPage: 0
 	},
 	// 页面加载
 	onLoad: function (options) {
@@ -26,7 +29,7 @@ Page({
 			} else if (options.scene_id) {
 				app.globalData.sceneID = options.scene_id
 			}
-			this.getData()
+			app.login().then(() => this.getData())
 	},
 	//下拉刷新
 	onPullDownRefresh: function () {
@@ -34,6 +37,9 @@ Page({
 			tabSwiperArr: [],
 			good: [],
 			currentPage: 0,
+			currentGroupPage: 0,
+			currentRecommendPage: 0,
+			currentSpecialPage: 0,
 			currentTab: 0
 		})
 		this.getData()
@@ -151,7 +157,7 @@ Page({
 		})
 	},
 	getGroupData: function (params) {
-		let that = this, page = this.data.currentPage;
+		let that = this, page = this.data.currentGroupPage;
 		return new Promise((resolve, reject) => {
 			wx.request({
 				url: app.globalData.http + '/mpa/groupon_goods',
@@ -177,10 +183,10 @@ Page({
 								tabSwiperArr: tempArr
 							})
 						} else if (data.data && params === 'isConcat') {
-							let newPage = that.data.currentPage
+							let newPage = that.data.currentGroupPage
 							newPage--
 							that.setData({
-								currentPage: newPage
+								currentGroupPage: newPage
 							})
 						} else if (data.data && data.data.length > 0) {
 							let tempArr = []
@@ -205,7 +211,7 @@ Page({
 		})
 	},
 	getRecommendData: function (params) {
-		let that = this, page = this.data.currentPage;		
+		let that = this, page = this.data.currentRecommendPage;		
 		return new Promise((resolve, reject) => {
 			wx.request({
 				url: app.globalData.http + '/mpa/goods/recommend',
@@ -231,10 +237,10 @@ Page({
 								tabSwiperArr: tempArr
 							})
 						} else if (params === 'isConcat') {
-							let newPage = that.data.currentPage
+							let newPage = that.data.currentRecommendPage
 							newPage--
 							that.setData({
-								currentPage: newPage
+								currentRecommendPage: newPage
 							})
 						} else if (res.data.length > 0) {
 							let tempArr = that.data.tabSwiperArr, hasCurrentData = false
@@ -266,7 +272,7 @@ Page({
 		})
 	},
 	getSpecialData: function (params) {
-		let that = this, page = this.data.currentPage;		
+		let that = this, page = this.data.currentSpecialPage;		
 		return new Promise((resolve, reject) => {
 			wx.request({
 				url: app.globalData.http + '/mpa/goods/special',
@@ -291,10 +297,10 @@ Page({
 								tabSwiperArr: tempArr
 							})
 						} else if (params === 'isConcat') {
-							let newPage = that.data.currentPage
+							let newPage = that.data.currentSpecialPage
 							newPage--
 							that.setData({
-								currentPage: newPage
+								currentSpecialPage: newPage
 							})
 						} else if (res.data.length > 0) {
 							let tempArr = that.data.tabSwiperArr, hasCurrentData = false
@@ -424,33 +430,43 @@ Page({
 		wx.showLoading({
 			title: '加载中',
 		})
-		let newPage = this.data.currentPage
-		newPage++
-		this.setData({
-			currentPage: newPage
-		})
 		let currentTab = this.data.currentTab, tabSwiperArr = this.data.tabSwiperArr;
-		if (currentTab == 0 && tabSwiperArr.length > 1) {
-			this.getGroupData('isConcat').then(() => wx.hideLoading())
-		} else if (currentTab == 0 && tabSwiperArr.length === 1) {
-			switch (tabSwiperArr[0].type) {
+		if (tabSwiperArr.length === 0) {
+			let newPage = this.data.currentPage
+			newPage++
+			this.setData({
+				currentPage: newPage
+			})
+			this.getNormalData('isConcat').then(() => wx.hideLoading())
+		} else {
+			let newPage
+			switch (tabSwiperArr[currentTab].type) {
 				case 1:
+					newPage = this.data.currentGroupPage
+					newPage++
+					this.setData({
+						currentGroupPage: newPage
+					})
 					this.getGroupData('isConcat').then(() => wx.hideLoading())
 					break
 				case 2:
+					newPage = this.data.currentRecommendPage
+					newPage++
+					this.setData({
+						currentRecommendPage: newPage
+					})
 					this.getRecommendData('isConcat').then(() => wx.hideLoading())
 					break
 				case 3:
+					newPage = this.data.currentSpecialPage
+					newPage++
+					this.setData({
+						currentSpecialPage: newPage
+					})
 					this.getSpecialData('isConcat').then(() => wx.hideLoading())
 					break
 				default:
 			}
-		} else if (currentTab == 0 && tabSwiperArr.length === 0) {
-			this.getNormalData('isConcat').then(() => wx.hideLoading())
-		} else if (currentTab == 1) {
-			this.getRecommendData('isConcat').then(() => wx.hideLoading())
-		} else if (currentTab == 2) {
-			this.getSpecialData('isConcat').then(() => wx.hideLoading())
 		}
 	}
 })

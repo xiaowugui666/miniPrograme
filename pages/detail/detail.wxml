@@ -176,7 +176,7 @@
 	<view class='mask' wx:if='{{chooseModal}}' bindtap='closeTips' catchtouchmove='preventDefault'></view>
 	<view class='choose' wx:if='{{chooseModal}}' animation="{{animationData}}" catchtouchmove='preventDefault'>
 		<view class='choose_price'>
-			<image src='{{image}}{{goodUrl}}'></image>
+			<image src='{{image}}{{goodUrl}}?imageView2/0/w/200/h/200'></image>
 			<view class='desc'>
 				<text><text>￥</text>{{filters.ptf(goodPrice)}}</text>
 				<text wx:if='{{goods.stock_shown == 1}}'>库存：{{good.stock_count}}</text>

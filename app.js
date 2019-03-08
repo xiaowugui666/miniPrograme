@@ -4,28 +4,13 @@ App({
 		that.globalData.options = options
 	},
 	onLaunch: function () {
-		var that=this
-		this.withDistributVerifi()
 		this.globalData.apiExt = wx.getExtConfigSync().data
-
-		wx.request({
-			url: that.globalData.http + '/mpa/distributor/info',
-			method: 'GET',
-			header: {
-				'Api-Ext': that.globalData.apiExt,
-			},
-			success: function (response) {
-				if (response.statusCode >=200 && response.statusCode < 300) {
-					that.globalData.distribution = response.data
-				}
-			}
-		})
 	},
 	withDistributVerifi: function () {
 		let that = this
 		return new Promise((resolve, reject) => {
-			that.login().then(() => {
-				if (that.globalData.distributorInfo.id) {
+			that.withDistributInfo().then(() => {
+				if (that.globalData.distributorInfo.id || that.globalData.distribution.status === 2) {
 					resolve()
 				} else {
 					wx.request({
@@ -40,6 +25,33 @@ App({
 						success: function (response) {
 							if (response.statusCode === 200) {
 								that.globalData.distributorInfo = response.data
+							}
+							resolve()
+						},
+						fail: function (response) {
+							reject(response)
+						}
+					})
+				}
+			})
+		})
+	},
+	withDistributInfo: function () {
+		let that = this
+		return new Promise((resolve, reject) => {
+			that.login().then(() => {
+				if (that.globalData.distribution.id) {
+					resolve()
+				} else {
+					wx.request({
+						url: that.globalData.http + '/mpa/distributor/info',
+						method: 'GET',
+						header: {
+							'Api-Ext': that.globalData.apiExt,
+						},
+						success: function (response) {
+							if (response.statusCode >=200 && response.statusCode < 300) {
+								that.globalData.distribution = response.data
 							}
 							resolve()
 						},

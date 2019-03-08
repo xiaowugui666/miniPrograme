@@ -27,7 +27,7 @@
 <view class='detail'>
     <view class='menus_box'>
         <view  class='menus' wx:for='{{dataList}}' wx:key='index'>
-            <image src='{{image}}{{item.cover_url}}?imageslim'></image>
+            <image src='{{image}}{{item.cover_url}}?imageView2/0/w/200/h/200'></image>
             <view class='desc'>
                 <label>{{item.name}}</label>
                 <label>{{item.sku_description!=0?item.sku_description:''}}</label>
