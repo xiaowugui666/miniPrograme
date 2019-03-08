@@ -421,7 +421,7 @@ Page({
 			cur = 0
 		}
 		var cateNum = Math.floor(scrollWidth / width)
-		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain) * width/5)) {
+		if (remain != 0 && scrollLeft >= (scrollWidth -width-(remain-1) * width/5)) {
 			cur++
 			that.setData({
 				category: {

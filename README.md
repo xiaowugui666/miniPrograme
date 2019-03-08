@@ -1,6 +1,5 @@
 app.json:
     "pages/index/index",   首页
-    "pages/regMob/regMob",  验证手机号
     "pages/category/category", 分类
     "pages/shoppingCar/shoppingCar", 购物车
     "pages/user/user", 个人中心
@@ -13,8 +12,6 @@ app.json:
     "pages/refundDetail/refundDetail",  售后详情
     "pages/logistics/logistics", 我的物流
     "pages/orderDetail/orderDetail", 订单详情
-    "pages/special/special", 更多特价
-    "pages/recommend/recommend", 更多推荐
     "pages/orders/orders", 订单列表
     "pages/cart/cart", 商品详情中的购物车
     "pages/categoryList/categoryList", 分类列表
