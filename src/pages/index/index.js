@@ -79,7 +79,7 @@ Page({
 		} else if (options.scene_id) {
 			app.globalData.sceneID = options.scene_id
 		}
-		this.getData()
+		app.login().then(() => this.getData())
 	},
 	//下拉刷新
 	onPullDownRefresh: function () {

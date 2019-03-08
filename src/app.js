@@ -5,7 +5,7 @@ App({
 	},
 	onLaunch: function () {
 		var that=this
-		this.withDistributVerifi()
+		// this.withDistributVerifi()
 		this.globalData.apiExt = wx.getExtConfigSync().data
 
 		wx.request({

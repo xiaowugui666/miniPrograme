@@ -110,7 +110,8 @@
 			</navigator>
 			<view class='rules_step'>
 				<view class='step_item'>
-					<image src='/imgs/icon_detail1_discount.png'></image>
+					<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail1_discount.png'></image>
+					<image wx:else src="{{filters.imgUrl('icon_detail1_discount.png')}}" />
 					<view class='step_text'>
 						<text>下单支付</text>
 						<text>开团/参团</text>
@@ -118,7 +119,8 @@
 				</view>
 				<view class="dashed_line"></view>
 				<view class='step_item'>
-					<image src='/imgs/icon_detail2_friends.png'></image>
+					<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail2_friends.png'></image>
+					<image wx:else src="{{filters.imgUrl('icon_detail2_friends.png')}}" />
 					<view class='step_text'>
 						<text>邀请好友</text>
 						<text>一起参团</text>
@@ -126,7 +128,8 @@
 				</view>
 				<view class="dashed_line"></view>
 				<view class='step_item'>
-					<image src='/imgs/icon_detail3_trans.png'></image>
+					<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail3_trans.png'></image>
+					<image wx:else src="{{filters.imgUrl('icon_detail3_trans.png')}}" />
 					<view class='step_text'>
 						<text>成团发货</text>
 						<text>逾期退款</text>
@@ -142,13 +145,15 @@
     <form bindsubmit='submit' report-submit='true'>
     	<view class='detail_bottom' wx:if="{{!isDistributionGood}}">
         	<view class='detail_cart' bindtap='goCart'>
-				<image src='/imgs/icon_detail_buy.png'></image>
-				<text>购物车</text>
+				<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail_buy.png'></image>
+				<image wx:else src="{{filters.imgUrl('icon_detail_shop.png')}}" />
+				<text wx:if="{{skinStyle === 'default'}}">购物车</text>
 				<label wx:if="{{cartNum>0}}">{{cartNum}}</label>
 			</view>
 			<view class='detail_cart' bindtap='goIndex'>
-				<image src='/imgs/icon_detail_shop.png'></image>
-				<text>店铺</text>
+				<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail_shop.png'></image>
+				<image wx:else src="{{filters.imgUrl('Group18.png')}}" />
+				<text wx:if="{{skinStyle === 'default'}}">店铺</text>
 			</view>
 			<view class="detail_buttons">
 				<button disabled='{{status==2}}' wx:if='{{goods.activity_type == 1 && userId}}' class='addCart group_button {{status==2?"disAddcart":""}}' bindtap='submit' data-flag='2'>

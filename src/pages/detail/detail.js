@@ -16,7 +16,7 @@ Page({
 		timeStampArr: [],
 		image: 'https://image.51zan.com/',
 		//使用data数据控制类名
-		chooseModal: false,
+		chooseModal: true,
 		//动态控制“-”号类名
 		minusStatus: "disabled",
 		minusStatuss: "normal",
