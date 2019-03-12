@@ -603,6 +603,7 @@ Page({
 							var list = []
 							for (var z = 0; z < res.data.length; z++) {
 								res.data[z].isSelect = false;
+								res.data[z].cart_item_id = res.data[z].id
 								list.push(res.data[z])
 							}
 							that.setData({

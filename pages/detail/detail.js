@@ -581,7 +581,7 @@
 						var local = wx.getStorageSync('good')
 						var cartNum = that.data.cartNum
 						goods.count = that.data.num
-						goods.goods_sku_id = goods.goods_sku_id
+						goods.goods_sku_id = goods.id
 						goods.name = that.data.goods.name
 						goods.isSelect = false
 						if (that.data.chooseSpec.length == 1) {

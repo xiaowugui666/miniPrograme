@@ -129,7 +129,9 @@ Page({
 			sum += parseFloat(data[i].price) * parseFloat(data[i].count)
 			sku_id[[data[i].goods_sku_id]]=data[i].count
 			sku_idss.push(data[i].goods_sku_id)
-			cart_item_ids.push(data[i].id)
+			if (options.fromCart && data[i].cart_item_id) {
+				cart_item_ids.push(data[i].cart_item_id)
+			}
 			
 			if (data[i].hasOwnProperty('commissionUserId')) {
 				that.setData({
