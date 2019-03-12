@@ -345,18 +345,20 @@ Page({
 							'Api-Ext': app.globalData.apiExt
 						},
 						success:function(res){
-							let storageArr = wx.getStorageSync('good')
-							for (let i = storageArr.length - 1; i >= 0; i--) {
-								for (let key in goodsObj) {
-									if (storageArr[i].id == key) {
-										storageArr.splice(i, 1)
+							let storageArr = wx.getStorageSync('good'), tempArr = JSON.parse(JSON.stringify(storageArr))
+							if (storageArr.length > 0) {
+								for (let i = storageArr.length - 1; i >= 0; i--) {
+									for (let key in goodsObj) {
+										if (storageArr[i].id == key) {
+											tempArr.splice(i, 1)
+										}
 									}
 								}
+								wx.setStorage({
+									key: 'good',
+									data: tempArr
+								})
 							}
-							wx.setStorage({
-								key: 'good',
-								data: storageArr
-							})
 							var codes=res.statusCode.toString()
 							if (codes >= 200 && codes <300 ){
 								var time = res.data.timeStamp.toString()
