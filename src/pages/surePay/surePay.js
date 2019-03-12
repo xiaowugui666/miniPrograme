@@ -129,7 +129,9 @@ Page({
 			sum += parseFloat(data[i].price) * parseFloat(data[i].count)
 			sku_id[[data[i].goods_sku_id]]=data[i].count
 			sku_idss.push(data[i].goods_sku_id)
-			cart_item_ids.push(data[i].id)
+			if (options.fromCart && data[i].cart_item_id) {
+				cart_item_ids.push(data[i].cart_item_id)
+			}
 			
 			if (data[i].hasOwnProperty('commissionUserId')) {
 				that.setData({
@@ -343,6 +345,20 @@ Page({
 							'Api-Ext': app.globalData.apiExt
 						},
 						success:function(res){
+							let storageArr = wx.getStorageSync('good'), tempArr = JSON.parse(JSON.stringify(storageArr))
+							if (storageArr.length > 0) {
+								for (let i = storageArr.length - 1; i >= 0; i--) {
+									for (let key in goodsObj) {
+										if (storageArr[i].id == key) {
+											tempArr.splice(i, 1)
+										}
+									}
+								}
+								wx.setStorage({
+									key: 'good',
+									data: tempArr
+								})
+							}
 							var codes=res.statusCode.toString()
 							if (codes >= 200 && codes <300 ){
 								var time = res.data.timeStamp.toString()

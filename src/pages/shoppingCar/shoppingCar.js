@@ -21,7 +21,8 @@ Page({
 		userId: false,
 		touchStartX: 0,
 		touchStartY: 0,
-		btnwidth: 128
+		btnwidth: 128,
+		inAndroidGetPhoneMask: false
 	},
 	//点击结算
 	balance() {
@@ -561,11 +562,20 @@ Page({
 		})
 	},
 	getPhoneNumber: function (e) {
-		app.publicAuth(e, this)		
+		this.setData({
+			inAndroidGetPhoneMask: true
+		})
+		app.publicAuth(e, this).then(() => {
+			this.balance()
+			this.setData({
+				inAndroidGetPhoneMask: false
+			})
+		})
 	},
 	onShow: function (options) {
 		let that = this;
 		var goodlist = wx.getStorageSync('good')
+		if (that.data.inAndroidGetPhoneMask) {return}
 		if (goodlist && goodlist.length > 0) {
 			goodlist.forEach(item => {
 				item.isSelect = false
@@ -603,6 +613,7 @@ Page({
 							var list = []
 							for (var z = 0; z < res.data.length; z++) {
 								res.data[z].isSelect = false;
+								res.data[z].cart_item_id = res.data[z].id
 								list.push(res.data[z])
 							}
 							that.setData({
@@ -659,6 +670,10 @@ Page({
 							})
 						}
 					}
+				})
+			} else {
+				that.setData({
+					local: false
 				})
 			}
 		} else {

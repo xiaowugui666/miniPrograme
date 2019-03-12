@@ -101,6 +101,7 @@ App({
 									}
 									resolve(res)
 								}
+								reject(res)
 							},
 							fail: function (res) {
 								reject(res)
