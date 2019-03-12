@@ -561,7 +561,9 @@ Page({
 		})
 	},
 	getPhoneNumber: function (e) {
-		app.publicAuth(e, this)		
+		app.publicAuth(e, this).then(() => {
+			this.balance()
+		})
 	},
 	onShow: function (options) {
 		let that = this;
@@ -660,6 +662,10 @@ Page({
 							})
 						}
 					}
+				})
+			} else {
+				that.setData({
+					local: false
 				})
 			}
 		} else {
