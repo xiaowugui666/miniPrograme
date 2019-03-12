@@ -25,6 +25,14 @@ util:
 
 wxParse:富文本编译器转换成小程序语言
 
+小程序自定义首页数据来源data中的`template`字段数据需在新零售项目中，自行添加相应template类型。
+例如：小程序段新建一个name为`banner`的模板，则需在新零售项目中shopMenu中`banner`模块对应添加`{"template": "banner"}`
+
+增加第二套皮肤信息
+
+  1.“默认”皮肤为`default`
+  2.“男装”皮肤为`blue`
+
 新增gulp编译less文件:
     工作区为`src`目录，文件修改或新增后命令行输入`gulp`进行编译，新增`dist`目录，为目标目录。
     用微信开发者工具打开`dist`目录进行预览、上传等。

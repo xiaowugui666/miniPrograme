@@ -231,12 +231,14 @@ Page({
 								})
 							} else {
 								var local = wx.getStorageSync('good')
-								var good = that.data.good
+								var good = {
+									...that.data.good,
+									count: 1,
+									goods_sku_id: that.data.good.id,
+									name: that.data.name,
+									sku_description: ''
+								}
 								var cartNum = that.data.cartNum
-								good.count = 1;
-								good.goods_sku_id = that.data.good.id;
-								good.name = that.data.name;
-								good.sku_description = '';
 								//本地购物车不为空
 								if (local.length > 0) {
 									var ishava = local.every(function(v, i) {
@@ -284,11 +286,13 @@ Page({
 								})
 							}
 						} else if (flag == 2) { // 点击立即购买、单独购买
-							var good = that.data.good
-							good.count = 1;
-							good.goods_sku_id = that.data.good.id;
-							good.name = that.data.name;
-							good.sku_description = 0;
+							var good = {
+								...that.data.good,
+								count: 1,
+								goods_sku_id: that.data.good.id,
+								name: that.data.name,
+								sku_description: 0
+							}
 							if (that.data.isDistributionGood) {
 								good.commissionUserId = that.data.commissionUserId;
 							}
@@ -302,16 +306,18 @@ Page({
 							})
 						} else if(flag == 3) { // 点击一键开团
 							// 赋值app.globalData
-							let good = that.data.good;
-							good.name = that.data.name;
-							good.groupInfo_id = that.data.groupInfo.id;
-							good.goods_id = that.data.goods.id;
-							good.goods_sku_id = that.data.good.id;
-							good.count = 1;
-							good.priceLow = that.data.groupInfo.price_low;
-							good.price = that.data.groupInfo.origin_price_low;
-							good.buy_limit_count = that.data.groupInfo.buy_limit_count;
-							good.groupFormId = e.detail.formId;
+							let good = {
+								...that.data.good,
+								name: that.data.name,
+								groupInfo_id: that.data.groupInfo.id,
+								goods_id: that.data.goods.id,
+								goods_sku_id: that.data.good.id,
+								count: 1,
+								priceLow: that.data.groupInfo.price_low,
+								price: that.data.groupInfo.origin_price_low,
+								buy_limit_count: that.data.groupInfo.buy_limit_count,
+								groupFormId: e.detail.formId
+							}
 
 							app.globalData.good = [];
 							app.globalData.good.push(good);
@@ -321,17 +327,19 @@ Page({
 						} else {
 							// 点击立即参团
 							// 点击列表立即参团
-							let good = that.data.good;
-							good.count = 1;
-							good.goods_sku_id = that.data.good.id;
-							good.name = that.data.name;
-							good.groupInfo_id = that.data.groupInfo.id;
-							good.goods_id = that.data.goods.id;
-							good.groupFormId = e.detail.formId;
-							good.group_id = that.data.group_id;
-							good.priceLow = that.data.groupInfo.price_low;
-							good.buy_limit_count = that.data.groupInfo.buy_limit_count;
-							good.price = that.data.groupInfo.origin_price_low;
+							let good = {
+								...that.data.good,
+								count: 1,
+								goods_sku_id: that.data.good.id,
+								name: that.data.name,
+								groupInfo_id: that.data.groupInfo.id,
+								goods_id: that.data.goods.id,
+								groupFormId: e.detail.formId,
+								group_id: that.data.group_id,
+								priceLow: that.data.groupInfo.price_low,
+								buy_limit_count: that.data.groupInfo.buy_limit_count,
+								price: that.data.groupInfo.origin_price_low
+							}
 
 							if (that.data.chooseSpec.length == 1) {
 								good.sku_description = good.spec_a + ':' + good.property_a
@@ -578,13 +586,15 @@ Page({
 						}
 					})
 				} else { // 未绑定手机号，加入本地购物车
-					var goods = that.data.good
 					var local = wx.getStorageSync('good')
 					var cartNum = that.data.cartNum
-					goods.count = that.data.num
-					goods.goods_sku_id = goods.goods_sku_id
-					goods.name = that.data.goods.name
-					goods.isSelect = false
+					var goods = {
+						...that.data.good,
+						count: that.data.num,
+						goods_sku_id: that.data.good.id,
+						name: that.data.goods.name,
+						isSelect: false
+					}
 					if (that.data.chooseSpec.length == 1) {
 						goods.sku_description = goods.spec_a + ':' + goods.property_a
 					} else if (that.data.chooseSpec.length == 2) {
@@ -646,10 +656,12 @@ Page({
 				}
 			} else if (flag == 2) { //来源为立即购买，即flag为2
 				//将商品信息、数量保存到app
-				let good = that.data.good;
-				good.count = that.data.num;
-				good.goods_sku_id = that.data.good.id;
-				good.name = that.data.name;
+				let good = {
+					...that.data.good,
+					count: that.data.num,
+					goods_sku_id: that.data.good.id,
+					name: that.data.name
+				}
 				if (that.data.chooseSpec.length == 1) {
 					good.sku_description = good.spec_a + ':' + good.property_a
 				} else if (that.data.chooseSpec.length == 2) {
@@ -674,16 +686,18 @@ Page({
 					url: '/pages/surePay/surePay',
 				})
 			} else if(flag == 3) { // 一键开团
-				let good = that.data.good;
-				good.count = that.data.num;
-				good.goods_sku_id = that.data.good.id;
-				good.name = that.data.name;
-				good.groupInfo_id = that.data.groupInfo.id;
-				good.goods_id = that.data.goods.id;
-				good.groupFormId = that.data.formId;
-				good.priceLow = good.price;
-				good.buy_limit_count = that.data.groupInfo.buy_limit_count;          
-				good.price = good.origin_price;
+				let good = {
+					...that.data.good,
+					count: that.data.num,
+					goods_sku_id: that.data.good.id,
+					name: that.data.name,
+					groupInfo_id: that.data.groupInfo.id,
+					goods_id: that.data.goods.id,
+					groupFormId: that.data.formId,
+					priceLow: good.price,
+					buy_limit_count: that.data.groupInfo.buy_limit_count,
+					price: good.origin_price
+				}
 
 				if (that.data.chooseSpec.length == 1) {
 					good.sku_description = good.spec_a + ':' + good.property_a
@@ -704,17 +718,19 @@ Page({
 				})
 			} else if (flag == 4) {
 				// 点击列表立即参团
-				let good = that.data.good;
-				good.count = that.data.num;
-				good.goods_sku_id = that.data.good.id;
-				good.name = that.data.name;
-				good.groupInfo_id = that.data.groupInfo.id;
-				good.goods_id = that.data.goods.id;
-				good.groupFormId = that.data.formId;
-				good.group_id = that.data.group_id;
-				good.priceLow = good.price;
-				good.buy_limit_count = that.data.groupInfo.buy_limit_count;
-				good.price = good.origin_price;
+				let good = {
+					...that.data.good,
+					count: that.data.num,
+					goods_sku_id: that.data.good.id,
+					name: that.data.name,
+					groupInfo_id: that.data.groupInfo.id,
+					goods_id: that.data.goods.id,
+					groupFormId: that.data.formId,
+					group_id: that.data.group_id,
+					priceLow: good.price,
+					buy_limit_count: that.data.groupInfo.buy_limit_count,
+					price: good.origin_price
+				}
 
 				if (that.data.chooseSpec.length == 1) {
 					good.sku_description = good.spec_a + ':' + good.property_a

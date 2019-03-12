@@ -190,3 +190,7 @@
 <template name="divide">
 	<view class="divide"></view>
 </template>
+
+<template name="singleImg">
+	<image src="{{filters.imgUrl(description.banner)}}" />
+</template>

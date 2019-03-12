@@ -65,7 +65,7 @@ image{
 		font-size: 26rpx;
 		color: #9EA8B1;
 		align-items: center;
-		z-index: 200;
+		z-index: 300;
 		text {
 			color: #5D92C0;
 		}
@@ -84,6 +84,7 @@ image{
 		background:#253A4E;
 		font-size: 24rpx;
 		border-radius: 0;
+		line-height: 100rpx;
 	}
 	.buy {
 		width: 268rpx;
@@ -91,6 +92,7 @@ image{
 		background:#5D92C0;
 		font-size: 24rpx;
 		border-radius: 0;
+		line-height: 100rpx;
 	}
 	.groups {
 		.group_show_more {
@@ -120,10 +122,55 @@ image{
 							color: #9EA8B1;
 						}
 					}
-					.promotion_button {
+					.prompt_button {
 						width: 168rpx;
 						height: 64rpx;
+						line-height: 64rpx;
 						border: 2rpx solid #578BBA;
+						border-radius: 0;
+						background: #FFFFFF;
+						color: #5D92C0;
+						overflow: visible;
+						.triangle_top {
+							width: 0; 
+							height: 0; 
+							border-top: 20rpx solid #578BBA; 
+							border-right: 20rpx solid transparent;
+							position: absolute;
+							top: -2rpx;
+							left: -2rpx;
+
+						}
+						.triangle_top::before {
+							content: ' ';
+							display: block;
+							position: absolute;
+							top:-20rpx;
+							left: -2rpx;
+							border-top: 20rpx solid #fff; 
+							border-right: 20rpx solid transparent;
+							z-index: 200;
+						}
+						.triangle_bottom {
+							width: 0; 
+							height: 0; 
+							border-bottom: 20rpx solid #578BBA;
+							border-left: 20rpx solid transparent;
+							position: absolute;
+							right: -2rpx;
+							bottom: -2rpx;
+							z-index: 100;
+						}
+						.triangle_bottom::before {
+							content: ' ';
+							display: block;
+							position: absolute;
+							right:-2rpx;
+							bottom: -20rpx;
+							border-bottom: 20rpx solid #fff; 
+							border-left: 20rpx solid transparent;
+							z-index: 200;
+						}
 					}
 				}
 			}
@@ -241,6 +288,7 @@ image{
 			background:linear-gradient(90deg,#FFD148 0%,#FFAA16 100%);
 			font-size: 28rpx;
 			border-radius:8rpx 0 0 8rpx;
+			line-height: 80rpx;
 		}
 		.buy {
 			width: 250rpx;
@@ -248,6 +296,7 @@ image{
 			background:linear-gradient(90deg,#F87358 0%,#F35D51 100%);
 			border-radius:0 8rpx 8rpx 0;
 			font-size: 28rpx;
+			line-height: 80rpx;
 		}
 	}
 	.groups {
@@ -280,13 +329,19 @@ image{
 							}
 						}
 					}
-					.promotion_button {
+					.prompt_button {
 						width: 110rpx;
 						height: 48rpx;
 						background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
 						color: #FFFFFF;
 						border-radius: 4rpx;
 						line-height: 48rpx;
+						.triangle_top {
+							display: none;
+						}
+						.triangle_bottom {
+							display: none;
+						}
 					}
 				}
 			}
@@ -651,7 +706,7 @@ image{
 	width: 750rpx;
 	position: fixed;
 	bottom: 0;
-  z-index: 100;
+  z-index: 500;
 	background: #FEFEFE;
 	box-sizing: border-box;
 	display: flex;
@@ -683,7 +738,6 @@ image{
   box-sizing: border-box;
 	color: #FFFFFF;
 	text-align: center;
-	line-height: 80rpx;
 	padding: 0;
 }
 .detail_bottom .detail_buttons {
@@ -704,7 +758,6 @@ image{
 	text-align: center;
 	color: #FFFFFF;
 	padding:0;
-	line-height: 80rpx;
 }
 .detail_bottom .group_button {
 	display: flex;
@@ -751,7 +804,7 @@ image{
 	width: 750rpx;
 	height: 100%;
 	background: #000;
-	z-index: 10;
+	z-index: 500;
 	position: fixed;
 	top: 0;
 	opacity: 0.4;
@@ -760,7 +813,7 @@ image{
 /* choose  */
 .choose{
 	position: fixed;
-	z-index: 100;
+	z-index: 999;
 	width: 750rpx;
 	box-sizing: border-box;
 	bottom: 0;
