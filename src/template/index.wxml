@@ -60,6 +60,205 @@
 </template>
 
 <template name="singleTabColumn">
+	<block wx:if="{{data.length > 0 }}">
+		<view class="marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}">
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTab'>{{item.label}}</view>
+		</view>
+		<view class="marketing_fixed_tabs marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop && data.length > 1}}">
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTab'>{{item.label}}</view>
+		</view>
+		<view class="content">
+			<block wx:for="{{data}}" wx:key="index">
+				<view wx:if="{{currentTab === index}}" class="content_box">
+					<block wx:for="{{item.currentShowData}}" wx:key="ind" wx:for-item="ite">
+						<view class="swiper_box" data-id='{{ite.id}}' bindtap='bindDetail'>
+							<image src='{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+							<view class='swiper_box_item'>
+								<view>
+									<view class='title'>{{ite.name}}</view>
+									<view class='info' wx:if="{{item.type != 3}}">
+										<text>销量</text>
+										<text class='info_count'>{{ite.sales_count}}</text>
+										<text>件</text>
+									</view>
+								</view>
+								<view class="price">
+									<view class='price_text'>
+										<text class='display_price'><text>￥</text>{{filters.ptf(ite.price)}}</text>
+										<text class="original_price" wx:if="{{item.type === 3}}">￥{{filters.ptf(ite.display_price)}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+					</block>
+					<view class="show_more" wx:if="{{item.hasNextPage}}">查看更多</view>
+				</view>
+			</block>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="marketing_tabs">
+			<view class="marketing_tab" wx:for="{{[1,2,3]}}" wx:key="index">
+				<view class="marketing_loading_tab loading"></view>
+			</view>
+		</view>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
+	</block>
+</template>
+
+<template name="doubleTabColumn">
+	<block wx:if="{{data.length > 0 }}">
+		<view class="marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}">
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTab'>{{item.label}}</view>
+		</view>
+		<view class="marketing_fixed_tabs marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop && data.length > 1}}">
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTab'>{{item.label}}</view>
+		</view>
+		<view class="content">
+			<block wx:for="{{data}}" wx:key="index" wx:for-index="index" wx:for-item="ite">
+				<block wx:if="{{currentTab === index}}">
+					<view class="goods_recommend">
+						<view class="goods_item" wx:for="{{ite.currentShowData}}" wx:key="ind" data-id="{{item.id}}" bindtap='bindDetail'>
+							<image src="{{item.cover_url}}?imageView2/0/w/360/h/360" />
+							<view class="goods_info">
+								<view class="title">{{item.name}}</view>
+								<view class="info">
+									<text class="price"><text>￥</text>{{filters.ptf(item.price)}}</text>
+									<text>销量{{item.sales_count}}件</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="show_more" wx:if="{{ite.hasNextPage}}">查看更多</view>
+				</block>
+			</block>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="marketing_tabs">
+			<view class="marketing_tab" wx:for="{{[1,2,3]}}" wx:key="index">
+				<view class="marketing_loading_tab loading"></view>
+			</view>
+		</view>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
+	</block>
+</template>
+
+<template name="singleColumn">
+	<block wx:if="{{data[0].currentShowData.length > 0}}">
+		<view class="content">
+			<view class="content_box">
+				<block wx:for="{{data[0].currentShowData}}" wx:key="index">
+					<view class="swiper_box" data-id='{{item.id}}' bindtap='bindDetail'>
+						<image src='{{item.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+						<view class='swiper_box_item'>
+							<view>
+								<view class='title'>{{item.name}}</view>
+								<view class='info'>
+									<text>销量</text>
+									<text class='info_count'>{{filters.salesCount(item.sales_count)}}</text>
+									<text>件</text>
+								</view>
+							</view>
+							<view class="price">
+								<view class='price_text'>
+									<text class='display_price'><text>￥</text>{{filters.ptf(item.price)}}</text>
+									<text class="original_price">￥{{filters.ptf(item.display_price)}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="show_more" wx:if="{{item.hasNextPage}}">查看更多</view>
+				</block>
+			</view>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
+	</block>
+</template>
+
+<template name="doubleColumn">
+    <!-- <view class="marketing_tabs single_market">
+        <view class="marketing_tab active_tab">宝贝推荐</view>
+    </view> -->
+	<block wx:if="{{data[0].currentShowData.length > 0}}">
+		<view class="goods_recommend">
+			<view class="goods_item" wx:for="{{data[0].currentShowData}}" wx:key="index"  data-id="{{item.id}}" bindtap='bindDetail'>
+				<image src="{{item.cover_url}}?imageView2/0/w/360/h/360" />
+				<view class="goods_info">
+					<view class="title">{{item.name}}</view>
+					<view class="info">
+						<text class="price"><text>￥</text>{{filters.ptf(item.price)}}</text>
+						<text>销量{{item.sales_count}}件</text>
+					</view>
+				</view>
+			</view>
+			<view class="show_more" wx:if="{{item.hasNextPage}}">查看更多</view>
+		</view>
+	</block>
+</template>
+
+<template name="singleLine">
+	<view class="single_line" wx:if="{{singleLineText}}">{{singleLineText}}</view>
+	<view class="single_line_loading loading" wx:else></view>
+</template>
+
+<template name="paragraph">
+	<view class="paragraph" wx:if="{{paragraphText}}">{{paragraphText}}</view>
+	<view class="paragraph_loading loading" wx:else></view>
+</template>
+
+<template name="divide">
+	<view class="divide"></view>
+</template>
+
+<template name="singleImg">
+	<image src="{{filters.imgUrl(description.banner)}}" />
+</template>
+
+<template name="group">
+	<block wx:if="{{data[0].currentShowData.length > 0}}">
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="content">
+			<view class="content_box">
+				<block wx:for="{{data[0].currentShowData}}" wx:for-index="index" wx:for-item="ite" wx:key="index">
+					<view class="swiper_box" data-id='{{ite.id}}' bindtap='bindDetail'>
+						<image src='{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+						<view class='swiper_box_item'>
+							<view class='title'>{{ite.name}}</view>
+							<view class='info'>
+								<text>拼团中 | </text>
+								<text>已团</text>
+								<text class='info_count'>{{ite.sales_count}}</text>
+								<text>件</text>
+							</view>
+							<view class="price">
+								<view class='price_text'>
+									<text class='display_price'><text>￥</text>{{filters.ptf(ite.price_low)}}</text>
+									<text class="original_price">￥{{filters.ptf(ite.origin_price_low)}}</text>
+								</view>
+								<view class='buy_button'>马上抢</view>
+							</view>
+						</view>
+					</view>
+				</block>
+			</view>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab" wx:for="{{[1,2,3]}}" wx:key="index">
+				<view class="marketing_loading_tab loading"></view>
+			</view>
+		</view>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
+	</block>
+</template>
+
+<template name="yingxiaohuodong">
 	<block wx:if="{{tabObject.tabSwiperArr.length > 0 }}">
 		<view class="marketing_tabs {{tabObject.tabSwiperArr.length == 2 ? 'double_market' : (tabObject.tabSwiperArr.length == 1 ? 'single_market' : '')}}" id="marketing-tab">
 			<view wx:for="{{tabObject.tabSwiperArr}}" wx:key="index" class="marketing_tab {{tabObject.currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
@@ -124,73 +323,4 @@
 		</view>
 		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
 	</block>
-</template>
-
-<template name="singleColumn">
-	<block wx:if="{{good.length > 0}}">
-		<view class="content">
-			<view class="content_box">
-				<block wx:for="{{good}}" wx:key="index">
-					<view class="swiper_box" data-id='{{item.id}}' bindtap='bindDetail'>
-						<image src='{{filters.imgUrl(item.cover_url)}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
-						<view class='swiper_box_item'>
-							<view>
-								<view class='title'>{{item.name}}</view>
-								<view class='info'>
-									<text>销量</text>
-									<text class='info_count'>{{filters.salesCount(item.sales_count)}}</text>
-									<text>件</text>
-								</view>
-							</view>
-							<view class="price">
-								<view class='price_text'>
-									<text class='display_price'><text>￥</text>{{filters.ptf(item.price)}}</text>
-									<text class="original_price">￥{{filters.ptf(item.display_price)}}</text>
-								</view>
-							</view>
-						</view>
-					</view>
-				</block>
-			</view>
-		</view>
-	</block>
-	<block wx:else>
-		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
-	</block>
-</template>
-
-<template name="doubleColumn">
-    <!-- <view class="marketing_tabs single_market">
-        <view class="marketing_tab active_tab">宝贝推荐</view>
-    </view> -->
-    <view class="goods_recommend">
-        <view class="goods_item" wx:for="{{good}}" wx:key="index"  data-id="{{item.id}}" bindtap='bindDetail'>
-            <image src="{{filters.imgUrl(item.cover_url)}}?imageView2/0/w/360/h/360" />
-            <view class="goods_info">
-                <view class="title">{{item.name}}</view>
-                <view class="info">
-                    <text class="price"><text>￥</text>{{filters.ptf(item.price)}}</text>
-                    <text>销量{{item.sales_count}}件</text>
-                </view>
-            </view>
-        </view>
-    </view>
-</template>
-
-<template name="singleLine">
-	<view class="single_line" wx:if="{{singleLineText}}">{{singleLineText}}</view>
-	<view class="single_line_loading loading" wx:else></view>
-</template>
-
-<template name="paragraph">
-	<view class="paragraph" wx:if="{{paragraphText}}">{{paragraphText}}</view>
-	<view class="paragraph_loading loading" wx:else></view>
-</template>
-
-<template name="divide">
-	<view class="divide"></view>
-</template>
-
-<template name="singleImg">
-	<image src="{{filters.imgUrl(description.banner)}}" />
 </template>
