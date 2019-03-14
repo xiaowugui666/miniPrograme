@@ -2,7 +2,7 @@
 <import src="../../template/index.wxml" />
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 <view class="index_container {{skinStyle}}">
-    <block wx:for="{{mockData}}" wx:for-index="i" wx:key="i" wx:for-item="item">
+    <block wx:for="{{pageData}}" wx:for-index="i" wx:key="i" wx:for-item="item">
         <template is="{{item.template}}" data="{{...item}}"></template>
     </block>
 </view>

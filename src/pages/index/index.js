@@ -19,9 +19,22 @@ const mockData = [
                         "img_url":"https://image.51zan.com/2019/03/13/FuIWP2guOZzDFaXPETpR9aOVVuwj.png"
                     }
                 ]
+			},
+			{
+                "label":"轮播图 2",
+                "type":"0_1",
+                "data":[
+                    {
+                        "img_url":"https://image.51zan.com/2019/03/14/FkTPdZm--kPw4PPzFV7htECOiIwR.jpg"
+                    }
+                ],
+                "_data":[
+
+                ]
             }
         ],
-        "isActive":false
+		"isActive":false,
+		"height": 0
     },
     {
         "index":10,
@@ -32,31 +45,61 @@ const mockData = [
         "template":"doubleTabColumn",
         "data":[
             {
-                "label":"文字",
+                "label":"促销中",
                 "type":"1_0",
                 "data":[
-                    135,
-                    136
+                    82,
+                    83,
+                    85,
+                    84
                 ]
             },
             {
-                "label":"文字",
+                "label":"新品上市",
                 "type":"1_1",
                 "data":[
-                    85,
-                    81
+                    57,
+                    56,
+                    55,
+                    54,
+                    53,
+                    52,
+                    51,
+                    50,
+                    48,
+                    67,
+                    66,
+                    65,
+                    64,
+                    63,
+                    62,
+                    61,
+                    60,
+                    59,
+                    58
                 ]
             },
             {
-                "label":"文字",
+                "label":"经典款",
                 "type":"1_2",
                 "data":[
-                    62,
+                    59,
+                    60,
+                    63,
+                    64,
+                    65,
+                    66,
+                    67,
+                    68,
+                    81,
+                    82,
+                    83,
+                    84,
                     85
                 ]
             }
         ],
-        "isActive":false
+        "isActive":true
     },
     {
         "index":10,
@@ -79,7 +122,16 @@ const mockData = [
                 "type":"2_1",
                 "data":[
                     61,
-                    60
+					60,
+					65,
+                    66,
+                    67,
+                    68,
+                    81,
+                    82,
+                    83,
+                    84,
+                    85
                 ]
             },
             {
@@ -87,7 +139,25 @@ const mockData = [
                 "type":"2_2",
                 "data":[
                     48,
-                    52
+					52,
+					65,
+                    66,
+                    67,
+                    68,
+                    81,
+                    82,
+                    83,
+                    84,
+					85,
+					65,
+                    66,
+                    67,
+                    68,
+                    81,
+                    82,
+                    83,
+                    84,
+                    85
                 ]
             }
         ],
@@ -107,7 +177,25 @@ const mockData = [
                 "data":[
                     68,
                     69,
-                    81
+					81,
+					65,
+                    66,
+                    67,
+                    68,
+                    81,
+                    82,
+                    83,
+                    84,
+					85,
+					65,
+                    66,
+                    67,
+                    68,
+                    81,
+                    82,
+                    83,
+                    84,
+                    85
                 ]
             }
         ],
@@ -130,7 +218,16 @@ const mockData = [
                     64,
                     65,
                     66,
-                    67
+					67,
+					65,
+                    66,
+                    67,
+                    68,
+                    81,
+                    82,
+                    83,
+                    84,
+                    85
                 ]
             }
         ],
@@ -155,44 +252,88 @@ const mockData = [
         ],
         "isActive":true
     },
-    // {
-    //     "index":13,
-    //     "type":"DoubleColumn",
-    //     "name":"ActiveProduct",
-    //     "productType":"cross",
-    //     "active":"tuijian",
-    //     "text":"推荐",
-    //     "template":"recommend",
-    //     "data":[
-    //         {
-    //             "label":"推荐",
-    //             "type":"4_0",
-    //             "data":[
-    //                 136
-    //             ]
-    //         }
-    //     ],
-    //     "isActive":false
-    // },
-    // {
-    //     "index":12,
-    //     "type":"SingleLine",
-    //     "name":"ActiveProduct",
-    //     "productType":"direction",
-    //     "active":"tejia",
-    //     "text":"特价",
-    //     "template":"special",
-    //     "data":[
-    //         {
-    //             "label":"特价",
-    //             "type":"5_0",
-    //             "data":[
-    //                 50
-    //             ]
-    //         }
-    //     ],
-    //     "isActive":false
-    // }
+    {
+        "index":13,
+        "type":"DoubleColumn",
+        "name":"ActiveProduct",
+        "productType":"cross",
+        "active":"tuijian",
+        "text":"推荐",
+        "template":"recommend",
+        "data":[
+            {
+                "label":"推荐",
+                "type":"6_0",
+                "data":[
+                    136
+                ]
+            }
+        ],
+        "isActive":false
+    },
+    {
+        "index":12,
+        "type":"SingleLine",
+        "name":"ActiveProduct",
+        "productType":"direction",
+        "active":"tejia",
+        "text":"特价",
+        "template":"special",
+        "data":[
+            {
+                "label":"特价",
+                "type":"7_0",
+                "data":[
+                    50
+                ]
+            }
+        ],
+        "isActive":false
+	},
+	{
+        "index":0,
+        "type":"Default",
+        "name":"Banner",
+        "text":"轮播图",
+        "template":"singleLine",
+        "data":[
+            {
+                "label":"轮播图 1",
+                "type":"8_0",
+                "_data":[
+                    136
+                ],
+                "data":[
+                    {
+                        "text":"啊科技时代客家话按时间的话卡萨丁和看啊科啊"
+                    }
+                ]
+			},
+        ],
+		"isActive":false,
+	},
+	{
+        "index":0,
+        "type":"Default",
+        "name":"Banner",
+        "text":"轮播图",
+        "template":"paragraph",
+        "data":[
+            {
+                "label":"轮播图 1",
+                "type":"9_0",
+                "_data":[
+                    136
+                ],
+                "data":[
+                    {
+                        "text":"啊科技时代客家话按时间的话卡萨丁和看啊科啊啊科技时代客家话按时间的话卡萨丁和看啊科啊啊科技时代客家话按时间的话卡萨丁和看啊科啊啊科技时代客家话按时间的话卡萨丁和看啊科啊啊科技时代客家话按时间的话卡萨丁和看啊科啊啊科技时代客家话按时间的话卡萨丁和看啊科啊啊科技时代客家话按时间的话卡萨丁和看啊科啊啊科技时代客家话按时间的话卡萨丁和看啊科啊"
+                    }
+                ]
+			},
+        ],
+		"isActive":false,
+    },
 ]
 const app=getApp();
 Page({
@@ -223,7 +364,7 @@ Page({
 		currentRecommendPage: 0,
 		currentSpecialPage:0,
 		
-        mockData: mockData,
+        pageData: mockData,
 	},
 	// 获取当前数组中为商品列表模块的商品ID数据,同时进行分页处理
     getGoodListIdsData: function (data) {
@@ -235,11 +376,12 @@ Page({
 				|| element.template === 'singleColumn'
 				|| element.template === 'doubleColumn'
 				|| element.template === 'group'
+				|| element.template === 'recommend'
+				|| element.template === 'special'
 				) {
                 element.currentTab = 0
                 element.data.forEach((item, ind) => {
                     let currentShowData = [], currentShowIndex = 10
-                    console.log('item:', item)
                     postDataList[index].data[ind].data = item.data.slice(0, currentShowIndex)
                     item.currentShowData = currentShowData
                     item.currentShowIndex = currentShowIndex
@@ -252,17 +394,56 @@ Page({
             }
         });
         this.setData({
-            mockData: data
+            pageData: data
         })
         return goodListIdsData
 	},
 	// 切换tab
 	onChangeTab: function (e) {
 		const clickArray = e.currentTarget.dataset.value.split("_")
-		let changeArr = this.data.mockData
+		let changeArr = this.data.pageData
 		changeArr[parseFloat(clickArray[0])].currentTab = parseFloat(clickArray[1])
 		this.setData({
-			mockData: changeArr
+			pageData: changeArr
+		})
+	},
+	handleSeeMore: function (e) {
+		const clickArray = e.currentTarget.dataset.type.split("_"), currentShowData = this.data.pageData
+		let selectArr = currentShowData[clickArray[0]].data[clickArray[1]]
+		let nextShowIndex = selectArr.currentShowIndex + 10
+		if (selectArr.data.length <= nextShowIndex) {
+			selectArr.hasNextPage = false
+		}
+		selectArr.currentShowIndex = nextShowIndex
+		this.getNextPageData(selectArr)
+	},
+	getNextPageData: function (nextPageObj) {
+		let copyNextObj = JSON.parse(JSON.stringify(nextPageObj)), requestArray = []
+		copyNextObj.data = nextPageObj.data.slice(nextPageObj.currentShowIndex - 10, nextPageObj.currentShowIndex)
+		requestArray.push(copyNextObj)
+		const that = this
+		wx.request({
+			url: app.globalData.http + '/mpa/index/decoration_products',
+            method: 'POST',
+            header:{
+                'Api-Ext': app.globalData.apiExt
+            },
+            data: {
+                main: requestArray
+			},
+			success: (res) => {
+				if (res.statusCode === 200) {
+                    let goodList = res.data.data, pageShowingArr = that.data.pageData
+                    goodList.forEach(currentItem => {
+                        let typeArr = currentItem.type.split('_'), i = parseFloat(typeArr[0]), j = parseFloat(typeArr[1])
+						pageShowingArr[i].data[j].currentShowData = pageShowingArr[i].data[j].currentShowData.concat(currentItem.data)
+						pageShowingArr[i].data[j].hasNextPage = nextPageObj.hasNextPage
+                    })
+                    that.setData({
+                        pageData: pageShowingArr
+                    })
+                }
+			}
 		})
 	},
 	// 页面加载
@@ -273,9 +454,13 @@ Page({
 		} else if (options.scene_id) {
 			app.globalData.sceneID = options.scene_id
 		}
+
+		/**
+		 * mockData 为页面装修元素接口返回数据
+		 */
 		
-        let goodListIdsData = this.getGoodListIdsData(mockData)
-        this.getData(goodListIdsData)
+		let goodListIdsData = this.getGoodListIdsData(mockData)
+        this.getInitData(goodListIdsData)
 		// app.login()
 		// 	.then(() => this.getData())
 	},
@@ -300,7 +485,7 @@ Page({
 			phoneNumber: app.globalData.mobile
 		})	  
 	},
-	getData: function (params) {
+	getInitData: function (params) {
         const that = this
         wx.request({
             url: app.globalData.http + '/mpa/index/decoration_products',
@@ -313,15 +498,15 @@ Page({
             },
             success(res) {
                 if (res.statusCode === 200) {
-                    let goodList = res.data.data, pageShowingArr = that.data.mockData
+                    let goodList = res.data.data, pageShowingArr = that.data.pageData
                     console.log('goodList:',goodList)
                     goodList.forEach(currentItem => {
-                        let typeArr = currentItem.type.split('_')
-                        pageShowingArr[parseFloat(typeArr[0])].data[parseFloat(typeArr[1])].currentShowData = pageShowingArr[parseFloat(typeArr[0])].data[parseFloat(typeArr[1])].currentShowData.concat(currentItem.data)
+						let typeArr = currentItem.type.split('_'), i = parseFloat(typeArr[0]), j = parseFloat(typeArr[1])
+                        pageShowingArr[i].data[j].currentShowData = pageShowingArr[i].data[j].currentShowData.concat(currentItem.data)
                     })
                     console.log('pageShowingArr:', pageShowingArr)
                     that.setData({
-                        mockData: pageShowingArr
+                        pageData: pageShowingArr
                     })
                 }
 

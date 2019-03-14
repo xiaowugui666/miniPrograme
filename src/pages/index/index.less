@@ -17,6 +17,7 @@ page {
   padding: 32rpx 0;
   color: #556675;
   font-size: 32rpx;
+  background: #f7f9fb;
 }
 .default {
   .container_search_navi {
@@ -94,12 +95,17 @@ page {
   margin: 0 auto;
 }
 
-.index_banner {
+swiper {
   display: block;
   width: 750rpx;
   height: 352rpx;
   margin: 0 auto;
   border-radius: 0;
+  image {
+    display: block;
+    width: 750rpx;
+    height: 352rpx;
+  }
 }
 .banner_loading {
   height: 352rpx;
@@ -321,6 +327,9 @@ page {
 .content {
   background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 324rpx);
 }
+.content.no_background {
+  background: #F7F9FB;
+}
 .content swiper {
   height: 100%;
   padding: 22rpx 0 0 24rpx;
@@ -419,6 +428,9 @@ page {
   justify-content: space-between;
   padding: 24rpx 24rpx 0;
   background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 516rpx);
+}
+.goods_recommend.no_background {
+  background: #F7F9FB;
 }
 .goods_recommend .goods_item {
   width: 340rpx;
