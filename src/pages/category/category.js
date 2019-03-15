@@ -171,18 +171,22 @@ Page({
 				'Api-Ext': app.globalData.apiExt
 			},
 			success(res){
-				let leftSelectedIdx = app.globalData.classIdx;
-				if (leftSelectedIdx > res.data.length - 1 || leftSelectedIdx === '') {
+				let menuSelectId = app.globalData.classIdx;
+				if (menuSelectId === '') {
 					app.globalData.classIdx = ''
 					that.setData({
 						isAll: true,
 						categoryId: ''
 					})
 				} else {
-					res.data[leftSelectedIdx].isSelect = true
+					res.data.forEach(element => {
+						if (element.id == menuSelectId) {
+							element.isSelect = true
+						}
+					});
 					that.setData({
 						isAll: false,
-						categoryId: res.data[leftSelectedIdx].id
+						categoryId: menuSelectId
 					})
 				}
 				that.setData({

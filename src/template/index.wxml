@@ -2,7 +2,7 @@
 
 <template name="search">
     <view class='container_search'>
-		<navigator class='container_search_navi' wx:if="{{description.id}}" url="/pages/search/search">{{description.search_default_text ? description.search_default_text: '大量好物等你发现'}}
+		<navigator class='container_search_navi' wx:if="{{data[0].label}}" url="/pages/search/search">{{data[0].data[0].text ? data[0].data[0].text: '大量好物等你发现'}}
 			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
 		</navigator>
 		<view class="search_loading loading" wx:else></view>
@@ -32,11 +32,11 @@
 </template>
 
 <template name="category">
-    <view  class='index_classify' wx:if="{{category.categoryList.length > 0}}">
-		<scroll-view scroll-x="{{true}}" class='scroll' bindscroll="scrollCategory" throttle="{{false}}">
-			<view data-idx="{{index}}" wx:for='{{category.categoryList}}' wx:key="{{index}}" bindtap='switchCate' class="scroll_viewer">
-				<image src='{{filters.imgUrl(item.icon_url)}}?imageView2/0/w/408/h/408/imageslim'></image>
-				<text>{{item.name}}</text>
+    <view  class='index_classify' wx:if="{{data.length > 0}}">
+		<scroll-view scroll-x="{{true}}" class='scroll' data-type="{{data[0].type}}" bindscroll="scrollCategory" throttle="{{false}}">
+			<view data-idx="{{item.data[0].id}}" wx:for='{{data}}' wx:key="{{index}}" bindtap='switchCate' class="scroll_viewer">
+				<image src='{{item.data[0].cover_url}}?imageView2/0/w/408/h/408/imageslim'></image>
+				<text>{{item.data[0].name}}</text>
 			</view>
 		</scroll-view>
 	</view>
@@ -47,21 +47,21 @@
 		</view>
 	</view>
 
-	<view class='index_current' wx:if="{{category.newCate.length>1 && category.skinStyle === 'default'}}">
-		<view wx:key='index' wx:for="{{category.newCate}}" class='{{category.current===index?"cur":""}}'></view>
+	<view class='index_current' wx:if="{{newCate.length>1 && skinStyle === 'default'}}">
+		<view wx:key='index' wx:for="{{newCate}}" class='{{current===index?"cur":""}}'></view>
 	</view>
 </template>
 
-<template name="contact">
-    <view class="index_contact" wx:if="{{description.id}}">
+<template name="photoText">
+    <view class="index_contact" wx:if="{{data.length > 0}}">
 		<view class='index_contact_box'>
-			<button bindtap="phoneCall">
-				<image wx:if='{{description.logo_url}}' src='{{filters.imgUrl(description.logo_url)}}?imageslim'></image>
+			<button bindtap="phoneCall" data-phonenumber="{{data[0].data[0].phone}}">
+				<image src='{{data[0].data[0].img_url}}?imageslim'></image>
 				<image class="wechat" src="/imgs/icon_home_contact.png" />
 			</button>
 			<view class='desc'>
-				<text class='contact_h4'>您的专属客服，24小时不打烊~</text>
-				<text class='contact_p'>{{'<<< 我是店主，可以随时咨询我哦！'}}</text> 
+				<text class='contact_h4'>{{data[0].data[0].textHead}}</text>
+				<text class='contact_p'>{{data[0].data[0].text}}</text> 
 			</view>
 		</view>
 	</view>
@@ -231,7 +231,7 @@
 </template>
 
 <template name="singleImg">
-	<image src="{{filters.imgUrl(description.banner)}}" />
+	<image class="single_image" src="{{data[0].data[0].img_url || data[0].data[0].img_path}}" mode="widthFix" />
 </template>
 
 <template name="group">
