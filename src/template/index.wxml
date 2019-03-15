@@ -22,7 +22,7 @@
 			<block wx:for='{{data}}' wx:key="{{index}}">
 				<swiper-item>
 					<view class='banner_imgs'>
-						<image src='{{item.data[0].img_url}}?imageView2/0/w/860/h/860' data-index='{{index}}' mode="aspectFill" catchtap='viewImages'></image>
+						<image src='{{item.data[0].img_url}}?imageView2/0/w/860/h/860' data-index='{{index}}' mode="aspectFill"></image>
 					</view>
 				</swiper-item>
 			</block>

@@ -48,7 +48,6 @@ Page({
 				element.current = 0
 			}
 		});
-		console.log('pageData: ', data)
         this.setData({
             pageData: data
         })
@@ -232,7 +231,7 @@ Page({
 		var width = parseInt(that.data.winWidth)
 		//剩余的分类
 		var remain = parseInt(that.data.remain)
-		var cur = Math.floor(scrollLeft / width)
+		var cur = Math.floor(scrollLeft / (width / 2))
 		if (cur < 0) {
 			cur = 0
 		}
