@@ -14,7 +14,7 @@ Page({
 	},
 	// 获取当前数组中为商品列表模块的商品ID数据,同时根据不同模块的需求进行数据处理
     getGoodListIdsData: function (data) {
-        let goodListIdsData = [], postDataList = JSON.parse(JSON.stringify(data))
+		let goodListIdsData = [], postDataList = JSON.parse(JSON.stringify(data)), windowHeight = this.data.windowHeight * 2
         data.forEach((element,index) => {
             if (
 				element.template === 'singleTabColumn'
@@ -40,12 +40,17 @@ Page({
             } else if (element.template === 'category') {
 				let cateNum = Math.ceil(element.data.length / 5), remain = element.data.length % 5, cateArr=[]
 				for(let i = 0; i < cateNum; i++){
-					 cateArr.push(1)
+					cateArr.push(1)
 				}
 				element.remain = remain
 				element.newCate = cateArr
 				element.skinStyle = app.globalData.skinStyle
 				element.current = 0
+			} else if (element.template === 'banner') {
+				element.windowHeight = windowHeight
+				element.data.forEach(item => {
+					item.windowHeight = windowHeight
+				})
 			}
 		});
         this.setData({
@@ -137,7 +142,8 @@ Page({
 		wx.getSystemInfo({
 			success: function (res) {
 				that.setData({
-					winWidth: res.windowWidth
+					winWidth: res.windowWidth,
+					windowHeight: res.windowHeight
 				});
 			}
 		});

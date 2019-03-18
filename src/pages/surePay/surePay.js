@@ -26,7 +26,8 @@ Page({
 			// apiSecret:'',
 			// apiKey:'',
 			disabled:false,
-			commissionUserId: false
+			commissionUserId: false,
+			skinStyle: app.globalData.skinStyle
 	},
 
 	// 减少数量

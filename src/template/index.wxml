@@ -15,14 +15,14 @@
 			autoplay='{{true}}'
 			interval='{{3500}}'
 			duration='{{500}}'
-			style="{{height == 0 ? '352rpx' : (height == 1 ? '' : '')}}"
+			style="{{height === 0 ? 'height: ' + windowHeight + 'rpx' : (height ? 'height: 352rpx' : 'height: ' + height*2 + 'rpx')}}"
 			indicator-color='#E6E9EB'
 			indicator-active-color='#5D92C0'
 			circular='{{true}}'>
 			<block wx:for='{{data}}' wx:key="{{index}}">
 				<swiper-item>
-					<view class='banner_imgs'>
-						<image src='{{item.data[0].img_url}}?imageView2/0/w/860/h/860' data-index='{{index}}' mode="aspectFill"></image>
+					<view class='banner_imgs' style="{{height === 0 ? 'height: ' + item.windowHeight + 'rpx' : (height ? 'height: 352rpx' : 'height: ' + height*2 + 'rpx')}}">
+						<image style="{{height === 0 ? 'height: ' + item.windowHeight + 'rpx' : (height ? 'height: 352rpx' : 'height: ' + height*2 + 'rpx')}}" src='{{item.data[0].img_url}}?imageView2/0/w/860/h/860' data-index='{{index}}' mode="aspectFill"></image>
 					</view>
 				</swiper-item>
 			</block>

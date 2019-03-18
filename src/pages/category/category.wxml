@@ -36,7 +36,8 @@
 		<navigator class='container_search_navi' url="/pages/search/search">{{keyword ? keyword : '大量好物等你发现'}}
 			<icon type='search' size='{{skinStyle === "blue" ? "16" : "18"}}' color='{{skinStyle === "blue" ? "#253A4E" : "rgba(158,168,177,1)"}}'></icon>
 		</navigator>
-		<image src="/imgs/icon_sorts.png" catchtap='onOpenModal'/>
+		<image wx:if="{{skinStyle === 'default'}}" src="/imgs/icon_sorts.png" catchtap='onOpenModal'/>
+		<image wx:else src="{{filters.imgUrl('/icon_sorts.png')}}" catchtap='onOpenModal'/>
 	</view>
 	<block wx:if="{{good.length}}">
 		<view class='search_family'>

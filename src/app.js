@@ -66,7 +66,7 @@ App({
 	login: function () {
 		let that = this
 		return new Promise((resolve,reject) => {
-			if (!that.globalData.userId || !that.globalData.userInfo) {
+			if (!that.globalData.userId && !that.globalData.userInfo) {
 				wx.login({
 					success(code) {
 						//向后台发起请求，传code
@@ -365,6 +365,6 @@ App({
 		sceneID: 0,
 		distribution: {},
 		distributorInfo: {},
-		skinStyle: 'default'
+		skinStyle: 'blue'
 	}
 })

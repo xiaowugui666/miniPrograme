@@ -44,9 +44,9 @@
 				},
 				{
 					"id": 1,
-					"name": "分享进入商品",
+					"name": "商品详情页",
 					"pathName": "pages/detail/detail",
-					"query": "id=48"
+					"query": "id=85"
 				}
 			]
 		}

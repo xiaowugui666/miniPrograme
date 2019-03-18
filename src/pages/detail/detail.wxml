@@ -77,7 +77,7 @@
 		</view>
 	</view>
 
-    <!-- 拼单或砍价信息  -->
+    <!-- 拼团信息  -->
     <view class='groups' wx:if='{{goods.activity_type == 1}}'>
 		<view class='groups_header' wx:if='{{groupMembers.length}}'>
 			<view class='group_show_more'>
@@ -235,8 +235,8 @@
 		</view> 
     	<view class='confirm' bindtap='closeModal'>确定</view>
 	</view>
-    <view class='description'>
-        <view class="description_detail">商品详情</view>
-        <rich-text nodes="{{content}}"></rich-text>
-   </view>   
+    <view class='description {{goods.activity_type == 1 ? "group_descrip" : "" }}'>
+			<view class="description_detail">商品详情</view>
+			<rich-text nodes="{{content}}"></rich-text>
+   	</view>   
 </view>
