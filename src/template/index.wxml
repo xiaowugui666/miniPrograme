@@ -33,7 +33,7 @@
 
 <template name="category">
     <view  class='index_classify' wx:if="{{data.length > 0}}">
-		<scroll-view scroll-x="{{true}}" class='scroll' data-type="{{data[0].type}}" bindscroll="scrollCategory" throttle="{{false}}">
+		<scroll-view scroll-x="{{true}}" class='scroll' data-type="{{data[0].type}}" bindscroll="scrollCategoryFitment" throttle="{{false}}">
 			<view data-idx="{{item.data[0].id}}" wx:for='{{data}}' wx:key="{{index}}" bindtap='switchCate' class="scroll_viewer">
 				<image src='{{item.data[0].cover_url}}?imageView2/0/w/408/h/408/imageslim'></image>
 				<text>{{item.data[0].name}}</text>
@@ -79,10 +79,10 @@
 <template name="singleTabColumn">
 	<block wx:if="{{data.length > 0 }}">
 		<view class="marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}">
-			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTab'>{{item.label}}</view>
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTabFitment'>{{item.label}}</view>
 		</view>
 		<view class="marketing_fixed_tabs marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop && data.length > 1}}">
-			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTab'>{{item.label}}</view>
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTabFitment'>{{item.label}}</view>
 		</view>
 		<view class="content">
 			<block wx:for="{{data}}" wx:key="index">
@@ -126,10 +126,10 @@
 <template name="doubleTabColumn">
 	<block wx:if="{{data.length > 0 }}">
 		<view class="marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}">
-			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTab'>{{item.label}}</view>
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTabFitment'>{{item.label}}</view>
 		</view>
 		<view class="marketing_fixed_tabs marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop && data.length > 1}}">
-			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTab'>{{item.label}}</view>
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTabFitment'>{{item.label}}</view>
 		</view>
 		<view class="content">
 			<block wx:for="{{data}}" wx:key="index" wx:for-index="index" wx:for-item="ite">
