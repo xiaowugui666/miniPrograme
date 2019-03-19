@@ -22,7 +22,14 @@
 			<block wx:for='{{data}}' wx:key="{{index}}">
 				<swiper-item>
 					<view class='banner_imgs' style="{{height === 0 ? 'height: ' + item.windowHeight + 'rpx' : (height ? 'height: 352rpx' : 'height: ' + height*2 + 'rpx')}}">
-						<image style="{{height === 0 ? 'height: ' + item.windowHeight + 'rpx' : (height ? 'height: 352rpx' : 'height: ' + height*2 + 'rpx')}}" src='{{item.data[0].img_url}}?imageView2/0/w/860/h/860' data-index='{{index}}' mode="aspectFill"></image>
+						<image
+							style="{{height === 0 ? 'height: ' + item.windowHeight + 'rpx' : (height ? 'height: 352rpx' : 'height: ' + height*2 + 'rpx')}}"
+							src='{{item.data[0].img_url || item.data[0].img_path}}?imageView2/0/w/860/h/860'
+							data-index='{{index}}'
+							mode="aspectFill"
+							data-id="{{item._data[0]}}"
+							bindtap="bindDetail"
+						></image>
 					</view>
 				</swiper-item>
 			</block>
@@ -56,7 +63,7 @@
     <view class="index_contact" wx:if="{{data.length > 0}}">
 		<view class='index_contact_box'>
 			<button bindtap="phoneCall" data-phonenumber="{{data[0].data[0].phone}}">
-				<image src='{{data[0].data[0].img_url}}?imageslim'></image>
+				<image src='{{data[0].data[0].img_path}}?imageslim'></image>
 				<image class="wechat" src="/imgs/icon_home_contact.png" />
 			</button>
 			<view class='desc'>
@@ -231,7 +238,13 @@
 </template>
 
 <template name="singleImg">
-	<image class="single_image" src="{{data[0].data[0].img_url || data[0].data[0].img_path}}" mode="widthFix" />
+	<image
+		class="single_image"
+		src="{{data[0].data[0].img_url || data[0].data[0].img_path}}"
+		mode="widthFix"
+		data-id="{{data[0]._data[0]}}"
+		bindtap="bindDetail"
+	/>
 </template>
 
 <template name="group">
@@ -266,14 +279,6 @@
 			</view>
 		</view>
 	</block>
-	<block wx:else>
-		<view class="marketing_tabs single_market">
-			<view class="marketing_tab">
-				<view class="marketing_loading_tab loading"></view>
-			</view>
-		</view>
-		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
-	</block>
 </template>
 
 <template name="recommend">
@@ -306,14 +311,6 @@
 			</view>
 		</view>
 	</block>
-	<block wx:else>
-		<view class="marketing_tabs single_market">
-			<view class="marketing_tab">
-				<view class="marketing_loading_tab loading"></view>
-			</view>
-		</view>
-		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
-	</block>
 </template>
 
 <template name="special">
@@ -339,13 +336,5 @@
 				<view class="show_more" wx:if="{{data[0].hasNextPage}}" data-type="{{data[0].type}}" bindtap="handleSeeMore">查看更多</view>
 			</view>
 		</view>
-	</block>
-	<block wx:else>
-		<view class="marketing_tabs single_market">
-			<view class="marketing_tab">
-				<view class="marketing_loading_tab loading"></view>
-			</view>
-		</view>
-		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
 	</block>
 </template>

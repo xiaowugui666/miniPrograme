@@ -25,8 +25,17 @@ util:
 
 wxParse:富文本编译器转换成小程序语言
 
-小程序自定义首页数据来源data中的`template`字段数据需在新零售项目中，自行添加相应template类型。
-例如：小程序段新建一个name为`banner`的模板，则需在新零售项目中shopMenu中`banner`模块对应添加`{"template": "banner"}`
+自定义首页说明： 
+
+  约定：
+    1.`template`字段与template中的name一一对应。
+    2.每个data中的`type`数据数据结构为`${number}_${number}`,分割符前的数字表示该项在所有页面元素中索引，分隔符后的数字表示该项在自身data内部索引。
+    3.若商家为进行过店铺装修操作，`/mpa/index/decoration`接口返回值`data`字段为`null`，则此时小程序首页逻辑执行未自定义首页逻辑。`data`为`[]`或其它，均为进行过店铺装修，则执行自定义首页逻辑，根据数据显示页面元素。
+    4.轮播图和单张图片模块可以上传图片也可以选择网络图片，读取字段分别为`img_url`、`img_path`。
+    5.拼团、特价、推荐三个营销活动，增加额外字段`mark`，用于标记该item下`data`中的商品id是否为普通商品。标记规则，1-拼团，2-特价，3-推荐
+
+  小程序自定义首页数据来源data中的`template`字段数据需在新零售项目中，自行添加相应template类型。
+  例如：小程序段新建一个name为`banner`的模板，则需在新零售项目中shopMenu中menuData文件下，`banner`模块对应添加`{"template": "banner"}`
 
 增加第二套皮肤信息
 

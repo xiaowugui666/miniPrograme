@@ -55,7 +55,7 @@ Page({
                 })
                 goodListIdsData = goodListIdsData.concat(postDataList[index].data)
             } else if (element.template === 'category') {
-				let cateNum = Math.ceil(element.data.length / 5), remain = element.data.length % 5, cateArr=[]
+				let cateNum = Math.floor(element.data.length / 5), remain = element.data.length % 5, cateArr=[]
 				for(let i = 0; i < cateNum; i++){
 					cateArr.push(1)
 				}
@@ -142,7 +142,7 @@ Page({
             },
             success(res) {
                 if (res.statusCode === 200) {
-                    let goodList = res.data.data, pageShowingArr = that.data.pageData
+					let goodList = res.data.data, pageShowingArr = that.data.pageData
                     goodList.forEach(currentItem => {
 						let typeArr = currentItem.type.split('_'), i = parseFloat(typeArr[0]), j = parseFloat(typeArr[1])
                         pageShowingArr[i].data[j].currentShowData = pageShowingArr[i].data[j].currentShowData.concat(currentItem.data)
@@ -532,7 +532,7 @@ Page({
 		var width = parseInt(that.data.winWidth)
 		//剩余的分类
 		var remain = parseInt(that.data.remain)
-		var cur = Math.floor(scrollLeft / (width / 2))
+		var cur = Math.floor(scrollLeft / width)
 		if (cur < 0) {
 			cur = 0
 		}
@@ -577,9 +577,11 @@ Page({
 	},
 	//跳转商品详情页
 	bindDetail(e){
-		wx.navigateTo({
-			url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id,
-		})
+		if (e.currentTarget.dataset.id) {
+			wx.navigateTo({
+				url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id,
+			})
+		}
 	},
 	//定义分享转发
 	onShareAppMessage: function (res) {
