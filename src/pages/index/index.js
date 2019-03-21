@@ -132,7 +132,8 @@ Page({
 		})
 	},
 	getInitData: function (params) {
-        const that = this
+		const that = this
+		debugger
         wx.request({
             url: app.globalData.http + '/mpa/index/decoration_products',
             method: 'POST',
@@ -162,6 +163,7 @@ Page({
 	},
 	getInitElement: function () {
 		const that = this
+		debugger
 		return new Promise((resolve, reject) => {
 			wx.request({
 				url: app.globalData.http + '/mpa/index/decoration',
@@ -493,6 +495,7 @@ Page({
 	//下拉刷新
 	onPullDownRefresh: function () {
 		this.getInitElement().then((data) => {
+			debugger
 			if (data === null ) {
 				this.setData({
 					tabSwiperArr: [],

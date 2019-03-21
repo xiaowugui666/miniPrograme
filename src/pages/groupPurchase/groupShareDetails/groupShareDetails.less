@@ -10,18 +10,115 @@ image {
 	vertical-align: middle;
 }
 
-.group_num {
-	color: #F35D51;
+.blue {
+	.group_details_goods {
+		padding: 32rpx;
+	}
+	.goods_info {
+		.goods_price_num {
+			.goods_group_price {
+				color:#5D92C0;
+			}
+		}
+	}
+	.group_num {
+		color: #5D92C0;
+	}
+	.group_situation_box {
+		padding: 32rpx;
+		.remaining_time {
+			text {
+				color: #5D92C0;
+			}
+			.time_block {
+				background: #5D92C0;
+				color: #FFFFFF;
+			}
+		}
+		.user_list {
+			.colonel {
+				image {
+					border: 4rpx solid #5D92C0;
+				}
+			}
+		}
+		.successful_collage_tips {
+			color: #5D92C0;
+		}
+		.invitation_btn {
+			width: 686rpx;
+			height: 100rpx;
+			background: #5D92C0;
+			line-height: 100rpx;
+			border-radius: 0;
+		}
+	}
+	.store {
+		navigator {
+			border: 2rpx solid #5D92C0;
+			color: #5D92C0;
+		}
+	}
 }
-
+.default {
+	.group_details_goods {
+		padding: 24rpx;
+		height: 240rpx;
+	}
+	.goods_info {
+		.goods_price_num {
+			.goods_group_price {
+				color:#F35D51;
+			}
+		}
+	}
+	.group_num {
+		color: #F35D51;
+	}
+	.group_situation_box {
+		padding: 48rpx 24rpx 24rpx;
+		.remaining_time {
+			text {
+				color: #F15043;				
+			}
+			.time_block {
+				background: #F35D51;
+				color: #FFFFFF;
+			}
+			
+		}
+		.user_list {
+			.colonel {
+				image {
+					border: 4rpx solid #F35D51;
+				}
+			}
+		}
+		.successful_collage_tips {
+			color: #FF5C68;
+		}
+		.invitation_btn {
+			width: 702rpx;
+			height: 80rpx;
+			line-height: 80rpx;
+			background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+			border-radius: 8rpx;
+		}
+	}
+	.store {
+		navigator {
+			border: 2rpx solid #F35D51;
+			color: #F35D51;
+			border-radius: 4rpx;
+		}
+	}
+}
 
 /*商品部分*/
 
 .group_details_goods {
-	padding: 24rpx;
 	background: #FFFFFF;
 	width: 750rpx;
-	height: 240rpx;
 	box-sizing: border-box;
 	display: flex;
 	border-bottom: 2rpx solid #F3F4F5;
@@ -108,7 +205,6 @@ image {
 .goods_info .goods_price_num .goods_group_price {
 	margin-right: 16rpx;
 	font-size:32rpx;
-	color:#F35D51;
 }
 
 .goods_info .goods_price_num .goods_group_price text {
@@ -128,7 +224,6 @@ image {
 
 /*拼单部分*/
 .group_situation_box {
-	padding: 48rpx 24rpx 24rpx;
 	background: #FFFFFF;
 	text-align: center;
 }
@@ -153,9 +248,10 @@ image {
 	background: #F7F9FB;
 }
 .img_box .avatar_circle .empty_avatar {
-	width: 48rpx;
-	height: 48rpx;
-	margin-top: 18rpx;
+	width: 36rpx;
+	height: 36rpx;
+	margin-top: 24rpx;
+	border-radius: 0;
 }
 
 .group_situation_box .user_list .colonel {
@@ -167,10 +263,6 @@ image {
 	height: 96rpx;
 	border-radius: 50%;
 	box-sizing: border-box;
-}
-
-.group_situation_box .user_list .colonel image {
-	border: 4rpx solid #F35D51;
 }
 
 .user_list .colonel .avatar_leader {
@@ -210,7 +302,6 @@ image {
 	vertical-align: top;
 	display: inline-block;
 	font-size: 22rpx;
-	color: #F15043;
 	margin-left: 4rpx;
 }
 
@@ -219,7 +310,6 @@ image {
 }
 
 .group_situation_box .remaining_time .time_block {
-	background: #F35D51;
 	border-radius: 4rpx;
 	width: 36rpx;
 	height: 36rpx;
@@ -231,18 +321,15 @@ image {
 .group_situation_box .successful_collage_tips {
 	margin-bottom: 40rpx;
 	font-size: 32rpx;
-	color: #FF5C68;
 }
 
 .group_situation_box .invitation_btn {
-	width: 702rpx;
-	height: 80rpx;
-	line-height: 80rpx;
-	background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
-	border-radius: 8rpx;
 	font-size: 32rpx;
 	color: #fff;
 	margin-top: 48rpx;
+}
+.group_situation_box .invitation_btn::after {
+	border: none;
 }
 
 /*拼单部分end*/
@@ -681,10 +768,7 @@ image {
 	width: 136rpx;
 	height: 48rpx;
 	box-sizing: border-box;
-	border: 2rpx solid #F35D51;
-	border-radius: 4rpx;
 	text-align: center;
 	font-size: 26rpx;
-	color: #F35D51;
 	line-height: 44rpx;
 }

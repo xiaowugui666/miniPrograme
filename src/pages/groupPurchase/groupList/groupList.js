@@ -9,7 +9,8 @@ Page({
 		rank: 2,
 		data: [],
 		x:[0,1],
-		image: 'https://image.51zan.com/'
+		image: 'https://image.51zan.com/',
+		skinStyle: app.globalData.skinStyle
 	},
 	// 选择不同类型订单
 	bindRank (e) {

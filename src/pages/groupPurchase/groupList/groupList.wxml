@@ -1,6 +1,6 @@
 <!--pages/groupList/goupList.wxml-->
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
-<view class='group_list'>
+<view class='group_list {{skinStyle}}'>
 	<view class='search_family'>
 			<view class='pending {{rank == 2 ? "selected" : "normal"}}' data-id='2' bindtap='bindRank'>进行中</view>
 			<view class='success {{rank == 3 ? "selected" : "normal"}}' data-id='3' bindtap='bindRank'>已成团</view>

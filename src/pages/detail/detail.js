@@ -694,11 +694,10 @@ Page({
 					groupInfo_id: that.data.groupInfo.id,
 					goods_id: that.data.goods.id,
 					groupFormId: that.data.formId,
-					priceLow: good.price,
+					priceLow: that.data.good.price,
 					buy_limit_count: that.data.groupInfo.buy_limit_count,
-					price: good.origin_price
+					price: that.data.good.origin_price
 				}
-
 				if (that.data.chooseSpec.length == 1) {
 					good.sku_description = good.spec_a + ':' + good.property_a
 				} else if (that.data.chooseSpec.length == 2) {
@@ -727,9 +726,9 @@ Page({
 					goods_id: that.data.goods.id,
 					groupFormId: that.data.formId,
 					group_id: that.data.group_id,
-					priceLow: good.price,
+					priceLow: that.data.good.price,
 					buy_limit_count: that.data.groupInfo.buy_limit_count,
-					price: good.origin_price
+					price: that.data.good.origin_price
 				}
 
 				if (that.data.chooseSpec.length == 1) {

@@ -38,8 +38,8 @@
 				{
 					"id": 0,
 					"name": "个人中心",
-					"pathName": "pages/user/user",
-					"query": "",
+					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
+					"query": "goodsid=48&groupid=120",
 					"scene": 1007
 				}
 			]

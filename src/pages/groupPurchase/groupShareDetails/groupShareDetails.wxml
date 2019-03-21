@@ -1,7 +1,7 @@
 <!--pages/recommend/recommend.wxml-->
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
 
-<view wx:if="{{showPage}}">
+<view wx:if="{{showPage}}" class="{{skinStyle}}">
 	<view class="group_details_goods {{remainingTime<=0 ? 'details_goods_end' : ''}}" wx:if="{{goodsData.goods}}" data-id="{{goodsData.goods.id}}" bind:tap="goDetail">
 		<image class="goods_img" src="{{image+goodsData.goods.cover_url}}?imageView2/0/w/440/h/440">
 			<view wx:if="{{remainingTime<=0}}" class="finished"></view>
@@ -35,7 +35,8 @@
 			<view class="user_list">
 				<view class="img_box {{index==0?'colonel':''}}" wx:if='{{!groupFull}}' wx:for="{{groupPerson}}" wx:key="index">
 					<image src="{{item.avatar_url}}"></image>
-					<image wx:if="{{item.role == 1}}" src="/imgs/icon_leader.png" class="avatar_leader" />
+					<image wx:if="{{item.role == 1 && skinStyle === 'default'}}" src="/imgs/icon_leader.png" class="avatar_leader" />
+					<image wx:elif="{{item.role == 1}}" src="/imgs/icon_leader_blue.png" class="avatar_leader" />
 				</view>
 				<view class="img_box" wx:if="{{!groupFull}}">
 					<view class="avatar_circle">
@@ -100,7 +101,8 @@
 				</navigator>
 				<view class='rules_step'>
 					<view class='step_item'>
-						<image src='/imgs/icon_detail1_discount.png'></image>
+						<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail1_discount.png'></image>
+						<image wx:else src="{{filters.imgUrl('icon_detail1_discount.png')}}" />
 						<view class='step_text'>
 							<text>下单支付</text>
 							<text>开团/参团</text>
@@ -108,7 +110,8 @@
 					</view>
 					<view class="dashed_line"></view>
 					<view class='step_item'>
-						<image src='/imgs/icon_detail2_friends.png'></image>
+						<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail2_friends.png'></image>
+						<image wx:else src="{{filters.imgUrl('icon_detail2_friends.png')}}" />
 						<view class='step_text'>
 							<text>邀请好友</text>
 							<text>一起参团</text>
@@ -116,7 +119,8 @@
 					</view>
 					<view class="dashed_line"></view>
 					<view class='step_item'>
-						<image src='/imgs/icon_detail3_trans.png'></image>
+						<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail3_trans.png'></image>
+						<image wx:else src="{{filters.imgUrl('icon_detail3_trans.png')}}" />
 						<view class='step_text'>
 							<text>成团发货</text>
 							<text>逾期退款</text>

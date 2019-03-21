@@ -59,6 +59,7 @@ Page({
 		//动态控制“-”号类名
 		minusStatus: "disabled",
 		minusStatuss: "normal",
+		skinStyle: app.globalData.skinStyle
 	},
 	/**
 	 * 生命周期函数--监听页面加载
