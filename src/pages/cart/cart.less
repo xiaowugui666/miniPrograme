@@ -1,16 +1,100 @@
-.container{
-  width: 702rpx;
-}
+
 .content{
   padding-bottom: 120rpx;
   overflow: hidden;
-  width: 702rpx;
 }
 page{
   background: #F7F9FB;
+}
+.blue {
+  .carInfo {
+    width: 750rpx;
+    border-bottom: 2rpx solid #F3F4F5;
+    padding: 32rpx;
+    height: 270rpx;
+    &:last-child {
+      border: none;
+    }
+    .bottom_price {
+      color: #5184B0;
+    }
+    .cur{
+      background: #5D92C0;
+      border:2rpx solid #5D92C0;
+    }
+  }
+  .delete {
+    background-color: #5D92C0;
+    height: 270rpx;;
+    line-height: 270rpx;
+  }
+  .bottom {
+    padding-left: 32rpx;
+    box-shadow:0px -2px 0px 0px rgba(230,233,235,1);
+    .cur{
+      background: #5D92C0;
+      border:2rpx solid #5D92C0;
+    }
+    .balance {
+      width: 224rpx;
+      height: 100rpx;
+      line-height: 100rpx;
+      background: #5D92C0;
+    }
+    .total_price {
+      color: #5D92C0;
+    }
+  }
+}
+.default {
   padding: 24rpx 24rpx 0;
   width: 750rpx;
   box-sizing: border-box;
+  .container{
+    width: 702rpx;
+  }
+  .content {
+    width: 702rpx;
+    .carInfo {
+      width:702rpx;
+      margin-bottom:24rpx;
+      box-shadow:0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
+      border-radius: 8rpx;
+      height: 240rpx;
+      padding: 24rpx;
+      .bottom_price {
+        color: #F35D51;
+      }
+      .cur{
+        background: #F35D51;
+        border:2rpx solid #F35D51;
+      }
+    }
+  }
+  .delete {
+    background-color: #F35D51;
+    border-radius: 0 8rpx 8rpx 0;
+    height: 240rpx;
+    line-height: 240rpx;
+  }
+  .bottom {
+    height: 120rpx;
+    padding: 20rpx 24rpx;    
+    .cur{
+      background: #F35D51;
+      border:2rpx solid #F35D51;
+    }
+    .balance {
+      width: 160rpx;
+      height: 80rpx;
+      line-height: 80rpx;
+      border-radius:8rpx;
+      background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+    }
+    .total_price {
+      color: #F35D51;
+    }
+  }
 }
 .container image {
   width: 500rpx;
@@ -48,7 +132,6 @@ page{
 }
 view.carInfo{
   background: #FFFFFF;
-  height: 240rpx;
   flex-shrink: 0;
 }
 .carInfo::after{
@@ -58,12 +141,6 @@ view.carInfo{
 }
 
 .carInfo{
-  width:702rpx;
-  margin-bottom:24rpx;
-  box-shadow:0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
-  border-radius: 8rpx;
-  height: 240rpx;
-  padding: 24rpx;
   box-sizing: border-box;
   overflow: hidden;
   flex-shrink: 0;
@@ -82,10 +159,6 @@ view.carInfo{
   border-radius: 50%;
   position: relative;
   flex-shrink: 0;
-}
-.carInfo .cur{
-  background: #F35D51;
-  border:2rpx solid #F35D51;
 }
 .carInfo .cur::before{
   background: #fff;
@@ -170,7 +243,6 @@ view.carInfo{
   line-height: 40rpx;
 }
 .infoBottom .bottom_price {
-  color: #F35D51;
   font-size: 32rpx;
 }
 .bottom_price text {
@@ -208,30 +280,20 @@ view.carInfo{
   text-align: center;
   box-sizing: border-box;
 }
-.delete{  
-    background-color: #F35D51;
+.delete{
     width: 128rpx;
-    height: 240rpx;
-    line-height: 240rpx;
     font-size: 28rpx;
     color: #FFFFFF;
     text-align: center;
     flex-shrink: 0;
-    border-radius: 0 8rpx 8rpx 0;
-    /* -webkit-transform: translateX(120rpx);
-    transform: translateX(120rpx);
-    -webkit-transition: all 0.4s;
-    transition: all 0.4s; */
 }
 /* bottom  */
 .bottom{
 	width: 750rpx;
-	height: 120rpx;
 	position: fixed;
   bottom: 0;
   left: 0;
   background: #FEFEFE;
-  padding: 20rpx 24rpx;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -251,10 +313,6 @@ view.carInfo{
   position: relative;
   height: 40rpx;
   margin-right: 16rpx;
-}
-.bottom .cur{
-  background: #F35D51;
-  border:2rpx solid #F35D51;
 }
 .bottom .cur::before{
   background: #fff;
@@ -283,7 +341,6 @@ view.carInfo{
   margin-right: 24rpx;
 }
 .total_price text {
-  color: #F35D51;
   font-size: 36rpx;
 }
 .total_price text text {
@@ -291,12 +348,7 @@ view.carInfo{
 }
 .bottom .balance{
 	float: right;
-	width: 160rpx;
-	height: 80rpx;
-	text-align: center;
-	background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
 	color: #FFFFFF;
+	text-align: center;
 	font-size: 28rpx;
-	line-height: 80rpx;
-  border-radius:8rpx;
 }

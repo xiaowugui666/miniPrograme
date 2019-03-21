@@ -2,6 +2,59 @@ page{
   height:100%;
   background: #F9F9F9;
 }
+.blue {
+  .bottom .pay{
+    color:rgba(255,255,255,1);
+    border:2rpx solid transparent;
+    background:#5D92C0;
+  }
+  .on {
+    font-weight:500;
+    color:#5D92C0;
+    border-bottom: 3rpx solid #5D92C0;
+  }
+  .content {
+    width: 750rpx;
+    box-sizing: border-box;
+    padding: 0 32rpx;
+    background: #FFFFFF;
+    margin-top: 16rpx;
+    .top {
+      padding: 0;
+    }
+    .orderList {
+      padding: 24rpx 0;
+    }
+    .bottom {
+      padding: 0;
+    }
+  }
+  navigator {
+    width: 686rpx;
+    margin-bottom: 16rpx;
+  }
+}
+.default {
+  .bottom .pay{
+    color:rgba(255,255,255,1);
+    border:2rpx solid transparent;
+    background:linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
+  }
+  .on{ 
+    font-weight:500;
+    color:rgba(243,93,81,1);
+    border-bottom: 3rpx solid rgba(243,93,81,1);
+  }
+  .content{
+    width:720rpx;
+    padding: 15rpx;
+  }
+  navigator {
+    width:720rpx;
+    margin-bottom: 20rpx;
+    border-radius: 8rpx;
+  }
+}
 .swiper-tab{  
   width: 100%;  
   display: flex;
@@ -23,12 +76,6 @@ page{
 }
 .swiper-box {
   height: calc(100% - 84rpx);
-}
-.on{ 
-  font-family:PingFangSC-Medium;
-  font-weight:500;
-  color:rgba(243,93,81,1);
-  border-bottom: 3rpx solid rgba(243,93,81,1);
 }
 
 /* 没有订单 */
@@ -62,16 +109,9 @@ page{
 
 
 /* 有订单 */
-.content{
-  width:720rpx;
-  padding: 15rpx;
-}
 navigator{
-  width:720rpx;
   box-sizing: border-box;
   background-color: #fff;
-  margin-bottom: 20rpx;
-  border-radius: 8rpx;
 }
 /* 订单-头部 */
 .top{
@@ -175,11 +215,6 @@ navigator{
 .bottom .cancel{
   color:rgba(85,102,117,1);
   border:2rpx solid rgba(207,211,216,1);
-}
-.bottom .pay{
-  color:rgba(255,255,255,1);
-  border:2rpx solid transparent;
-  background:linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
 }
 .bottom view label{
   margin-left: 30rpx;

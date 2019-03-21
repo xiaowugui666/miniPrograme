@@ -1,13 +1,23 @@
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 
-<block wx:if="{{pageVisible}}">
+<view wx:if="{{pageVisible}}" class="{{skinStyle}}">
 	<view class='state'>
-		<image src='/imgs/icon_detail1_paid.png' wx:if="{{info.status === 200}}"></image>
-		<image src='/imgs/icon_detail2_package.png' wx:elif="{{info.status === 205}}"></image>
-		<image src='/imgs/icon_detail3_onway.png' wx:elif="{{info.status === 400}}"></image>
-		<image src='/imgs/icon_detail4_get.png' wx:elif="{{info.status === 405}}"></image>
-		<image src='/imgs/icon_discount.png' wx:elif="{{info.status === 255}}"></image>
-		<image src='/imgs/icon_detail4_get.png' wx:else></image>
+		<block wx:if="{{skinStyle === 'default'}}">
+			<image src='/imgs/icon_detail1_paid.png' wx:if="{{info.status === 200}}"></image>
+			<image src='/imgs/icon_detail2_package.png' wx:elif="{{info.status === 205}}"></image>
+			<image src='/imgs/icon_detail3_onway.png' wx:elif="{{info.status === 400}}"></image>
+			<image src='/imgs/icon_detail4_get.png' wx:elif="{{info.status === 405}}"></image>
+			<image src='/imgs/icon_discount.png' wx:elif="{{info.status === 255}}"></image>
+			<image src='/imgs/icon_detail4_get.png' wx:else></image>
+		</block>
+		<block wx:else>
+			<image src="{{filters.imgUrl('icon_detail1_paid.png')}}" wx:if="{{info.status === 200}}"></image>
+			<image src="{{filters.imgUrl('icon_detail2_package.png')}}" wx:elif="{{info.status === 205}}"></image>
+			<image src="{{filters.imgUrl('icon_detail3_onway.png')}}" wx:elif="{{info.status === 400}}"></image>
+			<image src="{{filters.imgUrl('icon_detail4_get.png')}}" wx:elif="{{info.status === 405}}"></image>
+			<image src="{{filters.imgUrl('icon_discount.png')}}" wx:elif="{{info.status === 255}}"></image>
+			<image src="{{filters.imgUrl('icon_detail6_getback.png')}}" wx:else></image>
+		</block>
 		<view>
 			<view class='name {{info.status <= 400 ? "processing" : ""}}'>{{filters.statu(info.status)}}</view>
 			<view class='copywrite' wx:if="{{info.status === 200}}">请在 <text>{{expire_at}}</text> 内完成支付，超时自动关闭交易</view>
@@ -18,7 +28,8 @@
 		</view>
 	</view>
 	<view class='address'>
-		<image src='/imgs/icon_address.png'></image>
+		<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_address.png'></image>
+		<image wx:else src="{{filters.imgUrl('icon_address_blue.png')}}" />
 		<view>
 			<view  class='name clearfix'>
 				<label>收货人：{{info.consignee}}</label>
@@ -91,10 +102,10 @@
 		</view>
 		<view class="cancel" catchtap='hiddenModal'>取消</view>
 	</view>
-</block>
-<block wx:else>
+</view>
+<view class="{{skinStyle}}" wx:else>
 	<view class='container'>
 		<image src='/imgs/no_data_1.png'></image>
 		<view class="empty_car">暂无此类订单</view>
 	</view>
-</block>
+</view>

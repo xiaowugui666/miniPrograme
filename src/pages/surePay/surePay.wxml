@@ -3,7 +3,8 @@
 	<navigator url='/pages/address/address?type=issurepay' hover-class='none'>
 		<view class='address' wx:if='{{address!==1}}'>
 			<view class="adress_info">
-				<image src='/imgs/icon_address.png'></image>
+				<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_address.png' />
+				<image wx:else src="{{filters.imgUrl('icon_address_blue.png')}}" />
 				<view class="adress_user">
 					<view  class='name clearfix'>
 						<label>收货人：{{address.name}}</label>

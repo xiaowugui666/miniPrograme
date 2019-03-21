@@ -12,7 +12,8 @@ Page({
     // apiKey:'',
     image: 'https://image.51zan.com/',
     contactShow: false,
-    pageVisible: true
+    pageVisible: true,
+    skinStyle: app.globalData.skinStyle
   },
   // 阻止蒙层事件冒泡
   preventTouchMove() {

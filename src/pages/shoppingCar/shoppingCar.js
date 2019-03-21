@@ -22,7 +22,8 @@ Page({
 		touchStartX: 0,
 		touchStartY: 0,
 		btnwidth: 128,
-		inAndroidGetPhoneMask: false
+		inAndroidGetPhoneMask: false,
+		skinStyle: app.globalData.skinStyle
 	},
 	//点击结算
 	balance() {

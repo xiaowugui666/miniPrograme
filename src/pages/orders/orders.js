@@ -13,7 +13,8 @@ Page({
     // apiSecret:'',
     // apiKey:'',
     disabled:false,
-    url:''
+    url:'',
+    skinStyle: app.globalData.skinStyle
   },
   
   onLoad: function (options){

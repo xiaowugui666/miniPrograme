@@ -68,6 +68,8 @@ Page({
 				element.data.forEach(item => {
 					item.windowHeight = windowHeight
 				})
+			} else if (element.template === 'search') {
+				app.globalData.keyword = element.data[0].data[0].text
 			}
 		});
         this.setData({
@@ -213,7 +215,6 @@ Page({
 				that.setData({
 					description: res.data
 				})
-				app.globalData.keyword = res.data.search_default_text
 			//设置title
 				wx.setNavigationBarTitle({
 					title: res.data.name,

@@ -14,7 +14,8 @@ Page({
 		image: 'https://image.51zan.com/',
 		isOpenDistribution: false,
 		distributionInfo: {},
-		isDistributor: false
+		isDistributor: false,
+		skinStyle: app.globalData.skinStyle
 	},
 	onShow: function () {
 		var that=this;

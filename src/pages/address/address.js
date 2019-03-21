@@ -9,7 +9,8 @@ Page({
 		userId:true,
 		image: 'https://image.51zan.com/',
 		fromSurePay: false,
-		getSettingRefuse: false
+		getSettingRefuse: false,
+		skinStyle: app.globalData.skinStyle
 	},
 	onLoad:function(options){
 		let fromSurePay = false

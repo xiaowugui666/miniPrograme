@@ -1,24 +1,94 @@
-@-webkit-keyframes animationIn
+@keyframes animationIn
 {
   from {bottom: -324rpx;}
   to {bottom: 0;}
 }
-@-webkit-keyframes animationOut
+@keyframes animationOut
 {
   from {bottom: 0;}
   to {bottom: -324rpx;}
 }
 .state,.address{
-  margin-top: 24rpx;
   position: relative;
   background: #fff;
   display: flex;
   align-items: center;
 }
 .state{
-  padding: 24rpx 0 24rpx 30rpx;
   font-size: 26rpx;
   color: #9EA8B1;
+}
+.blue {
+  overflow: hidden;
+  .state {
+    padding: 32rpx;
+    .name.processing, text {
+      color: #5D92C0;
+    }
+  }
+  .address {
+    margin-top: 16rpx;
+    padding: 32rpx;
+  }
+  .detail {
+    margin-top: 16rpx;
+    .menus_box {
+      padding: 0 32rpx;
+    }
+    .info_box {
+      padding-left: 32rpx;
+      .info {
+        padding-right: 32rpx;
+        .orderMoney {
+          color: #5D92C0
+        }
+      }
+    }
+  }
+  .btnBottom {
+    .pay{
+      color: #FFFFFF;
+      background: #5D92C0;
+    }
+  }
+}
+.default {
+  overflow: hidden;
+  .state {
+    margin-top: 24rpx;
+    padding: 24rpx 0 24rpx 30rpx;
+    .name.processing {
+      color: #F35D51;
+    }
+    text {
+      color:#F35D51;
+    }
+  }
+  .address {
+    margin-top: 24rpx;
+    padding: 24rpx 0 24rpx 32rpx;
+  }
+  .detail {
+    margin-top: 24rpx;
+    .menus_box {
+      padding: 0 24rpx;
+      .desc label:nth-child(1) {
+        width: 486rpx;
+      }
+    }
+    .info_box {
+      padding: 0 24rpx;
+      .info .orderMoney {
+        color: #F35D51;
+      }
+    }
+  }
+  .btnBottom {
+    .pay{
+      color: #FFFFFF;
+      background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+    }
+  }
 }
 page{
   width: 100%;
@@ -34,7 +104,6 @@ page{
   clear: both;  
 }
 .address {
-  padding: 24rpx 0 24rpx 32rpx;
   font-size: 28rpx;
   color: #253A4E;
 }
@@ -55,15 +124,9 @@ page{
   color: #253A4E;
   font-weight: bold;
 }
-.name.processing {
-  color: #F35D51;
-}
 .state .copywrite {
   font-size: 24rpx;
   margin-top: 8rpx;
-}
-.state text{
-  color:#F35D51;
 }
 .name label:last-child {
   margin-left: 20rpx;
@@ -80,11 +143,9 @@ page{
   width: 100%;
   background: #fff;
   box-sizing: border-box;
-  margin-top: 24rpx;
-  padding-bottom: 120rpx;
+  margin-bottom: 120rpx;
 }
 .menus_box {
-  padding: 0 24rpx;
   border-bottom:2rpx solid #F3F4F5;
 }
 .menus {
@@ -107,7 +168,6 @@ page{
   color: #253A4E;
   line-height: 36rpx;
   height: 72rpx;
-  width: 486rpx;
   overflow: hidden;
 	text-overflow:ellipsis;
 	display:-webkit-box;
@@ -138,9 +198,6 @@ page{
   margin-right: 8rpx;
 }
 
-.info_box {
-  padding: 0 24rpx;
-}
 .info {
   border-bottom:2rpx solid #F3F4F5;
   color: #253A4E;
@@ -149,9 +206,6 @@ page{
 }
 .info:last-child {
   border-bottom: none;
-}
-.info .orderMoney {
-  color: #F35D51;
 }
 .info view {
   display: flex;
@@ -182,10 +236,6 @@ page{
   border-radius: 4rpx;
   box-sizing: border-box;
   margin-left: 24rpx;
-}
-.btnBottom .pay{
-  color: #FFFFFF;
-  background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
 }
 .btnBottom .normal{
   border: 2rpx solid #CFD3D8;
