@@ -59,6 +59,28 @@ image {
 			color: #5D92C0;
 		}
 	}
+	.swiper_box {
+        width: 704rpx;
+        box-shadow: none;
+        border-radius: 0;
+        image {
+          border-radius: 0;
+        }
+        .display_price {
+          color: #0D1A26;
+        }
+        .info {
+          .info_count {
+            color: #5D92C0;
+          }
+        }
+        .price {
+          .buy_button {
+            background: #5D92C0;
+            border-radius: 0;
+          }
+        }
+	}
 }
 .default {
 	.group_details_goods {
@@ -550,6 +572,8 @@ image {
 	color: #9EA8B1;
 	display: flex;
 	align-items: flex-end;
+	max-width: 250rpx;
+	overflow: hidden;
 }
 .price_text .display_price {
 	font-size: 32rpx;
@@ -564,6 +588,9 @@ image {
 .price_text .original_price {
 	text-decoration: line-through;
 	margin-left: 8rpx;
+	display: inline-block;
+	max-width: 160rpx;
+	overflow: hidden;
 }
 .price .buy_button {
 	width: 110rpx;

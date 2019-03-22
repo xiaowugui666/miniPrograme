@@ -20,6 +20,9 @@ page {
   background: #f7f9fb;
 }
 .default {
+  .container_search {
+    padding: 24rpx;
+  }
   .container_search_navi {
     width: 702rpx;
     margin: 0 auto;
@@ -36,13 +39,84 @@ page {
       border-radius: 40rpx;
     }
   }
+  .index_contact {
+    height: 192rpx;
+    background: rgba(247,249,251,1);
+    padding: 24rpx;
+    .index_contact_box {
+      width: 702rpx;
+      height: 144rpx;
+      overflow: hidden;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      box-shadow: 0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
+      padding: 24rpx;
+      background: rgba(255,255,255,1);
+      border-radius: 10rpx;
+      box-sizing: border-box;
+      button {
+        border-radius: 8rpx;
+        flex-shrink: 0;
+        position: relative;
+        background: #ededed;
+        image.wechat {
+          width: 36rpx;
+          height: 36rpx;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+      }
+      .desc {
+        margin-left: 24rpx;
+        .contact_h4 {
+          font-size: 32rpx;
+          color: rgba(243,93,81,1);
+        }
+        .contact_p {
+          font-size: 26rpx;
+          margin-top: 16rpx;
+          color: #9EA8B1;
+        }
+      }
+    }
+  }
+  .marketing_tabs .marketing_tab {
+    width: 200rpx;
+  }
+  .marketing_tab.active_tab {
+    color: #F35D51;
+    border-bottom: 4rpx solid #F35D51;
+    background: url('https://image.51zan.com/home_sort_background.png') no-repeat;
+    background-size: 200rpx 40rpx;
+    background-position: center center;
+    box-sizing: border-box;
+  }
+  .marketing_tabs.single_market .active_tab {
+    border-bottom: 0;
+    background: url('https://image.51zan.com/home_sort_background.png') no-repeat;
+    background-size: 200rpx 40rpx;
+    background-position: center center;
+  }
+  .goods_recommend {
+    padding: 24rpx 24rpx 0;
+    background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 516rpx);
+  }
+  .content {
+    background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 324rpx);
+  }
 }
 .blue {
+  .container_search {
+    padding: 32rpx 0;
+  }
   .container_search_navi {
-    width: 702rpx;
+    width: 750rpx;
   }
   .index_classify {
-    margin-top: 40rpx;
+    padding: 32rpx 0;
     text {
       color: #253A4E;
       margin-top: 8rpx;
@@ -66,9 +140,99 @@ page {
       }
     }
   }
-}
-.container_search {
-  padding: 24rpx;
+  .index_contact {
+    background: #FFFFFF;
+    height: 276rpx;
+    padding-top: 80rpx;
+    .index_contact_box {
+      height: 196rpx;
+      position: relative;
+      padding-top: 82rpx;
+      background: #F7F9FB;
+      box-sizing: border-box;
+      text-align: center;
+      button {
+        position: absolute;
+        top: -48rpx;
+        left: 328rpx;
+        border-radius: 0;
+        overflow: visible;
+        image.wechat {
+          width: 36rpx;
+          height: 36rpx;
+          position: absolute;
+          left: 30rpx;
+          bottom: -18rpx;
+        }
+      }
+      .contact_h4 {
+        font-size: 28rpx;
+        color: #253A4E;
+      }
+      .contact_p {
+        font-size: 24rpx;
+        margin-top: 8rpx;
+        color: #B6BDC4;
+      }
+    }
+  }
+  .marketing_tab.active_tab {
+    color: #253A4E;
+    border-bottom: 4rpx solid #253A4E;
+    box-sizing: border-box;
+  }
+  .goods_recommend {
+    padding: 32rpx 32rpx 0;
+    .goods_item {
+      width: 328rpx;
+      box-shadow: none;
+      border-radius: 0;
+      height: 500rpx;
+      image {
+        width: 328rpx;
+        height: 328rpx;
+        border-radius: 0;
+      }
+      .goods_info {
+        padding: 16rpx 0 16rpx 0;
+        .info {
+          .price {
+            display: inline-block;
+            max-width: 85%;
+            overflow: hidden;
+            color: #0D1A26;
+          }
+        }
+      }
+    }
+  }
+  .content {
+    .content_box {
+      padding: 32rpx 0 0 32rpx;
+      .swiper_box {
+        width: 688rpx;
+        box-shadow: none;
+        border-radius: 0;
+        image {
+          border-radius: 0;
+        }
+        .display_price {
+          color: #0D1A26;
+        }
+        .info {
+          .info_count {
+            color: #5D92C0;
+          }
+        }
+        .price {
+          .buy_button {
+            background: #5D92C0;
+            border-radius: 0;
+          }
+        }
+      }
+    }
+  }
 }
 .single_image {
   width: 750rpx;
@@ -174,25 +338,8 @@ swiper {
 }
 
 .index_contact {
-  height: 192rpx;
   width: 750rpx;
-  background: rgba(247,249,251,1);
-  padding: 24rpx;
   box-sizing: border-box;
-}
-.index_contact .index_contact_box {
-  width: 702rpx;
-  height: 144rpx;
-  overflow: hidden;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  box-shadow: 0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
-  background: rgba(255,255,255,1);
-  border-radius: 10rpx;
-  box-sizing: border-box;
-  padding: 24rpx;
 }
 .contact_loading_img {
   width:96rpx;
@@ -231,8 +378,6 @@ swiper {
 }
 .index_contact .contact_h4 {
   display: block;
-  font-size: 32rpx;
-  color: rgba(243,93,81,1);
   line-height: 44rpx;
   font-weight:600;
 }
@@ -243,35 +388,18 @@ swiper {
 }
 .index_contact .contact_p {
   display: block;
-  font-size: 26rpx;
-  margin-top: 16rpx;
-  color: #9EA8B1;
   word-break: break-all;
   line-height: 36rpx;
-}
-.index_contact .desc {
-  margin-left: 24rpx;
 }
 .index_contact button {
   width: 96rpx;
   height: 96rpx;
   padding: 0;
-  border-radius: 8rpx;
-  background: #ededed;
   margin: 0;
-  flex-shrink: 0;
-  position: relative;
 }
 .index_contact button image {
   width: 96rpx;
   height: 96rpx;
-}
-.index_contact button image.wechat {
-  width: 36rpx;
-  height: 36rpx;
-  position: absolute;
-  right: 0;
-  bottom: 0;
 }
 .index_contact button::after {
   border: none;
@@ -296,12 +424,6 @@ swiper {
 .marketing_tabs.single_market {
   justify-content: space-around;
 }
-.marketing_tabs.single_market .active_tab {
-  border-bottom: 0;
-  background: url('https://image.51zan.com/home_sort_background.png') no-repeat;
-  background-size: 200rpx 40rpx;
-  background-position: center center;
-}
 .marketing_fixed_tabs {
   position: fixed;
   background: #fff;
@@ -310,17 +432,8 @@ swiper {
   top: 0;
 }
 .marketing_tabs .marketing_tab {
-  width: 200rpx;
   height: 78rpx;
   text-align: center;
-}
-.marketing_tab.active_tab {
-  color: #F35D51;
-  border-bottom: 4rpx solid #F35D51;
-  background: url('https://image.51zan.com/home_sort_background.png') no-repeat;
-  background-size: 200rpx 40rpx;
-  background-position: center center;
-  box-sizing: border-box;
 }
 .marketing_tab .marketing_loading_tab {
   width: 200rpx;
@@ -333,9 +446,6 @@ swiper {
   border-radius: 8rpx;
   margin: 0 auto;
   margin-top: 22rpx;
-}
-.content {
-  background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 324rpx);
 }
 .content swiper {
   height: 100%;
@@ -438,8 +548,6 @@ swiper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 24rpx 24rpx 0;
-  background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 516rpx);
 }
 .goods_recommend .goods_item {
   width: 340rpx;

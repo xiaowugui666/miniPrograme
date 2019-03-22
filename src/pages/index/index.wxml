@@ -39,7 +39,8 @@
 		<view class='index_contact_box'>
 			<button bindtap="phoneCall">
 				<image wx:if='{{description.logo_url}}' src='{{image}}{{description.logo_url}}?imageslim'></image>
-				<image class="wechat" src="/imgs/icon_home_contact.png" />
+				<image class="wechat" wx:if="{{skinStyle === 'default'}}" src="/imgs/icon_home_contact.png" />
+				<image class="wechat" wx:else src="/imgs/home_contact.png" />
 			</button>
 			<view class='desc'>
 				<text class='contact_h4'>您的专属客服，24小时不打烊~</text>

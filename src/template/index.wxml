@@ -64,7 +64,8 @@
 		<view class='index_contact_box'>
 			<button bindtap="phoneCall" data-phonenumber="{{data[0].data[0].phone}}">
 				<image src='{{data[0].data[0].img_path || data[0].data[0].img_url}}?imageslim'></image>
-				<image class="wechat" src="/imgs/icon_home_contact.png" />
+				<image class="wechat" wx:if="{{skinStyle === 'default'}}" src="/imgs/icon_home_contact.png" />
+				<image class="wechat" wx:else src="/imgs/home_contact.png" />
 			</button>
 			<view class='desc'>
 				<text class='contact_h4'>{{data[0].data[0].textHead}}</text>
@@ -290,12 +291,6 @@
 			</view>
 		</view>
 	</block>
-	<block wx:else>
-		<view class="marketing_tabs single_market">
-			<view class="marketing_tab active_tab">{{data[0].label}}</view>
-		</view>
-		<view class="goods_loading loading"></view>
-	</block>
 </template>
 
 <template name="recommend">
@@ -327,12 +322,6 @@
 			</view>
 		</view>
 	</block>
-	<block wx:else>
-		<view class="marketing_tabs single_market">
-			<view class="marketing_tab active_tab">{{data[0].label}}</view>
-		</view>
-		<view class="goods_loading loading"></view>
-	</block>
 </template>
 
 <template name="special">
@@ -359,11 +348,5 @@
 				<view class="show_more" wx:if="{{data[0].hasNextPage}}" data-type="{{data[0].type}}" bindtap="handleSeeMore">点击加载更多</view>
 			</view>
 		</view>
-	</block>
-	<block wx:else>
-		<view class="marketing_tabs single_market">
-			<view class="marketing_tab active_tab">{{data[0].label}}</view>
-		</view>
-		<view class="goods_loading loading"></view>
 	</block>
 </template>
