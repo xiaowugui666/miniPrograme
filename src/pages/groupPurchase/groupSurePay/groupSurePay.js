@@ -28,7 +28,8 @@ Page({
 		// apiSecret:'',
 		// apiKey:'',
 		disabled: false,
-		groupId: ''
+		groupId: '',
+		skinStyle: app.globalData.skinStyle
 	},
 
 	// 减少数量

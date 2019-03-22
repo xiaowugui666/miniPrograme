@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "个人中心",
-					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
+					"pathName": "pages/groupPurchase/collageRules/collageRules",
 					"query": "goodsid=48&groupid=120",
 					"scene": 1007
 				}

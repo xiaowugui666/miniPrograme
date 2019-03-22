@@ -2,7 +2,8 @@
 const app=getApp();
 Page({
 	data: {
-		image: app.globalData.image
+		image: app.globalData.image,
+		skinStyle: app.globalData.skinStyle
 	},
 	onLoad:function () {
 		// this.setData({image: app.globalData.image})

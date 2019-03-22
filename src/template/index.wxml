@@ -200,6 +200,9 @@
 		</view>
 	</block>
 	<block wx:else>
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
 		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
 	</block>
 </template>
@@ -222,6 +225,12 @@
 			</view>
 		</view>
 		<view class="show_more" wx:if="{{data[0].hasNextPage}}" data-type="{{data[0].type}}" bindtap="handleSeeMore">点击加载更多</view>
+	</block>
+	<block wx:else>
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
 	</block>
 </template>
 
@@ -281,6 +290,12 @@
 			</view>
 		</view>
 	</block>
+	<block wx:else>
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="goods_loading loading"></view>
+	</block>
 </template>
 
 <template name="recommend">
@@ -312,6 +327,12 @@
 			</view>
 		</view>
 	</block>
+	<block wx:else>
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="goods_loading loading"></view>
+	</block>
 </template>
 
 <template name="special">
@@ -338,5 +359,11 @@
 				<view class="show_more" wx:if="{{data[0].hasNextPage}}" data-type="{{data[0].type}}" bindtap="handleSeeMore">点击加载更多</view>
 			</view>
 		</view>
+	</block>
+	<block wx:else>
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="goods_loading loading"></view>
 	</block>
 </template>

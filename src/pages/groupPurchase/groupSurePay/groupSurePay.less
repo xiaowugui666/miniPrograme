@@ -1,9 +1,7 @@
 .address{
-  margin: 24rpx 0;
   height: 176rpx;
   position: relative;
   box-sizing: border-box;
-  padding: 0 24rpx 0 32rpx;
   background: #fff;
   display: flex;
   align-items: center;
@@ -16,6 +14,86 @@ page{
   background: #F7F9FB;
   padding-bottom: 130rpx;
 }
+.blue {
+  .chooseAddress {
+    padding: 34rpx 32rpx;
+    color: #253A4E;
+    margin-bottom: 16rpx;
+  }
+  .detail {
+    padding-left: 32rpx;
+  }
+  .menus_box {
+    padding: 0 32rpx 0 0;
+  }
+  .info {
+    padding: 0 32rpx 0 0;
+    .large_size {
+      color: #5184B0;
+    }
+  }
+  .address {
+    margin-bottom: 16rpx;
+    padding: 32rpx;
+  }
+  .desc>view label:nth-child(1) {
+    color: #5184B0;
+    font-size: 32rpx;
+  }
+  .confirmPay {
+    button {
+      width: 224rpx;
+      height: 104rpx;
+      line-height: 104rpx;
+      background: #5D92C0;
+      border-radius: 0;
+      &[disabled] {
+        background: #5D92C0 !important;
+      }
+    }
+    view {
+      label {
+        color: #5D92C0;
+      }
+    }
+  }
+}
+.default {
+  .chooseAddress {
+    color: #F35D51;
+    margin: 24rpx 0;
+    padding: 36rpx 24rpx;
+  }
+  .adress {
+    margin: 24rpx 0;
+    padding: 0 24rpx 0 32rpx;
+  }
+  .desc>view label:nth-child(1) {
+    color: #F35D51;
+    font-size: 32rpx;
+  }
+  .info {
+    .large_size {
+      color: #F35D51;
+    }
+  }
+  .confirmPay {
+    padding: 24rpx;
+    button {
+      text-align: center;
+      width: 200rpx;
+      height: 80rpx;
+      line-height: 80rpx;
+      border-radius: 8rpx;
+      background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+    }
+    view {
+      label {
+        color: #F35D51;
+      }
+    }
+  }
+}
 .address .adress_info {
   display: flex;
   align-items: center;
@@ -27,8 +105,9 @@ page{
 .address image{
   width: 48rpx;
   height: 48rpx;
+  flex-shrink: 0;
 }
-.clearfix{  
+.clearfix{
   zoom:1;
 }  
 .clearfix:after{  
@@ -59,12 +138,9 @@ page{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 36rpx 24rpx;
   background: #fff;
   font-size: 32rpx;
   font-weight: 600;
-  color: #F35D51;
-  margin: 24rpx 0;
   box-sizing: border-box;
 }
 .chooseAddress image {
@@ -139,10 +215,6 @@ page{
     font-size: 26rpx;
     color: #9EA8B1;
 }
-.desc>view label:nth-child(1) {
-  color: #F35D51;
-  font-size: 32rpx;
-}
 .desc>view label:nth-child(1) text {
   font-size: 24rpx;
 }
@@ -193,7 +265,6 @@ page{
 
 .info .large_size {
   font-size: 32rpx;
-  color: #F35D51;
 }
 .info .large_size text {
   font-size: 24rpx;
@@ -209,7 +280,6 @@ page{
   align-items: center;
   box-shadow: 0px -2px 0px 0px #E6E9EB;
   box-sizing: border-box;
-  padding: 24rpx;
 }
 .confirmPay view {
   font-size: 32rpx;
@@ -218,22 +288,15 @@ page{
 }
 .confirmPay view label{
   font-size: 36rpx;
-  color: #F35D51;
 }
 .confirmPay view label text {
   font-size: 24rpx;
 }
 .confirmPay button{
-    width: 200rpx;
-    height: 80rpx;
-    border-radius: 8rpx;
-    text-align: center;
-    background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
-    color:#fff;
-    font-size: 32rpx;
-    line-height: 80rpx;
-    margin: 0;
-    padding: 0;
+  font-size: 32rpx;
+  margin: 0;
+  padding: 0;
+  color:#fff;
 }
 .confirmPay button:after{
   border-radius: 0;

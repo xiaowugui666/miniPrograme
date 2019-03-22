@@ -4,8 +4,26 @@ page {
 	display: flex;
 	flex-direction: column;
 }
+.blue {
+	.content {
+		padding-left: 32rpx;
+		.rules_body {
+			padding-left: 0;
+			image {
+				border-radius: 0;
+			}
+		}
+		.rules {
+			padding: 32rpx 32rpx 32rpx 0;
+		}
+	}
+}
+.default {
+	.content {
+		padding-left: 24rpx;
+	}
+}
 .content {
-	padding-left: 24rpx;
 	background: #FFFFFF;
 	margin-top: 24rpx;
 	flex-grow: 1;
@@ -44,4 +62,8 @@ page {
 	width: 532rpx;
 	height: 320rpx;
 	display: block;
+	padding: 16rpx;
+	border: 2rpx solid #CFD3D8;
+	background: #F7F9FB;
+	border-radius: 8rpx;
 }
