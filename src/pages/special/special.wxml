@@ -1,0 +1,22 @@
+<!--pages/special/special.wxml-->
+<wxs module="filters" src="../../utils/method.wxs"></wxs>
+<view class='special_container'>
+	<view class='special_item'>
+		<view class='item_box' wx:for="{{produList}}" wx:key="{{index}}" data-id='{{item.id}}' bindtap='goDetail'>
+			<image class='product' src='{{image}}{{item.cover_url}}?imageView2/1/w/344/h/344/imageslim'></image>
+			<text class='item_text'>{{item.name}}</text>
+			<view class='item_text_view special_price'>
+				<text>￥</text><text>{{filters.ptf(item.price)}}</text><text>￥{{filters.ptf(item.display_price)}}</text>
+			</view>
+		</view>
+
+		<!-- bottom  -->
+		<!-- <view class='bottom_text'>到底啦，去别处逛逛吧</view> -->
+
+		<!--up button  -->
+		<view class='recommend_up' catchtap='goTop'>
+			<image src='{{image}}Stick@2x.png'></image>
+		</view>
+	</view>
+</view>
+

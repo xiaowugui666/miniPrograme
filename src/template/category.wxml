@@ -1,0 +1,20 @@
+<template name="category">
+    <view  class='index_classify' wx:if="{{data.length > 0}}">
+		<scroll-view scroll-x="{{true}}" class='scroll' data-type="{{data[0].type}}" bindscroll="scrollCategoryFitment" throttle="{{false}}">
+			<view data-idx="{{item.data[0].id}}" wx:for='{{data}}' wx:key="{{index}}" bindtap='switchCate' class="scroll_viewer">
+				<image src='{{item.data[0].cover_url}}?imageView2/0/w/408/h/408/imageslim'></image>
+				<text>{{item.data[0].name}}</text>
+			</view>
+		</scroll-view>
+	</view>
+	<view wx:else class='classify_loading'>
+		<view wx:for="{{[1,1,1,1,1]}}" class='loading_items' wx:key="{{index}}">
+			<view class='loading_item_img loading'></view>
+			<view class='loading_item_text loading'></view>
+		</view>
+	</view>
+
+	<view class='index_current' wx:if="{{newCate.length>1 && skinStyle === 'default'}}">
+		<view wx:key='index' wx:for="{{newCate}}" class='{{current===index?"cur":""}}'></view>
+	</view>
+</template>

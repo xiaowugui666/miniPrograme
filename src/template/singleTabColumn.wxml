@@ -1,0 +1,48 @@
+<wxs module="filters" src="../utils/method.wxs"></wxs>
+
+<template name="singleTabColumn">
+	<block wx:if="{{data.length > 0 }}">
+		<view class="marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}">
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTabFitment'>{{item.label}}</view>
+		</view>
+		<view class="marketing_fixed_tabs marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop && data.length > 1}}">
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTabFitment'>{{item.label}}</view>
+		</view>
+		<view class="content">
+			<block wx:for="{{data}}" wx:key="index">
+				<view wx:if="{{currentTab === index}}" class="content_box">
+					<block wx:for="{{item.currentShowData}}" wx:key="ind" wx:for-item="ite">
+						<view class="swiper_box" data-id='{{ite.id}}' bindtap='bindDetail'>
+							<image src='{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+							<view class='swiper_box_item'>
+								<view>
+									<view class='title'>{{ite.name}}</view>
+									<view class='info' wx:if="{{item.type != 3}}">
+										<text>销量</text>
+										<text class='info_count'>{{filters.salesCount(ite.sales_count)}}</text>
+										<text>件</text>
+									</view>
+								</view>
+								<view class="price">
+									<view class='price_text'>
+										<text class='display_price'><text>￥</text>{{filters.ptf(ite.price)}}</text>
+										<text class="original_price" wx:if="{{item.type === 3}}">￥{{filters.ptf(ite.display_price)}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+					</block>
+					<view class="show_more" wx:if="{{item.hasNextPage}}" data-type="{{item.type}}" bindtap="handleSeeMore">点击加载更多</view>
+				</view>
+			</block>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="marketing_tabs">
+			<view class="marketing_tab" wx:for="{{[1,2,3]}}" wx:key="index">
+				<view class="marketing_loading_tab loading"></view>
+			</view>
+		</view>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
+	</block>
+</template>

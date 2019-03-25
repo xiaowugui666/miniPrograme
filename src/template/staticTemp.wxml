@@ -1,0 +1,18 @@
+<template name="paragraph">
+	<view class="paragraph" wx:if="{{data[0].data.length > 0}}">{{data[0].data[0].text}}</view>
+	<view class="paragraph_loading loading" wx:else></view>
+</template>
+
+<template name="divide">
+	<view class="divide"></view>
+</template>
+
+<template name="singleImg">
+	<image
+		class="single_image"
+		src="{{data[0].data[0].img_url || data[0].data[0].img_path}}?imageView2/0/w/860/h/860"
+		mode="widthFix"
+		data-id="{{data[0]._data[0]}}"
+		bindtap="bindDetail"
+	/>
+</template>

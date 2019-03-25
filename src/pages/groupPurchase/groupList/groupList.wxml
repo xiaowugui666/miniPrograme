@@ -1,0 +1,53 @@
+<!--pages/groupList/goupList.wxml-->
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+<view class='group_list {{skinStyle}}'>
+	<view class='search_family'>
+			<view class='pending {{rank == 2 ? "selected" : "normal"}}' data-id='2' bindtap='bindRank'>进行中</view>
+			<view class='success {{rank == 3 ? "selected" : "normal"}}' data-id='3' bindtap='bindRank'>已成团</view>
+			<view class='fail {{rank == 4 ? "selected" : "normal"}}' data-id='4' bindtap='bindRank'>未成团</view>
+		</view>
+
+	<block  wx:if='{{data.length}}'>
+		<view class='group_box' wx:for='{{data}}' wx:key='index'>
+			<view data-groupid="{{item.groupon_id}}" data-goodsid="{{item.goods_id}}" catchtap="handleGroupDetail">
+				<!-- 头部 -->
+				<view class='group_box_head'>
+					<view wx:if="{{rank == 2}}" class='group_box_head_time mark}}'><text>{{item.groupon.expire_at}}</text>结束</view>
+					<view wx:elif="{{rank == 3}}" class='group_box_head_time mark}}'>{{item.created_at}}购买</view>
+					<view wx:else class='group_box_head_time mark}}'>{{item.groupon.expire_at}}失效</view>
+					<view class='{{rank == 2 ? "pending group_box_head_text" : "group_box_head_text"}}'>{{rank == 2 ? '进行中' : (rank == 3 ? '已成团' : '未成团')}}</view>
+				</view>
+				<!-- 详情 -->
+				<view class='group_box_body'>
+					<view class='group_box_body_image'>
+						<image src='{{image + item.goods.cover_url}}?imageView2/0/w/400/h/400'></image>      
+					</view>
+					<view class='group_box_body_content'>
+						<view class='group_body_detail'>
+							<view class='content_title'>{{item.goods.name}}</view>
+							<view class='content_dec'>
+								{{item.sku_description}}
+							</view>
+						</view>
+						<view class='group_body_price'>
+							<view>拼团价￥{{filters.ptf(item.price)}}</view>
+							<view>x{{item.count}}</view>
+						</view>
+					</view>
+				</view>
+				<!-- 底部 -->
+				<view class='group_box_bottom'>
+					<view>{{rank == 4 ? '已退款' : '实付'}}:￥{{filters.ptf(item.price)}}</view>
+					<view wx:if="{{rank == 2}}">差<text>{{item.groupon.remain_user_count}}人</text>成团</view>
+					<view wx:elif="{{rank == 3}}" class='button_order button' data-id='{{item.order.id}}' catchtap='toOrderDetail'>查看订单</view>
+					<view wx:elif="{{rank == 4}}" class='botton_buy button' data-id='{{item.goods.id}}' catchtap='toDetail'>重新购买</view>
+				</view>
+				
+			</view>
+		</view>
+	</block>
+	<view class='container' wx:else>
+		<image src='/imgs/no_data_1.png'></image>
+		<view class="empty_car">暂无此类订单</view>
+	</view>
+</view>

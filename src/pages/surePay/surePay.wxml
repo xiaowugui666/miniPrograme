@@ -1,0 +1,69 @@
+<wxs module="filters" src="../../utils/method.wxs"></wxs>
+<view class="{{skinStyle}}">
+	<navigator url='/pages/address/address?type=issurepay' hover-class='none'>
+		<view class='address' wx:if='{{address!==1}}'>
+			<view class="adress_info">
+				<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_address.png' />
+				<image wx:else src="{{filters.imgUrl('icon_address_blue.png')}}" />
+				<view class="adress_user">
+					<view  class='name clearfix'>
+						<label>收货人：{{address.name}}</label>
+						<label>{{address.mobile}}</label>
+					</view>
+					<view class='addr'>收货地址：{{address.province}} {{address.city}} {{address.county}} {{address.detail}}</view>
+				</view>
+			</view>
+			<image src="/imgs/icon_arrow.png" />
+		</view> 
+		<view class='chooseAddress' wx:if='{{address===1}}'>
+			<view>
+				<image wx:if="{{skinStyle === 'default'}}" src="/imgs/icon_address_none.png" />
+				<image wx:else src="{{filters.imgUrl('icon_address_blue.png')}}" />
+				<view>新增收货地址</view>
+			</view>
+			<image src="/imgs/icon_arrow.png" />
+		</view>
+	</navigator>
+
+	<!-- 商品信息 -->
+	<view class='detail'>
+		<view class='menus_box'>
+			<view  class='menus' wx:for='{{dataList}}' wx:key='index'>
+				<image src='{{image}}{{item.cover_url}}?imageView2/0/w/200/h/200'></image>
+				<view class='desc'>
+					<label>{{item.name}}</label>
+					<label>{{item.sku_description!=0?item.sku_description:''}}</label>
+					<view>
+						<label><text>￥</text>{{filters.ptf(item.price)}}</label>
+						<label wx:if='{{fromCart}}'>x{{item.count}}</label>
+						<view class='count_control' wx:else>
+							<text class='minus {{minusStatu ? "disabled" : ""}}' bindtap='bindminus'>-</text>
+							<text>{{count}}</text>
+							<text class='plus {{plusStatu ? "disabled" : ""}}' bindtap='bindplus'>+</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class='info'>
+			<view>
+				<label>商品总价</label> 
+				<label>￥{{filters.ptf(totalMoney)}}</label>
+			</view>
+			<view>
+				<label>运费（快递）</label> 
+				<label>￥{{filters.ptf(carriage)}}</label>
+			</view>
+			<view>
+				<label>订单总价</label>
+				<label class="large_size"><text>￥</text>{{filters.ptf(totalOrder)}}</label>
+			</view>
+			</view>
+	</view>
+	<form bindsubmit='submit' report-submit='true'>
+		<view class='confirmPay'>
+			<view>合计:<label><text>￥</text>{{filters.ptf(totalOrder)}}</label></view>
+			<button disabled='{{disabled}}' form-type='submit'>提交订单</button>
+		</view>
+	</form>
+</view>

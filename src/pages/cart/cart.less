@@ -1,0 +1,354 @@
+
+.content{
+  padding-bottom: 120rpx;
+  overflow: hidden;
+}
+page{
+  background: #F7F9FB;
+}
+.blue {
+  .carInfo {
+    width: 750rpx;
+    border-bottom: 2rpx solid #F3F4F5;
+    padding: 32rpx;
+    height: 270rpx;
+    &:last-child {
+      border: none;
+    }
+    .bottom_price {
+      color: #5184B0;
+    }
+    .cur{
+      background: #5D92C0;
+      border:2rpx solid #5D92C0;
+    }
+  }
+  .delete {
+    background-color: #5D92C0;
+    height: 270rpx;;
+    line-height: 270rpx;
+  }
+  .bottom {
+    padding-left: 32rpx;
+    box-shadow:0px -2px 0px 0px rgba(230,233,235,1);
+    .cur{
+      background: #5D92C0;
+      border:2rpx solid #5D92C0;
+    }
+    .balance {
+      width: 224rpx;
+      height: 100rpx;
+      line-height: 100rpx;
+      background: #5D92C0;
+    }
+    .total_price {
+      color: #5D92C0;
+    }
+  }
+}
+.default {
+  padding: 24rpx 24rpx 0;
+  width: 750rpx;
+  box-sizing: border-box;
+  .container{
+    width: 702rpx;
+  }
+  .content {
+    width: 702rpx;
+    .carInfo {
+      width:702rpx;
+      margin-bottom:24rpx;
+      box-shadow:0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
+      border-radius: 8rpx;
+      height: 240rpx;
+      padding: 24rpx;
+      .bottom_price {
+        color: #F35D51;
+      }
+      .cur{
+        background: #F35D51;
+        border:2rpx solid #F35D51;
+      }
+    }
+  }
+  .delete {
+    background-color: #F35D51;
+    border-radius: 0 8rpx 8rpx 0;
+    height: 240rpx;
+    line-height: 240rpx;
+  }
+  .bottom {
+    height: 120rpx;
+    padding: 20rpx 24rpx;    
+    .cur{
+      background: #F35D51;
+      border:2rpx solid #F35D51;
+    }
+    .balance {
+      width: 160rpx;
+      height: 80rpx;
+      line-height: 80rpx;
+      border-radius:8rpx;
+      background: linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+    }
+    .total_price {
+      color: #F35D51;
+    }
+  }
+}
+.container image {
+  width: 500rpx;
+  height:320rpx;
+  margin:0 auto;
+	display: block;
+  margin-top: 118rpx;
+}
+.container .empty_car {
+  font-size: 32rpx;
+  color: #253A4E;
+  margin-top:66rpx;
+  text-align: center;
+}
+.container .empty_copy {
+  display: block;
+  font-size: 26rpx;
+  color: #9EA8B1;
+  text-align: center;
+  margin-top: 16rpx;
+}
+.clearfix:after {
+   content: ""; 
+   display: block; 
+   clear: both;
+}
+.clearfix{
+  zoom: 1;
+}
+.carInfo_box {
+  width: 830rpx;
+  transition: all 0.4s;
+  display: flex;
+  flex-wrap: nowrap;
+}
+view.carInfo{
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+.carInfo::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.carInfo{
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.contents {
+  align-items: center;
+	overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+}
+.carInfo .select{
+  width: 40rpx;
+  height: 40rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #CFD3D8;
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
+.carInfo .cur::before{
+  background: #fff;
+  content:'';
+  display: block;
+  width: 4rpx;
+  height: 24rpx;
+  border-radius: 0 0 2rpx 2rpx;
+  top: 8rpx;
+  left: 20rpx;
+  transform: rotate(40deg);
+  position: absolute;
+}
+.carInfo .cur::after{
+  background: #fff;
+  content:'';
+  display: block;
+  width: 4rpx;
+  top: 18rpx;
+  left: 10rpx;
+  height: 14rpx;
+  transform: rotate(-45deg);  
+  position: absolute;
+}
+.carInfo .goodImg{
+  width: 192rpx;
+  height: 192rpx;
+  display: block;
+  flex-shrink: 0;
+  border-radius: 8rpx;
+  margin-left: 24rpx;
+}
+.goodsInfo {
+  margin-left: 24rpx;
+  flex-grow: 1;
+}
+.goodsInfo .infoTitle {
+  font-size: 28rpx;
+  color: #253A4E;
+  line-height: 40rpx;
+  overflow: hidden;
+	text-overflow:ellipsis;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  height: 80rpx;
+}
+.goodsInfo .infoSku {
+  font-size: 26rpx;
+  color: #9EA8B1;
+  height:48rpx;
+  margin-top:8rpx;
+  max-width: 374rpx;
+  line-height: 36rpx;
+  padding: 6rpx 16rpx;
+  background: #F7F9FB;
+  border-radius: 4rpx;
+  display: inline-block;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.infoSku.empty_sku {
+  background: #FFFFFF;
+}
+.infoBottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  margin-top: 16rpx;
+}
+.changNum{
+  display: flex;
+  justify-content: flex-end;
+  align-items:center;
+}
+.infoBottom label{
+  color: #556675;
+  font-size: 24rpx;
+  line-height: 40rpx;
+}
+.infoBottom .bottom_price {
+  font-size: 32rpx;
+}
+.bottom_price text {
+  font-size: 24rpx;
+}
+.changNum label{
+  padding:0;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 36rpx;
+  text-align: center;
+  border:2rpx solid #CFD3D8;
+  border-radius:0;
+  box-sizing: border-box;
+}
+.changNum .disable {
+  color: #CFD3D8;
+}
+.changNum label:nth-child(1){
+  border-top-left-radius: 4rpx;
+  border-bottom-left-radius: 4rpx;
+}
+.changNum label:nth-child(3){
+  border-top-right-radius: 4rpx;
+  border-bottom-right-radius: 4rpx;
+}
+.changNum text{
+  width: 64rpx;
+  height: 40rpx;  
+  line-height:36rpx;
+  font-size: 24rpx;
+  color: #0D1A26;
+  border-top:2rpx solid #CFD3D8; 
+  border-bottom:2rpx solid #CFD3D8; 
+  text-align: center;
+  box-sizing: border-box;
+}
+.delete{
+    width: 128rpx;
+    font-size: 28rpx;
+    color: #FFFFFF;
+    text-align: center;
+    flex-shrink: 0;
+}
+/* bottom  */
+.bottom{
+	width: 750rpx;
+	position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #FEFEFE;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 32rpx;
+  color: #556675;
+}
+.bottom>view {
+  display: flex;
+  align-items: center;
+}
+.bottom .select{
+  width: 40rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #CFD3D8;
+  border-radius: 50%;
+  position: relative;
+  height: 40rpx;
+  margin-right: 16rpx;
+}
+.bottom .cur::before{
+  background: #fff;
+  content:'';
+  display: block;
+  width: 4rpx;
+  height: 24rpx;
+  border-radius: 0 0 2rpx 2rpx;
+  top: 8rpx;
+  left: 20rpx;
+  transform: rotate(40deg);
+  position: absolute;
+}
+.bottom .cur::after{
+  background: #fff;
+  content:'';
+  display: block;
+  width: 4rpx;
+  top: 18rpx;
+  left: 10rpx;
+  height: 14rpx;
+  transform: rotate(-45deg);  
+  position: absolute;
+}
+.bottom .total_price {
+  margin-right: 24rpx;
+}
+.total_price text {
+  font-size: 36rpx;
+}
+.total_price text text {
+  font-size: 24rpx;
+}
+.bottom .balance{
+	float: right;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 28rpx;
+}
