@@ -9,7 +9,8 @@ Page({
 		dataList:[],
 		image: 'https://image.51zan.com/',
 		keyword:'',
-		keyName: ''
+		keyName: '',
+		skinStyle: app.globalData.skinStyle
 	},
 	onLoad:function(){
 		this.setData({

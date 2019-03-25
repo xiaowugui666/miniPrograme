@@ -15,7 +15,8 @@ Page({
 		page: 0,
 		category_id: '',
 		value:'',
-		order_by: ''
+		order_by: '',
+		skinStyle: app.globalData.skinStyle
 	},
 	//商品点击
 	goDetail(e) {
