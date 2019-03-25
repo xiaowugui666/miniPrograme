@@ -1,0 +1,24 @@
+<template name="photoText">
+    <view class="index_contact" wx:if="{{data.length > 0}}">
+		<view class='index_contact_box'>
+			<button bindtap="phoneCall" data-phonenumber="{{data[0].data[0].phone}}">
+				<image src='{{data[0].data[0].img_path || data[0].data[0].img_url}}?imageslim'></image>
+				<image class="wechat" wx:if="{{skinStyle === 'default'}}" src="/imgs/icon_home_contact.png" />
+				<image class="wechat" wx:else src="/imgs/home_contact.png" />
+			</button>
+			<view class='desc'>
+				<text class='contact_h4'>{{data[0].data[0].textHead}}</text>
+				<text class='contact_p'>{{data[0].data[0].text}}</text> 
+			</view>
+		</view>
+	</view>
+	<view class='index_contact' wx:else>
+		<view class='index_contact_box'>
+			<view class="loading contact_loading_img"></view>
+			<view class='desc'>
+				<view class="loading contact_loading_text"></view>
+				<view class="loading contact_loading_text"></view>
+			</view>
+		</view>
+	</view>
+</template>

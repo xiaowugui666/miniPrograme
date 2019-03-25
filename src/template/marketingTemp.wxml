@@ -1,0 +1,93 @@
+<wxs module="filters" src="../utils/method.wxs"></wxs>
+
+<template name="group">
+	<block wx:if="{{data[0].currentShowData.length > 0}}">
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="content">
+			<view class="content_box">
+				<block wx:for="{{data[0].currentShowData}}" wx:for-index="index" wx:for-item="ite" wx:key="index">
+					<view class="swiper_box" data-id='{{ite.id}}' bindtap='bindDetail'>
+						<image src='{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+						<view class='swiper_box_item'>
+							<view class='title'>{{ite.name}}</view>
+							<view class='info'>
+								<text>拼团中 | </text>
+								<text>已团</text>
+								<text class='info_count'>{{filters.salesCount(ite.groupon_goods_sales_count)}}</text>
+								<text>件</text>
+							</view>
+							<view class="price">
+								<view class='price_text'>
+									<text class='display_price'><text>￥</text>{{filters.ptf(ite.groupon_goods_price_low)}}</text>
+									<text class="original_price">￥{{filters.ptf(ite.groupon_goods_origin_price_low)}}</text>
+								</view>
+								<view class='buy_button'>马上抢</view>
+							</view>
+						</view>
+					</view>
+				</block>
+				<view class="show_more" wx:if="{{data[0].hasNextPage}}" data-type="{{data[0].type}}" bindtap="handleSeeMore">点击加载更多</view>
+			</view>
+		</view>
+	</block>
+</template>
+
+<template name="recommend">
+	<block wx:if="{{data[0].currentShowData.length > 0}}">
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="content">
+			<view class="content_box">
+				<block wx:for="{{data[0].currentShowData}}" wx:for-index="index" wx:for-item="ite" wx:key="index">
+					<view class="swiper_box" data-id='{{ite.id}}' bindtap='bindDetail'>
+						<image src='{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+						<view class='swiper_box_item'>
+							<view class='title'>{{ite.name}}</view>
+							<view class='info'>
+								<text>销量</text>
+								<text class='info_count'>{{filters.salesCount(ite.sales_count)}}</text>
+								<text>件</text>
+							</view>
+							<view class="price">
+								<view class='price_text'>
+									<text class='display_price'><text>￥</text>{{filters.ptf(ite.price)}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+				</block>
+				<view class="show_more" wx:if="{{data[0].hasNextPage}}" data-type="{{data[0].type}}" bindtap="handleSeeMore">点击加载更多</view>
+			</view>
+		</view>
+	</block>
+</template>
+
+<template name="special">
+	<block wx:if="{{data[0].currentShowData.length > 0}}">
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="content">
+			<view class="content_box">
+				<block wx:for="{{data[0].currentShowData}}" wx:for-index="index" wx:for-item="ite" wx:key="index">
+					<view class="swiper_box" data-id='{{ite.id}}' bindtap='bindDetail'>
+						<image src='{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+						<view class='swiper_box_item'>
+							<view class='title'>{{ite.name}}</view>
+							<view class="price">
+								<view class='price_text'>
+									<text class='display_price'><text>￥</text>{{filters.ptf(ite.price)}}</text>
+									<text class="original_price">￥{{filters.ptf(ite.display_price)}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+				</block>
+				<view class="show_more" wx:if="{{data[0].hasNextPage}}" data-type="{{data[0].type}}" bindtap="handleSeeMore">点击加载更多</view>
+			</view>
+		</view>
+	</block>
+</template>

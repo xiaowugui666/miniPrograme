@@ -1,0 +1,40 @@
+<wxs module="filters" src="../utils/method.wxs"></wxs>
+
+<template name="singleColumn">
+	<block wx:if="{{data[0].currentShowData.length > 0}}">
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="content">
+			<view class="content_box">
+				<block wx:for="{{data[0].currentShowData}}" wx:key="index">
+					<view class="swiper_box" data-id='{{item.id}}' bindtap='bindDetail'>
+						<image src='{{item.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+						<view class='swiper_box_item'>
+							<view>
+								<view class='title'>{{item.name}}</view>
+								<view class='info'>
+									<text>销量</text>
+									<text class='info_count'>{{filters.salesCount(item.sales_count)}}</text>
+									<text>件</text>
+								</view>
+							</view>
+							<view class="price">
+								<view class='price_text'>
+									<text class='display_price'><text>￥</text>{{filters.ptf(item.price)}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+				</block>
+				<view class="show_more" wx:if="{{data[0].hasNextPage}}" data-type="{{data[0].type}}" bindtap="handleSeeMore">点击加载更多</view>
+			</view>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="marketing_tabs single_market">
+			<view class="marketing_tab active_tab">{{data[0].label}}</view>
+		</view>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
+	</block>
+</template>

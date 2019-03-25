@@ -1,0 +1,4 @@
+<template name="singleLine">
+	<view class="single_line" wx:if="{{data[0].data.length > 0}}">{{data[0].data[0].text}}</view>
+	<view class="single_line_loading loading" wx:else></view>
+</template>

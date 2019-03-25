@@ -1,5 +1,16 @@
 <!--index.wxml-->
-<import src="../../template/index.wxml" />
+<import src="../../template/banner.wxml" />
+<import src="../../template/search.wxml" />
+<import src="../../template/category.wxml" />
+<import src="../../template/singleTabColumn.wxml" />
+<import src="../../template/doubleTabColumn.wxml" />
+<import src="../../template/singleColumn.wxml" />
+<import src="../../template/doubleColumn.wxml" />
+<import src="../../template/singleLine.wxml" />
+<import src="../../template/staticTemp.wxml" />
+<import src="../../template/marketingTemp.wxml" />
+<import src="../../template/photoText.wxml" />
+
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 <view class="index_container {{skinStyle}}" wx:if="{{pageData !== null}}">
     <block wx:for="{{pageData}}" wx:for-index="i" wx:key="i" wx:for-item="item">

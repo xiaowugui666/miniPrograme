@@ -1,0 +1,39 @@
+<wxs module="filters" src="../utils/method.wxs"></wxs>
+
+<template name="doubleTabColumn">
+	<block wx:if="{{data.length > 0 }}">
+		<view class="marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}">
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTabFitment'>{{item.label}}</view>
+		</view>
+		<view class="marketing_fixed_tabs marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}" wx:if="{{tabScrollTop && data.length > 1}}">
+			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTabFitment'>{{item.label}}</view>
+		</view>
+		<view class="content">
+			<block wx:for="{{data}}" wx:key="index" wx:for-index="index" wx:for-item="ite">
+				<block wx:if="{{currentTab === index}}">
+					<view class="goods_recommend">
+						<view class="goods_item" wx:for="{{ite.currentShowData}}" wx:key="ind" data-id="{{item.id}}" bindtap='bindDetail'>
+							<image src="{{item.cover_url}}?imageView2/0/w/360/h/360" />
+							<view class="goods_info">
+								<view class="title">{{item.name}}</view>
+								<view class="info">
+									<text class="price"><text>￥</text>{{filters.ptf(item.price)}}</text>
+									<text>销量{{filters.salesCount(item.sales_count)}}件</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="show_more" wx:if="{{ite.hasNextPage}}" data-type="{{ite.type}}" bindtap="handleSeeMore">点击加载更多</view>
+				</block>
+			</block>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="marketing_tabs">
+			<view class="marketing_tab" wx:for="{{[1,2,3]}}" wx:key="index">
+				<view class="marketing_loading_tab loading"></view>
+			</view>
+		</view>
+		<view class="goods_loading loading" wx:for="{{[1,1,1]}}" wx:key="index"></view>
+	</block>
+</template>

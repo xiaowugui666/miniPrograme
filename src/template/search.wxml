@@ -1,0 +1,8 @@
+<template name="search">
+    <view class='container_search'>
+		<navigator class='container_search_navi' wx:if="{{data[0].label}}" url="/pages/search/search">{{data[0].data[0].text ? data[0].data[0].text: '大量好物等你发现'}}
+			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
+		</navigator>
+		<view class="search_loading loading" wx:else></view>
+	</view>
+</template>

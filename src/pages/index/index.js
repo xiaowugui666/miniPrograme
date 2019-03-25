@@ -70,6 +70,8 @@ Page({
 				})
 			} else if (element.template === 'search') {
 				app.globalData.keyword = element.data[0].data[0].text
+			} else if (element.template === 'photoText') {
+				element.skinStyle = app.globalData.skinStyle
 			}
 		});
         this.setData({
@@ -148,7 +150,7 @@ Page({
                     goodList.forEach(currentItem => {
 						let typeArr = currentItem.type.split('_'), i = parseFloat(typeArr[0]), j = parseFloat(typeArr[1])
                         pageShowingArr[i].data[j].currentShowData = pageShowingArr[i].data[j].currentShowData.concat(currentItem.data)
-                    })
+					})
                     that.setData({
                         pageData: pageShowingArr
                     })
