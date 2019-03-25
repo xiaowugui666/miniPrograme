@@ -10,7 +10,7 @@ Page({
 		data: [],
 		x:[0,1],
 		image: 'https://image.51zan.com/',
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 	// 选择不同类型订单
 	bindRank (e) {
@@ -74,6 +74,9 @@ Page({
 		})
 		wx.showLoading({
 			title: '加载中',
+		})
+		this.setData({
+			skinStyle: app.globalData.skinStyle
 		})
 		this.getData();
 	}

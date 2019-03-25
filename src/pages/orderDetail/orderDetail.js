@@ -13,7 +13,7 @@ Page({
     image: 'https://image.51zan.com/',
     contactShow: false,
     pageVisible: true,
-    skinStyle: app.globalData.skinStyle
+    skinStyle: ''
   },
   // 阻止蒙层事件冒泡
   preventTouchMove() {
@@ -53,7 +53,8 @@ Page({
     var that = this;
     var id = options.id;
     that.setData({
-      id: id
+      id: id,
+      skinStyle: app.globalData.skinStyle
     })
     app.login().then(() => {
       wx.request({

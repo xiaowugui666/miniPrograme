@@ -14,10 +14,13 @@ Page({
     // apiKey:'',
     disabled:false,
     url:'',
-    skinStyle: app.globalData.skinStyle
+    skinStyle: ''
   },
   
   onLoad: function (options){
+    this.setData({
+      skinStyle: app.globalData.skinStyle
+    })
     var that = this;
     if (options.curTab==500){
       that.setData({

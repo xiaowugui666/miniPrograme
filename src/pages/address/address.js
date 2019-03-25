@@ -10,7 +10,7 @@ Page({
 		image: 'https://image.51zan.com/',
 		fromSurePay: false,
 		getSettingRefuse: false,
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 	onLoad:function(options){
 		let fromSurePay = false
@@ -19,7 +19,8 @@ Page({
 		}
 		this.setData({
 			userId: app.globalData.userId,
-			fromSurePay: fromSurePay
+			fromSurePay: fromSurePay,
+			skinStyle: app.globalData.skinStyle
 		})
 	},
 	onShow: function (options) {

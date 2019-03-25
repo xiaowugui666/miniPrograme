@@ -1,5 +1,4 @@
-//index.js
-//获取应用实例
+import tabBarItem from '../../utils/blueTabBarItem'
 const app=getApp();
 Page({
 	data: {
@@ -235,14 +234,29 @@ Page({
 				});
 			}
 		});
-		this.getInitElement().then((data) => {
-			if (data === null ) {
-				this.getData()
-			} else {
-				let goodListIdsData = this.getGoodListIdsData(data)
-				this.getInitData(goodListIdsData)
+		app.getAppSkinStyle().then((data) => {
+			const { type } = data
+			app.globalData.skinStyle = type
+			this.setData({
+				skinStyle: type
+			})
+			if (type === 'blue') {
+				tabBarItem.forEach((element, index) => {
+					wx.setTabBarItem({
+						index: index,
+						...element
+					})
+				})
 			}
-			app.login()
+			this.getInitElement().then((data) => {
+				if (data === null ) {
+					this.getData()
+				} else {
+					let goodListIdsData = this.getGoodListIdsData(data)
+					this.getInitData(goodListIdsData)
+				}
+				app.login()
+			})
 		})
 	},
 	getData () {

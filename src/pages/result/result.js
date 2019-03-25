@@ -16,7 +16,7 @@ Page({
 		category_id: '',
 		value:'',
 		order_by: '',
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 	//商品点击
 	goDetail(e) {
@@ -122,7 +122,8 @@ Page({
 		let that = this;
 		that.setData({
 			value: options.keyword,
-			inputValue: options.keyword
+			inputValue: options.keyword,
+			skinStyle: app.globalData.skinStyle
 		})
 		wx.request({
 			url: app.globalData.http + '/mpa/goods/search',

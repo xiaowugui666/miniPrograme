@@ -18,7 +18,7 @@ Page({
 		isAll: true,
 		leftTapArray: [],
 		order_by: 'created_at desc',
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 	onTouchMove () {},
 	onDetail (e) {
@@ -155,6 +155,9 @@ Page({
 		}
 	},
 	onLoad: function () {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		let that = this;
 		wx.showLoading({
 			title: '加载中',

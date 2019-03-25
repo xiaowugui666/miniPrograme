@@ -15,9 +15,12 @@ Page({
 		isOpenDistribution: false,
 		distributionInfo: {},
 		isDistributor: false,
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 	onShow: function () {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		var that=this;
 		app.withDistributVerifi().then(() => {
 			var uerinfo = wx.getStorageSync("huzan_avatarUrl")

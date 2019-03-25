@@ -10,11 +10,12 @@ Page({
 		image: 'https://image.51zan.com/',
 		keyword:'',
 		keyName: '',
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 	onLoad:function(){
 		this.setData({
-			keyword: app.globalData.keyword
+			keyword: app.globalData.keyword,
+			skinStyle: app.globalData.skinStyle
 		})
 	},
 	//input事件

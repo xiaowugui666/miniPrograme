@@ -8,6 +8,29 @@ App({
 	onLaunch: function () {
 		this.globalData.apiExt = wx.getExtConfigSync().data
 	},
+	getAppSkinStyle: function () {
+		let that = this
+		return new Promise((resolve, reject) => {
+			wx.request({
+				url: that.globalData.http + '/mpa/index/decoration_tpl_current',
+				method: 'GET',
+				dataType: 'json',
+				header: {
+					'Api-Ext': that.globalData.apiExt
+				},
+				success: function (response) {
+					if (response.statusCode === 200) {
+						resolve(response.data.data[0])
+					} else {
+						reject(response)
+					}
+				},
+				fail: function (response) {
+					reject(response)
+				}
+			})
+		})
+	},
 	withDistributVerifi: function () {
 		let that = this
 		return new Promise((resolve, reject) => {
@@ -367,6 +390,6 @@ App({
 		sceneID: 0,
 		distribution: {},
 		distributorInfo: {},
-		skinStyle: 'blue'
+		skinStyle: 'default'
 	}
 })

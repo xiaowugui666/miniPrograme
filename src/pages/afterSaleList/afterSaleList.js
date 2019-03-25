@@ -9,7 +9,8 @@ Page({
     status: 500,
     rank:1,
     data: [],
-    image: 'https://image.51zan.com/'
+    image: 'https://image.51zan.com/',
+    skinStyle: ''
   },
   // 选择不同类型订单
   bindRank (e) {
@@ -114,9 +115,6 @@ Page({
   toDetail (e) {
     let that = this;
     let index = e.currentTarget.dataset.index;
-    console.log(e)
-    console.log(index)
-    console.log(that.data.data)
     if (!that.data.data[index].is_groupon) {
       wx.navigateTo({
         url: '/pages/refundDetail/refundDetail?id=' + that.data.data[index].id,
@@ -131,6 +129,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
     let that = this;
     wx.setNavigationBarTitle({
       title: '售后列表',

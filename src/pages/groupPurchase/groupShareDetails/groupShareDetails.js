@@ -59,12 +59,15 @@ Page({
 		//动态控制“-”号类名
 		minusStatus: "disabled",
 		minusStatuss: "normal",
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		let that = this;
 		app.login().then(() => {
 			this.setData({

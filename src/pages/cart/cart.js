@@ -23,7 +23,7 @@ Page({
 		touchStartY: 0,
 		btnwidth: 128,
 		inAndroidGetPhoneMask: false,
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 	//点击结算
 	balance() {
@@ -571,6 +571,11 @@ Page({
 			this.setData({
 				inAndroidGetPhoneMask: false
 			})
+		})
+	},
+	onLoad: function () {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
 		})
 	},
 	onShow: function (options) {

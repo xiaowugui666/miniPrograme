@@ -29,7 +29,7 @@ Page({
 		// apiKey:'',
 		disabled: false,
 		groupId: '',
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 
 	// 减少数量
@@ -119,6 +119,9 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		// 如果从购物车跳转，无法改变数量
 		if (options.fromCart) {
 			this.setData({

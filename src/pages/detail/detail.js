@@ -63,7 +63,7 @@ Page({
 		commissionUserId: false,
 		isDistributor: false,
 		commissionAmount: 0,
-		skinStyle: app.globalData.skinStyle
+		skinStyle: ''
 	},
 	// 滑动商品图片
 	changeCurrent: function(e) {
@@ -902,6 +902,9 @@ Page({
 		})
 	},
 	onLoad: function(options) {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		let that = this;
 		wx.showLoading({
 			title: '加载中',
