@@ -4,6 +4,8 @@ const cssnano = require('gulp-cssnano');
 const rename = require('gulp-rename');
 const clean = require('gulp-clean');
 const pump = require('pump');
+const preprocess = require('gulp-preprocess');
+
 gulp.task('less', function () {
     gulp.src([ 'src/pages/**/**.less'], {base: 'src'})
         .pipe(less())
@@ -48,8 +50,18 @@ gulp.task('clean', function(cb) {
     ], cb)
 })
 
+gulp.task('environment',function() {
+    return gulp.src('src/config/environment.js')
+    .pipe(preprocess({
+        context: {
+            NODE_ENV: process.env.NODE_ENV || 'development',
+          },
+    }))
+    .pipe(gulp.dest('dist/config'));
+})
+
 // 使用 gulp.task('default') 定义默认任务
 // 在命令行使用 gulp 启动 less 任务和 auto 任务
 gulp.task('default', ['clean'], function() {
-    gulp.start('less', 'less-app', 'pages', 'auto')
+    gulp.start('environment', 'less', 'less-app', 'pages', 'auto')
 })

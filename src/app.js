@@ -1,3 +1,5 @@
+import {environment} from './config/environment.js'
+
 App({
 	onShow(options) {
 		let that = this
@@ -359,7 +361,7 @@ App({
 		apiSecret:'',
 		login:false,
 		timeStamp:'',
-		http:'https://retail-mall-develop.51zan.com',
+		http: environment.env,
 		image: 'https://image.51zan.com/',
 		options: '',
 		sceneID: 0,

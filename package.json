@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "set NODE_ENV=development&&gulp default",
+    "test": "set NODE_ENV=test&&gulp default",
+    "build": "set NODE_ENV=production&&gulp default"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,7 @@
     "gulp-clean": "^0.4.0",
     "gulp-cssnano": "^2.1.3",
     "gulp-less": "^4.0.1",
+    "gulp-preprocess": "^3.0.2",
     "gulp-rename": "^1.4.0",
     "pump": "^3.0.0"
   }
