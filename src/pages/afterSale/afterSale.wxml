@@ -1,38 +1,40 @@
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
-<view class='container'>
-	<view class='orderID'>订单编号：{{items.no}}</view>
-	<view class="info_box">
-		<view class="carInfo" wx:for='{{info}}' wx:for-index='index' wx:key='index'>
-			<view class='select {{item.isSelect?"cur":""}}' data-index="{{index}}" catchtap='select'></view>
-			<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
-			<view class='goodsInfo'>    
-				<view class='infoTitle'>{{item.name}}</view>
-				<label class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</label>
-				<view class="bottom_price"><text>￥</text>{{filters.ptf(item.price)}}</view>
+<view class="{{skinStyle}}">
+	<view class='container'>
+		<view class='orderID'>订单编号：{{items.no}}</view>
+		<view class="info_box">
+			<view class="carInfo" wx:for='{{info}}' wx:for-index='index' wx:key='index'>
+				<view class='select {{item.isSelect?"cur":""}}' data-index="{{index}}" catchtap='select'></view>
+				<image class='goodImg' src='{{image}}{{item.cover_url}}?imageslim'></image>
+				<view class='goodsInfo'>    
+					<view class='infoTitle'>{{item.name}}</view>
+					<label class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</label>
+					<view class="bottom_price"><text>￥</text>{{filters.ptf(item.price)}}</view>
+				</view>
 			</view>
 		</view>
 	</view>
-</view>
-<view class="refund_info">
-	<picker class='picker' bindchange="bindPickerChange" range="{{reason}}">
-		<view class="picker_view">
-			<view>
-				<view>退货理由：</view>
-				<label>{{reasonText}}</label>
+	<view class="refund_info">
+		<picker class='picker' bindchange="bindPickerChange" range="{{reason}}">
+			<view class="picker_view">
+				<view>
+					<view>退货理由：</view>
+					<label>{{reasonText}}</label>
+				</view>
+				<image src="/imgs/icon_arrow.png" />
 			</view>
-			<image src="/imgs/icon_arrow.png" />
+		</picker>
+		<view class='reason'>
+			<label>退货备注：</label> 
+			<!-- <textarea></textarea> -->
+			<input placeholder="选填" maxlength='500' bindblur='remark' value='{{value}}' cursor-spacing="100rpx" placeholder-style="color: #9EA8B1;" />
 		</view>
-	</picker>
-	<view class='reason'>
-		<label>退货备注：</label> 
-		<!-- <textarea></textarea> -->
-		<input placeholder="选填" maxlength='500' bindblur='remark' value='{{value}}' cursor-spacing="100rpx" placeholder-style="color: #9EA8B1;" />
 	</view>
-</view>
-<view class="tips">
-	<image src="/imgs/icon_attention.png" />
-	目前只支持自寄退货
-</view>
-<view class="submit_box">
-	<view class='submit' bindtap='submit'>提交</view>
+	<view class="tips">
+		<image src="/imgs/icon_attention.png" />
+		目前只支持自寄退货
+	</view>
+	<view class="submit_box">
+		<view class='submit' bindtap='submit'>提交</view>
+	</view>
 </view>

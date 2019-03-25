@@ -17,12 +17,16 @@ Page({
 			'脏污/色差',
 			'其它'
 		],
+		skinStyle: ''
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		var that=this
 		var id=options.id;
 		that.setData({
