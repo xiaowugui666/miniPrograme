@@ -1,4 +1,5 @@
-import tabBarItem from '../../utils/blueTabBarItem'
+import blueTabBarItem from '../../utils/blueTabBarItem'
+import defaultTabBarItem from '../../utils/defaultTabBarItem'
 const app=getApp();
 Page({
 	data: {
@@ -241,10 +242,25 @@ Page({
 				skinStyle: type
 			})
 			if (type === 'blue') {
-				tabBarItem.forEach((element, index) => {
+				blueTabBarItem.forEach((element, index) => {
 					wx.setTabBarItem({
 						index: index,
 						...element
+					})
+					wx.setTabBarStyle({
+						color: '#9EA8B1',
+						selectedColor: '#253A4E'
+					})
+				})
+			} else {
+				defaultTabBarItem.forEach((element, index) => {
+					wx.setTabBarItem({
+						index: index,
+						...element
+					})
+					wx.setTabBarStyle({
+						color: '#999999',
+						selectedColor: '#fb5d5d'
 					})
 				})
 			}

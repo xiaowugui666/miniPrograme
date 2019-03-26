@@ -37,33 +37,33 @@
 		"navigationBarTextStyle": "black"
 	},
 	"tabBar": {
-		"color": "#999",
-		"selectedColor": "#fb5d5d",
+		"color": "#999999",
+		"selectedColor": "#999999",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [
 			{
 				"pagePath": "pages/index/index",
-				"iconPath": "imgs/icon_home_off.png",
-				"selectedIconPath": "imgs/icon_home_on.png",
+				"iconPath": "imgs/loading.png",
+				"selectedIconPath": "imgs/loading.png",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/category/category",
-				"iconPath": "imgs/icon_goods_off.png",
-				"selectedIconPath": "imgs/icon_goods_on.png",
+				"iconPath": "imgs/loading.png",
+				"selectedIconPath": "imgs/loading.png",
 				"text": "宝贝"
 			},
 			{
 				"pagePath": "pages/shoppingCar/shoppingCar",
-				"iconPath": "imgs/icon_buy_off.png",
-				"selectedIconPath": "imgs/icon_buy_on.png",
+				"iconPath": "imgs/loading.png",
+				"selectedIconPath": "imgs/loading.png",
 				"text": "购物车"
 			},
 			{
 				"pagePath": "pages/user/user",
-				"iconPath": "imgs/icon_me_off.png",
-				"selectedIconPath": "imgs/icon_me_on.png",
+				"iconPath": "imgs/loading.png",
+				"selectedIconPath": "imgs/loading.png",
 				"text": "我的"
 			}
 		]

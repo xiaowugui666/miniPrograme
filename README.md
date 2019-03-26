@@ -45,6 +45,7 @@ wxParse:富文本编译器转换成小程序语言
 新增gulp编译less文件:
     工作区为`src`目录，工作时命令行输入`gulp`进行编译，输出目录`dist`为目标目录。
     用微信开发者工具打开`dist`目录进行预览、上传等。
+    <b>在开发者工具中进行打包上传时须将ext.json中`extEnable`置为false（暂未找到工程化解决办法）</b>
 
     1.npm install
 
