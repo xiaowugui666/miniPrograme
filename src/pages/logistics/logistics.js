@@ -5,14 +5,18 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-			list:[],
-			image: 'https://image.51zan.com/'
+			list:{},
+			image: 'https://image.51zan.com/',
+			skinStyle: ''
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		var that=this;
 		var id=options.id;
 		wx.request({
