@@ -1,4 +1,3 @@
-const gulp = require('gulp');
 const less = require('gulp-less');
 const cssnano = require('gulp-cssnano');
 const rename = require('gulp-rename');
@@ -6,31 +5,37 @@ const clean = require('gulp-clean');
 const pump = require('pump');
 const preprocess = require('gulp-preprocess');
 
-gulp.task('less', function () {
-    gulp.src([ 'src/pages/**/**.less'], {base: 'src'})
+const gulp = require('gulp');
+const { series, parallel, watch } = gulp;
+console.log(series, parallel)
+
+function lessPages() {
+    return gulp.src([ 'src/pages/**/**.less'], {base: 'src'})
         .pipe(less())
         .pipe(cssnano({autoprefixer: false}))
         .pipe(rename(function(path){
             path.extname = '.wxss';
         }))
         .pipe(gulp.dest('dist'))
-});
-gulp.task('less-app', function () {
-    gulp.src([ 'src/app.less'], {base: 'src'})
+};
+
+function lessApp() {
+    return gulp.src([ 'src/app.less'], {base: 'src'})
         .pipe(less())
         .pipe(cssnano())
         .pipe(rename(function(path){
             path.extname = '.wxss';
         }))
         .pipe(gulp.dest('dist'))
-});
-gulp.task('pages', function() {
+};
+
+function pages() {
     return gulp.src([
         'src/app.js',
         'src/app.json',
         'src/ext.json',
         'src/project.config.json',
-        'src/README.md',
+        // 'src/README.md',
         'src/pages/**/**.js',
         'src/pages/**/**.wxml',
         'src/pages/**/**.json',
@@ -38,19 +43,27 @@ gulp.task('pages', function() {
         'src/imgs/**',
         'src/utils/**',
         ], {base: 'src'}).pipe(gulp.dest('dist'))
-})
-gulp.task('auto', function () {
-    gulp.watch(['src/app.wxss', 'src/pages/**/**.less'], ['less']);
-    gulp.watch(['src/imgs/*', 'src/pages/**/**/*', 'src/utils/**', 'src/template/**.wxml', 'src/*'], ['pages']);
-})
-gulp.task('clean', function(cb) {
+}
+
+function auto() {
+    gulp.watch(['src/app.wxss', 'src/pages/**/**.less'], lessApp);
+    gulp.watch(['src/imgs/*', 'src/pages/**/**/*', 'src/utils/**', 'src/template/**.wxml', 'src/*'], lessPages);
+}
+
+function cleanDist(cb) {
     pump([
         gulp.src('./dist'),
         clean()
     ], cb)
-})
+}
 
-gulp.task('environment',function() {
+function depleyPages(cb) {
+    setTimeout(function(){
+        cb()
+    }, 500);
+}
+
+function environment() {
     return gulp.src('src/config/environment.js')
     .pipe(preprocess({
         context: {
@@ -58,10 +71,19 @@ gulp.task('environment',function() {
           },
     }))
     .pipe(gulp.dest('dist/config'));
-})
+}
 
 // 使用 gulp.task('default') 定义默认任务
 // 在命令行使用 gulp 启动 less 任务和 auto 任务
-gulp.task('default', ['clean'], function() {
-    gulp.start('environment', 'less', 'less-app', 'pages', 'auto')
-})
+// gulp.task('default', ['clean'], function() {
+//     gulp.start('environment', 'less', 'less-app', 'pages', 'auto')
+// })
+
+exports.default = series(
+    cleanDist,
+    environment,
+    parallel(lessPages, lessApp),
+    depleyPages,
+    pages,
+    auto
+)
