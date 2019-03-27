@@ -28,7 +28,6 @@ gulp.task('pages', function() {
     return gulp.src([
         'src/app.js',
         'src/app.json',
-        'src/ext.json',
         'src/project.config.json',
         'src/README.md',
         'src/pages/**/**.js',
@@ -59,9 +58,19 @@ gulp.task('environment',function() {
     }))
     .pipe(gulp.dest('dist/config'));
 })
-
+gulp.task('ext', function() {
+    let PATH = 'src/ext.false.json'
+    if (process.env.NODE_ENV === 'development') {
+        PATH = 'src/ext.true.json'
+    }
+    return gulp.src(PATH, {base: 'src'})
+        .pipe(rename(function(path) {
+            path.basename = 'ext'
+        }))
+        .pipe(gulp.dest('dist'))
+})
 // 使用 gulp.task('default') 定义默认任务
 // 在命令行使用 gulp 启动 less 任务和 auto 任务
 gulp.task('default', ['clean'], function() {
-    gulp.start('environment', 'less', 'less-app', 'pages', 'auto')
+    gulp.start('environment', 'ext', 'less', 'less-app', 'pages', 'auto')
 })
