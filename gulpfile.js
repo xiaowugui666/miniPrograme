@@ -51,7 +51,7 @@ function auto() {
 
 function cleanDist(cb) {
     pump([
-        gulp.src('./dist'),
+        gulp.src('./dist',{allowEmpty: true}),
         clean()
     ], cb)
 }
