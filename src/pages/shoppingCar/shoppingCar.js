@@ -579,6 +579,9 @@ Page({
 		})
 	},
 	onShow: function (options) {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		let that = this;
 		var goodlist = wx.getStorageSync('good')
 		if (that.data.inAndroidGetPhoneMask) {return}
@@ -588,7 +591,8 @@ Page({
 			})
 		}
 		this.setData({
-			selectAll: false
+			selectAll: false,
+			totalPrice: 0.00
 		})
 		if (app.globalData.userId) {
 			wx.showLoading({
@@ -598,8 +602,6 @@ Page({
 				page: 0,
 				userId: true,
 				locallist: [],
-				selectAll: false,
-				totalPrice: 0.00
 			})
 			//获取用户购物车列表
 			wx.request({

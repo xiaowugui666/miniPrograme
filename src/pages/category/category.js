@@ -150,6 +150,9 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onShow: function () {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		if (this.data.select !== app.globalData.classIdx) {
 			this.onLoad()
 		}
