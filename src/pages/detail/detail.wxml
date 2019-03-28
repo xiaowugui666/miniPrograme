@@ -9,7 +9,7 @@
 					duration='{{500}}'
 					bindchange='changeCurrent'
 					current='{{current}}'
-					indicator-dots='{{skinStyle === "blue" ? true : false}}'
+					indicator-dots='{{skinStyle === "blue" && imgs.length > 1 ? true : false}}'
 					indicator-color='#E6E9EB'
 					indicator-active-color='#5D92C0'
 					circular='{{true}}'>

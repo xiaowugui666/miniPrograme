@@ -45,8 +45,8 @@ function pages() {
 }
 
 function auto() {
-    gulp.watch(['src/app.wxss', 'src/pages/**/**.less'], lessApp);
-    gulp.watch(['src/imgs/*', 'src/pages/**/**/*', 'src/utils/**', 'src/template/**.wxml', 'src/*'], lessPages);
+    gulp.watch(['src/app.wxss', 'src/pages/**/**.less'], lessPages);
+    gulp.watch(['src/imgs/*', 'src/pages/**/**/*', 'src/utils/**', 'src/template/**.wxml', 'src/*'], pages);
 }
 
 function cleanDist(cb) {

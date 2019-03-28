@@ -55,7 +55,7 @@ Page({
                 })
                 goodListIdsData = goodListIdsData.concat(postDataList[index].data)
             } else if (element.template === 'category') {
-				let cateNum = Math.floor(element.data.length / 5), remain = element.data.length % 5, cateArr=[]
+				let cateNum = Math.ceil(element.data.length / 5), remain = element.data.length % 5, cateArr=[]
 				for(let i = 0; i < cateNum; i++){
 					cateArr.push(1)
 				}
@@ -236,34 +236,7 @@ Page({
 			}
 		});
 		app.getAppSkinStyle().then((data) => {
-			const { type } = data
-			app.globalData.skinStyle = type
-			this.setData({
-				skinStyle: type
-			})
-			if (type === 'blue') {
-				blueTabBarItem.forEach((element, index) => {
-					wx.setTabBarItem({
-						index: index,
-						...element
-					})
-					wx.setTabBarStyle({
-						color: '#9EA8B1',
-						selectedColor: '#253A4E'
-					})
-				})
-			} else {
-				defaultTabBarItem.forEach((element, index) => {
-					wx.setTabBarItem({
-						index: index,
-						...element
-					})
-					wx.setTabBarStyle({
-						color: '#999999',
-						selectedColor: '#fb5d5d'
-					})
-				})
-			}
+			this.setTabBar(data)
 			this.getInitElement().then((data) => {
 				if (data === null ) {
 					this.getData()
@@ -274,6 +247,36 @@ Page({
 				app.login()
 			})
 		})
+	},
+	setTabBar: function (data) {
+		const { type } = data
+		app.globalData.skinStyle = type
+		this.setData({
+			skinStyle: type
+		})
+		if (type === 'blue') {
+			blueTabBarItem.forEach((element, index) => {
+				wx.setTabBarItem({
+					index: index,
+					...element
+				})
+				wx.setTabBarStyle({
+					color: '#9EA8B1',
+					selectedColor: '#253A4E'
+				})
+			})
+		} else {
+			defaultTabBarItem.forEach((element, index) => {
+				wx.setTabBarItem({
+					index: index,
+					...element
+				})
+				wx.setTabBarStyle({
+					color: '#999999',
+					selectedColor: '#fb5d5d'
+				})
+			})
+		}
 	},
 	getData () {
 		let that = this;
@@ -524,27 +527,29 @@ Page({
 	},
 	//下拉刷新
 	onPullDownRefresh: function () {
-		this.getInitElement().then((data) => {
-			if (data === null ) {
-				this.setData({
-					tabSwiperArr: [],
-					good: [],
-					currentPage: 0,
-					currentGroupPage: 0,
-					currentRecommendPage: 0,
-					currentSpecialPage: 0,
-					currentTab: 0
-				})
-		
-				this.getData()
-			} else {
-				let goodListIdsData = this.getGoodListIdsData(data)
-				this.getInitData(goodListIdsData)
-			}
-		}).then(() => {
-			wx.stopPullDownRefresh()
+		app.getAppSkinStyle().then((data) => {
+			this.setTabBar(data)
+			this.getInitElement().then((data) => {
+				if (data === null ) {
+					this.setData({
+						tabSwiperArr: [],
+						good: [],
+						currentPage: 0,
+						currentGroupPage: 0,
+						currentRecommendPage: 0,
+						currentSpecialPage: 0,
+						currentTab: 0
+					})
+			
+					this.getData()
+				} else {
+					let goodListIdsData = this.getGoodListIdsData(data)
+					this.getInitData(goodListIdsData)
+				}
+			}).then(() => {
+				wx.stopPullDownRefresh()
+			})
 		})
-		
 	},
 	phoneCall: function (e) {
 		const phoneNumber = e.currentTarget.dataset.phonenumber || app.globalData.mobile
