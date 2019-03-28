@@ -49,8 +49,8 @@ wxParse:富文本编译器转换成小程序语言
     2.npm run dev // 开发环境
       npm run test // 测试环境
       npm run build // 正式环境
-      
-    工作区为`src`目录，工作时命令行输入`npm run dev`进行编译，输出目录`dist`为目标目录。
+
+  工作区为`src`目录，工作时命令行输入`npm run dev`进行编译，输出目录`dist`为目标目录。
     用微信开发者工具打开`dist`目录进行预览、上传等。
     <b>上传时ext.json中`extEnable`的值需为false，目前默认为`npm run dev`时打包为`true`，其它打包为`false`</b>
 
