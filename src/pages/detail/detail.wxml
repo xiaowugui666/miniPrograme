@@ -26,7 +26,7 @@
     </view>
     <view class="goods_info {{goods.activity_type == 1 && skinStyle === 'default' ? 'group_info' : 'normal_info'}}">
 		<view class='price_info'>
-			<view class="price {{goods.activity_type == 1 && skinStyle === 'default' ? 'group_price' : ''}}"><text>￥</text>{{filters.ptf(goods.activity_type == 1 && skinStyle === 'default' ? groupInfo.price_low : goods.price)}}</view>
+			<view class="price {{goods.activity_type == 1 && skinStyle === 'default' ? 'group_price' : ''}}"><text>￥</text>{{filters.ptf(goods.activity_type == 1 ? groupInfo.price_low : goods.price)}}</view>
 			<view class='info {{isDistributor ? "distribution_info" : ""}}'>
 				<view class='info_number' wx:if="{{goods.activity_type == 1 && skinStyle === 'default' }}">{{groupInfo.min_join_count}}人拼团</view>
 				<view class='info_origin_price'>￥{{filters.ptf(goods.activity_type == 1 ? groupInfo.origin_price_low : (goods.display_price ? goods.display_price : goods.price_high))}}</view>

@@ -7,7 +7,8 @@
 				<view class="userinfo">
 					<block>
 						<button open-type="getUserInfo" bindgetuserinfo="getInfo" hover-class='none'>
-							<image class="userinfo-avatar"  src='/imgs/me_head0.png' />
+							<image class="userinfo-avatar" wx:if="{{skinStyle === 'default'}}" src='/imgs/me_head0.png' />
+							<image class="userinfo-avatar" wx:else src="{{filters.imgUrl('me_head.png')}}" />
 							<view class="userinfo-right">
 								<label>点击头像获取信息</label> 
 							</view>
