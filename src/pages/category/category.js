@@ -205,6 +205,12 @@ Page({
 			}
 		})
 	},
+	onHide: function () {
+		this.setData({
+			drawerShow: false,
+			animationShow: false
+		})
+	},
 	getData (params) {
 		const that = this, currentPage = this.data.page,orderBy = this.data.order_by, categoryId = this.data.categoryId;
 		wx.showLoading({

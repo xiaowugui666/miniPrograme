@@ -69,6 +69,39 @@ Page({
 			skinStyle: app.globalData.skinStyle
 		})
 		let that = this;
+		// 如果为分享的页面
+		if (app.globalData.options.path == 'pages/groupPurchase/groupShareDetails/groupShareDetails') {
+			//获取店家描述数据
+			wx.request({
+				url: app.globalData.http + '/mpa/index',
+				method: 'GET',
+				header: {
+					'Api-Ext': app.globalData.apiExt
+				},
+				success(res) {
+					app.globalData.mobile = res.data.customer_service_mobile
+					app.globalData.logo_url = res.data.logo_url
+					app.globalData.name = res.data.name
+					that.setData({
+						description: res.data,
+						isSharePage: true
+					})
+					app.globalData.keyword = res.data.search_default_text
+				},
+				fail: function (res) {
+					console.log(res)
+				}
+			})
+			app.getAppSkinStyle().then(data => {
+				app.setTabBar(data, that)
+				this.getPageAllData(options)
+			})
+		} else {
+			this.getPageAllData(options)
+		}		
+	},
+	getPageAllData: function (options) {
+		let that = this
 		app.login().then(() => {
 			this.setData({
 				user_info: app.globalData.user_info,
@@ -77,31 +110,6 @@ Page({
 				goodsid: options.goodsid,
 				groupid: options.groupid
 			})
-	
-			// 如果为分享的页面
-			if (app.globalData.options.path == 'pages/groupPurchase/groupShareDetails/groupShareDetails' && (app.globalData.options.scene == 1007 || app.globalData.options.scene == 1008 || app.globalData.options.scene == 1044)) {
-				//获取店家描述数据
-				wx.request({
-					url: app.globalData.http + '/mpa/index',
-					method: 'GET',
-					header: {
-						'Api-Ext': app.globalData.apiExt
-					},
-					success(res) {
-						app.globalData.mobile = res.data.customer_service_mobile
-						app.globalData.logo_url = res.data.logo_url
-						app.globalData.name = res.data.name
-						that.setData({
-							description: res.data,
-							isSharePage: true
-						})
-						app.globalData.keyword = res.data.search_default_text
-					},
-					fail: function (res) {
-						console.log(res)
-					}
-				})
-			}
 	
 			//获取商品规格
 			wx.request({
@@ -182,7 +190,7 @@ Page({
 						userId: res.data.user_id ? true : false
 					})
 					// 获取拼团详情
-					this.getGroupData(options.groupid) // options.groupid
+					this.getGroupData(options.groupid)
 				}).then(() => {
 					this.setData({showPage:true})
 				}).catch(err => {
@@ -193,12 +201,11 @@ Page({
 				})
 			} else {
 				// 获取拼团详情
-				this.getGroupData(options.groupid) // options.groupid
+				this.getGroupData(options.groupid)
 	
 				this.setData({showPage:true})
 			}  
 		})
-		
 	},
 	// 获取拼团商品数据
 	getGroupData (groupid) {

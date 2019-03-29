@@ -1,5 +1,3 @@
-import blueTabBarItem from '../../utils/blueTabBarItem'
-import defaultTabBarItem from '../../utils/defaultTabBarItem'
 const app=getApp();
 Page({
 	data: {
@@ -236,7 +234,7 @@ Page({
 			}
 		});
 		app.getAppSkinStyle().then((data) => {
-			this.setTabBar(data)
+			app.setTabBar(data, this)
 			this.getInitElement().then((data) => {
 				if (data === null ) {
 					this.getData()
@@ -247,36 +245,6 @@ Page({
 				app.login()
 			})
 		})
-	},
-	setTabBar: function (data) {
-		const { type } = data
-		app.globalData.skinStyle = type
-		this.setData({
-			skinStyle: type
-		})
-		if (type === 'blue') {
-			blueTabBarItem.forEach((element, index) => {
-				wx.setTabBarItem({
-					index: index,
-					...element
-				})
-				wx.setTabBarStyle({
-					color: '#9EA8B1',
-					selectedColor: '#253A4E'
-				})
-			})
-		} else {
-			defaultTabBarItem.forEach((element, index) => {
-				wx.setTabBarItem({
-					index: index,
-					...element
-				})
-				wx.setTabBarStyle({
-					color: '#999999',
-					selectedColor: '#fb5d5d'
-				})
-			})
-		}
 	},
 	getData () {
 		let that = this;
@@ -528,7 +496,7 @@ Page({
 	//下拉刷新
 	onPullDownRefresh: function () {
 		app.getAppSkinStyle().then((data) => {
-			this.setTabBar(data)
+			app.setTabBar(data, this)
 			this.getInitElement().then((data) => {
 				if (data === null ) {
 					this.setData({

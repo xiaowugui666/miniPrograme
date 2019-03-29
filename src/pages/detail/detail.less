@@ -134,46 +134,6 @@ image{
 						background: #FFFFFF;
 						color: #5D92C0;
 						overflow: visible;
-						.triangle_top {
-							width: 0; 
-							height: 0; 
-							border-top: 20rpx solid #578BBA; 
-							border-right: 20rpx solid transparent;
-							position: absolute;
-							top: -2rpx;
-							left: -2rpx;
-
-						}
-						.triangle_top::before {
-							content: ' ';
-							display: block;
-							position: absolute;
-							top:-20rpx;
-							left: -2rpx;
-							border-top: 20rpx solid #fff; 
-							border-right: 20rpx solid transparent;
-							z-index: 200;
-						}
-						.triangle_bottom {
-							width: 0; 
-							height: 0; 
-							border-bottom: 20rpx solid #578BBA;
-							border-left: 20rpx solid transparent;
-							position: absolute;
-							right: -2rpx;
-							bottom: -2rpx;
-							z-index: 100;
-						}
-						.triangle_bottom::before {
-							content: ' ';
-							display: block;
-							position: absolute;
-							right:-2rpx;
-							bottom: -20rpx;
-							border-bottom: 20rpx solid #fff; 
-							border-left: 20rpx solid transparent;
-							z-index: 200;
-						}
 					}
 				}
 			}

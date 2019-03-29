@@ -104,10 +104,7 @@
 								<view class="triangle_top"></view>
 								<view class="triangle_bottom"></view>
 							</button>
-							<button class='prompt_button' wx:else data-flag='4' data-id='{{item.id}}' form-type='submit'>{{skinStyle === 'default' ? '来参团' : '立即参团'}}
-								<view class="triangle_top"></view>
-								<view class="triangle_bottom"></view>
-							</button>
+							<button class='prompt_button' wx:else data-flag='4' data-id='{{item.id}}' form-type='submit'>{{skinStyle === 'default' ? '来参团' : '立即参团'}}</button>
 						</form>
 					</view>
 				</view>

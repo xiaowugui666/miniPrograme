@@ -96,7 +96,6 @@
                                             <text class='display_price'><text>￥</text>{{filters.ptf(ite.price_low)}}</text>
                                             <text class="original_price">￥{{filters.ptf(ite.origin_price_low)}}</text>
                                         </view>
-                                        <view class='buy_button'>马上抢</view>
                                     </view>
                                 </view>
                             </block>

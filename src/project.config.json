@@ -37,9 +37,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "搜索结果页",
-					"pathName": "pages/result/result",
-					"query": "keyword=s",
+					"name": "拼团详情页",
+					"pathName": "pages/orderDetail/orderDetail",
+					"query": "id=403",
 					"scene": 1007
 				}
 			]

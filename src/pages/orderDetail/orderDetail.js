@@ -50,13 +50,25 @@ Page({
     }, 1000)
   },
   onLoad: function (options) {
+		const ENTER_APP_PATH = app.globalData.options.path
     var that = this;
     var id = options.id;
     that.setData({
       id: id,
       skinStyle: app.globalData.skinStyle
-    })
-    app.login().then(() => {
+		})
+		if (ENTER_APP_PATH === 'pages/orderDetail/orderDetail') {
+			app.getAppSkinStyle().then(data => {
+				app.setTabBar(data, that)
+				this.getPageAllData(options)
+			})
+		} else {
+			this.getPageAllData(options)
+		}
+	},
+	getPageAllData: function(options) {
+		let that = this, id = options.id;
+		app.login().then(() => {
       wx.request({
         url: app.globalData.http + '/mpa/order/' + id,
         method: 'GET',
@@ -92,7 +104,7 @@ Page({
         }
       })
     })
-  },
+	},
   /*关闭联系商家*/
   hiddenModal: function (e) {
     const that = this;

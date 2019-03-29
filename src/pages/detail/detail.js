@@ -892,9 +892,6 @@ Page({
 		}
 	},
 	onHide: function () {
-		this.setData({
-			groupMembers: []
-		})
 	},
 	onUnload: function () {
 		this.setData({
@@ -909,7 +906,7 @@ Page({
 		wx.showLoading({
 			title: '加载中',
 		})
-
+		const ENTER_APP_PATH = app.globalData.options.path
 		if (options.scene) {
 			var scene = decodeURIComponent(options.scene)
 			options.id = scene.split(',')[1]
@@ -917,6 +914,18 @@ Page({
 		} else if (options.scene_id) {
 			app.globalData.sceneID = options.scene_id
 		}
+		if (ENTER_APP_PATH === 'pages/detail/detail') {
+			app.getAppSkinStyle().then(data => {
+				app.setTabBar(data, that)
+				this.getDetailAllData(options)
+			})
+		} else {
+			this.getDetailAllData(options)
+		}
+		
+	},
+	getDetailAllData: function (options) {
+		let that = this
 		app.withDistributVerifi().then(() => {
 			this.setData({
 				userId: app.globalData.userId

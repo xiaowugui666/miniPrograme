@@ -1,4 +1,6 @@
 import {environment} from './config/environment.js'
+import blueTabBarItem from './utils/blueTabBarItem'
+import defaultTabBarItem from './utils/defaultTabBarItem'
 
 App({
 	onShow(options) {
@@ -7,6 +9,36 @@ App({
 	},
 	onLaunch: function () {
 		this.globalData.apiExt = wx.getExtConfigSync().data
+	},
+	setTabBar: function (data, _this) {
+		const { type } = data
+		this.globalData.skinStyle = type
+		_this.setData({
+			skinStyle: type
+		})
+		if (type === 'blue') {
+			blueTabBarItem.forEach((element, index) => {
+				wx.setTabBarItem({
+					index: index,
+					...element
+				})
+				wx.setTabBarStyle({
+					color: '#9EA8B1',
+					selectedColor: '#253A4E'
+				})
+			})
+		} else {
+			defaultTabBarItem.forEach((element, index) => {
+				wx.setTabBarItem({
+					index: index,
+					...element
+				})
+				wx.setTabBarStyle({
+					color: '#999999',
+					selectedColor: '#fb5d5d'
+				})
+			})
+		}
 	},
 	getAppSkinStyle: function () {
 		let that = this
