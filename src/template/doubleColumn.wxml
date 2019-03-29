@@ -1,7 +1,7 @@
 <wxs module="filters" src="../utils/method.wxs"></wxs>
 
 <template name="doubleColumn">
-	<block wx:if="{{data[0].currentShowData.length > 0}}">
+	<block wx:if="{{data[0].currentShowData.length > 0 || data[0].isCallBackData }}">
 		<view class="marketing_tabs single_market">
 			<view class="marketing_tab active_tab">{{data[0].label}}</view>
 		</view>

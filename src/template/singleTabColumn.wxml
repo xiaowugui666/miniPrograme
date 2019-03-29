@@ -1,7 +1,7 @@
 <wxs module="filters" src="../utils/method.wxs"></wxs>
 
 <template name="singleTabColumn">
-	<block wx:if="{{data.length > 0 }}">
+	<block wx:if="{{data.length > 0  || isCallBackData }}">
 		<view class="marketing_tabs {{data.length == 2 ? 'double_market' : (data.length == 1 ? 'single_market' : '')}}">
 			<view wx:for="{{data}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{item.type}}' bindtap='onChangeTabFitment'>{{item.label}}</view>
 		</view>

@@ -40,7 +40,8 @@ Page({
 				|| element.template === 'recommend'
 				|| element.template === 'special'
 				) {
-                element.currentTab = 0
+				element.currentTab = 0
+				element.isCallBackData = false
                 element.data.forEach((item, ind) => {
                     let currentShowData = [], currentShowIndex = 10
                     postDataList[index].data[ind].data = item.data.slice(0, currentShowIndex)
@@ -148,7 +149,8 @@ Page({
 					let goodList = res.data.data, pageShowingArr = that.data.pageData
                     goodList.forEach(currentItem => {
 						let typeArr = currentItem.type.split('_'), i = parseFloat(typeArr[0]), j = parseFloat(typeArr[1])
-                        pageShowingArr[i].data[j].currentShowData = pageShowingArr[i].data[j].currentShowData.concat(currentItem.data)
+						pageShowingArr[i].data[j].currentShowData = pageShowingArr[i].data[j].currentShowData.concat(currentItem.data)
+						pageShowingArr[i].data[j].isCallBackData = true
 					})
                     that.setData({
                         pageData: pageShowingArr
