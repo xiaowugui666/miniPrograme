@@ -70,7 +70,7 @@ Page({
 		})
 		let that = this;
 		// 如果为分享的页面
-		if (app.globalData.options.path == 'pages/groupPurchase/groupShareDetails/groupShareDetails') {
+		if (app.globalData.options.path == 'pages/groupPurchase/groupShareDetails/groupShareDetails' && (app.globalData.options.scene == 1007 || app.globalData.options.scene == 1008 || app.globalData.options.scene == 1044)) {
 			//获取店家描述数据
 			wx.request({
 				url: app.globalData.http + '/mpa/index',

@@ -380,7 +380,7 @@ grouponDetail (e) {
   },
 
 
-  /*下拉加载*/
+  /*上拉加载*/
   getMore:function(){
     var that=this;
     var indexs=this.data.index;

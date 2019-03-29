@@ -63,6 +63,7 @@ Page({
 				element.current = 0
 			} else if (element.template === 'banner') {
 				element.windowHeight = windowHeight
+				element.currentBannerIndex = 0
 				element.data.forEach(item => {
 					item.windowHeight = windowHeight
 				})

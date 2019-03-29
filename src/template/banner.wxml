@@ -7,6 +7,7 @@
 			style="{{height === 0 ? 'height: ' + windowHeight + 'rpx' : (height ? 'height: 352rpx' : 'height: ' + height*2 + 'rpx')}}" 
 			indicator-color='#E6E9EB'
 			indicator-active-color='#5D92C0'
+			currrent="{{currentBannerIndex}}"
 			circular='{{true}}'>
 			<block wx:for='{{data}}' wx:key="{{index}}">
 				<swiper-item>
