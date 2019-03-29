@@ -91,7 +91,7 @@
 			<view class='my_other'>
 				<navigator url='/pages/address/address' class='my_other_nav' hover-class="none">
 					<view class='my_other_text'>
-						<image wx:if="{{skinStyle === 'blue'}}" src="{{filters.imgUrl('Group_3_Copy1.png')}}"></image>
+						<image wx:if="{{skinStyle === 'blue'}}" class="address_icon" src="{{filters.imgUrl('Group_3_Copy1.png')}}"></image>
 						<image wx:else src='/imgs/icon_address.png'></image>
 						<view>我的地址</view>
 					</view>

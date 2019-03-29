@@ -151,7 +151,8 @@ Page({
 	 */
 	onShow: function () {
 		this.setData({
-			skinStyle: app.globalData.skinStyle
+			skinStyle: app.globalData.skinStyle,
+			keyword: app.globalData.keyword
 		})
 		if (this.data.select !== app.globalData.classIdx) {
 			this.onLoad()
@@ -167,7 +168,7 @@ Page({
 		})
 		that.setData({
 			select: app.globalData.classIdx,
-			keyword: app.globalData.keyword,
+			
 			leftTapArray:[]
 		})
 		//请求一级分类，设置data数据

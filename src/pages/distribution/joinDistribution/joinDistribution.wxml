@@ -1,16 +1,18 @@
-<view class="content">
-    <view class="content_title">分销员招募计划</view>
-    <view class="content_p">{{distributionPlan}}</view>
-</view>
-<view class="bottom">
-    <button wx:if="{{!hasUserInfo}}" class="button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">申请加入</button>
-    <button wx:elif="{{!userId}}" class="button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">申请加入</button>
-    <view wx:else class="button" bindtap="handleClick">申请加入</view>
-</view>
-<view class="mask" wx:if="{{modalVisible}}" catchtouchmove="handleTouchmove" catchtap="handleCloseModal"></view>
-<view class="modal_content" wx:if="{{modalVisible}}" >
-    <image src="/imgs/icon_close1.png" class="close" catchtap="handleCloseModal" />
-    <image src="/imgs/Group_5_Copy.png" class="modal_img" />
-    <view class="tips">亲爱的，你还不符合申请资格哦~</view>
-    <view>({{tips}})</view>
+<view class="{{skinStyle}}">
+    <view class="content">
+        <view class="content_title">分销员招募计划</view>
+        <view class="content_p">{{distributionPlan}}</view>
+    </view>
+    <view class="bottom">
+        <button wx:if="{{!hasUserInfo}}" class="button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">申请加入</button>
+        <button wx:elif="{{!userId}}" class="button" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">申请加入</button>
+        <view wx:else class="button" bindtap="handleClick">申请加入</view>
+    </view>
+    <view class="mask" wx:if="{{modalVisible}}" catchtouchmove="handleTouchmove" catchtap="handleCloseModal"></view>
+    <view class="modal_content" wx:if="{{modalVisible}}" >
+        <image src="/imgs/icon_close1.png" class="close" catchtap="handleCloseModal" />
+        <image src="/imgs/Group_5_Copy.png" class="modal_img" />
+        <view class="tips">亲爱的，你还不符合申请资格哦~</view>
+        <view>({{tips}})</view>
+    </view>
 </view>

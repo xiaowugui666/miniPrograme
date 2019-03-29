@@ -196,6 +196,7 @@ Page({
 	},
 	// 页面加载
 	onLoad: function (options) {
+		app.globalData.options = {}
 		const that = this
 		if (options.scene) {
 			var sceneId = decodeURIComponent(options.scene).split(',')[0]

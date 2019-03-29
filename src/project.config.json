@@ -38,8 +38,8 @@
 				{
 					"id": 0,
 					"name": "拼团详情页",
-					"pathName": "pages/orderDetail/orderDetail",
-					"query": "id=403",
+					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
+					"query": "goodsid=67&groupid=122",
 					"scene": 1007
 				}
 			]

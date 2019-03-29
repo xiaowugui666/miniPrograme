@@ -10,7 +10,8 @@ Page({
 		userId: false,
 		hasUserInfo: false,
 		tips: '',
-		distributionPlan: ''
+		distributionPlan: '',
+		skinStyle: ''
 	},
 	handleClick: function () {
 		this.appliForMember()
@@ -28,7 +29,8 @@ Page({
 	onLoad: function (options) {
 		var that=this;
 		that.setData({
-			distributionPlan: app.globalData.distribution.recruitment_plan
+			distributionPlan: app.globalData.distribution.recruitment_plan,
+			skinStyle: app.globalData.skinStyle
 		})
 		var uerinfo = wx.getStorageSync("huzan_avatarUrl")
 		if (uerinfo) {
