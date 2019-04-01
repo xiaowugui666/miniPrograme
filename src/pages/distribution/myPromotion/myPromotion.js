@@ -9,7 +9,8 @@ Page({
 	data: {
 		dataList: [],
 		image: 'https://image.51zan.com/',
-		page: 0
+		page: 0,
+		skinStyle: ''
 	},
 	handlePromotion: function (e) {
 		wx.navigateTo({
@@ -20,6 +21,9 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		this.getData()
 	},
 	getData: function (params) {

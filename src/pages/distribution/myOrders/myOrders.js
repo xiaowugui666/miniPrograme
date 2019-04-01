@@ -12,7 +12,8 @@ Page({
 		image: 'https://image.51zan.com/',
 		pendingCount: 0,
 		settledCount: 0,
-		page: 0
+		page: 0,
+		skinStyle: ''
 	},
 	handleTap: function (e) {
 		this.setData({
@@ -24,6 +25,9 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.setData({
+			skinStyle: app.globalData.skinStyle
+		})
 		this.getData()
 	},
 	getData: function (params) {

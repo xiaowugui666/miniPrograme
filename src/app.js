@@ -360,6 +360,7 @@ App({
 										key: 'huzan_avatarUrl',
 										data: userInfo,
 									})
+									resolve(userInfo)
 									wx.request({
 										url: _this.globalData.http + '/mpa/wechat/' + res.data.id,
 										method: "PUT",

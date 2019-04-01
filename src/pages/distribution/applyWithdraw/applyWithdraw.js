@@ -8,7 +8,8 @@ Page({
 	data: {
 		amount: 0,
 		inputValue: '',
-		disabled: true
+		disabled: true,
+		skinStyle: ''
 	},
 	handleInput: function (e) {
 		let value = e.detail.value, regExp = /^[0-9]+(.[0-9]{0,2})?$/, buttonDisable = true, amount = this.data.amount
@@ -80,7 +81,8 @@ Page({
 	 */
 	onLoad: function (options) {
 		this.setData({
-			amount: app.globalData.distributorInfo.commission_amount
+			amount: app.globalData.distributorInfo.commission_amount,
+			skinStyle: app.globalData.skinStyle
 		})
 	},
 

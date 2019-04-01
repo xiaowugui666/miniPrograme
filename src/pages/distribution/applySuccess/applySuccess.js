@@ -1,11 +1,13 @@
 // pages/distribution/applySuccess/applySuccess.js
+const app = getApp()
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		amount: 0
+		amount: 0,
+		skinStyle: ''
 	},
 	handleClick: function () {
 		wx.redirectTo({
@@ -17,7 +19,8 @@ Page({
 	 */
 	onLoad: function (options) {
 		this.setData({
-			amount: options.value
+			amount: options.value,
+			skinStyle: app.globalData.skinStyle
 		})
 	},
 

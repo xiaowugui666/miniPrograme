@@ -1,18 +1,68 @@
 page {
     background: #F7F9FB;
 }
-.content {
-    padding: 0 24rpx;
+.blue {
+    .content {
+        overflow: hidden;
+        .withdraw_box {
+            margin-top: 16rpx;
+            .draw_header {
+                padding: 32rpx;
+            }
+            .draw_operation {
+                padding: 32rpx 32rpx 48rpx;
+                .applic_draw {
+                    width: 686rpx;
+                    background: #5D92C0;
+                }
+            }
+        }
+        .withdraw_detail {
+            margin-top: 16rpx;
+            padding: 32rpx;
+        }
+    }
+    .orange {
+        color: #5D92C0;
+    }
+    .tips {
+        color: #FFAA16;
+    }
+}
+.default {
+    .content {
+        padding: 0 24rpx;
+        overflow: hidden;
+        .withdraw_box {
+            margin-top: 24rpx;
+            border-radius: 8rpx;
+            box-shadow: 0px 6px 16px 0px rgba(13,37,59,0.04);
+            .draw_header {
+                padding: 24rpx;
+            }
+            .draw_operation {
+                padding: 32rpx 24rpx 48rpx;
+                .applic_draw {
+                    width: 654rpx;
+                    background:linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
+                    border-radius:8rpx;
+                }
+            }
+        }
+        .withdraw_detail {
+            margin-top: 24rpx;
+            border-radius: 8rpx;
+            padding: 24rpx;
+            box-shadow:0px 6px 16px 0px rgba(13,37,59,0.04);
+        }
+    }
+    .orange,.tips {
+        color: #F35D51;
+    }
 }
 .withdraw_box {
     background: #FFFFFF;
-    margin-top: 24rpx;
-    border-radius: 8rpx;
-    box-shadow: 0px 6px 16px 0px rgba(13,37,59,0.04);
     overflow: hidden;
-}
-.orange {
-    color: #F35D51;
 }
 .disabled {
     color: rgba(255,255,255,0.49) !important;
@@ -23,11 +73,9 @@ page {
 .withdraw_box .draw_header {
     font-size: 32rpx;
     color: #253A4E;
-    padding: 24rpx;
     border-bottom: 2rpx solid #F3F4F5;
 }
 .draw_operation {
-    padding: 32rpx 24rpx 48rpx;
     font-size: 28rpx;
     color: #6E7C89;
     border-bottom: 2rpx solid #F3F4F5;
@@ -56,10 +104,7 @@ page {
     margin-top: 32rpx;
 }
 .draw_operation .applic_draw {
-    width: 654rpx;
     height: 80rpx;
-    background:linear-gradient(90deg,#FF9963 0%,#F77257 50%,#F35D51 100%);
-    border-radius:8rpx;
     text-align: center;
     line-height: 80rpx;
     color: #FFFFFF;
@@ -78,10 +123,6 @@ page {
     align-items: center;
     justify-content: space-between;
     background: #FFFFFF;
-    margin-top: 24rpx;
-    border-radius: 8rpx;
-    padding: 24rpx;
-    box-shadow:0px 6px 16px 0px rgba(13,37,59,0.04);
     font-size: 32rpx;
     color: #253A4E;
 }

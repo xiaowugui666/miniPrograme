@@ -1,30 +1,32 @@
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
-<view class="content">
-    <block wx:if="{{dataList.length > 0}}">
-        <view class="promotion_item" wx:for="{{dataList}}" wx:key="index">
-            <view class="pro_time">最近推广：{{item.promoted_at}}</view>
-            <view class="good_info">
-                <image src="{{image}}{{item.goods.cover_url}}?imageView2/0/w/200/h/200" />
-                <view class="info_detail">
-                    <view class="descri">
-                        <view class="title">{{item.goods.name}}</view>
-                    </view>
-                    <view class="price">
-                        <view>￥{{filters.ptf(item.goods.price)}}</view>
-                        <view>佣金：<text>￥{{filters.ptf(item.amount)}}</text></view>
+<view class="{{skinStyle}}">
+    <view class="content">
+        <block wx:if="{{dataList.length > 0}}">
+            <view class="promotion_item" wx:for="{{dataList}}" wx:key="index">
+                <view class="pro_time">最近推广：{{item.promoted_at}}</view>
+                <view class="good_info">
+                    <image src="{{image}}{{item.goods.cover_url}}?imageView2/0/w/200/h/200" />
+                    <view class="info_detail">
+                        <view class="descri">
+                            <view class="title">{{item.goods.name}}</view>
+                        </view>
+                        <view class="price">
+                            <view>￥{{filters.ptf(item.goods.price)}}</view>
+                            <view>佣金：<text>￥{{filters.ptf(item.amount)}}</text></view>
+                        </view>
                     </view>
                 </view>
+                <view class="pro_bottom">
+                    <view class="prom_data"><text>浏览量：{{item.pv}}</text><text>付款笔数：{{item.paid_count}}</text></view>
+                    <button class="pro_button" open-type='share' data-index="{{index}}">再次推广</button>
+                </view>
             </view>
-            <view class="pro_bottom">
-                <view class="prom_data"><text>浏览量：{{item.pv}}</text><text>付款笔数：{{item.paid_count}}</text></view>
-                <button class="pro_button" open-type='share' data-index="{{index}}">再次推广</button>
+        </block>
+        <block wx:else>
+            <view class='container'>
+                <image src='/imgs/no_data_1.png'></image>
+                <view class="empty_car">亲爱的，你暂时没有推广哦~</view>
             </view>
-        </view>
-    </block>
-    <block wx:else>
-        <view class='container'>
-            <image src='/imgs/no_data_1.png'></image>
-            <view class="empty_car">亲爱的，你暂时没有推广哦~</view>
-        </view>
-    </block>
+        </block>
+    </view>
 </view>

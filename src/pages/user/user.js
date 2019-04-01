@@ -101,6 +101,10 @@ Page({
 		app.publicAuth(e, this)
 	},
 	getInfo:function(e){
-		app.publicGetUserInfo(e, this)
+		app.publicGetUserInfo(e, this).then(userInfo => {
+			this.setData({
+				userInfo: userInfo
+			})
+		})
 	}
 })
