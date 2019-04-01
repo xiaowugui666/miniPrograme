@@ -37,9 +37,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "拼团详情页",
-					"pathName": "pages/groupPurchase/groupShareDetails/groupShareDetails",
-					"query": "goodsid=67&groupid=122",
+					"name": "商品详情页",
+					"pathName": "pages/detail/detail",
+					"query": "id=70&commissionUserId=60",
 					"scene": 1007
 				}
 			]
