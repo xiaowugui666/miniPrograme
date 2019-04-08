@@ -8,6 +8,7 @@
 		<view class="goods_recommend">
 			<view class="goods_item" wx:for="{{data[0].currentShowData}}" wx:key="index"  data-id="{{item.id}}" bindtap='bindDetail'>
 				<image src="{{item.cover_url}}?imageView2/0/w/360/h/360" />
+				<view class="coupon_mark">优惠券</view>
 				<view class="goods_info">
 					<view class="title">{{item.name}}</view>
 					<view class="info">

@@ -67,13 +67,27 @@
 			<view>快递：{{goods.is_free_express === 1 ? '包邮' : (goods.postage_temp_id === null ? filters.ptf(goods.free_express_price) : '动态运费' )}}</view>
 			<view>销量{{goods.sales_count}}件</view>
 		</view>
-    	<view class='detail_promise'  wx:if="{{goods.free_return==1||goods.quick_delivery==1||goods.genuine_article==1}}" >
+		<view class='detail_promise'  wx:if="{{goods.free_return==1||goods.quick_delivery==1||goods.genuine_article==1}}" >
 			<text>服务</text>
 			<text class="promises">
 				<text wx:if="{{goods.free_return==1}}">7天包退换</text>
 				<text wx:if="{{goods.quick_delivery==1}}"> · 24小时发货</text>
 				<text wx:if="{{goods.genuine_article==1}}"> · 100%正品</text>
 			</text>
+		</view>
+		<view class="coupons_box" bindtap="handleOpenCoupon">
+			<view>
+				<text>优惠</text>
+				<text class="coupons">
+					<text>满100减10</text>
+					<text>满200减25</text>
+					<text>100%正品</text>
+				</text>
+			</view>
+			<view class="coupon_right">
+				<text>领券</text>
+				<image src="/imgs/icon_arrow.png" />
+			</view>
 		</view>
 	</view>
 
@@ -232,8 +246,52 @@
 		</view> 
     	<view class='confirm' bindtap='closeModal'>确定</view>
 	</view>
-    <view class='description {{goods.activity_type == 1 ? "group_descrip" : "" }}'>
-			<view class="description_detail">商品详情</view>
-			<rich-text nodes="{{content}}"></rich-text>
-   	</view>   
+
+	<!-- 商品详情 -->
+	<view class='description {{goods.activity_type == 1 ? "group_descrip" : "" }}'>
+		<view class="description_detail">商品详情</view>
+		<rich-text nodes="{{content}}"></rich-text>
+	</view>
+
+	<!-- 优惠券modal -->
+	<view class="mask" hidden="{{!couponModalVisi}}" bindtap="handleCloseCoupon" catchtouchmove='preventDefault'></view>
+	<view class="coupons_modal {{couponModalVisi ? 'coupons_modal_show' : ''}}" hidden="{{!couponModalVisi}}" catchtouchmove='preventDefault'>
+		<view class="cou_modal_header">
+			<view>优惠</view>
+			<image src='/imgs/icon_close1.png'></image>
+		</view>
+		<view class="coupon_items">
+			<view class="coupon_item_box">
+				<view class="coupon_box_left">
+					<text class="top_radius"></text>
+					<text class="bottom_radius"></text>
+					<view class="coupon_info">
+						<view class="coup_info_left"><text>￥</text>20</view>
+						<view class="coup_info_right">
+							<text>双11优惠券</text>
+							<text>指定商品可用满128减10</text>
+						</view>
+					</view>
+					<view class="coup_date">2019.1.21 00:00-2019.3.23 23:59</view>
+				</view>
+				<view class="coupon_box_right">立即领取</view>
+			</view>
+			<view class="coupon_item_box">
+				<view class="coupon_box_left">
+					<text class="top_radius"></text>
+					<text class="bottom_radius"></text>
+					<view class="coupon_info">
+						<view class="coup_info_left"><text>￥</text>20</view>
+						<view class="coup_info_right">
+							<text>双11优惠券</text>
+							<text>指定商品可用满128减10</text>
+						</view>
+					</view>
+					<view class="coup_date">2019.1.21 00:00-2019.3.23 23:59</view>
+				</view>
+				<view class="coupon_box_right">立即领取</view>
+			</view>
+		</view>
+		<view class="coupon_button">确定</view>
+	</view>
 </view>

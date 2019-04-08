@@ -74,6 +74,7 @@ Page({
 				element.skinStyle = app.globalData.skinStyle
 			}
 		});
+		console.log(data)
         this.setData({
             pageData: data
         })

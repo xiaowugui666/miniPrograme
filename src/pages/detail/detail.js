@@ -63,7 +63,8 @@ Page({
 		commissionUserId: false,
 		isDistributor: false,
 		commissionAmount: 0,
-		skinStyle: ''
+		skinStyle: '',
+		couponModalVisi: false
 	},
 	// 滑动商品图片
 	changeCurrent: function(e) {
@@ -73,6 +74,16 @@ Page({
 				current: cur
 			})
 		}
+	},
+	handleOpenCoupon: function () {
+		this.setData({
+			couponModalVisi: true
+		})
+	},
+	handleCloseCoupon: function () {
+		this.setData({
+			couponModalVisi: false
+		})
 	},
 	// 阻止选择规格事件冒泡
 	preventDefault () {},

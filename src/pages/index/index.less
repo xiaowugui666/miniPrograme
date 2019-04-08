@@ -103,9 +103,30 @@ page {
   .goods_recommend {
     padding: 24rpx 24rpx 0;
     background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 516rpx);
+    .goods_item {
+      position: relative;
+    }
+  }
+  .coupon_mark {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top-left-radius: 8rpx;
+    background: linear-gradient(-75deg, transparent 0.5em, rgba(243,93,81,1) 0%,rgba(247,114,87,1) 50%,rgba(252,180,142,1) 100%);
+    width: 102rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+    font-size: 20rpx;
+    color: #FFFFFF;
+    text-align: center;
   }
   .content {
     background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 324rpx);
+    .content_box {
+      .swiper_box {
+        position: relative;
+      }
+    }
   }
 }
 .blue {

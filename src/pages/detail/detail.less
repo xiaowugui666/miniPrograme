@@ -1,4 +1,26 @@
 /* pages/detail/detail.wxss */
+@keyframes couponAnimationIn
+{
+	from {
+		height: 0;
+		padding: 0 24rpx;
+	}
+	to {
+		height: auto;
+		padding: 24rpx 24rpx;
+	}
+}
+@keyframes couponAnimationOut
+{
+	from {
+		height: auto;
+		padding: 24rpx 24rpx;
+	}
+	to {
+		height: 0;
+		padding: 0 24rpx;
+	}
+}
 image{
 	display: block;
 }
@@ -679,6 +701,34 @@ image{
 .detail_promise view:nth-child(n+2){
   margin-left: 56rpx;
 }
+.coupons_box {
+	padding: 24rpx;
+	font-size: 28rpx;
+	color: #9EA8B1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 2rpx solid #f3f4f5;
+	.coupons {
+		text {
+			margin-left: 16rpx;
+			padding: 4rpx 16rpx;
+			border: 2rpx solid #F35D51;
+			border-radius: 24rpx;
+			color: #F35D51;
+		}
+	}
+	.coupon_right {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+		image {
+			width: 40rpx;
+			height: 40rpx;
+			flex-shrink: 0;
+		}
+	}
+}
 
 /* bottom button  */
 .detail_bottom{
@@ -785,6 +835,92 @@ image{
 	position: fixed;
 	top: 0;
 	opacity: 0.4;
+}
+.coupons_modal {
+	position: fixed;
+	z-index: 999;
+	width: 750rpx;
+	box-sizing: border-box;
+	border-radius: 20rpx 20rpx 0 0;
+	bottom: 0;
+	background: #FFFFFF;
+	animation: couponAnimationOut 2s;
+	height: 0;
+	padding: 0 24rpx;
+	&.coupons_modal_show {
+		animation: couponAnimationIn 2s;
+		height: auto;
+		padding: 24rpx 24rpx;
+	}
+	.cou_modal_header {
+		font-size: 32rpx;
+		color: #253A4E;
+		font-weight: bold;
+		text-align: center;
+		position: relative;
+		padding-top: 16rpx;
+		padding-bottom: 48rpx;
+		image {
+			width: 40rpx;
+			height: 40rpx;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+	.coupon_item_box {
+		display: flex;
+		align-items: center;
+		color: #F35D51;
+		font-size: 24rpx;
+		background: #F8F1F0;
+		border-radius: 8rpx;
+		&:not(:last-child) {
+			margin-bottom: 24rpx;
+		}
+		.coupon_box_left {
+			flex-grow: 1;
+			box-sizing: border-box;
+			padding: 24rpx;
+			border-right: 2rpx dashed #F35D51;
+			position: relative;
+			.top_radius,.bottom_radius {
+				position: absolute;
+				display: inline-block;
+				width: 20rpx;
+				height: 10rpx;
+				z-index: 200;
+				right: -10rpx;
+				background: #FFFFFF;
+				overflow: hidden;
+			}
+			.top_radius {
+				top: 0;
+				border-radius: 0 0 10rpx 10rpx;
+			}
+			.bottom_radius {
+				bottom: 0;
+				border-radius: 10rpx 10rpx 0 0;
+			}
+		}
+		.coupon_box_right {
+			width: 200rpx;
+			flex-shrink: 0;
+			text-align: center;
+			font-size: 26rpx;
+		}
+	}
+	.coupon_button {
+		width: 702rpx;
+		height: 80rpx;
+		background: linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
+		line-height: 80rpx;
+		text-align: center;
+		font-size: 32rpx;
+		color: #FFFFFF;
+		border-radius: 8rpx;
+		margin-top: 32rpx;
+	}
 }
 
 /* choose  */
