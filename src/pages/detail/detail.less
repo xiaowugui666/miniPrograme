@@ -6,14 +6,14 @@
 		padding: 0 24rpx;
 	}
 	to {
-		height: auto;
+		height: 750rpx;
 		padding: 24rpx 24rpx;
 	}
 }
 @keyframes couponAnimationOut
 {
 	from {
-		height: auto;
+		height: 750rpx;
 		padding: 24rpx 24rpx;
 	}
 	to {
@@ -844,11 +844,11 @@ image{
 	border-radius: 20rpx 20rpx 0 0;
 	bottom: 0;
 	background: #FFFFFF;
-	animation: couponAnimationOut 2s;
+	animation: couponAnimationOut 0.3s;
 	height: 0;
 	padding: 0 24rpx;
 	&.coupons_modal_show {
-		animation: couponAnimationIn 2s;
+		animation: couponAnimationIn 0.3s;
 		height: auto;
 		padding: 24rpx 24rpx;
 	}
@@ -901,6 +901,33 @@ image{
 			.bottom_radius {
 				bottom: 0;
 				border-radius: 10rpx 10rpx 0 0;
+			}
+			.coupon_info {
+				display: flex;
+				align-items: flex-end;
+				padding-top: 20rpx;
+				.coup_info_left {
+					font-size: 80rpx;
+					flex-shrink: 0;
+					line-height: 38rpx;
+					text {
+						font-size: 36rpx;
+						margin-right: -4rpx;
+					}
+				}
+				.coup_info_right {
+					display: flex;
+					flex-direction: column;
+					margin-left: 16rpx;
+					flex-grow: 1;
+					font-size: 28rpx;
+					text:nth-child(2) {
+						font-size: 24rpx;
+					}
+				}
+			}
+			.coup_date {
+				margin-top: 16rpx;
 			}
 		}
 		.coupon_box_right {

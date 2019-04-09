@@ -46,7 +46,7 @@ wxParse:富文本编译器转换成小程序语言
 
     1.npm install
 
-    2.npm run dev // 开发环境
+    2.npm run start // 开发环境
       npm run test // 测试环境
       npm run build // 正式环境
 

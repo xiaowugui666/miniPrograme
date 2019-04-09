@@ -64,7 +64,8 @@ Page({
 		isDistributor: false,
 		commissionAmount: 0,
 		skinStyle: '',
-		couponModalVisi: false
+		couponModalVisi: false,
+		couponModalHid: true
 	},
 	// 滑动商品图片
 	changeCurrent: function(e) {
@@ -77,12 +78,20 @@ Page({
 	},
 	handleOpenCoupon: function () {
 		this.setData({
-			couponModalVisi: true
+			couponModalVisi: true,
+			couponModalHid: false
 		})
 	},
 	handleCloseCoupon: function () {
-		this.setData({
+		const that = this
+		that.setData({
 			couponModalVisi: false
+		}, () => {
+			setTimeout(() => {
+				that.setData({
+					couponModalHid: true
+				})
+			}, 300)
 		})
 	},
 	// 阻止选择规格事件冒泡
