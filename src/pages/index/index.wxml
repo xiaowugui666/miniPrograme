@@ -13,13 +13,20 @@
 
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 <view class="index_container {{skinStyle}}" wx:if="{{pageData !== null}}">
+	<coupon
+		couponModalVisi="{{couponModalVisible}}"
+		couponModalHid="{{couponModalHid}}"
+	></coupon>
     <block wx:for="{{pageData}}" wx:for-index="i" wx:key="i" wx:for-item="item">
         <template is="{{item.template}}" data="{{...item}}"></template>
-    </block>
+	</block>
 </view>
 
 <view class="index_container {{skinStyle}}" wx:else>
-
+	<coupon
+		couponModalVisi="{{couponModalVisible}}"
+		couponModalHid="{{couponModalHid}}"
+	></coupon>
 	<view class='container_search'>
 		<navigator class='container_search_navi' wx:if="{{description.id}}" url="/pages/search/search">{{description.search_default_text ? description.search_default_text: '大量好物等你发现'}}
 			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>

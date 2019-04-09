@@ -253,30 +253,9 @@
 		<rich-text nodes="{{content}}"></rich-text>
 	</view>
 
-	<!-- 优惠券modal -->
-	<view class="mask" hidden="{{couponModalHid}}" bindtap="handleCloseCoupon" catchtouchmove='preventDefault'></view>
-	<view class="coupons_modal {{couponModalVisi ? 'coupons_modal_show' : ''}}" hidden="{{couponModalHid}}" catchtouchmove='preventDefault'>
-		<view class="cou_modal_header">
-			<view>优惠</view>
-			<image src='/imgs/icon_close1.png' bindtap="handleCloseCoupon"></image>
-		</view>
-		<view class="coupon_items">
-			<view class="coupon_item_box" wx:for="{{[0,0,0]}}" wx:key="index">
-				<view class="coupon_box_left">
-					<text class="top_radius"></text>
-					<text class="bottom_radius"></text>
-					<view class="coupon_info">
-						<view class="coup_info_left"><text>￥</text>20</view>
-						<view class="coup_info_right">
-							<text>双11优惠券</text>
-							<text>指定商品可用满128减10</text>
-						</view>
-					</view>
-					<view class="coup_date">2019.1.21 00:00-2019.3.23 23:59</view>
-				</view>
-				<view class="coupon_box_right">立即领取</view>
-			</view>
-		</view>
-		<view class="coupon_button">确定</view>
-	</view>
+	<!-- 优惠券 -->
+	<coupon
+		couponModalVisi="{{couponModalVisi}}"
+		couponModalHid="{{couponModalHid}}"
+	></coupon>
 </view>

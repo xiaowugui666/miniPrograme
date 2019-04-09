@@ -82,18 +82,6 @@ Page({
 			couponModalHid: false
 		})
 	},
-	handleCloseCoupon: function () {
-		const that = this
-		that.setData({
-			couponModalVisi: false
-		}, () => {
-			setTimeout(() => {
-				that.setData({
-					couponModalHid: true
-				})
-			}, 300)
-		})
-	},
 	// 阻止选择规格事件冒泡
 	preventDefault () {},
 	// 规格是否可选函数

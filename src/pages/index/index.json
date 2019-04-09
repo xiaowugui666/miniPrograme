@@ -1,5 +1,8 @@
 {
   "enablePullDownRefresh":true,
   "backgroundTextStyle":"dark",
-  "backgroundColor": "#fff"
+  "backgroundColor": "#fff",
+  "usingComponents": {
+    "coupon":"../../components/coupon/coupon"
+  }
 }

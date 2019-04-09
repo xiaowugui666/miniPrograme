@@ -20,7 +20,9 @@ Page({
 		currentSpecialPage: 0,
 
 		skinStyle: app.globalData.skinStyle,
-        pageData: null,
+		pageData: null,
+		couponModalVisible: false,
+		couponModalHid: true
 	},
 	/**
 	 * 
