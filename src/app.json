@@ -29,7 +29,9 @@
 		"pages/distribution/applyWithdraw/applyWithdraw",
 		"pages/distribution/withdrawDetail/withdrawDetail",
 		"pages/distribution/withdrawParticu/withdrawParticu",
-		"pages/distribution/applySuccess/applySuccess"
+		"pages/distribution/applySuccess/applySuccess",
+		"pages/coupon/couponList/couponList",
+		"pages/coupon/availableGoods/availableGoods"
 	],
 	"window": {
 		"backgroundTextStyle": "light",

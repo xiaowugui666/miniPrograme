@@ -38,7 +38,7 @@
 				{
 					"id": 0,
 					"name": "商品详情页",
-					"pathName": "pages/detail/detail",
+					"pathName": "pages/coupon/availableGoods/availableGoods",
 					"query": "id=70",
 					"scene": 1007
 				}

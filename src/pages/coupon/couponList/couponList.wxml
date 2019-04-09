@@ -1,0 +1,21 @@
+<view class="{{skinStyle}}">
+    <view class="tabs">
+        <view class="{{currentTab === 1 ? 'active' : ''}}" data-tab="{{1}}" bindtap="handleChangeTab">未使用</view>
+        <view class="{{currentTab === 2 ? 'active' : ''}}" data-tab="{{2}}" bindtap="handleChangeTab">已失效</view>
+    </view>
+    <view class="content">
+        <view class="coupon_item">
+            <view class="coupon_box_left">
+                    <view class="coupon_info">
+                        <view class="coup_info_left"><text class="symbol">￥</text>20</view>
+                        <view class="coup_info_right">
+                            <text>双11优惠券</text>
+                            <text class="coupon_tips">指定商品可用满128减10</text>
+                        </view>
+                    </view>
+                    <view class="coup_date">2019.1.21 00:00-2019.3.23 23:59</view>
+                </view>
+                <view class="coupon_box_right">立即领取</view>
+        </view>
+    </view>
+</view>

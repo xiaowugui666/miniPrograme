@@ -1,0 +1,128 @@
+page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.default {
+    background: #F7F9FB;
+    flex-grow: 1;
+    .coupon_info {
+        color: #F35D51;
+        border-top: 2rpx solid #F7F9FB;
+    }
+    .goods_box {
+        padding: 24rpx;
+    }
+    .coupon_mark {
+        border-top-left-radius: 8rpx;
+        border-bottom-right-radius: 24rpx;
+        background: linear-gradient(-75deg, transparent 0.5em, rgba(243,93,81,1) 0%,rgba(247,114,87,1) 50%,rgba(252,180,142,1) 100%);
+    }
+}
+.blue {
+    .coupon_info {
+        background: #F7F9FB;
+        color: #253A4E;
+        padding: 14rpx 32rpx;
+    }
+    .goods_box {
+        padding: 32rpx;
+        .goods_item {
+            width: 328rpx;
+            box-shadow: none;
+            border-radius: 0;
+            height: 500rpx;
+            image {
+              width: 328rpx;
+              height: 328rpx;
+              border-radius: 0;
+            }
+            .goods_info {
+              padding: 16rpx 0 16rpx 0;
+                .info {
+                    .price {
+                        display: inline-block;
+                        max-width: 85%;
+                        overflow: hidden;
+                        color: #0D1A26;
+                    }
+                }
+            }
+        }
+    }
+    .coupon_mark {
+        background: linear-gradient(-75deg, transparent 0.5em, #5D92C0 0%,#5D92C0 100%);
+    }
+}
+.coupon_info {
+    padding: 16rpx 24rpx;
+    font-size: 26rpx;
+    background: #FFFFFF;
+}
+.goods_box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .goods_item {
+        width: 340rpx;
+        height: 516rpx;
+        border-radius: 8rpx;
+        background: #fff;
+        box-shadow: 0px 6rpx 16rpx 0px rgba(13,37,59,0.04);
+        margin-bottom: 24rpx;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        image {
+            width: 340rpx;
+            height: 340rpx;
+            border-radius: 0;
+            display: block;
+            flex-shrink: 0;
+        }
+        .goods_info {
+            padding: 16rpx 24rpx 22rpx;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .title {
+                height: 80rpx;
+                font-size: 28rpx;
+                color: #253A4E;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                display:-webkit-box;
+                -webkit-box-orient:vertical;
+                -webkit-line-clamp:2;
+                line-height: 40rpx;
+            }
+            .info {
+                font-size: 24rpx;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #9EA8B1;
+                .price {
+                    color: #F35D51;
+                    font-size: 32rpx;
+                    text {
+                        font-size: 24rpx;
+                    }
+                }
+            }
+        }
+    }
+}
+.coupon_mark {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 102rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+    font-size: 20rpx;
+    color: #FFFFFF;
+    text-align: center;
+}

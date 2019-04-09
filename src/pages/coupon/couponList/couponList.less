@@ -1,0 +1,86 @@
+page {
+    background: #F7F9FB;
+}
+.default {
+    .tabs {
+        view.active {
+            border-bottom: 4rpx solid #F35D51;
+            color: #F35D51;
+            font-weight: 600;
+        }
+    }
+}
+.tabs {
+    display: flex;
+    background: #FFFFFF;
+    box-shadow:0 2rpx 0 0 #E6E9EB;
+    view {
+        width: 50%;
+        text-align: center;
+        font-size: 28rpx;
+        padding: 16rpx 0;
+        color: #556675;
+    }
+}
+.content {
+    .coupon_item {
+        background: #FFFFFF;
+        width: 702rpx;
+        margin: 0 auto;
+        border-radius: 8rpx;
+        box-shadow: 0px 6px 16px 0px rgba(13,37,59,0.04);
+        margin-top: 24rpx;
+        font-size: 24rpx;
+        padding: 22rpx 24rpx;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        color: #556675;
+        .coupon_box_left {
+            flex-grow: 1;
+            box-sizing: border-box;
+            position: relative;
+            .coupon_info {
+                display: flex;
+                align-items: flex-end;
+                padding-top: 20rpx;
+                .coup_info_left {
+                    font-size: 80rpx;
+                    flex-shrink: 0;
+                    line-height: 38rpx;
+                    color: #F35D51;
+                    .symbol {
+                        font-size: 36rpx;
+                        margin-right: -4rpx;
+                    }
+                }
+                .coup_info_right {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 16rpx;
+                    flex-grow: 1;
+                    font-size: 28rpx;
+                    .coupon_tips {
+                        font-size: 24rpx;
+                        color: #F35D51;
+                    }
+                }
+            }
+            .coup_date {
+                margin-top: 16rpx;
+                color: #9EA8B1;
+            }
+        }
+        .coupon_box_right {
+            flex-shrink: 0;
+            text-align: center;
+            font-size: 26rpx;
+            color: #FFFFFF;
+            width: 144rpx;
+            height: 56rpx;
+            line-height: 56rpx;
+            background:linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
+            border-radius:4rpx;
+        }
+    }
+}

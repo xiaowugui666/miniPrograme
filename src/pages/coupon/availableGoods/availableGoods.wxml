@@ -1,0 +1,17 @@
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+
+<view class="{{skinStyle}}">
+    <view class="coupon_info">双十一优惠券，满128减10</view>
+    <view class="goods_box">
+        <view class="goods_item" wx:for="{{[0,0,0]}}" wx:key="index">
+            <image src="https://image.51zan.com/2019/03/07/FkpSeTAZLCiFuGrxEOiyBKXlklTq.png?imageView2/0/w/360/h/360" />
+            <view class="coupon_mark">优惠券</view>
+            <view class="goods_info">
+                <view class="title">商品名称</view>
+                <view class="info">
+                    <text class="price"><text>￥</text>{{filters.ptf(111)}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

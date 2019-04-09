@@ -21,8 +21,8 @@ Page({
 
 		skinStyle: app.globalData.skinStyle,
 		pageData: null,
-		couponModalVisible: false,
-		couponModalHid: true
+		couponModalVisible: true,
+		couponModalHid: false
 	},
 	/**
 	 * 

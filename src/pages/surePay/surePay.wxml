@@ -55,6 +55,10 @@
 				<label>￥{{filters.ptf(carriage)}}</label>
 			</view>
 			<view>
+				<label>优惠券</label> 
+				<label>￥{{filters.ptf(carriage)}}</label>
+			</view>
+			<view>
 				<label>订单总价</label>
 				<label class="large_size"><text>￥</text>{{filters.ptf(totalOrder)}}</label>
 			</view>
