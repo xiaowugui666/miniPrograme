@@ -75,19 +75,18 @@
 				<text wx:if="{{goods.genuine_article==1}}"> · 100%正品</text>
 			</text>
 		</view>
-		<view class="coupons_box" bindtap="handleOpenCoupon">
-			<view>
-				<text>优惠</text>
-				<text class="coupons">
-					<text>满100减10</text>
-					<text>满200减25</text>
-					<text>100%正品</text>
-				</text>
-			</view>
-			<view class="coupon_right">
-				<text>领券</text>
-				<image src="/imgs/icon_arrow.png" />
-			</view>
+	</view>
+	<view class="coupons_box" bindtap="handleOpenCoupon">
+		<view>
+			<text>优惠</text>
+			<text class="coupons">
+				<text>满100减10</text>
+				<text>满200减25</text>
+			</text>
+		</view>
+		<view class="coupon_right">
+			<text>领券</text>
+			<image src="/imgs/icon_arrow.png" />
 		</view>
 	</view>
 

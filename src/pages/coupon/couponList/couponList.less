@@ -9,6 +9,46 @@ page {
             font-weight: 600;
         }
     }
+    .content {
+        .coupon_item {
+            width: 702rpx;
+            margin: 0 auto;
+            border-radius: 8rpx;
+            box-shadow: 0px 6px 16px 0px rgba(13,37,59,0.04);
+            margin-top: 24rpx;
+            .coupon_box_left {
+                .coup_info_left {
+                    color: #F35D51;
+                }
+                .coup_info_right {
+                    .coupon_tips {
+                        color: #F35D51;
+                    }
+                }
+            }
+            .coupon_box_right {
+                background:linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
+            }
+        }
+    }
+}
+.blue {
+    .tabs {
+        view.active {
+            border-bottom: 4rpx solid #253A4E;
+            color: #253A4E;
+            font-weight: 600;
+        }
+    }
+    .content {
+        .coupon_item {
+            margin-top: 32rpx;
+            padding: 22rpx 32rpx;
+            .coupon_box_right {
+                background: #5D92C0;
+            }
+        }
+    }
 }
 .tabs {
     display: flex;
@@ -25,11 +65,6 @@ page {
 .content {
     .coupon_item {
         background: #FFFFFF;
-        width: 702rpx;
-        margin: 0 auto;
-        border-radius: 8rpx;
-        box-shadow: 0px 6px 16px 0px rgba(13,37,59,0.04);
-        margin-top: 24rpx;
         font-size: 24rpx;
         padding: 22rpx 24rpx;
         box-sizing: border-box;
@@ -48,7 +83,6 @@ page {
                     font-size: 80rpx;
                     flex-shrink: 0;
                     line-height: 38rpx;
-                    color: #F35D51;
                     .symbol {
                         font-size: 36rpx;
                         margin-right: -4rpx;
@@ -62,7 +96,6 @@ page {
                     font-size: 28rpx;
                     .coupon_tips {
                         font-size: 24rpx;
-                        color: #F35D51;
                     }
                 }
             }
@@ -79,7 +112,6 @@ page {
             width: 144rpx;
             height: 56rpx;
             line-height: 56rpx;
-            background:linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
             border-radius:4rpx;
         }
     }
