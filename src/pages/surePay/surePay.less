@@ -248,6 +248,17 @@ page{
 }
 .info{
   padding: 0 24rpx;
+  .coupon_right {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    image {
+      width: 40rpx;
+      height: 40rpx;
+      margin-left: 8rpx;
+      flex-shrink: 0;
+    }
+  }
 }
 .detail .info view:last-child {
   border-bottom:none;
@@ -309,4 +320,109 @@ button[disabled]:not([type]) {
 
 button[disabled] {
     color: #EA2534;
+}
+
+@keyframes couponAnimationIn
+{
+	from {
+		height: 0;
+		padding: 0 24rpx;
+	}
+	to {
+		height: 900rpx;
+		padding: 24rpx 24rpx;
+	}
+}
+@keyframes couponAnimationOut
+{
+	from {
+		height: 900rpx;
+		padding: 24rpx 24rpx;
+	}
+	to {
+		height: 0;
+		padding: 0 24rpx;
+	}
+}
+.mask{
+	width: 750rpx;
+	height: 100%;
+	background: #000;
+	z-index: 500;
+	position: fixed;
+	top: 0;
+	opacity: 0.4;
+}
+.coupons_modal {
+    position: fixed;
+    z-index: 900;
+    width: 750rpx;
+    box-sizing: border-box;
+    border-radius: 20rpx 20rpx 0 0;
+    bottom: 0;
+    background: #FFFFFF;
+    animation: couponAnimationOut 0.3s;
+    height: 0;
+    padding: 0 24rpx;
+    &.coupons_modal_show {
+        animation: couponAnimationIn 0.3s;
+        height: 900rpx;
+        padding: 24rpx 24rpx;
+    }
+    .cou_modal_header {
+        font-size: 32rpx;
+        color: #253A4E;
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+        padding-top: 16rpx;
+        padding-bottom: 24rpx;
+        .close_img {
+            width: 40rpx;
+            height: 40rpx;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+    .coupon_choice {
+      font-size: 28rpx;
+      color: #556675;
+      height: 660rpx;
+      overflow: scroll;
+      view {
+        padding: 24rpx 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:not(:last-child) {
+          border-bottom: 2rpx solid #F3F4F5;
+        }
+        label {
+          width: 32rpx;
+          height: 32rpx;
+          display: inline-block;
+          border-radius: 50%;
+          border: 2rpx solid #E6E9EB;
+          flex-shrink: 0;
+          box-sizing: border-box;
+        }
+        image {
+          width: 32rpx;
+          height: 32rpx;
+          flex-shrink: 0;
+        }
+      }
+    }
+    .coupon_button {
+        width: 702rpx;
+        height: 80rpx;
+        background: linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
+        line-height: 80rpx;
+        text-align: center;
+        font-size: 32rpx;
+        color: #FFFFFF;
+        border-radius: 8rpx;
+        margin-top: 32rpx;
+    }
 }

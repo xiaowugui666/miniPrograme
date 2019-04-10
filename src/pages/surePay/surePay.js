@@ -27,9 +27,28 @@ Page({
 			// apiKey:'',
 			disabled:false,
 			commissionUserId: false,
-			skinStyle: ''
+			skinStyle: '',
+			couponModalHid: false,
+			couponModalVisi: true
 	},
-
+	handleCloseCoupon: function () {
+		const that = this
+            that.setData({
+                couponModalVisi: false
+            }, () => {
+                setTimeout(() => {
+                    that.setData({
+                        couponModalHid: true
+                    })
+                }, 300)
+            })
+	},
+	haddleOpenCoupon: function () {
+		this.setData({
+			couponModalVisi: true,
+			couponModalHid: false
+		})
+	},
 	// 减少数量
 	bindminus () {
 		let that = this;

@@ -47,16 +47,19 @@
 		</view>
 		<view class='info'>
 			<view>
-				<label>商品总价</label> 
+				<label>商品总价</label>
 				<label>￥{{filters.ptf(totalMoney)}}</label>
 			</view>
 			<view>
-				<label>运费（快递）</label> 
+				<label>运费（快递）</label>
 				<label>￥{{filters.ptf(carriage)}}</label>
 			</view>
-			<view>
-				<label>优惠券</label> 
-				<label>￥{{filters.ptf(carriage)}}</label>
+			<view bindtap="haddleOpenCoupon">
+				<label>优惠券</label>
+				<view class="coupon_right">
+					<label>-￥{{filters.ptf(carriage)}}</label>
+					<image src="/imgs/icon_arrow.png" />
+				</view>
 			</view>
 			<view>
 				<label>订单总价</label>
@@ -70,4 +73,23 @@
 			<button disabled='{{disabled}}' form-type='submit'>提交订单</button>
 		</view>
 	</form>
+	<view class="mask" hidden="{{couponModalHid}}" bindtap="handleCloseCoupon" catchtouchmove='preventDefault'></view>
+    <view class="coupons_modal {{couponModalVisi ? 'coupons_modal_show' : ''}}" hidden="{{couponModalHid}}" catchtouchmove='preventDefault'>
+        <view class="cou_modal_header">
+            <view>优惠券</view>
+            <image class="close_img" src='/imgs/icon_close1.png' bindtap="handleCloseCoupon"></image>
+        </view>
+        <view class="coupon_choice">
+			<view class="choice_item">
+				<text>我是爱说大话卡就还贷款觉得好看</text>
+				<label wx:if="{{selected}}"></label>
+				<image wx:else src="{{filters.imgUrl('icon_selected.png')}}" />
+			</view>
+			<view class="not_choose">
+				<text>不适用优惠券</text>
+				<label></label>
+			</view>
+		</view>
+        <view class="coupon_button">确定</view>
+    </view>
 </view>
