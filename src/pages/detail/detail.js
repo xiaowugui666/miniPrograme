@@ -65,7 +65,11 @@ Page({
 		commissionAmount: 0,
 		skinStyle: '',
 		couponModalVisi: false,
-		couponModalHid: true
+		couponModalHid: true,
+		goodCoupons: [],
+		goodCouponsObj: {
+			goodCoupons: []
+		}
 	},
 	// 滑动商品图片
 	changeCurrent: function(e) {
@@ -80,6 +84,29 @@ Page({
 		this.setData({
 			couponModalVisi: true,
 			couponModalHid: false
+		})
+	},
+	getGoodCoupList: function (goods_id) {
+		const that = this
+		wx.request({
+			url: app.globalData.http + `/mpa/coupons/${goods_id}/goods_coupons`,
+			method: 'GET',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+			},
+			success: function (res) {
+				if (res.statusCode === 200) {
+					that.setData({
+						goodCoupons: res.data,
+						goodCouponsObj: {
+							goodCoupons: res.data
+						}
+					})
+				}
+			}
 		})
 	},
 	// 阻止选择规格事件冒泡
@@ -960,6 +987,8 @@ Page({
 				})
 			}
 
+			this.getGoodCoupList(options.id)
+
 			//获取商品规格
 			wx.request({
 				url: app.globalData.http + '/mpa/goods/' + options.id + '/specs',
@@ -1217,6 +1246,8 @@ Page({
 	},
 	// 获取手机号
 	getPhoneNumber: function (e) {
-		app.publicAuth(e, this)
+		app.publicAuth(e, this).then(e => {
+			console.log(e)
+		})
 	}
 })

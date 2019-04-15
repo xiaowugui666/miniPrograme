@@ -26,6 +26,18 @@ page {
                     }
                 }
             }
+            &.invalid {
+                .coupon_box_left {
+                    .coup_info_left {
+                        color: #6E7C89;
+                    }
+                    .coup_info_right {
+                        .coupon_tips {
+                            color: #6E7C89;
+                        }
+                    }
+                }
+            }
             .coupon_box_right {
                 background:linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
             }
@@ -46,6 +58,18 @@ page {
             padding: 22rpx 32rpx;
             .coupon_box_right {
                 background: #5D92C0;
+            }
+            &.invalid {
+                .coupon_box_left {
+                    .coup_info_left {
+                        color: #556675;
+                    }
+                    .coup_info_right {
+                        .coupon_tips {
+                            color: #556675;
+                        }
+                    }
+                }
             }
         }
     }
@@ -104,6 +128,10 @@ page {
                 color: #9EA8B1;
             }
         }
+        image {
+            width: 96rpx;
+            height: 96rpx;
+        }
         .coupon_box_right {
             flex-shrink: 0;
             text-align: center;
@@ -114,5 +142,22 @@ page {
             line-height: 56rpx;
             border-radius:4rpx;
         }
+    }
+}
+.container{
+    width: 750rpx;
+    image{
+        width: 500rpx;
+        height:320rpx;
+        margin:0 auto;
+        margin-top: 50rpx;
+        display: block;
+        margin-bottom:26rpx;
+    }
+    view{
+        font-size: 32rpx;
+        text-align: center;
+        font-weight:400;
+        color:rgba(37,58,78,1);
     }
 }

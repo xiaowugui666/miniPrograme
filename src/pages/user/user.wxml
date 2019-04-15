@@ -93,7 +93,7 @@
 					<view class='my_other_text'>
 						<image wx:if="{{skinStyle === 'blue'}}" class="address_icon blue_coupon" src="{{filters.imgUrl('icon_blue_coupon.png')}}"></image>
 						<image wx:else src="{{filters.imgUrl('icon_default.png')}}"></image>
-						<view>优惠券</view>
+						<view>优惠券 <text wx:if="{{couponTotal > 0}}">({{couponTotal}})</text></view>
 					</view>
 					<image class='icon' src='{{image}}right.png?imageslim'></image>
 				</navigator>

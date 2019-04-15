@@ -1,0 +1,14 @@
+<template name="detailCoupon">
+    <view>
+        <text>优惠</text>
+        <text class="coupons">
+            <block wx:for="{{goodCoupons}}" wx:key="index" wx:for-item="item">
+                <text wx:if="{{index < 2}}">满{{item.coupon_type.full_amount / 100}}减{{item.coupon_type.reduce_amount / 100}}</text>
+            </block>
+        </text>
+    </view>
+    <view class="coupon_right">
+        <text>领券</text>
+        <image src="/imgs/icon_arrow.png" />
+    </view>
+</template>

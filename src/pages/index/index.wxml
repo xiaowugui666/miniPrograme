@@ -16,6 +16,9 @@
 	<coupon
 		couponModalVisi="{{couponModalVisible}}"
 		couponModalHid="{{couponModalHid}}"
+		skinStyle="{{skinStyle}}"
+		couponList="{{couponList}}"
+		couponParams="{{couponParams}}"
 	></coupon>
     <block wx:for="{{pageData}}" wx:for-index="i" wx:key="i" wx:for-item="item">
         <template is="{{item.template}}" data="{{...item}}"></template>
@@ -26,6 +29,9 @@
 	<coupon
 		couponModalVisi="{{couponModalVisible}}"
 		couponModalHid="{{couponModalHid}}"
+		skinStyle="{{skinStyle}}"
+		couponList="{{couponList}}"
+		couponParams="{{couponParams}}"
 	></coupon>
 	<view class='container_search'>
 		<navigator class='container_search_navi' wx:if="{{description.id}}" url="/pages/search/search">{{description.search_default_text ? description.search_default_text: '大量好物等你发现'}}
@@ -36,7 +42,7 @@
 	 <image class='index_banner' wx:if="{{description.banner}}" mode='aspectFill' src='{{image}}{{description.banner}}?imageView2/0/w/840/h/840'></image>
 	 <view class="banner_loading loading" wx:elif="{{!description.id}}"></view>
 	<view  class='index_classify' wx:if="{{categoryList.length > 0}}">
-		<scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
+		<scroll-view  scroll-x="{{true}}" class='scroll' bindscroll="scrollCategory">
 			<view data-idx="{{item.id}}" wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
 				<image src='{{image}}{{item.icon_url}}?imageView2/0/w/408/h/408/imageslim'></image>
 				<text>{{item.name}}</text>
@@ -75,7 +81,6 @@
 			</view>
 		</view>
 	</view>
-	<!-- 营销活动tab列，若无营销活动，则显示商品列表 -->
 	<block wx:if="{{tabSwiperArr.length > 0 }}">
 		<view class="marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" id="marketing-tab">
 			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>

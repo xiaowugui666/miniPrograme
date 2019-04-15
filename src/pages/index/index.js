@@ -21,8 +21,13 @@ Page({
 
 		skinStyle: app.globalData.skinStyle,
 		pageData: null,
-		couponModalVisible: false,
-		couponModalHid: true
+		couponModalVisible: true,
+		couponModalHid: false,
+		couponList: [],
+		couponParams: {
+			couponId: null,
+			couponTemplateId: null
+		}
 	},
 	/**
 	 * 
@@ -201,6 +206,7 @@ Page({
 	},
 	// 页面加载
 	onLoad: function (options) {
+		console.log(options)
 		app.globalData.options = {}
 		const that = this
 		if (options.scene) {
@@ -242,6 +248,25 @@ Page({
 		});
 		app.getAppSkinStyle().then((data) => {
 			app.setTabBar(data, this)
+			if (options.coupon_id) {
+				this.getCouponInfo(options.coupon_id).then((data) => {
+					console.log(data)
+					let tempArr = []
+					tempArr.push(data)
+					this.setData({
+						couponList: tempArr,
+						couponParams: {
+							couponId: options.coupon_id,
+							couponTemplateId: options.coupon_template_id
+						}
+					})
+				})
+				this.setData({
+					couponModalVisible: true,
+					couponModalHid: false
+				})
+			}
+
 			this.getInitElement().then((data) => {
 				if (data === null ) {
 					this.getData()
@@ -250,6 +275,27 @@ Page({
 					this.getInitData(goodListIdsData)
 				}
 				app.login()
+			})
+		})
+	},
+	getCouponInfo: function (id) {
+		return new Promise((resolve,reject) => {
+			wx.request({
+				url: app.globalData.http + `/mpa/coupons/${id}`,
+				method: 'GET',
+				header: {
+					'Api-Ext': app.globalData.apiExt
+				},
+				success: function (res) {
+					if (res.statusCode === 200) {
+						resolve(res.data)
+					} else {
+						reject(res)
+					}
+				},
+				fail: function (res) {
+					reject(res)
+				}
 			})
 		})
 	},

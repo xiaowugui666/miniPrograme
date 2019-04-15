@@ -1,4 +1,4 @@
-<!--pages/detail/detail.wxml-->
+<import src="../../template/detailCoupon.wxml"></import>
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 <view class='detail_container {{skinStyle}}' wx:if='{{show==1}}'>
 	<!-- detail images  -->
@@ -76,19 +76,9 @@
 			</text>
 		</view>
 	</view>
-	<view class="coupons_box" bindtap="handleOpenCoupon">
-		<view>
-			<text>优惠</text>
-			<text class="coupons">
-				<text>满100减10</text>
-				<text>满200减25</text>
-			</text>
-		</view>
-		<view class="coupon_right">
-			<text>领券</text>
-			<image src="/imgs/icon_arrow.png" />
-		</view>
-	</view>
+	<button class="coupons_box" bindtap="handleOpenCoupon" wx:if="{{goodCoupons.length > 0}}">
+		<template is="detailCoupon" data="{{...goodCouponsObj}}"></template>
+	</button>
 
     <!-- 拼团信息  -->
     <view class='groups' wx:if='{{goods.activity_type == 1}}'>
@@ -256,5 +246,7 @@
 	<coupon
 		couponModalVisi="{{couponModalVisi}}"
 		couponModalHid="{{couponModalHid}}"
+		skinStyle="{{skinStyle}}"
+		couponList="{{goodCoupons}}"
 	></coupon>
 </view>

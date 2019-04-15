@@ -1,5 +1,6 @@
 
-<view class="coupon_box">
+<wxs module="filters" src="../../utils/method.wxs"></wxs>
+<view class="coupon_box {{skinStyle}}">
     <view class="mask" hidden="{{couponModalHid}}" bindtap="handleCloseCoupon" catchtouchmove='preventDefault'></view>
     <view class="coupons_modal {{couponModalVisi ? 'coupons_modal_show' : ''}}" hidden="{{couponModalHid}}" catchtouchmove='preventDefault'>
         <view class="cou_modal_header">
@@ -7,22 +8,23 @@
             <image class="close_img" src='/imgs/icon_close1.png' bindtap="handleCloseCoupon"></image>
         </view>
         <view class="coupon_items">
-            <view class="coupon_item_box" wx:for="{{[0,0,0]}}" wx:key="index">
+            <view class="coupon_item_box" wx:for="{{couponList}}" wx:key="index">
                 <view class="coupon_box_left">
                     <text class="top_radius"></text>
                     <text class="bottom_radius"></text>
                     <view class="coupon_info">
-                        <view class="coup_info_left"><text class="symbol">￥</text>20</view>
+                        <view class="coup_info_left"><text class="symbol">￥</text>{{item.coupon_type.reduce_amount / 100}}</view>
                         <view class="coup_info_right">
-                            <text>双11优惠券</text>
-                            <text class="coupon_tips">指定商品可用满128减10</text>
+                            <text>{{item.coupon_template ? item.coupon_template.title : item.title}}</text>
+                            <text class="coupon_tips">{{filters.couponType(item.coupon_template ? item.coupon_template.goods_relation : item.goods_relation,item.coupon_type)}}</text>
                         </view>
                     </view>
-                    <view class="coup_date">2019.1.21 00:00-2019.3.23 23:59</view>
+                    <view class="coup_date">{{item.coupon_template ? filters.couponDate(item.coupon_template.begin_at) + '-' + filters.couponDate(item.coupon_template.end_at) : filters.couponDate(item.begin_at) + '-' + filters.couponDate(item.end_at)}}</view>
                 </view>
-                <view class="coupon_box_right">立即领取</view>
+                <button class="coupon_box_right" bindtap="handleReciveCoupon" data-couponid="{{couponParams.couponId}}" data-templateid="{{couponParams.couponTemplateId}}">立即领取</button>
+                <image src="{{filters.imgUrl('yilingqu.png')}}" />
             </view>
         </view>
-        <view class="coupon_button">确定</view>
+        <view class="coupon_button" bindtap="handleCloseCoupon">确定</view>
     </view>
 </view>

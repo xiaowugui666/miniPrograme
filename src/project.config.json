@@ -38,8 +38,8 @@
 				{
 					"id": 0,
 					"name": "商品详情页",
-					"pathName": "pages/detail/detail",
-					"query": "id=70",
+					"pathName": "pages/index/index",
+					"query": "coupon_id=8&coupon_template_id=8",
 					"scene": 1007
 				}
 			]
