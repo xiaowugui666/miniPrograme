@@ -14,6 +14,7 @@ Page({
         this.getPageData(status)
     },
     getPageData: function (params) {
+        const that = this
         wx.showLoading()
         wx.request({
 			url: app.globalData.http + '/mpa/coupons',
@@ -29,9 +30,25 @@ Page({
             },
 			success: function (data) {
 				if (data.statusCode === 200) {
-                    console.log(data)
+                    that.setData({
+                        couponList: data.data
+                    })
                     wx.hideLoading()
-				}
+				} else if (data.statusCode >= 400 || data.statusCode <= 500) {
+                    let tips = data.data === "Unauthorized." ? '未授权' : data.data
+                    wx.showToast({
+                        title: tips,
+                        icon: 'none',
+                        duration: 2000
+                    })
+                } else {
+                    const tip = data.data.message.toString()
+                    wx.showToast({
+                        title: tip,
+                        icon: 'none',
+                        duration: 2000
+                    })
+                }
 			}
 		})
     },
@@ -43,8 +60,9 @@ Page({
         this.getPageData(status)
     },
     handleUseCoupon: function (e) {
+        const id = e.currentTarget.dataset.id
         wx.navigateTo({
-            url: '/pages/coupon/availableGoods/availableGoods?coupon_id=5'
+            url: '/pages/coupon/availableGoods/availableGoods?coupon_id' + id
         })
     }
 })

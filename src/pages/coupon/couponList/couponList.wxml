@@ -5,20 +5,20 @@
         <view class="{{currentTab === 1 ? 'active' : ''}}" data-tab="{{1}}" bindtap="handleChangeTab">未使用</view>
         <view class="{{currentTab === 0 ? 'active' : ''}}" data-tab="{{0}}" bindtap="handleChangeTab">已失效</view>
     </view>
-    <view class="content" wx:if="{{couponList.length > 0}}">
+    <view class="content" wx:if="{{couponList.length > 0}}" wx:key="index">
         <view class="coupon_item {{currentTab === 0 ? 'invalid' : ''}}">
             <view class="coupon_box_left">
                 <view class="coupon_info">
                     <view class="coup_info_left"><text class="symbol">￥</text>20</view>
                     <view class="coup_info_right">
-                        <text>双11优惠券</text>
-                        <text class="coupon_tips">指定商品可用满128减10</text>
+                        <text>{{item.coupon_template.title}}</text>
+                        <text class="coupon_tips">{{filters.couponType(item.coupon_template.goods_relation,item.coupon_type)}}</text>
                     </view>
                 </view>
                 <view class="coup_date">2019.1.21 00:00-2019.3.23 23:59</view>
             </view>
             <image wx:if="{{currentTab === 0}}" src="{{filters.imgUrl('yiguoqi.png')}}"></image>
-            <view wx:else class="coupon_box_right" bindtap="handleUseCoupon">去使用</view>
+            <view wx:else class="coupon_box_right" data-id="{{item.id}}" bindtap="handleUseCoupon">去使用</view>
         </view>
     </view>
     <view class='container' wx:else>

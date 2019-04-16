@@ -86,7 +86,7 @@
 				<image wx:else src="{{filters.imgUrl('icon_selected.png')}}" />
 			</view>
 			<view class="not_choose">
-				<text>不适用优惠券</text>
+				<text>不使用优惠券</text>
 				<label></label>
 			</view>
 		</view>

@@ -21,8 +21,15 @@
                     </view>
                     <view class="coup_date">{{item.coupon_template ? filters.couponDate(item.coupon_template.begin_at) + '-' + filters.couponDate(item.coupon_template.end_at) : filters.couponDate(item.begin_at) + '-' + filters.couponDate(item.end_at)}}</view>
                 </view>
-                <button class="coupon_box_right" bindtap="handleReciveCoupon" data-couponid="{{couponParams.couponId}}" data-templateid="{{couponParams.couponTemplateId}}">立即领取</button>
-                <image src="{{filters.imgUrl('yilingqu.png')}}" />
+                <block wx:if="{{componentFrom === 'index'}}">
+                    <button wx:if="{{!hasUserInfo}}" class="coupon_box_right" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-couponid="{{couponParams.couponId}}" data-templateid="{{couponParams.couponTemplateId}}">立即领取</button>
+                    <button wx:else class="coupon_box_right" bindtap="handleReciveCoupon" data-index="{{index}}" data-couponid="{{couponParams.couponId}}" data-templateid="{{couponParams.couponTemplateId}}">立即领取</button>
+                </block>
+                <block wx:else>
+                    <button wx:if="{{!hasUserInfo}}" class="coupon_box_right" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-templateid="{{item.id}}">立即领取</button>
+                    <button wx:else class="coupon_box_right" bindtap="handleReciveCoupon" data-index="{{index}}" data-templateid="{{item.id}}">立即领取</button>
+                </block>
+                <image wx:if="{{item.is_picked}}" src="{{filters.imgUrl('yilingqu.png')}}" />
             </view>
         </view>
         <view class="coupon_button" bindtap="handleCloseCoupon">确定</view>

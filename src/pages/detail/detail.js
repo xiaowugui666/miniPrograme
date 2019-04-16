@@ -81,15 +81,36 @@ Page({
 		}
 	},
 	handleOpenCoupon: function () {
-		this.setData({
-			couponModalVisi: true,
-			couponModalHid: false
+		const { id } = this.data.goods, that = this
+		wx.showLoading()
+		wx.request({
+			url: app.globalData.http + `/mpa/coupons/${id}/goods_coupons`,
+			method: 'GET',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+			},
+			success: function (res) {
+				if (res.statusCode === 200) {
+					that.setData({
+						goodCoupons: res.data
+					}, () => {
+						that.setData({
+							couponModalVisi: true,
+							couponModalHid: false
+						})
+					})
+					wx.hideLoading()
+				}
+			}
 		})
 	},
 	getGoodCoupList: function (goods_id) {
 		const that = this
 		wx.request({
-			url: app.globalData.http + `/mpa/coupons/${goods_id}/goods_coupons`,
+			url: app.globalData.http + `/mpa/coupons/${goods_id}/goods_detail_coupons`,
 			method: 'GET',
 			dataType: 'json',
 			header: {
@@ -1242,11 +1263,17 @@ Page({
 	},
 	// 获取用户信息
 	getUserInfo: function (e) {
-		app.publicGetUserInfo(e, this)
+		app.publicGetUserInfo(e, this).then(() => {
+			console.log(e.currentTarget.dataset)
+			const { method } = e.currentTarget.dataset
+			if (method === 'openCouponModal') {
+				this.handleOpenCoupon()
+			}
+		})
 	},
 	// 获取手机号
 	getPhoneNumber: function (e) {
-		app.publicAuth(e, this).then(e => {
+		app.publicAuth(e, this).then(() => {
 			console.log(e)
 		})
 	}

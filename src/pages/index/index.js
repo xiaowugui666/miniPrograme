@@ -21,13 +21,15 @@ Page({
 
 		skinStyle: app.globalData.skinStyle,
 		pageData: null,
-		couponModalVisible: true,
-		couponModalHid: false,
+		couponModalVisible: false,
+		couponModalHid: true,
 		couponList: [],
 		couponParams: {
 			couponId: null,
 			couponTemplateId: null
-		}
+		},
+		hasUserInfo: false,
+		userId: false,
 	},
 	/**
 	 * 
@@ -206,7 +208,6 @@ Page({
 	},
 	// 页面加载
 	onLoad: function (options) {
-		console.log(options)
 		app.globalData.options = {}
 		const that = this
 		if (options.scene) {
@@ -248,24 +249,36 @@ Page({
 		});
 		app.getAppSkinStyle().then((data) => {
 			app.setTabBar(data, this)
-			if (options.coupon_id) {
-				this.getCouponInfo(options.coupon_id).then((data) => {
-					console.log(data)
-					let tempArr = []
-					tempArr.push(data)
+			app.login().then((value) => {
+				if (value.data.avatar_url && value.data.nick_name) {
 					this.setData({
-						couponList: tempArr,
-						couponParams: {
-							couponId: options.coupon_id,
-							couponTemplateId: options.coupon_template_id
-						}
+						hasUserInfo: true,
+						userId: value.data.user_id,
 					})
-				})
-				this.setData({
-					couponModalVisible: true,
-					couponModalHid: false
-				})
-			}
+				} else {
+					this.setData({
+						userId: value.data.user_id,
+					})
+				}
+				if (options.coupon_id) {
+					this.getCouponInfo(options.coupon_id).then((data) => {
+						let tempArr = []
+						tempArr.push(data)
+						this.setData({
+							couponList: tempArr,
+							couponParams: {
+								couponId: options.coupon_id,
+								couponTemplateId: options.coupon_template_id
+							}
+						}, () => {
+							this.setData({
+								couponModalVisible: true,
+								couponModalHid: false
+							})
+						})
+					})
+				}
+			})
 
 			this.getInitElement().then((data) => {
 				if (data === null ) {
@@ -274,7 +287,7 @@ Page({
 					let goodListIdsData = this.getGoodListIdsData(data)
 					this.getInitData(goodListIdsData)
 				}
-				app.login()
+				
 			})
 		})
 	},
@@ -284,7 +297,9 @@ Page({
 				url: app.globalData.http + `/mpa/coupons/${id}`,
 				method: 'GET',
 				header: {
-					'Api-Ext': app.globalData.apiExt
+					'Api-Ext': app.globalData.apiExt,
+					"Api-Secret": app.globalData.apiSecret,
+					"Api-Key": app.globalData.apiKey,
 				},
 				success: function (res) {
 					if (res.statusCode === 200) {

@@ -2,7 +2,8 @@ const app = getApp()
 
 Page({
     data: {
-        skinStyle: ''
+        skinStyle: '',
+        goodsList: []
     },
     onLoad: function (options) {
         console.log(options)
@@ -14,6 +15,7 @@ Page({
         this.getPageData(coupon_id)
     },
     getPageData: function (params) {
+        const that = this
         wx.showLoading()
         wx.request({
 			url: app.globalData.http + `/mpa/coupons/${params}/coupon_goods`,
@@ -26,8 +28,10 @@ Page({
             },
 			success: function (data) {
 				if (data.statusCode === 200) {
-                    console.log(data)
                     wx.hideLoading()
+                    that.setData({
+                        goodsList: data.data
+                    })
 				}
 			}
 		})

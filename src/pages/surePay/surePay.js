@@ -28,8 +28,8 @@ Page({
 			disabled:false,
 			commissionUserId: false,
 			skinStyle: '',
-			couponModalHid: false,
-			couponModalVisi: true
+			couponModalHid: true,
+			couponModalVisi: false
 	},
 	handleCloseCoupon: function () {
 		const that = this

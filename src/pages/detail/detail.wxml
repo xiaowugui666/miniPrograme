@@ -76,9 +76,16 @@
 			</text>
 		</view>
 	</view>
-	<button class="coupons_box" bindtap="handleOpenCoupon" wx:if="{{goodCoupons.length > 0}}">
-		<template is="detailCoupon" data="{{...goodCouponsObj}}"></template>
-	</button>
+	<block wx:if="{{!hasUserInfo}}">
+		<button class="coupons_box" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-method="openCouponModal" wx:if="{{goodCoupons.length > 0}}">
+			<template is="detailCoupon" data="{{...goodCouponsObj}}"></template>
+		</button>
+	</block>
+	<block wx:else>
+		<button class="coupons_box" bindtap="handleOpenCoupon" wx:if="{{goodCoupons.length > 0}}">
+			<template is="detailCoupon" data="{{...goodCouponsObj}}"></template>
+		</button>
+	</block>
 
     <!-- 拼团信息  -->
     <view class='groups' wx:if='{{goods.activity_type == 1}}'>
@@ -248,5 +255,8 @@
 		couponModalHid="{{couponModalHid}}"
 		skinStyle="{{skinStyle}}"
 		couponList="{{goodCoupons}}"
+		componentFrom="detail"
+		hasUserInfo="{{hasUserInfo}}"
+		userId="{{userId}}"
 	></coupon>
 </view>

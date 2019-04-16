@@ -270,7 +270,7 @@ App({
 												that.setData({
 													userId: true
 												})
-												resolve(e)
+												resolve()
 											} else {
 												var tip = data.data.message.toString()
 												wx.showToast({
