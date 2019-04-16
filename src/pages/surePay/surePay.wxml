@@ -54,7 +54,7 @@
 				<label>运费（快递）</label>
 				<label>￥{{filters.ptf(carriage)}}</label>
 			</view>
-			<view bindtap="haddleOpenCoupon">
+			<view bindtap="haddleOpenCoupon" wx:if="{{availableCoupon.length > 0}}">
 				<label>优惠券</label>
 				<view class="coupon_right">
 					<label>-￥{{filters.ptf(carriage)}}</label>
@@ -80,9 +80,9 @@
             <image class="close_img" src='/imgs/icon_close1.png' bindtap="handleCloseCoupon"></image>
         </view>
         <view class="coupon_choice">
-			<view class="choice_item">
-				<text>我是爱说大话卡就还贷款觉得好看</text>
-				<label wx:if="{{selected}}"></label>
+			<view class="choice_item" wx:for="{{availableCoupon}}" wx:key="index">
+				<text>{{item.coupon_template.title}}</text>
+				<label wx:if="{{item.selected}}"></label>
 				<image wx:else src="{{filters.imgUrl('icon_selected.png')}}" />
 			</view>
 			<view class="not_choose">

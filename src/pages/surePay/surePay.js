@@ -29,7 +29,8 @@ Page({
 			commissionUserId: false,
 			skinStyle: '',
 			couponModalHid: true,
-			couponModalVisi: false
+			couponModalVisi: false,
+			availableCoupon: []
 	},
 	handleCloseCoupon: function () {
 		const that = this
@@ -83,6 +84,51 @@ Page({
 			totalOrder: price * num + carriage
 		}, function () {
 			that.getCarriage()
+		})
+	},
+	getCouponInfo: function () {
+		const that = this
+		let goodsObj = {}
+		if (that.data.fromCart) {
+			goodsObj = that.data.sku_ids
+		} else {
+			let id = that.data.dataList[0].goods_sku_id,count = that.data.count;
+			goodsObj = {
+				[id]: count
+			}
+		}
+        wx.request({
+			url: app.globalData.http + '/mpa/coupons/order_coupons',
+			method: 'POST',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+            },
+            data: {
+                goods_skus: goodsObj
+            },
+			success: function (data) {
+				if (data.statusCode === 200) {
+					let tempArr = data.data
+					tempArr.forEach(element => {
+						element.selected = false
+					})
+					tempArr[0].selected = true
+					that.setData({
+						availableCoupon: tempArr
+					})
+					console.log(that.data.availableCoupon)
+                } else {
+                    const tip = data.data.message.toString()
+                    wx.showToast({
+                        title: tip,
+                        icon: 'none',
+                        duration: 2000
+                    })
+                }
+			}
 		})
 	},
 	// 增加数量
@@ -210,11 +256,12 @@ Page({
 				}
 			}
 		})
-
 		that.setData({
 			dataList: data,
 			totalMoney: sum,
 			totalOrder: sum
+		}, () => {
+			that.getCouponInfo()
 		})
 	},
 	/**

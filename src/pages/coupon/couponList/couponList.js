@@ -62,7 +62,7 @@ Page({
     handleUseCoupon: function (e) {
         const id = e.currentTarget.dataset.id
         wx.navigateTo({
-            url: '/pages/coupon/availableGoods/availableGoods?coupon_id' + id
+            url: '/pages/coupon/availableGoods/availableGoods?coupon_id=' + id
         })
     }
 })
