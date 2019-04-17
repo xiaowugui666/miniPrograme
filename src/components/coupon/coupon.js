@@ -108,7 +108,6 @@ Component({
     },
     lifetimes: {
         attached () {
-            console.log(this.data)
         },
         ready () {
         },

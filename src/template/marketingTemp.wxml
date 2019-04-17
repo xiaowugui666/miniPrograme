@@ -10,6 +10,7 @@
 				<block wx:for="{{data[0].currentShowData}}" wx:for-index="index" wx:for-item="ite" wx:key="index">
 					<view class="swiper_box" data-id='{{ite.id}}' bindtap='bindDetail'>
 						<image src='{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+						<view class="coupon_mark" wx:if="{{item.is_coupon === 2}}">优惠券</view>
 						<view class='swiper_box_item'>
 							<view class='title'>{{ite.name}}</view>
 							<view class='info'>
@@ -49,6 +50,7 @@
 				<block wx:for="{{data[0].currentShowData}}" wx:for-index="index" wx:for-item="ite" wx:key="index">
 					<view class="swiper_box" data-id='{{ite.id}}' bindtap='bindDetail'>
 						<image src='{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+						<view class="coupon_mark" wx:if="{{item.is_coupon === 2}}">优惠券</view>
 						<view class='swiper_box_item'>
 							<view class='title'>{{ite.name}}</view>
 							<view class='info'>
@@ -87,6 +89,7 @@
 				<block wx:for="{{data[0].currentShowData}}" wx:for-index="index" wx:for-item="ite" wx:key="index">
 					<view class="swiper_box" data-id='{{ite.id}}' bindtap='bindDetail'>
 						<image src='{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
+						<view class="coupon_mark" wx:if="{{item.is_coupon === 2}}">优惠券</view>
 						<view class='swiper_box_item'>
 							<view class='title'>{{ite.name}}</view>
 							<view class="price">
