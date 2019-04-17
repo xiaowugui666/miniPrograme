@@ -57,15 +57,15 @@
 			<view class='info'>
 				<view>
 					<label>商品总价</label>  
-					<label>￥{{filters.ptf(info.goods_amount)}}</label>
+					<label>￥{{filters.ptf(info.type === 5 ? info.original_goods_amount :info.goods_amount)}}</label>
 				</view>
 				<view>
 					<label>运费（快递）</label>
 					<label>￥{{filters.ptf(info.express_amount)}}</label>
 				</view>
-				<view>
+				<view wx:if="{{info.type === 5}}">
 					<label>优惠券</label>
-					<label>-￥{{filters.ptf(info.express_amount)}}</label>
+					<label>-￥{{filters.ptf(info.discount_amount)}}</label>
 				</view>
 				<view>
 					<label>订单总价</label>

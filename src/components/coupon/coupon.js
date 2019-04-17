@@ -55,7 +55,7 @@ Component({
         handleReciveCoupon (e) {
             const { templateid, couponid, index } = e.currentTarget.dataset, { couponList } = this.data
             let tempArr = this.data.couponList
-            if (!couponList[index].is_picked) {
+            if (!couponList[index].is_limit) {
                 this.reciveCouponRequest(templateid, couponid).then(() => {
                     tempArr[index].is_picked = true
                     this.setData({

@@ -45,7 +45,7 @@
                         <view class='infoBottom'>{{items.sku_description}}</view>
                     </view>
                     <view class='goods_price'>
-                        <label>￥{{filters.ptf(items.price)}}</label><label>x{{items.count}}</label>
+                        <label>￥{{filters.ptf(item.type === 5 ? items.original_price : items.price)}}</label><label>x{{items.count}}</label>
                     </view>
                 </view>
             </view>
