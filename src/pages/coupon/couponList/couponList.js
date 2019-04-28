@@ -60,9 +60,10 @@ Page({
         this.getPageData(status)
     },
     handleUseCoupon: function (e) {
-        const id = e.currentTarget.dataset.id
+        const { id, index } = e.currentTarget.dataset
+        const name = this.data.couponList[index].coupon_template.title
         wx.navigateTo({
-            url: '/pages/coupon/availableGoods/availableGoods?coupon_id=' + id
+            url: `/pages/coupon/availableGoods/availableGoods?coupon_id=${id}&title=${name}`
         })
     }
 })

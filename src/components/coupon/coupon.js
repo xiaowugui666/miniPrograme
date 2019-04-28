@@ -64,6 +64,10 @@ Component({
                 })
             }
         },
+        handleRoute (e) {
+            const { index } = e.currentTarget.dataset
+            console.log(index)
+        },
         getUserInfo (e) {
             const { templateid, couponid } = e.currentTarget.dataset
             app.publicGetUserInfo(e, this).then(() => {
@@ -108,6 +112,7 @@ Component({
     },
     lifetimes: {
         attached () {
+            console.log(this.data)
         },
         ready () {
         },

@@ -98,7 +98,8 @@ Page({
 				'Api-Ext': app.globalData.apiExt
 			},
 			data: {
-				goods_skus: goodsObj
+				goods_skus: goodsObj,
+				is_groupon: 1
 			},
 			success: function (data) {
 				if (data.statusCode === 200) {

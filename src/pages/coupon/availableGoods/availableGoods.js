@@ -4,14 +4,16 @@ Page({
     data: {
         skinStyle: '',
         goodsList: [],
-        currentPage: 0
+        currentPage: 0,
+        couponTitle: ''
     },
     onLoad: function (options) {
         console.log(options)
-        const { coupon_id } = options
+        const { coupon_id, title } = options
         this.setData({
             skinStyle: app.globalData.skinStyle,
-            couponId: coupon_id
+            couponId: coupon_id,
+            couponTitle: title
         })
         this.getPageData()
     },

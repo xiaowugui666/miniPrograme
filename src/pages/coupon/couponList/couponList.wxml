@@ -19,7 +19,7 @@
                     <view class="coup_date">2019.1.21 00:00-2019.3.23 23:59</view>
                 </view>
                 <image wx:if="{{currentTab === 0}}" src="{{filters.imgUrl('yiguoqi.png')}}"></image>
-                <view wx:else class="coupon_box_right" data-id="{{item.id}}" bindtap="handleUseCoupon">去使用</view>
+                <view wx:else class="coupon_box_right" data-id="{{item.id}}" data-index="{{index}}" bindtap="handleUseCoupon">去使用</view>
             </view>
         </view>
     </block>

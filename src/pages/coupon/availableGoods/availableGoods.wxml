@@ -1,7 +1,7 @@
 <wxs module="filters" src="../../../utils/method.wxs"></wxs>
 
 <view class="{{skinStyle}}">
-    <view class="coupon_info">双十一优惠券，满128减10</view>
+    <view class="coupon_info">{{couponTitle}}</view>
     <view class="goods_box">
         <view class="goods_item" wx:for="{{goodsList}}" wx:key="index" data-id="{{item.id}}" bindtap="handleDetail">
             <image src="{{filters.imgUrl(item.cover_url)}}?imageView2/0/w/360/h/360" />
