@@ -550,6 +550,7 @@ Page({
 								tabSwiperArr: tempArr,
 							})
 						}
+						console.log(that.data.tabSwiperArr)
 						resolve()
 					} else {
 						reject()

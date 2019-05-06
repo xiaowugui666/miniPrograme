@@ -15,6 +15,9 @@ page{
   padding-bottom: 130rpx;
 }
 .blue {
+  .mask {
+    opacity: 0;
+  }
   .chooseAddress {
     padding: 34rpx 32rpx;
     color: #253A4E;
@@ -57,6 +60,9 @@ page{
       }
     }
   }
+  .coupon_button {
+    background: #5D92C0;
+  }
 }
 .default {
   .chooseAddress {
@@ -92,6 +98,9 @@ page{
         color: #F35D51;
       }
     }
+  }
+  .coupon_button {
+    background: linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
   }
 }
 .address .adress_info {
@@ -418,7 +427,6 @@ button[disabled] {
     .coupon_button {
         width: 702rpx;
         height: 80rpx;
-        background: linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
         line-height: 80rpx;
         text-align: center;
         font-size: 32rpx;

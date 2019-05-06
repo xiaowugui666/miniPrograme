@@ -83,12 +83,18 @@
         <view class="coupon_choice">
 			<view class="choice_item" wx:for="{{availableCoupon}}" wx:key="{{index}}" data-index="{{index}}" bindtap="handleChangeCoupon">
 				<text>{{item.coupon_template.title}} : 满{{item.coupon_type.full_amount / 100}}减{{item.coupon_type.reduce_amount / 100}}</text>
-				<image wx:if="{{item.selected}}" src="{{filters.imgUrl('icon_selected.png')}}" />
+				<block wx:if="{{item.selected}}">
+					<image wx:if="{{skinStyle === 'default'}}" src="{{filters.imgUrl('icon_selected.png')}}" />
+					<image wx:else src="{{filters.imgUrl('icon_blue_select.png')}}" />
+				</block>
 				<label wx:else></label>
 			</view>
 			<view class="not_choose" bindtap="handleChangeCoupon">
 				<text>不使用优惠券</text>
-				<image wx:if="{{notUseCoupon}}" src="{{filters.imgUrl('icon_selected.png')}}" />
+				<block wx:if="{{notUseCoupon}}">
+					<image wx:if="{{skinStyle === 'default'}}" src="{{filters.imgUrl('icon_selected.png')}}" />
+					<image wx:else src="{{filters.imgUrl('icon_blue_select.png')}}" />
+				</block>
 				<label wx:else></label>
 			</view>
 		</view>

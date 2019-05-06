@@ -1,6 +1,14 @@
-const countDown = function (_this,timeStamp,timeStampArr, id) {
+/**
+ * 倒计时
+ * @param {Object} _this 上下文执行环境
+ * @param {String} timeStamp 时间戳
+ * @param {Array} timeStampArr 页面存储数组
+ * @param {String} id 商品ID
+ */
+
+const countDown = (_this,timeStamp,timeStampArr, id) => {
 	setTime()
-  var timer=null;
+  	var timer=null;
 	timer=setInterval(function(){
 		setTime()
 	},1000);
@@ -30,4 +38,6 @@ const countDown = function (_this,timeStamp,timeStampArr, id) {
 	}
 }
 
-export {countDown}
+module.exports = {
+	countDown
+}

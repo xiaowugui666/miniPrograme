@@ -16,7 +16,7 @@
                             <text class="coupon_tips">{{filters.couponType(item.coupon_template.goods_relation,item.coupon_type)}}</text>
                         </view>
                     </view>
-                    <view class="coup_date">2019.1.21 00:00-2019.3.23 23:59</view>
+                    <view class="coup_date">{{filters.couponDate(item.begin_at) + '-' + filters.couponDate(item.end_at)}}</view>
                 </view>
                 <image wx:if="{{currentTab === 0}}" src="{{filters.imgUrl('yiguoqi.png')}}"></image>
                 <view wx:else class="coupon_box_right" data-id="{{item.id}}" data-index="{{index}}" bindtap="handleUseCoupon">去使用</view>

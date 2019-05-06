@@ -99,8 +99,8 @@
                 <view wx:if="{{currentTab === index}}" class="content_box">
                     <block wx:for="{{item.data}}" wx:key="ind" wx:for-item="ite">
                         <view class="swiper_box" data-id='{{item.type === 1 ? ite.goods_id : ite.id}}' bindtap='bindDetail'>
-							<view class="coupon_mark" wx:if="{{item.is_coupon === 2}}">优惠券</view>
                             <block wx:if="{{item.type === 1}}">
+								<view class="coupon_mark" wx:if="{{ite.goods.is_coupon == 2}}">优惠券</view>
                                 <image src='{{image}}{{ite.goods.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
                                 <view class='swiper_box_item'>
                                     <view class='title'>{{ite.goods.name}}</view>
@@ -119,6 +119,7 @@
                                 </view>
                             </block>
                             <block wx:else>
+								<view class="coupon_mark" wx:if="{{ite.is_coupon === 2}}">优惠券</view>
                                 <image src='{{image}}{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
                                 <view class='swiper_box_item'>
                                     <view>

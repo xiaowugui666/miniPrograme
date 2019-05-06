@@ -47,7 +47,7 @@
 					<label>{{items.name}}</label>
 					<label>{{items.sku_description}}</label>
 					<view>
-						<text class="price">￥{{filters.ptf(items.price)}}</text>
+						<text class="price">￥{{filters.ptf(items.original_price)}}</text>
 						<text>x{{items.count}}</text>
 					</view>
 			</view>

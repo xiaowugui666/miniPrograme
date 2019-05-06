@@ -40,6 +40,17 @@ Component({
         },
     },
     methods: {
+        touchstart () {
+        },
+        preventDefault (e) {
+        },
+        handleRoute (e) {
+            const { index } = e.currentTarget.dataset
+            const {id, title} = this.data.couponList[index]
+            wx.navigateTo({
+                url: `/pages/coupon/availableGoods/availableGoods?coupon_id=${id}&title=${title}`
+            })
+        },
         handleCloseCoupon () {
             const that = this
             that.setData({
@@ -63,10 +74,6 @@ Component({
                     })
                 })
             }
-        },
-        handleRoute (e) {
-            const { index } = e.currentTarget.dataset
-            console.log(index)
         },
         getUserInfo (e) {
             const { templateid, couponid } = e.currentTarget.dataset
@@ -95,9 +102,13 @@ Component({
                     success: function (data) {
                         if (data.statusCode === 200) {
                             resolve(data.data)
-                            wx.hideLoading()
+                            wx.showToast({
+                                title: '领取成功',
+                                icon: 'none',
+                                duration: 2000
+                            })
                         } else {
-                            const tip = data.data.message.toString()
+                            const tip = data.data.meta.message.toString()
                             wx.showToast({
                                 title: tip,
                                 icon: 'none',
@@ -112,7 +123,6 @@ Component({
     },
     lifetimes: {
         attached () {
-            console.log(this.data)
         },
         ready () {
         },

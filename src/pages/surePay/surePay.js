@@ -300,7 +300,11 @@ Page({
 			totalMoney: sum,
 			totalOrder: sum
 		}, () => {
-			that.getCouponInfo()
+			if (that.data.address.id) {
+				that.getCarriage().then(() => {
+					that.getCouponInfo()
+				})
+			}
 		})
 	},
 	/**
@@ -318,7 +322,9 @@ Page({
 			this.setData({
 				address: app.globalData.address
 			}, function () {
-				that.getCarriage()
+				that.getCarriage().then(() => {
+					that.getCouponInfo()
+				})
 			})
 		}   
 	},
