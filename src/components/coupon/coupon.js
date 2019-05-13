@@ -51,6 +51,12 @@ Component({
                 url: `/pages/coupon/availableGoods/availableGoods?coupon_id=${id}&title=${title}`
             })
         },
+        handleRouteIndex (e) {
+            const {coupon_type, coupon_template} = this.data.couponList[0]
+            wx.navigateTo({
+                url: `/pages/coupon/availableGoods/availableGoods?coupon_id=${coupon_type.id}&title=${coupon_template.title}`
+            })
+        },
         handleCloseCoupon () {
             const that = this
             that.setData({

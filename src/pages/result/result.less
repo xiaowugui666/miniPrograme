@@ -42,6 +42,9 @@ page{
 			border-top: 8rpx solid #253A4E;
 		}
 	}
+	.coupon_mark {
+    background: linear-gradient(-75deg, transparent 0.5em, #5D92C0 0%,#5D92C0 100%);
+	}
 	.goods_list {
 		padding: 32rpx 32rpx 0;
 		background: #FFFFFF;
@@ -90,6 +93,11 @@ page{
 			border-top: 8rpx solid #F15043;
 		}
 	}
+	.coupon_mark {
+    border-top-left-radius: 8rpx;
+    border-bottom-right-radius: 24rpx;
+    background: linear-gradient(-75deg, transparent 0.5em, rgba(243,93,81,1) 0%,rgba(247,114,87,1) 50%,rgba(252,180,142,1) 100%);
+  }
 	.goods_list {
 		padding: 24rpx 24rpx 0;
 		background:linear-gradient(180deg,#FFFFFF 0rpx,#F7F9FB 516rpx);
@@ -117,6 +125,17 @@ page{
 			}
 		}
 	}
+}
+.coupon_mark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 102rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 20rpx;
+  color: #FFFFFF;
+  text-align: center;
 }
 .container_search{
 	background: #FFFFFF;
@@ -202,7 +221,8 @@ page{
   background: #fff;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
+	flex-direction: column;
+	position: relative;
 }
 .goods_item image {
   border-radius: 0;

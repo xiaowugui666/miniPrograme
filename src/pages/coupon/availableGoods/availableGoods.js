@@ -58,7 +58,7 @@ Page({
                         })
                     }
                 } else {
-                    const tip = data.data.message.toString()
+                    const tip = data.data.meta.message.toString()
                     wx.showToast({
                         title: tip,
                         icon: 'none',

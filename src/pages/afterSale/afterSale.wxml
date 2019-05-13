@@ -9,7 +9,7 @@
 				<view class='goodsInfo'>    
 					<view class='infoTitle'>{{item.name}}</view>
 					<label class="infoSku {{item.sku_description == '' ? 'empty_sku' : ''}}">{{item.sku_description}}</label>
-					<view class="bottom_price"><text>￥</text>{{filters.ptf(item.pay_amount)}}</view>
+					<view class="bottom_price"><text>￥</text>{{filters.ptf(items.type == 5 ? item.pay_amount - item.discount_amount : item.pay_amount)}}</view>
 				</view>
 			</view>
 		</view>

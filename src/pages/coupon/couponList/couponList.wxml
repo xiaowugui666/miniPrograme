@@ -19,7 +19,7 @@
                     <view class="coup_date">{{filters.couponDate(item.begin_at) + '-' + filters.couponDate(item.end_at)}}</view>
                 </view>
                 <image wx:if="{{currentTab === 0}}" src="{{filters.imgUrl('yiguoqi.png')}}"></image>
-                <view wx:else class="coupon_box_right" data-id="{{item.id}}" data-index="{{index}}" bindtap="handleUseCoupon">去使用</view>
+                <view wx:else class="coupon_box_right" data-id="{{item.coupon_template.id}}" data-index="{{index}}" bindtap="handleUseCoupon">去使用</view>
             </view>
         </view>
     </block>

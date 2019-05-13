@@ -59,7 +59,7 @@
             <label>拼团价</label>
             <label>￥{{filters.ptf(groupPrice)}}</label>
         </view>
-        <view bindtap="haddleOpenCoupon">
+        <view bindtap="haddleOpenCoupon" wx:if="{{availableCoupon.length > 0}}">
             <label>优惠券</label>
             <view class="coupon_right">
                 <label wx:if="{{couponCurrentChoose}}">-￥{{filters.ptf(couponCurrentChoose)}}</label>

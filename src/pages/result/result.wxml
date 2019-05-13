@@ -22,6 +22,7 @@
 		</view>
 		<view class="goods_list">
 			<view class="goods_item" wx:for="{{produList}}" wx:key="index" data-id="{{item.id}}" catchtap="goDetail">
+				<view class="coupon_mark" wx:if="{{item.is_coupon === 2}}">优惠券</view>
 				<image src="{{image}}{{item.cover_url}}?imageslim" />
 				<view class="goods_info">
 					<view class="title">{{item.name}}</view>

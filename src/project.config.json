@@ -39,7 +39,7 @@
 					"id": 0,
 					"name": "商品详情页",
 					"pathName": "pages/index/index",
-					"query": "coupon_id=8&coupon_template_id=8",
+					"query": "coupon_id=49&coupon_template_id=14",
 					"scene": 1007
 				}
 			]

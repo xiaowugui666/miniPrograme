@@ -47,7 +47,7 @@
 					<label>{{items.name}}</label>
 					<label>{{items.sku_description}}</label>
 					<view>
-						<text class="price">￥{{filters.ptf(items.original_price)}}</text>
+						<text class="price">￥{{filters.ptf(items.price)}}</text>
 						<text>x{{items.count}}</text>
 					</view>
 			</view>
@@ -57,7 +57,7 @@
 			<view class='info'>
 				<view>
 					<label>商品总价</label>  
-					<label>￥{{filters.ptf(info.type === 5 ? info.original_goods_amount :info.goods_amount)}}</label>
+					<label>￥{{filters.ptf(info.goods_amount)}}</label>
 				</view>
 				<view>
 					<label>运费（快递）</label>
