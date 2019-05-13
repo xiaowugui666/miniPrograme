@@ -23,13 +23,13 @@
                 </view>
                 <block wx:if="{{componentFrom === 'index' && item.status != 3}}">
                     <button wx:if="{{!hasUserInfo}}" class="coupon_box_right" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-couponid="{{couponParams.couponId}}" data-templateid="{{couponParams.couponTemplateId}}">立即领取</button>
-                    <button wx:elif="{{item.is_picked && item.status == 1 && item.is_limit == false}}" class="coupon_box_right" bindtap="handleRouteIndex">去使用</button>
+                    <button wx:elif="{{item.is_picked && item.status == 1 && item.is_limit == false}}" class="coupon_box_right" bindtap="handleRouteIndex">{{filters.compareDate(item.begin_at) ? '去使用' : '去查看'}}</button>
                     <button wx:else class="coupon_box_right" bindtap="handleReciveCoupon" data-index="{{index}}" data-couponid="{{couponParams.couponId}}" data-templateid="{{couponParams.couponTemplateId}}">立即领取</button>
                 </block>
                 <block wx:elif="{{item.status != 3}}">
                     <button wx:if="{{!hasUserInfo}}" class="coupon_box_right" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-templateid="{{item.id}}">立即领取</button>
                     <button wx:elif="{{!item.is_picked}}" class="coupon_box_right" bindtap="handleReciveCoupon" data-index="{{index}}" data-templateid="{{item.id}}">立即领取</button>
-                    <button wx:else class="coupon_box_right" bindtap="handleRoute" data-index="{{index}}">去使用</button>
+                    <button wx:else class="coupon_box_right" bindtap="handleRoute" data-index="{{index}}">{{filters.compareDate(item.begin_at) ? '去使用' : '去查看'}}</button>
                 </block>
                 <block wx:else>
                     <button class="coupon_box_right disabled">立即领取</button>

@@ -110,6 +110,14 @@ var filters = {
 		var stamp = stampArr[0].split("-").join(".")
 		var lastArr = stampArr[1].split(":")
 		return stamp + ' ' + lastArr[0] + ':' + lastArr[1]
+	},
+	compareDate: function (date) {
+		var timestamp = Date.parse(date)
+		if (timestamp < Date.now()) {
+			return true
+		} else {
+			return false
+		}
 	}
 }
 module.exports = {
@@ -123,5 +131,6 @@ module.exports = {
 	imgUrl: filters.imgUrl,
 	salesCount: filters.salesCount,
 	couponType: filters.couponType,
-	couponDate: filters.couponDate
+	couponDate: filters.couponDate,
+	compareDate: filters.compareDate
 }

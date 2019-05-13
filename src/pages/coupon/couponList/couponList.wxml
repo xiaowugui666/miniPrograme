@@ -18,8 +18,9 @@
                     </view>
                     <view class="coup_date">{{filters.couponDate(item.begin_at) + '-' + filters.couponDate(item.end_at)}}</view>
                 </view>
-                <image wx:if="{{currentTab === 0}}" src="{{filters.imgUrl('yiguoqi.png')}}"></image>
-                <view wx:else class="coupon_box_right" data-id="{{item.coupon_template.id}}" data-index="{{index}}" bindtap="handleUseCoupon">去使用</view>
+                <image wx:if="{{currentTab === 0 && filters.compareDate(item.end_at)}}" src="{{filters.imgUrl('yiguoqi.png')}}"></image>
+                <image wx:elif="{{currentTab === 0}}" src="{{filters.imgUrl('yishixiao.png')}}"></image>
+                <view wx:else class="coupon_box_right" data-id="{{item.coupon_template.id}}" data-index="{{index}}" bindtap="handleUseCoupon">{{filters.compareDate(item.begin_at) ? '去使用' : '去查看'}}</view>
             </view>
         </view>
     </block>

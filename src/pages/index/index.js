@@ -83,7 +83,6 @@ Page({
 				element.skinStyle = app.globalData.skinStyle
 			}
 		});
-		console.log(data)
         this.setData({
             pageData: data
         })
@@ -205,6 +204,17 @@ Page({
 				}
 			})
 		})
+	},
+	onShow: function () {
+		if (this.data.couponList.length > 0 ) {
+			const that = this
+			setTimeout(function(){
+				that.setData({
+					couponModalVisible: true,
+					couponModalHid: false
+				})
+			},300)
+		}
 	},
 	// 页面加载
 	onLoad: function (options) {
