@@ -18,7 +18,7 @@ app.json:
     "pages/shareDetail/shareDetail"  分享的商品详情
 
 util:
-  method.wxs:  toFix   保留2位小数点
+  method.wxs: html内简单的脚本，类似vue中的filter
 
   util.js:   一个公共方法
 

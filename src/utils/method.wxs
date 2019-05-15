@@ -112,7 +112,8 @@ var filters = {
 		return stamp + ' ' + lastArr[0] + ':' + lastArr[1]
 	},
 	compareDate: function (date) {
-		var timestamp = Date.parse(date)
+		var mydate = date.replace(getRegExp('/-/g'), '/')
+		var timestamp = Date.parse(mydate)
 		if (timestamp < Date.now()) {
 			return true
 		} else {
