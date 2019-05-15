@@ -118,7 +118,8 @@ Page({
 					that.setData({
 						availableCoupon: tempArr,
 						couponCurrentChoose: highestReduce,
-						totalOrder: parseFloat(that.data.carriage) + parseFloat(that.data.totalMoney) - parseFloat(highestReduce)
+						totalOrder: parseFloat(that.data.carriage) + parseFloat(that.data.totalMoney) - parseFloat(highestReduce),
+						notUseCoupon: false
 					})
 				} else {
 					const tip = data.data.message.toString()

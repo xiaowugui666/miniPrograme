@@ -8,7 +8,6 @@ Page({
         couponTitle: ''
     },
     onLoad: function (options) {
-        console.log(options)
         const { coupon_id, title } = options
         this.setData({
             skinStyle: app.globalData.skinStyle,
@@ -57,6 +56,13 @@ Page({
                             goodsList:data.data
                         })
                     }
+                } else if (data.statusCode >= 400 || data.statusCode <= 500) {
+                    let tips = data.data === "Unauthorized." ? '未授权' : data.data
+                    wx.showToast({
+                        title: tips,
+                        icon: 'none',
+                        duration: 2000
+                    })
                 } else {
                     const tip = data.data.meta.message.toString()
                     wx.showToast({

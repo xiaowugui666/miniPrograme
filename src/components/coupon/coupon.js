@@ -46,9 +46,9 @@ Component({
         },
         handleRoute (e) {
             const { index } = e.currentTarget.dataset
-            const {id, title} = this.data.couponList[index]
+            const {coupon_type, title} = this.data.couponList[index]
             wx.navigateTo({
-                url: `/pages/coupon/availableGoods/availableGoods?coupon_id=${id}&title=${title}`
+                url: `/pages/coupon/availableGoods/availableGoods?coupon_id=${coupon_type.id}&title=${title}`
             })
         },
         handleRouteIndex (e) {

@@ -208,7 +208,7 @@
 
 	<!-- 规格选择  -->
 	<view class='mask' wx:if='{{chooseModal}}' bindtap='closeTips' catchtouchmove='preventDefault'></view>
-	<view class='choose' wx:if='{{chooseModal}}' animation="{{animationData}}" catchtouchmove='preventDefault'>
+	<view class='choose' wx:if='{{chooseModal}}' animation="{{animationData}}">
 		<view class='choose_price'>
 			<image src='{{image}}{{goodUrl}}?imageView2/0/w/200/h/200'></image>
 			<view class='desc'>

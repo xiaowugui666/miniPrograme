@@ -30,6 +30,7 @@ Page({
 		},
 		hasUserInfo: false,
 		userId: false,
+		options: {}
 	},
 	/**
 	 * 
@@ -204,17 +205,6 @@ Page({
 				}
 			})
 		})
-	},
-	onShow: function () {
-		if (this.data.couponList.length > 0 ) {
-			const that = this
-			setTimeout(function(){
-				that.setData({
-					couponModalVisible: true,
-					couponModalHid: false
-				})
-			},300)
-		}
 	},
 	// 页面加载
 	onLoad: function (options) {
@@ -679,7 +669,7 @@ Page({
 		}
 		return {
 			title: this.data.description.share_text,
-			path: "/pages/index/index",
+			path: "/pages/index/index?coupon_id=51&coupon_templete_id=25",
 			imageUrl: url,
 			success(res) {
 			}

@@ -102,7 +102,7 @@ var filters = {
 		return showCount
 	},
 	couponType: function (goodsRelation, couponType) {
-		var string = goodsRelation === 1 ? '全部商品可用' : '部分商品可用'
+		var string = goodsRelation === 1 ? '全部商品可用' : '指定商品可用'
         return string + ' 满' + couponType.full_amount / 100 + '减' + couponType.reduce_amount / 100
 	},
 	couponDate: function (value) {
