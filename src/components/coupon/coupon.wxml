@@ -4,7 +4,7 @@
     <view class="mask" hidden="{{couponModalHid}}" bindtap="handleCloseCoupon" catchtouchmove='preventDefault'></view>
     <view class="coupons_modal {{couponModalVisi ? 'coupons_modal_show' : ''}} {{componentFrom === 'index' ? 'index_coupon' : ''}}" hidden="{{couponModalHid}}">
         <view class="cou_modal_header">
-            <view>优惠</view>
+            <view>优惠券</view>
             <image class="close_img" src='/imgs/icon_close1.png' bindtap="handleCloseCoupon"></image>
         </view>
         <view class="coupon_items">
