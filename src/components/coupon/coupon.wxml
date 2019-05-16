@@ -8,8 +8,8 @@
             <image class="close_img" src='/imgs/icon_close1.png' bindtap="handleCloseCoupon"></image>
         </view>
         <view class="coupon_items">
-            <view class="coupon_item_box {{componentFrom === 'index' && item.status >= 3 ? 'disabled': ''}}" wx:for="{{couponList}}" wx:key="index">
-                <view class="coupon_box_left {{componentFrom === 'index' && item.status >= 3 ? 'disabled': ''}}">
+            <view class="coupon_item_box {{componentFrom === 'index' && item.status >= 3 && item.coupon_template.status != 10 ? 'disabled': ''}}" wx:for="{{couponList}}" wx:key="index">
+                <view class="coupon_box_left {{componentFrom === 'index' && item.status >= 3 && item.coupon_template.status != 10 ? 'disabled': ''}}">
                     <text class="top_radius"></text>
                     <text class="bottom_radius"></text>
                     <view class="coupon_info">

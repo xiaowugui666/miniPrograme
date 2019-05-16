@@ -31,6 +31,7 @@ Page({
 					hasUserInfo: true,
 					userId: app.globalData.userId
 				})
+				this.getCouponTotal()
 			}else{
 				that.setData({
 					hasUserInfo: false,
@@ -71,7 +72,6 @@ Page({
 						})
 					}
 				})
-				this.getCouponTotal()
 				// 动态模块消息中心未读消息数，动态模块已被隐藏
 	
 				// wx.request({

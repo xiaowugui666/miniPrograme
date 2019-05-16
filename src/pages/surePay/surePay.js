@@ -282,7 +282,9 @@ Page({
 							that.setData({
 								address: data.data[0]
 							}, function () {
-								that.getCarriage()
+								that.getCarriage().then(() => {
+									that.getCouponInfo()
+								})
 							})
 						} 
 					}
@@ -300,12 +302,6 @@ Page({
 			dataList: data,
 			totalMoney: sum,
 			totalOrder: sum
-		}, () => {
-			if (that.data.address.id) {
-				that.getCarriage().then(() => {
-					that.getCouponInfo()
-				})
-			}
 		})
 	},
 	/**
