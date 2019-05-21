@@ -1,0 +1,31 @@
+<wxs module="filters" src="../../../utils/method.wxs"></wxs>
+
+<view class="{{skinStyle}}">
+    <view class="tabs">
+        <view class="{{currentTab === 1 ? 'active' : ''}}" data-tab="{{1}}" bindtap="handleChangeTab">未使用</view>
+        <view class="{{currentTab === 0 ? 'active' : ''}}" data-tab="{{0}}" bindtap="handleChangeTab">已失效</view>
+    </view>
+    <block wx:if="{{couponList.length > 0}}">
+        <view class="content" wx:for="{{couponList}}" wx:key="index">
+            <view class="coupon_item {{currentTab === 0 ? 'invalid' : ''}}">
+                <view class="coupon_box_left">
+                    <view class="coupon_info">
+                        <view class="coup_info_left"><text class="symbol">￥</text>{{item.coupon_type.reduce_amount / 100}}</view>
+                        <view class="coup_info_right">
+                            <text>{{item.coupon_template.title}}</text>
+                            <text class="coupon_tips">{{filters.couponType(item.coupon_template.goods_relation,item.coupon_type)}}</text>
+                        </view>
+                    </view>
+                    <view class="coup_date">{{filters.couponDate(item.begin_at) + '-' + filters.couponDate(item.end_at)}}</view>
+                </view>
+                <image wx:if="{{currentTab === 0 && filters.compareDate(item.end_at)}}" src="{{filters.imgUrl('yiguoqi.png')}}"></image>
+                <image wx:elif="{{currentTab === 0}}" src="{{filters.imgUrl('yishixiao.png')}}"></image>
+                <view wx:else class="coupon_box_right" data-id="{{item.coupon_template.id}}" data-index="{{index}}" bindtap="handleUseCoupon">{{filters.compareDate(item.begin_at) ? '去使用' : '去查看'}}</view>
+            </view>
+        </view>
+    </block>
+    <view class='container' wx:else>
+        <image src='/imgs/no_data_1.png'></image>
+        <view>暂无此类优惠券信息</view>
+    </view>
+</view>

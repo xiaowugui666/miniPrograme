@@ -89,6 +89,14 @@
 		<!--  -->
 		<view class="my_other_box">
 			<view class='my_other'>
+				<navigator url='/pages/coupon/couponList/couponList' class='my_other_nav' hover-class="none">
+					<view class='my_other_text'>
+						<image wx:if="{{skinStyle === 'blue'}}" class="address_icon blue_coupon" src="{{filters.imgUrl('icon_blue_coupon.png')}}"></image>
+						<image wx:else src="{{filters.imgUrl('icon_default.png')}}"></image>
+						<view>优惠券 <text wx:if="{{couponTotal > 0}}">({{couponTotal}})</text></view>
+					</view>
+					<image class='icon' src='{{image}}right.png?imageslim'></image>
+				</navigator>
 				<navigator url='/pages/address/address' class='my_other_nav' hover-class="none">
 					<view class='my_other_text'>
 						<image wx:if="{{skinStyle === 'blue'}}" class="address_icon" src="{{filters.imgUrl('Group_3_Copy1.png')}}"></image>
@@ -96,7 +104,7 @@
 						<view>我的地址</view>
 					</view>
 					<image class='icon' src='{{image}}right.png?imageslim'></image>
-				</navigator>  
+				</navigator>
 				<navigator url='/pages/groupPurchase/groupList/groupList' class='my_other_nav no_border' hover-class="none">
 					<view class='my_other_text'>
 						<image wx:if="{{skinStyle === 'blue'}}" src="{{filters.imgUrl('Group_3_Copy3.png')}}"></image>

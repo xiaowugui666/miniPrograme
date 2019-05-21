@@ -1,4 +1,4 @@
-<!--pages/detail/detail.wxml-->
+<import src="../../template/detailCoupon.wxml"></import>
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 <view class='detail_container {{skinStyle}}' wx:if='{{show==1}}'>
 	<!-- detail images  -->
@@ -67,7 +67,7 @@
 			<view>快递：{{goods.is_free_express === 1 ? '包邮' : (goods.postage_temp_id === null ? filters.ptf(goods.free_express_price) : '动态运费' )}}</view>
 			<view>销量{{goods.sales_count}}件</view>
 		</view>
-    	<view class='detail_promise'  wx:if="{{goods.free_return==1||goods.quick_delivery==1||goods.genuine_article==1}}" >
+		<view class='detail_promise'  wx:if="{{goods.free_return==1||goods.quick_delivery==1||goods.genuine_article==1}}" >
 			<text>服务</text>
 			<text class="promises">
 				<text wx:if="{{goods.free_return==1}}">7天包退换</text>
@@ -76,6 +76,16 @@
 			</text>
 		</view>
 	</view>
+	<block wx:if="{{!hasUserInfo}}">
+		<button class="coupons_box" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-method="openCouponModal" wx:if="{{goodCoupons.length > 0}}">
+			<template is="detailCoupon" data="{{...goodCouponsObj}}"></template>
+		</button>
+	</block>
+	<block wx:else>
+		<button class="coupons_box" bindtap="handleOpenCoupon" wx:if="{{goodCoupons.length > 0}}">
+			<template is="detailCoupon" data="{{...goodCouponsObj}}"></template>
+		</button>
+	</block>
 
     <!-- 拼团信息  -->
     <view class='groups' wx:if='{{goods.activity_type == 1}}'>
@@ -149,56 +159,56 @@
 	<!-- bottom button  -->
   <!-- 下架提示 -->
   <view wx:if="{{status==2}}" class='soldTips'>该商品已下架！去别处看看吧~</view>
-    <form bindsubmit='submit' report-submit='true'>
-    	<view class='detail_bottom' wx:if="{{!isDistributionGood}}">
-        	<view class='detail_cart' bindtap='goCart'>
-				<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail_buy.png'></image>
-				<image wx:else src="{{filters.imgUrl('icon_detail_shop.png')}}" />
-				<text wx:if="{{skinStyle === 'default'}}">购物车</text>
-				<label wx:if="{{cartNum>0}}">{{cartNum}}</label>
+		<form bindsubmit='submit' report-submit='true'>
+			<view class='detail_bottom' wx:if="{{!isDistributionGood}}">
+				<view class='detail_cart' bindtap='goCart'>
+					<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail_buy.png'></image>
+					<image wx:else src="{{filters.imgUrl('icon_detail_shop.png')}}" />
+					<text wx:if="{{skinStyle === 'default'}}">购物车</text>
+					<label wx:if="{{cartNum>0}}">{{cartNum}}</label>
+				</view>
+				<view class='detail_cart' bindtap='goIndex'>
+					<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail_shop.png'></image>
+					<image wx:else src="{{filters.imgUrl('Group18.png')}}" />
+					<text wx:if="{{skinStyle === 'default'}}">店铺</text>
+				</view>
+				<view class="detail_buttons">
+					<button disabled='{{status==2}}' wx:if='{{goods.activity_type == 1 && userId}}' class='addCart group_button {{status==2?"disAddcart":""}}' bindtap='submit' data-flag='2'>
+						<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.origin_price_low)}}</text></view>
+						<view class="buttons_right">单独购买</view>
+					</button>
+					<button disabled='{{status==2}}' wx:elif='{{goods.activity_type == 1 && !userId}}' class='addCart group_button {{status==2?"disAddcart":""}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+						<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.origin_price_low)}}</text></view>
+						<view class="buttons_right">单独购买</view>
+					</button>
+					<button disabled='{{status==2}}' wx:else class='addCart {{status==2?"disAddcart":""}}' bindtap='submit' data-flag='1'>加入购物车</button>
+					<button disabled='{{status==2}}' wx:if="{{goods.activity_type == 1 && !hasUserInfo}}" class='buy group_button {{status==2?"disBuy":""}}' open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+						<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.price_low)}}</text></view>
+						<view class="buttons_right">一键开团</view>
+					</button>
+					<button disabled='{{status==2}}' wx:elif="{{goods.activity_type == 1 && !userId}}" class='buy group_button {{status==2?"disBuy":""}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+						<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.price_low)}}</text></view>
+						<view class="buttons_right">一键开团</view>
+					</button>
+					<button disabled='{{status==2}}' wx:elif="{{goods.activity_type == 1 && userId}}" class='buy group_button {{status==2?"disBuy":""}}' form-type='submit' data-flag='3'>
+						<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.price_low)}}</text></view>
+						<view class="buttons_right">一键开团</view>
+					</button>
+					<button disabled='{{status==2}}' wx:elif="{{!hasUserInfo}}" class='buy {{status==2?"disBuy":""}}'  open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即购买 </button>
+					<button disabled='{{status==2}}' wx:elif="{{!userId}}" class='buy {{status==2?"disBuy":""}}'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即购买 </button>
+					<button disabled='{{status==2}}' wx:else class='buy {{status==2?"disBuy":""}}' bindtap='submit' data-flag='2'>立即购买</button>
+				</view>
 			</view>
-			<view class='detail_cart' bindtap='goIndex'>
-				<image wx:if="{{skinStyle === 'default'}}" src='/imgs/icon_detail_shop.png'></image>
-				<image wx:else src="{{filters.imgUrl('Group18.png')}}" />
-				<text wx:if="{{skinStyle === 'default'}}">店铺</text>
+			<view class="detail_bottom" wx:else>
+				<button disabled='{{status==2}}' wx:if="{{!hasUserInfo}}" class='from_distributor_buy {{status==2?"disBuy":""}}'  open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即购买 </button>
+				<button disabled='{{status==2}}' wx:elif="{{!userId}}" class='from_distributor_buy {{status==2?"disBuy":""}}'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即购买 </button>
+				<button disabled='{{status==2}}' wx:else class='from_distributor_buy {{status==2?"disBuy":""}}' bindtap='submit' data-flag='2'>立即购买</button>
 			</view>
-			<view class="detail_buttons">
-				<button disabled='{{status==2}}' wx:if='{{goods.activity_type == 1 && userId}}' class='addCart group_button {{status==2?"disAddcart":""}}' bindtap='submit' data-flag='2'>
-					<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.origin_price_low)}}</text></view>
-					<view class="buttons_right">单独购买</view>
-				</button>
-				<button disabled='{{status==2}}' wx:elif='{{goods.activity_type == 1 && !userId}}' class='addCart group_button {{status==2?"disAddcart":""}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-					<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.origin_price_low)}}</text></view>
-					<view class="buttons_right">单独购买</view>
-				</button>
-				<button disabled='{{status==2}}' wx:else class='addCart {{status==2?"disAddcart":""}}' bindtap='submit' data-flag='1'>加入购物车</button>
-				<button disabled='{{status==2}}' wx:if="{{goods.activity_type == 1 && !hasUserInfo}}" class='buy group_button {{status==2?"disBuy":""}}' open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-					<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.price_low)}}</text></view>
-					<view class="buttons_right">一键开团</view>
-				</button>
-				<button disabled='{{status==2}}' wx:elif="{{goods.activity_type == 1 && !userId}}" class='buy group_button {{status==2?"disBuy":""}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-					<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.price_low)}}</text></view>
-					<view class="buttons_right">一键开团</view>
-				</button>
-				<button disabled='{{status==2}}' wx:elif="{{goods.activity_type == 1 && userId}}" class='buy group_button {{status==2?"disBuy":""}}' form-type='submit' data-flag='3'>
-					<view><text>￥</text><text class='group_button_price'>{{filters.ptf(groupInfo.price_low)}}</text></view>
-					<view class="buttons_right">一键开团</view>
-				</button>
-				<button disabled='{{status==2}}' wx:elif="{{!hasUserInfo}}" class='buy {{status==2?"disBuy":""}}'  open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即购买 </button>
-				<button disabled='{{status==2}}' wx:elif="{{!userId}}" class='buy {{status==2?"disBuy":""}}'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即购买 </button>
-				<button disabled='{{status==2}}' wx:else class='buy {{status==2?"disBuy":""}}' bindtap='submit' data-flag='2'>立即购买</button>
-		    </view>
-		</view>
-		<view class="detail_bottom" wx:else>
-			<button disabled='{{status==2}}' wx:if="{{!hasUserInfo}}" class='from_distributor_buy {{status==2?"disBuy":""}}'  open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即购买 </button>
-			<button disabled='{{status==2}}' wx:elif="{{!userId}}" class='from_distributor_buy {{status==2?"disBuy":""}}'  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即购买 </button>
-			<button disabled='{{status==2}}' wx:else class='from_distributor_buy {{status==2?"disBuy":""}}' bindtap='submit' data-flag='2'>立即购买</button>
-		</view>
     </form>
 
 	<!-- 规格选择  -->
 	<view class='mask' wx:if='{{chooseModal}}' bindtap='closeTips' catchtouchmove='preventDefault'></view>
-	<view class='choose' wx:if='{{chooseModal}}' animation="{{animationData}}" catchtouchmove='preventDefault'>
+	<view class='choose' wx:if='{{chooseModal}}' animation="{{animationData}}">
 		<view class='choose_price'>
 			<image src='{{image}}{{goodUrl}}?imageView2/0/w/200/h/200'></image>
 			<view class='desc'>
@@ -232,8 +242,21 @@
 		</view> 
     	<view class='confirm' bindtap='closeModal'>确定</view>
 	</view>
-    <view class='description {{goods.activity_type == 1 ? "group_descrip" : "" }}'>
-			<view class="description_detail">商品详情</view>
-			<rich-text nodes="{{content}}"></rich-text>
-   	</view>   
+
+	<!-- 商品详情 -->
+	<view class='description {{goods.activity_type == 1 ? "group_descrip" : "" }}'>
+		<view class="description_detail">商品详情</view>
+		<rich-text nodes="{{content}}"></rich-text>
+	</view>
+
+	<!-- 优惠券 -->
+	<coupon
+		couponModalVisi="{{couponModalVisi}}"
+		couponModalHid="{{couponModalHid}}"
+		skinStyle="{{skinStyle}}"
+		couponList="{{goodCoupons}}"
+		componentFrom="detail"
+		hasUserInfo="{{hasUserInfo}}"
+		userId="{{userId}}"
+	></coupon>
 </view>

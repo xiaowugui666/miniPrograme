@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "set NODE_ENV=development&&gulp default",
+    "start": "set NODE_ENV=development&&gulp default",
     "test": "set NODE_ENV=test&&gulp default",
     "build": "set NODE_ENV=production&&gulp default"
   },

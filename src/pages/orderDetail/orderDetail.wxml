@@ -63,6 +63,10 @@
 					<label>运费（快递）</label>
 					<label>￥{{filters.ptf(info.express_amount)}}</label>
 				</view>
+				<view wx:if="{{info.type === 5}}">
+					<label>优惠券</label>
+					<label>-￥{{filters.ptf(info.discount_amount)}}</label>
+				</view>
 				<view>
 					<label>订单总价</label>
 					<label class='orderMoney'>￥{{filters.ptf(info.amount)}}</label>

@@ -13,13 +13,32 @@
 
 <wxs module="filters" src="../../utils/method.wxs"></wxs>
 <view class="index_container {{skinStyle}}" wx:if="{{pageData !== null}}">
+	<coupon
+		couponModalVisi="{{couponModalVisible}}"
+		couponModalHid="{{couponModalHid}}"
+		skinStyle="{{skinStyle}}"
+		couponList="{{couponList}}"
+		couponParams="{{couponParams}}"
+		componentFrom="index"
+		hasUserInfo="{{hasUserInfo}}"
+		userId="{{userId}}"
+	></coupon>
     <block wx:for="{{pageData}}" wx:for-index="i" wx:key="i" wx:for-item="item">
         <template is="{{item.template}}" data="{{...item}}"></template>
-    </block>
+	</block>
 </view>
 
 <view class="index_container {{skinStyle}}" wx:else>
-
+	<coupon
+		couponModalVisi="{{couponModalVisible}}"
+		couponModalHid="{{couponModalHid}}"
+		skinStyle="{{skinStyle}}"
+		couponList="{{couponList}}"
+		couponParams="{{couponParams}}"
+		componentFrom="index"
+		hasUserInfo="{{hasUserInfo}}"
+		userId="{{userId}}"
+	></coupon>
 	<view class='container_search'>
 		<navigator class='container_search_navi' wx:if="{{description.id}}" url="/pages/search/search">{{description.search_default_text ? description.search_default_text: '大量好物等你发现'}}
 			<icon type='search' size='18' color='rgba(158,168,177,1)'></icon>
@@ -29,7 +48,7 @@
 	 <image class='index_banner' wx:if="{{description.banner}}" mode='aspectFill' src='{{image}}{{description.banner}}?imageView2/0/w/840/h/840'></image>
 	 <view class="banner_loading loading" wx:elif="{{!description.id}}"></view>
 	<view  class='index_classify' wx:if="{{categoryList.length > 0}}">
-		<scroll-view  scroll-x="{{true}}" class='scroll'  bindscroll="scrollCategory">
+		<scroll-view  scroll-x="{{true}}" class='scroll' bindscroll="scrollCategory">
 			<view data-idx="{{item.id}}" wx:for='{{categoryList}}' wx:key="{{index}}" bindtap='switchCate'>
 				<image src='{{image}}{{item.icon_url}}?imageView2/0/w/408/h/408/imageslim'></image>
 				<text>{{item.name}}</text>
@@ -68,7 +87,6 @@
 			</view>
 		</view>
 	</view>
-	<!-- 营销活动tab列，若无营销活动，则显示商品列表 -->
 	<block wx:if="{{tabSwiperArr.length > 0 }}">
 		<view class="marketing_tabs {{tabSwiperArr.length == 2 ? 'double_market' : (tabSwiperArr.length == 1 ? 'single_market' : '')}}" id="marketing-tab">
 			<view wx:for="{{tabSwiperArr}}" wx:key="index" class="marketing_tab {{currentTab === index ? 'active_tab' : ''}}" data-value='{{index}}' bindtap='onChangeTab'>{{item.label}}</view>
@@ -82,6 +100,7 @@
                     <block wx:for="{{item.data}}" wx:key="ind" wx:for-item="ite">
                         <view class="swiper_box" data-id='{{item.type === 1 ? ite.goods_id : ite.id}}' bindtap='bindDetail'>
                             <block wx:if="{{item.type === 1}}">
+								<view class="coupon_mark" wx:if="{{ite.goods.is_coupon == 2}}">优惠券</view>
                                 <image src='{{image}}{{ite.goods.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
                                 <view class='swiper_box_item'>
                                     <view class='title'>{{ite.goods.name}}</view>
@@ -100,6 +119,7 @@
                                 </view>
                             </block>
                             <block wx:else>
+								<view class="coupon_mark" wx:if="{{ite.is_coupon === 2}}">优惠券</view>
                                 <image src='{{image}}{{ite.cover_url}}?imageView2/0/w/360/h/360' mode="aspectFill"/>
                                 <view class='swiper_box_item'>
                                     <view>
@@ -139,6 +159,7 @@
 		<view class="goods_recommend">
 			<view class="goods_item" wx:for="{{good}}" wx:key="index"  data-id="{{item.id}}" bindtap='bindDetail'>
 				<image src="{{image}}{{item.cover_url}}?imageView2/0/w/360/h/360" />
+				<view class="coupon_mark" wx:if="{{item.is_coupon === 2}}">优惠券</view>
 				<view class="goods_info">
 					<view class="title">{{item.name}}</view>
 					<view class="info">

@@ -10,7 +10,7 @@ const { series, parallel, watch } = gulp;
 console.log(series, parallel)
 
 function lessPages() {
-    return gulp.src([ 'src/pages/**/**.less'], {base: 'src'})
+    return gulp.src([ 'src/pages/**/**.less', 'src/components/**/**.less'], {base: 'src'})
         .pipe(less())
         .pipe(cssnano({autoprefixer: false}))
         .pipe(rename(function(path){
@@ -34,7 +34,9 @@ function pages() {
         'src/app.js',
         'src/app.json',
         'src/project.config.json',
-        // 'src/README.md',
+        'src/components/**/**.js',
+        'src/components/**/**.wxml',
+        'src/components/**/**.json',
         'src/pages/**/**.js',
         'src/pages/**/**.wxml',
         'src/pages/**/**.json',
@@ -45,8 +47,8 @@ function pages() {
 }
 
 function auto() {
-    gulp.watch(['src/app.wxss', 'src/pages/**/**.less'], lessPages);
-    gulp.watch(['src/imgs/*', 'src/pages/**/**/*', 'src/utils/**', 'src/template/**.wxml', 'src/*'], pages);
+    gulp.watch(['src/app.wxss', 'src/pages/**/**.less', 'src/components/**/**.less'], lessPages);
+    gulp.watch(['src/imgs/*', 'src/pages/**/**/*', 'src/components/**/**/*', 'src/utils/**', 'src/template/**.wxml', 'src/*'], pages);
 }
 
 function cleanDist(cb) {

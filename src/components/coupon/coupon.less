@@ -1,0 +1,225 @@
+@keyframes indexCouponAnimationIn
+{
+	from {
+		height: 0;
+		padding: 0 24rpx;
+	}
+	to {
+		height: 452rpx;
+		padding: 24rpx 24rpx;
+	}
+}
+@keyframes indexCouponAnimationOut
+{
+	from {
+		height: 452rpx;
+		padding: 24rpx 24rpx;
+	}
+	to {
+		height: 0;
+		padding: 0 24rpx;
+	}
+}
+@keyframes couponAnimationIn
+{
+	from {
+		height: 0;
+		padding: 0 24rpx;
+	}
+	to {
+		height: 876rpx;
+		padding: 24rpx 24rpx;
+	}
+}
+@keyframes couponAnimationOut
+{
+	from {
+		height: 876rpx;
+		padding: 24rpx 24rpx;
+	}
+	to {
+		height: 0;
+		padding: 0 24rpx;
+	}
+}
+.mask{
+	width: 750rpx;
+	height: 100%;
+	background: #000;
+	z-index: 500;
+	position: fixed;
+	top: 0;
+	opacity: 0.4;
+}
+.coupon_box.blue {
+    .coupon_button {
+        background: #5D92C0;
+    }
+    .mask {
+        opacity: 0;
+    }
+}
+.coupon_box.default {
+    .coupon_button {
+        background: linear-gradient(90deg,rgba(255,153,99,1) 0%,rgba(247,114,87,1) 50%,rgba(243,93,81,1) 100%);
+    }
+}
+.coupon_box {
+    .index_coupon.coupons_modal {
+        animation: indexCouponAnimationOut 0.3s;
+        .coupon_items {
+            height: auto !important;
+        }
+        &.coupons_modal_show {
+            animation: indexCouponAnimationIn 0.3s !important;
+        }
+    }
+}
+.coupon_box {
+    position: relative;
+    .coupons_modal {
+        position: fixed;
+        z-index: 900;
+        width: 750rpx;
+        box-sizing: border-box;
+        border-radius: 20rpx 20rpx 0 0;
+        bottom: 0;
+        background: #FFFFFF;
+        animation: couponAnimationOut 0.5s;
+        height: 0;
+        padding: 0 24rpx;
+        box-shadow:0px 4rpx 124rpx 0px rgba(0,0,0,0.5);
+        &.coupons_modal_show {
+            animation: couponAnimationIn 0.5s;
+            height: auto;
+            padding: 24rpx 24rpx;
+        }
+        .cou_modal_header {
+            font-size: 32rpx;
+            color: #253A4E;
+            font-weight: bold;
+            text-align: center;
+            position: relative;
+            padding-top: 16rpx;
+            padding-bottom: 48rpx;
+            .close_img {
+                width: 40rpx;
+                height: 40rpx;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+        .coupon_items {
+            height: 610rpx;
+            overflow: scroll;
+            .coupon_item_box {
+                display: flex;
+                align-items: center;
+                color: #F35D51;
+                font-size: 24rpx;
+                background: #F8F1F0;
+                border-radius: 8rpx;
+                position: relative;
+                overflow: hidden;
+                &.disabled {
+                    background: #F7F9FB;
+                }
+                &:not(:last-child) {
+                    margin-bottom: 24rpx;
+                }
+                .coupon_box_left {
+                    flex-grow: 1;
+                    box-sizing: border-box;
+                    padding: 24rpx;
+                    border-right: 2rpx dashed #F35D51;
+                    position: relative;
+                    &.disabled {
+                        color: #6E7C89;
+                        background: #F7F9FB;
+                        border-right: 2rpx dashed #E6E9EB;
+                    }
+                    .top_radius,.bottom_radius {
+                        position: absolute;
+                        display: inline-block;
+                        width: 20rpx;
+                        height: 10rpx;
+                        z-index: 200;
+                        right: -10rpx;
+                        background: #FFFFFF;
+                    }
+                    .top_radius {
+                        top: 0;
+                        border-radius: 0 0 10rpx 10rpx;
+                    }
+                    .bottom_radius {
+                        bottom: 0;
+                        border-radius: 10rpx 10rpx 0 0;
+                    }
+                    .coupon_info {
+                        display: flex;
+                        align-items: center;
+                        padding-top: 20rpx;
+                        .coup_info_left {
+                            font-size: 80rpx;
+                            flex-shrink: 0;
+                            line-height: 0;
+                            .symbol {
+                                font-size: 36rpx;
+                                margin-right: -4rpx;
+                            }
+                        }
+                        .coup_info_right {
+                            display: flex;
+                            flex-direction: column;
+                            margin-left: 16rpx;
+                            flex-grow: 1;
+                            font-size: 28rpx;
+                            .coupon_tips {
+                                font-size: 24rpx;
+                            }
+                        }
+                    }
+                    .coup_date {
+                        margin-top: 16rpx;
+                    }
+                }
+                .coupon_box_right {
+                    width: 200rpx;
+                    flex-shrink: 0;
+                    text-align: center;
+                    font-size: 26rpx;
+                    padding: 0;
+                    height: 186rpx;
+                    color: #F35D51;
+                    background: #F8F1F0;
+                    line-height: 186rpx;
+                    &.disabled {
+                        color: #6E7C89;
+                        background: #F7F9FB;
+                    }
+                }
+                .coupon_box_right::after {
+                    border: none;
+                }
+                image {
+                    position: absolute;
+                    right: -8rpx;
+                    bottom: -20rpx;
+                    height: 92rpx;
+                    width: 92rpx;
+                }
+            }  
+        }
+        .coupon_button {
+            width: 702rpx;
+            height: 80rpx;
+            line-height: 80rpx;
+            text-align: center;
+            font-size: 32rpx;
+            color: #FFFFFF;
+            border-radius: 8rpx;
+            margin-top: 32rpx;
+        }
+    }
+}

@@ -29,9 +29,111 @@ Page({
 		// apiKey:'',
 		disabled: false,
 		groupId: '',
-		skinStyle: ''
+		skinStyle: '',
+		couponModalHid: true,
+		couponModalVisi: false,
+		couponCurrentChoose: '',
+		availableCoupon: [],
+		notUseCoupon: false
 	},
-
+	handleCloseCoupon: function () {
+		const that = this
+            that.setData({
+                couponModalVisi: false
+            }, () => {
+                setTimeout(() => {
+                    that.setData({
+                        couponModalHid: true
+                    })
+                }, 300)
+            })
+	},
+	haddleOpenCoupon: function () {
+		this.setData({
+			couponModalVisi: true,
+			couponModalHid: false
+		})
+	},
+	handleChangeCoupon: function (e) {
+		const { index } = e.currentTarget.dataset, availableCoupon = this.data.availableCoupon
+		availableCoupon.forEach(element => {
+			element.selected = false
+		})
+		if (index != undefined) {
+			availableCoupon[index].selected = true
+			let couponPrice = availableCoupon[index].coupon_type.reduce_amount
+			this.setData({
+				availableCoupon: availableCoupon,
+				notUseCoupon: false,
+				couponCurrentChoose: couponPrice,
+				totalOrder: parseFloat(this.data.carriage) + parseFloat(this.data.totalMoney) - parseFloat(couponPrice)
+			})
+		} else {
+			this.setData({
+				availableCoupon: availableCoupon,
+				notUseCoupon: true,
+				couponCurrentChoose: '',
+				totalOrder: parseFloat(this.data.carriage) + parseFloat(this.data.totalMoney)
+			})
+		}
+	},
+	getCouponInfo: function () {
+		const that = this
+		let goodsObj = {}
+		if (that.data.fromCart) {
+			goodsObj = that.data.sku_ids
+		} else {
+			let id = that.data.dataList[0].goods_sku_id,count = that.data.count;
+			goodsObj = {
+				[id]: count
+			}
+		}
+		wx.request({
+			url: app.globalData.http + '/mpa/coupons/order_coupons',
+			method: 'POST',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+			},
+			data: {
+				goods_skus: goodsObj,
+				is_groupon: 1
+			},
+			success: function (data) {
+				if (data.statusCode === 200) {
+					let tempArr = data.data, highestReduce = 0
+					tempArr.forEach(element => {
+						element.selected = false
+					})
+					tempArr.sort(function(a, b) {
+						if (a.coupon_type.reduce_amount < b.coupon_type.reduce_amount) return 1
+						if (a.coupon_type.reduce_amount > b.coupon_type.reduce_amount) return -1
+					})
+					if (data.data.length > 0) {
+						tempArr[0].selected = true
+						highestReduce = tempArr[0].coupon_type.reduce_amount
+					}
+					that.setData({
+						availableCoupon: tempArr,
+						couponCurrentChoose: highestReduce,
+						totalOrder: parseFloat(that.data.carriage) + parseFloat(that.data.totalMoney) - parseFloat(highestReduce),
+						notUseCoupon: false
+					})
+				} else {
+					const tip = data.data.message.toString()
+					wx.showToast({
+						title: tip,
+						icon: 'none',
+						duration: 2000
+					})
+				}
+			},
+			fail: function (res) {
+			}
+		})
+	},
 	// 减少数量
 	bindminus() {
 		let that = this;
@@ -65,7 +167,9 @@ Page({
 			totalMoney: groupPrice * num,
 			totalOrder: groupPrice * num + carriage
 		}, function () {
-			that.getCarriage()
+			that.getCarriage().then(() => {
+				that.getCouponInfo()
+			})
 		})
 	},
 	// 增加数量
@@ -112,7 +216,9 @@ Page({
 			totalMoney: groupPrice * num,
 			totalOrder: groupPrice * num + carriage
 		},function(){
-			that.getCarriage()
+			that.getCarriage().then(() => {
+				that.getCouponInfo()
+			})
 		})
 	},
 	/**
@@ -183,7 +289,9 @@ Page({
 							that.setData({
 								address: data.data[0]
 							}, function () {
-								that.getCarriage()
+								that.getCarriage().then(() => {
+									that.getCouponInfo()
+								})
 							})
 
 						}
@@ -219,7 +327,9 @@ Page({
 			this.setData({
 				address: app.globalData.address
 			}, function () {
-				that.getCarriage()
+				that.getCarriage().then(() => {
+					that.getCouponInfo()
+				})
 			})
 		}
 	},
@@ -319,7 +429,16 @@ Page({
 		let skuObj = {
 			[id]: count
 		}
-		let requestUrl, data, sceneID = app.globalData.sceneID ? app.globalData.sceneID : '';
+		let requestUrl, data, sceneID = app.globalData.sceneID ? app.globalData.sceneID : '', couponTemplateId, { availableCoupon } = that.data;
+		if (that.data.notUseCoupon || availableCoupon.length === 0) {
+			couponTemplateId = 0
+		} else {
+			availableCoupon.forEach(element => {
+				if (element.selected) {
+					couponTemplateId = element.id
+				}
+			})
+		}
 		// 定义不同接口所需参数
 		if (that.data.isJoin) {
 			requestUrl = app.globalData.http + '/mpa/groupon/' + that.data.groupId + '/join';
@@ -330,7 +449,8 @@ Page({
 				activity_form_id: that.data.dataList[0].groupFormId,
 				address_id: that.data.address.id,
 				form_id: e.detail.formId,
-				scene: sceneID
+				scene: sceneID,
+				coupon_id: couponTemplateId
 			}
 		} else {
 			requestUrl = app.globalData.http + '/mpa/groupon';
@@ -341,7 +461,8 @@ Page({
 				activity_form_id: that.data.dataList[0].groupFormId,
 				address_id: that.data.address.id,
 				form_id: e.detail.formId,
-				scene: sceneID
+				scene: sceneID,
+				coupon_id: couponTemplateId
 			}
 		}
 		// 直接支付
@@ -447,36 +568,42 @@ Page({
 
 	/*获取运费*/
 	getCarriage: function () {
-		var that = this;
-		wx.request({
-			url: app.globalData.http + '/mpa/order/express/fee',
-			method: "post",
-			dataType: 'json',
-			data: {
-				address_id: this.data.address.id,
-				goods: this.data.sku_ids
-			},
-			header: {
-				"Api-Key": app.globalData.apiKey,
-				"Api-Secret": app.globalData.apiSecret,
-				'Api-Ext': app.globalData.apiExt
-			},
-			success: function (data) {
-				var code = data.statusCode.toString()        
-				if (code >= 200 && code < 300) {
-					that.setData({
-						carriage: data.data.express_fee,
-						totalOrder: parseFloat(data.data.express_fee) + parseFloat(that.data.totalMoney)
-					})
-				} else {
-					var tip = data.data.message.toString()
-					wx.showToast({
-						title: tip,
-						icon: 'none',
-						duration: 2000
-					})
+		return new Promise((resolve,reject) => {
+			var that=this;
+			wx.request({
+				url: app.globalData.http +'/mpa/order/express/fee',
+				method:"post",
+				dataType:'json',
+				data:{
+					address_id:this.data.address.id,
+					goods: this.data.sku_ids
+				},
+				header: {
+					"Api-Key": app.globalData.apiKey,
+					"Api-Secret": app.globalData.apiSecret,
+					'Api-Ext': app.globalData.apiExt
+				},
+				success:function(data){
+					var code = data.statusCode.toString()
+					if (code >= 200 && code < 300) {
+						that.setData({
+							carriage: data.data.express_fee,
+							totalOrder: parseFloat(data.data.express_fee) + parseFloat(that.data.totalMoney)
+						})
+					} else {
+						var tip = data.data.message.toString()
+						wx.showToast({
+							title: tip,
+							icon: 'none',
+							duration: 2000
+						})
+					}
+					resolve()
+				},
+				fail: function(res) {
+					reject(res)
 				}
-			}
+			})
 		})
 	}
 })

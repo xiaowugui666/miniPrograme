@@ -140,7 +140,7 @@ App({
 								//保存响应头信息
 								var code = res.statusCode.toString()
 								if (code >= 200 && code < 300) {
-									that.globalData.user_info = res.data
+									that.globalData.user_info = res
 									if (res.header["api-key"] && res.header["api-secret"]) {
 										var apiKey = res.header["api-key"],
 											apiSecret = res.header["api-secret"];
@@ -170,7 +170,7 @@ App({
 					}
 				})
 			} else {
-				resolve()
+				resolve(that.globalData.user_info)
 			}
 		}) 
 	},

@@ -15,7 +15,7 @@
                         <label>{{item.name}}</label>
                         <label>{{item.order_items.sku_description}}</label>
                         <view>
-                            <text class="price">￥{{filters.ptf(item.amount)}}</text>
+                            <text class="price">￥{{filters.ptf(item.amount - item.discount_amount > 0 ? item.amount - item.discount_amount : item.amount)}}</text>
                             <text>x{{item.count}}</text>
                         </view>
                     </view>

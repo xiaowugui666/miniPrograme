@@ -20,7 +20,17 @@ Page({
 		currentSpecialPage: 0,
 
 		skinStyle: app.globalData.skinStyle,
-        pageData: null,
+		pageData: null,
+		couponModalVisible: false,
+		couponModalHid: true,
+		couponList: [],
+		couponParams: {
+			couponId: null,
+			couponTemplateId: null
+		},
+		hasUserInfo: false,
+		userId: false,
+		options: {}
 	},
 	/**
 	 * 
@@ -239,6 +249,37 @@ Page({
 		});
 		app.getAppSkinStyle().then((data) => {
 			app.setTabBar(data, this)
+			app.login().then((value) => {
+				if (value.data.avatar_url && value.data.nick_name) {
+					this.setData({
+						hasUserInfo: true,
+						userId: value.data.user_id,
+					})
+				} else {
+					this.setData({
+						userId: value.data.user_id,
+					})
+				}
+				if (options.coupon_id) {
+					this.getCouponInfo(options.coupon_id).then((data) => {
+						let tempArr = []
+						tempArr.push(data)
+						this.setData({
+							couponList: tempArr,
+							couponParams: {
+								couponId: options.coupon_id,
+								couponTemplateId: options.coupon_template_id
+							}
+						}, () => {
+							this.setData({
+								couponModalVisible: true,
+								couponModalHid: false
+							})
+						})
+					})
+				}
+			})
+
 			this.getInitElement().then((data) => {
 				if (data === null ) {
 					this.getData()
@@ -246,7 +287,30 @@ Page({
 					let goodListIdsData = this.getGoodListIdsData(data)
 					this.getInitData(goodListIdsData)
 				}
-				app.login()
+				
+			})
+		})
+	},
+	getCouponInfo: function (id) {
+		return new Promise((resolve,reject) => {
+			wx.request({
+				url: app.globalData.http + `/mpa/coupons/${id}`,
+				method: 'GET',
+				header: {
+					'Api-Ext': app.globalData.apiExt,
+					"Api-Secret": app.globalData.apiSecret,
+					"Api-Key": app.globalData.apiKey,
+				},
+				success: function (res) {
+					if (res.statusCode === 200) {
+						resolve(res.data)
+					} else {
+						reject(res)
+					}
+				},
+				fail: function (res) {
+					reject(res)
+				}
 			})
 		})
 	},
@@ -486,6 +550,7 @@ Page({
 								tabSwiperArr: tempArr,
 							})
 						}
+						console.log(that.data.tabSwiperArr)
 						resolve()
 					} else {
 						reject()
@@ -604,7 +669,7 @@ Page({
 		}
 		return {
 			title: this.data.description.share_text,
-			path: "/pages/index/index",
+			path: "/pages/index/index?coupon_id=51&coupon_templete_id=25",
 			imageUrl: url,
 			success(res) {
 			}

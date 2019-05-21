@@ -15,7 +15,8 @@ Page({
 		isOpenDistribution: false,
 		distributionInfo: {},
 		isDistributor: false,
-		skinStyle: ''
+		skinStyle: '',
+		couponTotal: 0
 	},
 	onShow: function () {
 		this.setData({
@@ -30,6 +31,7 @@ Page({
 					hasUserInfo: true,
 					userId: app.globalData.userId
 				})
+				this.getCouponTotal()
 			}else{
 				that.setData({
 					hasUserInfo: false,
@@ -70,7 +72,6 @@ Page({
 						})
 					}
 				})
-				
 				// 动态模块消息中心未读消息数，动态模块已被隐藏
 	
 				// wx.request({
@@ -89,6 +90,26 @@ Page({
 				// 		})
 				// 	}
 				// })
+			}
+		})
+	},
+	getCouponTotal: function (params) {
+		const that = this
+		wx.request({
+			url: app.globalData.http + '/mpa/coupons/total',
+			method: 'GET',
+			dataType: 'json',
+			header: {
+				"Api-Key": app.globalData.apiKey,
+				"Api-Secret": app.globalData.apiSecret,
+				'Api-Ext': app.globalData.apiExt
+			},
+			success: function (data) {
+				if (data.statusCode === 200) {
+					that.setData({
+						couponTotal: data.data
+					})
+				}
 			}
 		})
 	},

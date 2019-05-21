@@ -1,0 +1,42 @@
+
+<wxs module="filters" src="../../utils/method.wxs"></wxs>
+<view class="coupon_box {{skinStyle}}">
+    <view class="mask" hidden="{{couponModalHid}}" bindtap="handleCloseCoupon" catchtouchmove='preventDefault'></view>
+    <view class="coupons_modal {{couponModalVisi ? 'coupons_modal_show' : ''}} {{componentFrom === 'index' ? 'index_coupon' : ''}}" hidden="{{couponModalHid}}">
+        <view class="cou_modal_header">
+            <view>优惠券</view>
+            <image class="close_img" src='/imgs/icon_close1.png' bindtap="handleCloseCoupon"></image>
+        </view>
+        <view class="coupon_items">
+            <view class="coupon_item_box {{componentFrom === 'index' && item.status >= 3 || componentFrom === 'index' && item.coupon_template.status != 10 && !(item.status == 1 && item.is_picked) || (item.is_limit && item.is_picked && item.is_used) ? 'disabled': ''}}" wx:for="{{couponList}}" wx:key="index">
+                <view class="coupon_box_left {{componentFrom === 'index' && item.status >= 3 || componentFrom === 'index' && item.coupon_template.status != 10 && !(item.status == 1 && item.is_picked) || (item.is_limit && item.is_picked && item.is_used) ? 'disabled': ''}}">
+                    <text class="top_radius"></text>
+                    <text class="bottom_radius"></text>
+                    <view class="coupon_info">
+                        <view class="coup_info_left"><text class="symbol">￥</text>{{item.coupon_type.reduce_amount / 100}}</view>
+                        <view class="coup_info_right">
+                            <text>{{item.coupon_template ? item.coupon_template.title : item.title}}</text>
+                            <text class="coupon_tips">{{filters.couponType(item.coupon_template ? item.coupon_template.goods_relation : item.goods_relation,item.coupon_type)}}</text>
+                        </view>
+                    </view>
+                    <view class="coup_date">{{item.coupon_template ? filters.couponDate(item.coupon_template.begin_at) + '-' + filters.couponDate(item.coupon_template.end_at) : filters.couponDate(item.begin_at) + '-' + filters.couponDate(item.end_at)}}</view>
+                </view>
+                <block wx:if="{{componentFrom === 'index' && (item.status != 3 && item.status !=4 && item.coupon_template.status == 10) || (item.status == 1 && item.is_picked)}}">
+                    <button wx:if="{{!hasUserInfo}}" class="coupon_box_right" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-couponid="{{couponParams.couponId}}" data-templateid="{{couponParams.couponTemplateId}}">立即领取</button>
+                    <button wx:elif="{{item.is_picked && item.status == 1}}" class="coupon_box_right" bindtap="handleRouteIndex">去使用</button>
+                    <button wx:else class="coupon_box_right" bindtap="handleReciveCoupon" data-index="{{index}}" data-couponid="{{couponParams.couponId}}" data-templateid="{{couponParams.couponTemplateId}}">立即领取</button>
+                </block>
+                <block wx:elif="{{componentFrom === 'detail' && item.status == 10 && !(item.is_limit && item.is_picked && item.is_used)}}">
+                    <button wx:if="{{!hasUserInfo}}" class="coupon_box_right" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-templateid="{{item.id}}">立即领取</button>
+                    <button wx:elif="{{!item.is_picked || (item.is_picked && item.is_used)}}" class="coupon_box_right" bindtap="handleReciveCoupon" data-index="{{index}}" data-templateid="{{item.id}}">立即领取</button>
+                    <button wx:else class="coupon_box_right" bindtap="handleRoute" data-index="{{index}}">去使用</button>
+                </block>
+                <block wx:else>
+                    <button class="coupon_box_right disabled">立即领取</button>
+                    <image src="{{filters.imgUrl('yishixiao.png')}}" />
+                </block>
+            </view>
+        </view>
+        <view class="coupon_button" catchtap="handleCloseCoupon">确定</view>
+    </view>
+</view>

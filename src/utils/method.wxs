@@ -100,6 +100,24 @@ var filters = {
 			showCount = value
 		}
 		return showCount
+	},
+	couponType: function (goodsRelation, couponType) {
+		var string = goodsRelation === 1 ? '全部商品可用' : '指定商品可用'
+        return string + ' 满' + couponType.full_amount / 100 + '减' + couponType.reduce_amount / 100
+	},
+	couponDate: function (value) {
+		var stampArr = value.split(" ")
+		var stamp = stampArr[0].split("-").join(".")
+		var lastArr = stampArr[1].split(":")
+		return stamp + ' ' + lastArr[0] + ':' + lastArr[1]
+	},
+	compareDate: function (date) {
+		var timestamp = getDate(date.replace(getRegExp('-', 'g'), '/'))
+		if (timestamp < Date.now()) {
+			return true
+		} else {
+			return false
+		}
 	}
 }
 module.exports = {
@@ -112,4 +130,7 @@ module.exports = {
 	drawStatu: filters.drawStatu,
 	imgUrl: filters.imgUrl,
 	salesCount: filters.salesCount,
+	couponType: filters.couponType,
+	couponDate: filters.couponDate,
+	compareDate: filters.compareDate
 }

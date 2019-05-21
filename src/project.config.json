@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -38,8 +38,8 @@
 				{
 					"id": 0,
 					"name": "商品详情页",
-					"pathName": "pages/detail/detail",
-					"query": "id=70&commissionUserId=60",
+					"pathName": "pages/index/index",
+					"query": "coupon_id=69&coupon_template_id=14",
 					"scene": 1007
 				}
 			]
