@@ -75,9 +75,15 @@ Component({
             if (!couponList[index].is_limit) {
                 this.reciveCouponRequest(templateid, couponid).then(() => {
                     tempArr[index].is_picked = true
+                    tempArr[index].is_used = false
                     this.setData({
                         couponList: tempArr
                     })
+                })
+            } else {
+                wx.showToast({
+                    title: '已达领取上限',
+                    icon: 'none'
                 })
             }
         },
