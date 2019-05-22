@@ -207,6 +207,9 @@ image{
 			color: #6E7C89;
 		}
 	}
+	.soldTips {
+		bottom: 100rpx;
+	}
 }
 .default {
 	swiper{
@@ -217,14 +220,6 @@ image{
 		width:750rpx;
 		height:750rpx;
 		position: relative;
-		&>image {
-			width: 190rpx;
-			height: 190rpx;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%,-50%);
-		}
 	}
 	.detail_imgs image{
 		width: 750rpx;
@@ -391,6 +386,9 @@ image{
 			}
 		}
 	}
+	.soldTips {
+		bottom: 128rpx;
+	}
 }
 .coupons_box {
 	font-size: 28rpx;
@@ -424,6 +422,17 @@ image{
 			flex-shrink: 0;
 		}
 	}
+	.soldTips {
+		bottom: 128rpx;
+	}
+}
+.banner>image {
+	width: 190rpx;
+	height: 190rpx;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
 }
 .banner .showIndex {
 	position: absolute;
@@ -822,7 +831,6 @@ image{
 }
 .soldTips{
   position: fixed;
-  bottom: 128rpx;
   left: 0;
   width: 100%;
   height: 106rpx;
